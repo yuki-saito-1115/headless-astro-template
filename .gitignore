@@ -1,0 +1,89 @@
+# Build output
+dist/
+.astro/
+.wrangler/
+
+# Cache
+.cache/
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# macOS-specific files
+.DS_Store
+
+# Temporary files and editor settings
+*.tmp
+*.swp
+*.bak
+*~
+.vscode/settings.json
+Thumbs.db
+desktop.ini
+
+# Media and database files
+*.mov
+*.mp4
+*.db
+*.sqlite
+
+# Design tool files
+*.ai
+*.fig
+*.psd
+*.xd
+
+# Office documents
+*.doc
+*.docx
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+
+# Legacy fonts
+*.eot
+*.otf
+*.ttf
+*.woff
+
+# Compressed archives
+*.lzh
+*.gz
+*.7z
+*.tar
+*.bz2
+*.xz
+
+# Git hooks
+.hooks/*
+# !.hooks/pre-commit
+
+# Sensitive information
+*.key
+*.pem
+credentials.json
+*.local.*
+config.local.*
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# mise settings
+mise.local.*
+
+# AI agent settings
+.agents/
+.opencode/
+.claude/
+.cursor/
+AGENTS.md
+CLAUDE.md

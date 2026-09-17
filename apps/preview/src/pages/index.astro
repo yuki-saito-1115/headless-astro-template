@@ -1,0 +1,14 @@
+---
+import { getHomePageCopy } from "@shared/content";
+import PageLayout from "@shared/ui/layouts/PageLayout/PageLayout.astro";
+
+const copy = getHomePageCopy();
+---
+
+<PageLayout siteName={copy.title} title={copy.title}>
+  <main>
+    <p>{copy.environment}</p>
+    <h1>{copy.title} - preview</h1>
+    <p>{copy.description}</p>
+  </main>
+</PageLayout>
