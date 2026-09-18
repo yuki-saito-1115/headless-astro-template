@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 # ステージ済みファイルをBiomeとMarkuplintで検査する
 mise exec -- npx lint-staged --no-stash

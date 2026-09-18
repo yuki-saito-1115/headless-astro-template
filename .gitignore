@@ -2,7 +2,6 @@
 dist/
 .astro/
 .wrangler/
-.generated-public/
 
 # Cache
 .cache/
