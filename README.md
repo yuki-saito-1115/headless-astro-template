@@ -34,22 +34,26 @@ npm run dev:preview
 
 `npm run dev` は、2つのアプリケーションworkspaceの開発サーバーをまとめて起動します。
 
-## Cloudflare Workers Builds
+## デプロイ
 
-同じGitリポジトリを各Cloudflare Workerに接続し、以下のように設定します。
+main WorkerはGitHub Actionsでビルド・デプロイします。
+
+| Worker | ブランチ | ビルドコマンド | デプロイコマンド |
+| --- | --- | --- | --- |
+| main | `main` | `npm run build:site` | `npm run deploy --workspace @headless-astro-template/site` |
+
+staging Workerとpreview WorkerはCloudflare Workers Buildsでビルド・デプロイします。
 
 | Worker | ブランチ | ルートディレクトリ | ビルドコマンド | デプロイコマンド |
 | --- | --- | --- | --- | --- |
-| main | `main` | `/` | `npm run build:site` | `npm run deploy --workspace @headless-astro-template/site` |
-| staging | `staging` | `/` | `npm run build:site` | `npm run deploy:staging` |
+| staging | `staging` | `/` | `npm run build:site` | `npm run deploy:site` |
 | preview | `main` | `/` | `npm run build:preview` | `npm run deploy:preview` |
 
 ビルド監視パスには、対象のアプリケーションworkspaceと共有パッケージworkspaceを含めます。
 
 | Worker | ビルド監視パス |
 | --- | --- |
-| main | `apps/site/**`, `packages/**` |
 | staging | `apps/site/**`, `packages/**` |
 | preview | `apps/preview/**`, `packages/**` |
 
-main Workerとpreview Workerはmainブランチを、staging Workerはstagingブランチを監視します。
+preview Workerはmainブランチを、staging Workerはstagingブランチを監視します。
