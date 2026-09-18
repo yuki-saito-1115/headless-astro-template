@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
-  "name": "staging",
+  "name": "sample-staging",
   "compatibility_date": "2026-09-17",
   "assets": {
     "directory": "./dist"
