@@ -3,5 +3,5 @@
 # ステージ済みファイルをBiomeとMarkuplintで検査する
 mise exec -- npx lint-staged --no-stash
 
-# 変更の影響を受けるアプリケーションworkspaceでAstroとTypeScriptを検査する
-node scripts/check-changed.mjs
+# すべてのアプリケーションworkspaceでAstroとTypeScriptを検査する
+npm run check
