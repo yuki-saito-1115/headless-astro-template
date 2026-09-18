@@ -3,6 +3,8 @@ import { execFileSync } from "node:child_process";
 /**
  * Git差分から影響を受けるアプリケーションworkspaceだけを選んで検査するスクリプト
  *
+ * プレコミットフックから実行し、コミット前に影響範囲の検査を行う
+ *
  * `node scripts/check-changed.mjs` は各アプリケーションworkspaceでAstroとTypeScriptを検査する
  * `node scripts/check-changed.mjs typecheck` はTypeScriptだけを検査する
  *
