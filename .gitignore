@@ -28,8 +28,6 @@ Thumbs.db
 desktop.ini
 
 # Media and database files
-*.mov
-*.mp4
 *.db
 *.sqlite
 
@@ -85,5 +83,6 @@ mise.local.*
 .opencode/
 .claude/
 .cursor/
+opencode.json
 AGENTS.md
 CLAUDE.md
