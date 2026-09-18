@@ -83,6 +83,8 @@ mise.local.*
 .opencode/
 .claude/
 .cursor/
-opencode.json
+.cursor*
+.mcp.json*
 AGENTS.md
-CLAUDE.md
+CLAUDE*.md
+opencode.json*
