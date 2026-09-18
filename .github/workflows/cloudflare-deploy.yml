@@ -1,5 +1,9 @@
-name: 🚀 Deploy to Cloudflare Workers (Push Event)
-run-name: 🛠️ Deploy - Triggered by `push` event
+name: 🚀 Deploy main Worker
+run-name: 🛠️ Deploy main - ${{ github.event_name }}
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: true
 
 on:
   push:
@@ -25,31 +29,32 @@ jobs:
       - name: 📥 ソースコードのチェックアウト
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
+          ref: ${{ github.event_name == 'push' && github.sha || 'main' }}
           lfs: true
           persist-credentials: false
 
-      - name: 🧱 mise のセットアップ（Node.js・pnpm）
+      - name: 🧱 mise のセットアップ（Node.js・npm）
         uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
 
       - name: 📦 依存パッケージのインストール
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
-      - name: 🛠️ プロジェクトのビルド
-        run: pnpm build:main
+      - name: 🛠️ mainアプリケーションworkspaceのビルド
+        run: npm run build:main
         env:
           MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
           MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
 
       - name: ✅ dist ディレクトリの確認
-        run: ls -l ./dist
+        run: ls -l ./apps/main/dist
 
       - name: 🚚 ビルド成果物のアップロード
         id: upload-artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: my-artifact
+          name: main-dist
           include-hidden-files: true
-          path: ./dist/
+          path: ./apps/main/dist/
           retention-days: 1
 
   deploy:
@@ -65,24 +70,24 @@ jobs:
       - name: 📥 ソースコードのチェックアウト
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
+          ref: ${{ github.event_name == 'push' && github.sha || 'main' }}
           lfs: true
           persist-credentials: false
 
-      - name: 🧱 mise のセットアップ（Node.js・pnpm）
+      - name: 🧱 mise のセットアップ（Node.js・npm）
         uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
 
       - name: ⏬ ビルド成果物のダウンロード
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          name: my-artifact
-          path: ./dist/
-          retention-days: 1
+          name: main-dist
+          path: ./apps/main/dist/
 
       - name: 📦 依存パッケージのインストール
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
-      - name: 🚀 Cloudflare Workersへデプロイ
-        run: pnpm exec wrangler deploy --config wrangler.main.jsonc
+      - name: 🚀 main Workerへデプロイ
+        run: npm run deploy --workspace @headless-astro-template/main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
