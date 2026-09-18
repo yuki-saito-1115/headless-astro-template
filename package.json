@@ -8,6 +8,7 @@
     "packages/*"
   ],
   "scripts": {
+    "prepare:public-assets": "node scripts/prepare-public-assets.mjs",
     "build": "run-p -l -c build:*",
     "build:site": "npm run build --workspace @headless-astro-template/site",
     "build:preview": "npm run build --workspace @headless-astro-template/preview",
@@ -18,8 +19,9 @@
     "typecheck:site": "npm run check:type --workspace @headless-astro-template/site",
     "typecheck:preview": "npm run check:type --workspace @headless-astro-template/preview",
     "dev": "run-p -l -c dev:*",
-    "dev:site": "npm run dev --workspace @headless-astro-template/site",
-    "dev:preview": "npm run dev --workspace @headless-astro-template/preview",
+    "watch:public-assets": "node scripts/prepare-public-assets.mjs --watch",
+    "dev:site": "npm run prepare:public-assets -- site && run-p -l -c \"npm run watch:public-assets -- site\" \"npm run dev --workspace @headless-astro-template/site\"",
+    "dev:preview": "npm run prepare:public-assets -- preview && run-p -l -c \"npm run watch:public-assets -- preview\" \"npm run dev --workspace @headless-astro-template/preview\"",
     "deploy": "run-p -l -c deploy:*",
     "deploy:site": "npm run deploy --workspace @headless-astro-template/site",
     "deploy:preview": "npm run deploy --workspace @headless-astro-template/preview",
