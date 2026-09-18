@@ -28,10 +28,13 @@ packages/
 ```sh
 npm install
 npm run build
+npm run dev
 npm run dev:main
 npm run dev:staging
 npm run dev:preview
 ```
+
+`npm run dev` は、3つのアプリケーションworkspaceの開発サーバーをまとめて起動します。
 
 ## Cloudflare Workers Builds
 
