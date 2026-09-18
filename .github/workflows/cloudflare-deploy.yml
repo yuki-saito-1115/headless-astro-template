@@ -39,22 +39,22 @@ jobs:
       - name: 📦 依存パッケージのインストール
         run: npm ci
 
-      - name: 🛠️ mainアプリケーションworkspaceのビルド
-        run: npm run build:main
+      - name: 🛠️ siteアプリケーションworkspaceのビルド
+        run: npm run build:site
         env:
           MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
           MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
 
       - name: ✅ dist ディレクトリの確認
-        run: ls -l ./apps/main/dist
+        run: ls -l ./apps/site/dist
 
       - name: 🚚 ビルド成果物のアップロード
         id: upload-artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: main-dist
+          name: site-dist
           include-hidden-files: true
-          path: ./apps/main/dist/
+          path: ./apps/site/dist/
           retention-days: 1
 
   deploy:
@@ -80,14 +80,14 @@ jobs:
       - name: ⏬ ビルド成果物のダウンロード
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          name: main-dist
-          path: ./apps/main/dist/
+          name: site-dist
+          path: ./apps/site/dist/
 
       - name: 📦 依存パッケージのインストール
         run: npm ci
 
       - name: 🚀 main Workerへデプロイ
-        run: npm run deploy --workspace @headless-astro-template/main
+        run: npm run deploy --workspace @headless-astro-template/site
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

@@ -2,7 +2,7 @@
   "extends": "../../node_modules/astro/tsconfigs/strict.json",
   "compilerOptions": {
     "incremental": true,
-    "tsBuildInfoFile": "../../.cache/staging/tsconfig.tsbuildinfo",
+    "tsBuildInfoFile": "../../.cache/site/tsconfig.tsbuildinfo",
     "paths": {
       "@shared/content": ["../../packages/content/src/index.ts"],
       "@shared/ui/*": ["../../packages/ui/src/*"]
