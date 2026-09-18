@@ -1,0 +1,141 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface BadgeProps extends HTMLAttributes<'a' | 'span'> {
+  label: string;
+  outline?: boolean;
+  shape?: 'rounded' | 'pill' | undefined;
+  theme?: 'caution' | 'warning' | undefined;
+}
+
+const {
+  label,
+  outline = false,
+  shape = undefined,
+  theme = undefined,
+  class: className,
+  ...rest
+} = Astro.props;
+const Element = rest?.href ? 'a' : 'span';
+const classList = ['Badge'];
+let mergedClass = '';
+
+// undefined のときは theme- クラスを付けない
+if (theme != null && theme !== '') {
+  classList.push(`theme-${theme}`);
+}
+
+// undefined のときは shape- クラスを付けない
+if (shape != null && shape !== '') {
+  classList.push(`shape-${shape}`);
+}
+
+if (outline) {
+  classList.push('theme-outline');
+}
+
+mergedClass = classList.join(' ');
+---
+
+<Element
+  class:list={[mergedClass, className]}
+  {...rest}
+>
+  {label}
+</Element>
+
+
+<style>
+  .Badge {
+    --local-foreground: #ffffffff;
+    --local-background: #000000ff;
+    --local-outline: var(--local-background);
+
+    background-color: var(--local-background);
+    border: 1px solid var(--local-outline);
+    color: var(--local-foreground);
+    display: inline-block;
+    font-size: 0.75rem;
+    line-height: 1;
+    padding: calc(0.25rem * 2) calc(0.25rem * 4);
+    text-box-edge: cap alphabetic;
+
+    /* 角丸 */
+    &:where(.shape-rounded) {
+      border-radius: 0.375rem;
+    }
+
+    /* 楕円 */
+    &:where(.shape-pill) {
+      border-radius: 9999px;
+    }
+
+    /* 注意 */
+    &:where(.theme-caution) {
+      --local-background: #fe9a00ff;
+    }
+
+    /* 警告 */
+    &:where(.theme-warning) {
+      --local-background: #ff2056ff;
+    }
+
+    /* 罫線 */
+    &:where(.theme-outline) {
+      --local-foreground: #000000ff;
+      --local-background: #ffffffff;
+      --local-outline: var(--local-foreground);
+
+      &:where(.theme-caution) {
+        --local-foreground: #fe9a00ff;
+      }
+
+      &:where(.theme-warning) {
+        --local-foreground: #ff2056ff;
+      }
+    }
+  }
+
+  a.Badge {
+    text-decoration: none;
+  }
+
+  @media (any-hover: hover) {
+    a.Badge {
+      &:hover {
+        --local-foreground: #000000ff;
+        --local-background: #ffffffff;
+        --local-outline: var(--local-foreground);
+
+        text-decoration: none;
+
+        /* 注意 */
+        &:where(.theme-caution) {
+          --local-foreground: #fe9a00ff;
+        }
+
+        /* 警告 */
+        &:where(.theme-warning) {
+          --local-foreground: #ff2056ff;
+        }
+
+        /* 罫線 */
+        &:where(.theme-outline) {
+          --local-foreground: #ffffffff;
+          --local-background: #000000ff;
+          --local-outline: var(--local-background);
+
+          /* 注意 */
+          &:where(.theme-caution) {
+            --local-background: #fe9a00ff;
+          }
+
+          /* 警告 */
+          &:where(.theme-warning) {
+            --local-background: #ff2056ff;
+          }
+        }
+      }
+    }
+  }
+</style>

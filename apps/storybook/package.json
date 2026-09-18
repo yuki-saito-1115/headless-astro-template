@@ -1,0 +1,19 @@
+{
+  "name": "@headless-astro-template/storybook",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev --port 6006",
+    "build": "storybook build",
+    "check": "tsc --noEmit",
+    "deploy": "wrangler deploy",
+    "versions": "wrangler versions upload"
+  },
+  "dependencies": {
+    "astro": "^7.3.3"
+  },
+  "devDependencies": {
+    "wrangler": "^4.133.0"
+  }
+}

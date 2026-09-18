@@ -1,0 +1,13 @@
+{
+  "extends": "../../node_modules/astro/tsconfigs/strict.json",
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "../../.cache/storybook/tsconfig.tsbuildinfo",
+    "types": ["astro/client"],
+    "paths": {
+      "@shared/content": ["../../packages/content/src/index.ts"],
+      "@shared/ui/*": ["../../packages/ui/src/*"]
+    }
+  },
+  "include": [".storybook/**/*.js", "../../packages/ui/src/**/*.stories.js"]
+}
