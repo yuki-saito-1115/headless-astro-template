@@ -4,9 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev --host 0.0.0.0 --port 4321",
+    "dev": "astro dev --port 4321",
     "build": "astro build",
-    "preview": "astro preview",
+    "check": "run-p -l -c check:*",
+    "check:astro": "astro check",
+    "check:type": "tsc --noEmit",
     "deploy": "wrangler deploy",
     "versions": "wrangler versions upload"
   },

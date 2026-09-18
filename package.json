@@ -12,6 +12,16 @@
     "build:main": "npm run build --workspace @headless-astro-template/main",
     "build:staging": "npm run build --workspace @headless-astro-template/staging",
     "build:preview": "npm run build --workspace @headless-astro-template/preview",
+    "check": "run-p -l -c check:*",
+    "check:main": "npm run check --workspace @headless-astro-template/main",
+    "check:staging": "npm run check --workspace @headless-astro-template/staging",
+    "check:preview": "npm run check --workspace @headless-astro-template/preview",
+    "check:changed": "node scripts/check-changed.mjs",
+    "typecheck": "run-p -l -c typecheck:*",
+    "typecheck:main": "npm run check:type --workspace @headless-astro-template/main",
+    "typecheck:staging": "npm run check:type --workspace @headless-astro-template/staging",
+    "typecheck:preview": "npm run check:type --workspace @headless-astro-template/preview",
+    "typecheck:changed": "node scripts/check-changed.mjs typecheck",
     "dev": "run-p -l -c dev:*",
     "dev:main": "npm run dev --workspace @headless-astro-template/main",
     "dev:staging": "npm run dev --workspace @headless-astro-template/staging",
@@ -23,9 +33,16 @@
     "versions": "run-p -l -c versions:*",
     "versions:main": "npm run versions --workspace @headless-astro-template/main",
     "versions:staging": "npm run versions --workspace @headless-astro-template/staging",
-    "versions:preview": "npm run versions --workspace @headless-astro-template/preview"
+    "versions:preview": "npm run versions --workspace @headless-astro-template/preview",
+    "prepare": "git config core.hooksPath .hooks && git lfs install --local"
   },
   "devDependencies": {
-    "npm-run-all2": "^9.0.3"
+    "@astrojs/check": "^0.9.10",
+    "@biomejs/biome": "^2.5.14",
+    "@markuplint/astro-parser": "^5.0.0",
+    "lint-staged": "^17.5.1",
+    "markuplint": "^5.0.0",
+    "npm-run-all2": "^9.0.3",
+    "typescript": "^6.0.3"
   }
 }

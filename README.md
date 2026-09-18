@@ -1,22 +1,29 @@
 # headless-astro-template
 
-Monorepo template for Headless CMS projects using Astro and Cloudflare Workers.
+AstroとCloudflare Workersを使用するHeadless CMSプロジェクト向けのモノレポテンプレートです。
 
-## Structure
+## 用語
+
+- **アプリケーションworkspace**: `apps/*` 配下のworkspaceです。`main`、`preview`、`staging`が該当します。
+- **共有パッケージworkspace**: `packages/*` 配下のworkspaceです。`content`、`ui`が該当します。
+- **workspace**: アプリケーションworkspaceと共有パッケージworkspaceをまとめた呼称です。
+- **Worker**: Cloudflareの実行・デプロイ単位です。ディレクトリやnpm workspaceの呼称には使用しません。
+
+## 構成
 
 ```text
 apps/
-  main/      # Astro app / Worker
-  staging/   # Astro app / Worker
-  preview/   # Astro app / Worker
+  main/      # main Worker用のアプリケーションworkspace
+  staging/   # staging Worker用のアプリケーションworkspace
+  preview/   # preview Worker用のアプリケーションworkspace
 packages/
-  content/   # shared content/client layer placeholder
-  ui/        # shared Astro components, layouts, styles, and scripts
+  content/   # コンテンツ・クライアント層用の共有パッケージworkspace
+  ui/        # Astroコンポーネント、レイアウト、スタイル、スクリプト用の共有パッケージworkspace
 ```
 
-Each app currently uses the same static Astro setup. Every Worker has its own `wrangler.jsonc`, and Cloudflare Workers Builds should point each Worker root directory to the corresponding `apps/*` directory. There are no environment-specific differences at this stage.
+現在、各アプリケーションworkspaceは同じ静的Astro構成を使用しています。各Workerにはそれぞれ`wrangler.jsonc`があり、Cloudflare Workers Buildsでは対応するアプリケーションworkspaceをWorkerのルートディレクトリとして設定します。現時点では環境ごとの構成差はありません。
 
-## Commands
+## コマンド
 
 ```sh
 npm install
@@ -28,20 +35,20 @@ npm run dev:preview
 
 ## Cloudflare Workers Builds
 
-Connect the same Git repository to each Cloudflare Worker, then configure each Worker as follows.
+同じGitリポジトリを各Cloudflare Workerに接続し、以下のように設定します。
 
-| Worker | Root directory | Build command | Deploy command |
+| Worker | ルートディレクトリ | ビルドコマンド | デプロイコマンド |
 | --- | --- | --- | --- |
 | main | `/apps/main` | `npm run build` | `npx wrangler deploy` |
 | staging | `/apps/staging` | `npm run build` | `npx wrangler deploy` |
 | preview | `/apps/preview` | `npm run build` | `npx wrangler deploy` |
 
-Build watch paths should include the target app and shared packages.
+ビルド監視パスには、対象のアプリケーションworkspaceと共有パッケージworkspaceを含めます。
 
-| Worker | Build watch paths |
+| Worker | ビルド監視パス |
 | --- | --- |
 | main | `apps/main/**`, `packages/**` |
 | staging | `apps/staging/**`, `packages/**` |
 | preview | `apps/preview/**`, `packages/**` |
 
-This setup manages environment differences as multiple Workers on a single branch instead of branch-specific diffs.
+この構成では、ブランチごとの差分ではなく、単一ブランチ上の複数Workerとして環境差分を管理します。
