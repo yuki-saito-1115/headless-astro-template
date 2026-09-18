@@ -10,9 +10,7 @@
     "check:astro": "astro check",
     "check:type": "tsc --noEmit",
     "deploy": "wrangler deploy",
-    "deploy:staging": "wrangler deploy --config wrangler.staging.jsonc",
-    "versions": "wrangler versions upload",
-    "versions:staging": "wrangler versions upload --config wrangler.staging.jsonc"
+    "versions": "wrangler versions upload"
   },
   "dependencies": {
     "astro": "^7.3.3"

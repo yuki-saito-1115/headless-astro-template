@@ -21,11 +21,11 @@
     "dev:site": "npm run dev --workspace @headless-astro-template/site",
     "dev:preview": "npm run dev --workspace @headless-astro-template/preview",
     "deploy": "run-p -l -c deploy:*",
-    "deploy:site": "npm run deploy:staging --workspace @headless-astro-template/site",
-    "deploy:preview": "npm run deploy:preview --workspace @headless-astro-template/preview",
+    "deploy:site": "npm run deploy --workspace @headless-astro-template/site",
+    "deploy:preview": "npm run deploy --workspace @headless-astro-template/preview",
     "versions": "run-p -l -c versions:*",
-    "versions:site": "npm run versions:staging --workspace @headless-astro-template/site",
-    "versions:preview": "npm run versions:preview --workspace @headless-astro-template/preview",
+    "versions:site": "npm run versions --workspace @headless-astro-template/site",
+    "versions:preview": "npm run versions --workspace @headless-astro-template/preview",
     "prepare": "git config core.hooksPath .hooks && git lfs install --local"
   },
   "devDependencies": {

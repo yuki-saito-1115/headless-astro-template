@@ -9,8 +9,8 @@
     "check": "run-p -l -c check:*",
     "check:astro": "astro check",
     "check:type": "tsc --noEmit",
-    "deploy:preview": "wrangler deploy",
-    "versions:preview": "wrangler versions upload"
+    "deploy": "wrangler deploy",
+    "versions": "wrangler versions upload"
   },
   "dependencies": {
     "astro": "^7.3.3"

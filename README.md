@@ -20,7 +20,7 @@ packages/
   ui/        # Astroコンポーネント、レイアウト、スタイル、スクリプト用の共有パッケージworkspace
 ```
 
-`apps/site` はmainとstagingで共通のサイトを提供します。main Workerはmainブランチ、staging Workerはstagingブランチの `apps/site` をそれぞれデプロイします。`apps/preview` はmainブランチのpreview Worker専用です。
+`apps/site` はmainとstagingで共通のサイトを提供します。main Workerはmainブランチ、staging Workerはdevelopブランチの `apps/site` をそれぞれデプロイします。`apps/preview` はmainブランチのpreview Worker専用です。
 
 ## コマンド
 
@@ -40,13 +40,13 @@ main WorkerはGitHub Actionsでビルド・デプロイします。
 
 | Worker | ブランチ | ビルドコマンド | デプロイコマンド |
 | --- | --- | --- | --- |
-| main | `main` | `npm run build:site` | `npm run deploy --workspace @headless-astro-template/site` |
+| main | `main` | `npm run build:site` | `npm run deploy:site` |
 
 staging Workerとpreview WorkerはCloudflare Workers Buildsでビルド・デプロイします。
 
 | Worker | ブランチ | ルートディレクトリ | ビルドコマンド | デプロイコマンド |
 | --- | --- | --- | --- | --- |
-| staging | `staging` | `/` | `npm run build:site` | `npm run deploy:site` |
+| staging | `develop` | `/` | `npm run build:site` | `npx wrangler deploy --config apps/site/wrangler.staging.jsonc` |
 | preview | `main` | `/` | `npm run build:preview` | `npm run deploy:preview` |
 
 ビルド監視パスには、対象のアプリケーションworkspaceと共有パッケージworkspaceを含めます。
@@ -56,4 +56,4 @@ staging Workerとpreview WorkerはCloudflare Workers Buildsでビルド・デプ
 | staging | `apps/site/**`, `packages/**` |
 | preview | `apps/preview/**`, `packages/**` |
 
-preview Workerはmainブランチを、staging Workerはstagingブランチを監視します。
+preview Workerはmainブランチを、staging Workerはdevelopブランチを監視します。

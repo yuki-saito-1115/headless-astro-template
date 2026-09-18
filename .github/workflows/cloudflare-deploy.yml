@@ -87,7 +87,7 @@ jobs:
         run: npm ci
 
       - name: 🚀 main Workerへデプロイ
-        run: npm run deploy --workspace @headless-astro-template/site
+        run: npm run deploy:site
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
