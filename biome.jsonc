@@ -6,7 +6,13 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!**/.astro", "!**/dist", "!**/node_modules"]
+    "includes": [
+      "**",
+      "!**/.astro",
+      "!**/dist",
+      "!**/node_modules",
+      "!packages/content/src/styles/theme.css"
+    ]
   },
   "formatter": {
     "enabled": true,
