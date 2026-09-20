@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { COMMON_TYPE_COLUMN_VALUES } from '@type/CommonType';
+import { COMMON_TYPE_COLUMN_VALUES } from '@types/CommonType';
 import Column from './Column.astro';
 
 const meta = {

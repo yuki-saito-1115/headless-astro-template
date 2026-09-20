@@ -7,7 +7,7 @@
       "@styles/*": ["./packages/content/src/styles/*"],
       "@components/*": ["./packages/ui/src/components/*"],
       "@layouts/*": ["./packages/ui/src/layouts/*"],
-      "@type/*": ["./packages/ui/src/types/*"]
+      "@types/*": ["./packages/ui/src/types/*"]
     },
     "plugins": [
       {

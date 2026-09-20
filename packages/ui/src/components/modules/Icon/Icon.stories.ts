@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { COMMON_TYPE_ICON_SPRITE_VALUES } from '@/types/CommonType';
+import { COMMON_TYPE_ICON_SPRITE_VALUES } from '@types/CommonType';
 import Icon from './Icon.astro';
 
 const meta = {
