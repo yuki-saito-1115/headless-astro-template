@@ -1,44 +1,47 @@
 ---
-interface Props {
-  siteName: string;
-}
+import type { HTMLAttributes } from 'astro/types';
 
-const { siteName } = Astro.props;
+export interface HeaderPropType extends HTMLAttributes<'header'> {}
+
+const { class: className, ..._rest } = Astro.props as HeaderPropType;
 ---
-
-<header class="site-header">
-  <a class="site-header__logo" href="/">{siteName}</a>
-  <nav class="site-header__nav" aria-label="Primary navigation">
-    <a href="/">Home</a>
-  </nav>
+<header
+  class:list={['Header', className]}
+  {..._rest}
+>
+  <div class:list={['Header__outer']}>
+    <div class:list={['Header__inner']}>
+      header
+    </div>
+  </div>
 </header>
 
+
 <style>
-  .site-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid #e5e7eb;
+  .Header {
+    border-bottom: 1px solid var(--user-color-outline-dark);
+    display: grid;
+    gap: 0 var(--user-outside-gutter-sp);
+    grid-area: header;
+    grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+
+    :where(.Header__outer) {
+      display: grid;
+      gap: 0 var(--user-outside-gutter-sp);
+      grid-column: 1 / 4;
+      grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+    }
+
+    :where(.Header__inner) {
+      grid-column: 2 / 3;
+    }
   }
 
-  .site-header__logo {
-    color: #111827;
-    font-weight: 700;
-    text-decoration: none;
-  }
-
-  .site-header__nav {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .site-header__nav a {
-    color: #4b5563;
-    text-decoration: none;
-  }
-
-  .site-header__nav a:hover {
-    color: #111827;
+  @media (width >= 768px) {
+    .Header {
+      :where(.Header__outer) {
+        gap: 0 var(--user-outside-gutter-pc);
+      }
+    }
   }
 </style>

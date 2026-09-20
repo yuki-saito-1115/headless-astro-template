@@ -1,0 +1,144 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface TextareaPropType extends HTMLAttributes<'textarea'> {
+  size?: 'small' | 'medium' | 'large' | 'full';
+  state?: 'valid' | 'invalid' | 'disabled';
+}
+
+const { size, state, class: className, ...rest } = Astro.props;
+const classList = ['Textarea'];
+let mergedClass = '';
+
+if (size) {
+  classList.push(`theme-${size}`);
+}
+
+if (state) {
+  classList.push(`is-${state}`);
+}
+
+mergedClass = classList.join(' ');
+---
+
+<span
+  class:list={[className, mergedClass]}
+>
+  <textarea
+    class:list={['Textarea__item']}
+    disabled={state === 'disabled'}
+    {...rest}
+  />
+</span>
+
+
+<style>
+  .Textarea {
+    --local-foreground: var(--user-color-foreground-dark);
+    --local-background: var(--user-color-background-light);
+    --local-outline: var(--user-color-outline-dark);
+    --local-placeholder: var(--color-gray-500);
+    --local-width: auto;
+
+    /* Preflight */
+    :where(textarea) {
+      /* デフォルトスタイルリセットするため */
+      font: unset;
+
+      /* ブラウザごとの差異を統一するため */
+      color: currentColor;
+      appearance: none;
+
+      /* SPでフォーカス時にズームしないために16pxに固定 */
+      font-size: var(--text-base);
+      line-height: var(--user-text-normal-lineHeight);
+      border-radius: 0;
+
+      /* ブラウザごとの差異を統一しデフォルトスタイルリセットするため */
+      ::placeholder {
+        font-style: normal;
+        color: var(--color-gray-400);
+        opacity: 1;
+      }
+    }
+
+    border: 1px solid var(--local-outline);
+    display: inline-flex;
+    max-width: 100%;
+    overflow: hidden;
+    width: var(--local-width);
+
+    &:focus-within {
+      outline: medium solid currentColor;
+    }
+
+    :where(.Textarea__item) {
+      appearance: none;
+      background-color: var(--local-background);
+      border: 0;
+      color: var(--local-foreground);
+      display: block;
+      min-height: 200px;
+      outline: none;
+      padding: calc(var(--user-spacing) * 1) calc(var(--user-spacing) * 2);
+      width: 100%;
+
+      &::placeholder {
+        color: var(--local-placeholder);
+        opacity: 0.5;
+      }
+    }
+
+    &.is-valid,
+    :global(&.is-valid) {
+      --local-foreground: var(--user-color-success-dark);
+      --local-background: var(--user-color-success-light);
+      --local-outline: var(--user-color-success-dark);
+
+      ::placeholder {
+        color: var(--local-foreground);
+      }
+    }
+
+    &.is-invalid,
+    :global(&.is-invalid) {
+      --local-foreground: var(--user-color-danger-dark);
+      --local-background: var(--user-color-danger-light);
+      --local-outline: var(--user-color-danger-dark);
+
+      ::placeholder {
+        color: var(--local-foreground);
+      }
+    }
+
+    &:has(:disabled) {
+      --local-foreground: var(--user-color-disabled-dark);
+      --local-background: var(--user-color-disabled-light);
+      --local-outline: var(--user-color-disabled-light);
+
+      ::placeholder {
+        color: var(--local-foreground);
+      }
+
+      :is(.Textarea__item) {
+        cursor: not-allowed;
+      }
+    }
+
+    &.theme-small {
+      --local-width: 25%;
+    }
+
+    &.theme-medium {
+      --local-width: 50%;
+    }
+
+    &.theme-large {
+      --local-width: 75%;
+    }
+
+    &.theme-full {
+      --local-width: 100%;
+    }
+  }
+</style>

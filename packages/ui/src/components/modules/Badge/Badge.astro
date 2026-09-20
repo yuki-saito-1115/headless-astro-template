@@ -47,22 +47,22 @@ mergedClass = classList.join(' ');
 
 <style>
   .Badge {
-    --local-foreground: #ffffffff;
-    --local-background: #000000ff;
+    --local-foreground: var(--user-color-foreground-light);
+    --local-background: var(--user-color-background-dark);
     --local-outline: var(--local-background);
 
     background-color: var(--local-background);
     border: 1px solid var(--local-outline);
     color: var(--local-foreground);
     display: inline-block;
-    font-size: 0.75rem;
+    font-size: var(--text-xs);
     line-height: 1;
-    padding: calc(0.25rem * 2) calc(0.25rem * 4);
+    padding: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 4);
     text-box-edge: cap alphabetic;
 
     /* 角丸 */
     &:where(.shape-rounded) {
-      border-radius: 0.375rem;
+      border-radius: var(--radius-md);
     }
 
     /* 楕円 */
@@ -72,26 +72,26 @@ mergedClass = classList.join(' ');
 
     /* 注意 */
     &:where(.theme-caution) {
-      --local-background: #fe9a00ff;
+      --local-background: var(--user-color-warning-dark);
     }
 
     /* 警告 */
     &:where(.theme-warning) {
-      --local-background: #ff2056ff;
+      --local-background: var(--user-color-danger-dark);
     }
 
     /* 罫線 */
     &:where(.theme-outline) {
-      --local-foreground: #000000ff;
-      --local-background: #ffffffff;
+      --local-foreground: var(--user-color-foreground-dark);
+      --local-background: var(--user-color-background-light);
       --local-outline: var(--local-foreground);
 
       &:where(.theme-caution) {
-        --local-foreground: #fe9a00ff;
+        --local-foreground: var(--user-color-warning-dark);
       }
 
       &:where(.theme-warning) {
-        --local-foreground: #ff2056ff;
+        --local-foreground: var(--user-color-danger-dark);
       }
     }
   }
@@ -103,36 +103,36 @@ mergedClass = classList.join(' ');
   @media (any-hover: hover) {
     a.Badge {
       &:hover {
-        --local-foreground: #000000ff;
-        --local-background: #ffffffff;
+        --local-foreground: var(--user-color-foreground-dark);
+        --local-background: var(--user-color-background-light);
         --local-outline: var(--local-foreground);
 
         text-decoration: none;
 
         /* 注意 */
         &:where(.theme-caution) {
-          --local-foreground: #fe9a00ff;
+          --local-foreground: var(--user-color-warning-dark);
         }
 
         /* 警告 */
         &:where(.theme-warning) {
-          --local-foreground: #ff2056ff;
+          --local-foreground: var(--user-color-danger-dark);
         }
 
         /* 罫線 */
         &:where(.theme-outline) {
-          --local-foreground: #ffffffff;
-          --local-background: #000000ff;
+          --local-foreground: var(--user-color-foreground-light);
+          --local-background: var(--user-color-background-dark);
           --local-outline: var(--local-background);
 
           /* 注意 */
           &:where(.theme-caution) {
-            --local-background: #fe9a00ff;
+            --local-background: var(--user-color-warning-dark);
           }
 
           /* 警告 */
           &:where(.theme-warning) {
-            --local-background: #ff2056ff;
+            --local-background: var(--user-color-danger-dark);
           }
         }
       }

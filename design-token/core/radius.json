@@ -1,0 +1,37 @@
+{
+  "radius": {
+    "$type": "dimension",
+    "xs": {
+      "$description": "2px",
+      "$value": "0.125rem"
+    },
+    "sm": {
+      "$description": "4px",
+      "$value": "0.25rem"
+    },
+    "md": {
+      "$description": "6px",
+      "$value": "0.375rem"
+    },
+    "lg": {
+      "$description": "8px",
+      "$value": "0.5rem"
+    },
+    "xl": {
+      "$description": "12px",
+      "$value": "0.75rem"
+    },
+    "2xl": {
+      "$description": "16px",
+      "$value": "1rem"
+    },
+    "3xl": {
+      "$description": "24px",
+      "$value": "1.5rem"
+    },
+    "4xl": {
+      "$description": "32px",
+      "$value": "2rem"
+    }
+  }
+}

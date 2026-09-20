@@ -1,0 +1,91 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface SectionPropsType extends HTMLAttributes<'section'> {
+  size?: 'small' | 'medium' | 'large' | 'full';
+  theme?: 'dark' | 'light';
+}
+
+const {
+  theme = 'light',
+  size = 'large',
+  class: className,
+  ...rest
+} = Astro.props as SectionPropsType;
+const classList = ['Section'];
+let mergedClass = '';
+
+if (size) {
+  classList.push(`size-${size}`);
+}
+
+if (theme) {
+  classList.push(`theme-${theme}`);
+}
+
+mergedClass = classList.join(' ');
+---
+
+<section
+  class:list={[mergedClass, className ]}
+  {...rest}
+>
+  <div class="Section__inner">
+    <slot />
+  </div>
+
+
+  <style>
+    .Section {
+      display: grid;
+      gap: 0 var(--user-outside-gutter-sp);
+      grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+
+      &:is(.theme-dark) {
+        background-color: var(--color-gray-100);
+      }
+
+      &:is(.size-small) {
+        .Section__inner {
+          max-width: 768px;
+          margin-inline: auto;
+        }
+      }
+
+      &:is(.size-medium) {
+        .Section__inner {
+          max-width: 1000px;
+          margin-inline: auto;
+        }
+      }
+
+      /* default */
+      &:is(.size-large) {
+        .Section__inner {
+        }
+      }
+
+      &:is(.size-full) {
+        .Section__inner {
+          grid-column: 1 / 4;
+        }
+      }
+
+      :where(.Section__inner) {
+        grid-column: 2 / 3;
+        padding: calc(var(--user-spacing) * 10) 0;
+      }
+    }
+
+    @media (width >= 768px) {
+      .Section {
+        gap: 0 var(--user-outside-gutter-pc);
+
+        :where(.Content__inner) {
+          padding: calc(var(--user-spacing) * 20) 0;
+        }
+      }
+    }
+  </style>
+</section>
+

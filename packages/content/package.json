@@ -2,8 +2,5 @@
   "name": "@headless-astro-template/content",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
-  "exports": {
-    ".": "./src/index.ts"
-  }
+  "type": "module"
 }

@@ -1,0 +1,89 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface NavigationTopPropsType extends HTMLAttributes<'div'> {}
+
+const { class: className, ..._rest } = Astro.props as NavigationTopPropsType;
+---
+
+<div
+  class:list={['NavigationTop', className]}
+  {..._rest}
+>
+  <div class:list={['NavigationTop__inner']}>
+    <a href="#top">画面最上部へ戻る</a>
+  </div>
+</div>
+
+
+<style>
+  .NavigationTop {
+    --local-button-size: 32px;
+
+    bottom: 0;
+    grid-area: navigationTop;
+    height: 0;
+    position: sticky;
+    pointer-events: none;
+    z-index: 200;
+
+    :where(.NavigationTop__inner) {
+      display: flex;
+      justify-content: flex-end;
+      padding: calc(var(--user-spacing) * 4);
+      pointer-events: none;
+      position: relative;
+      transform: translateY(-100%);
+    }
+
+    :where(a) {
+      background-color: var(--user-color-primary);
+      border: 1px solid var(--user-color-primary);
+      display: block;
+      height: var(--local-button-size);
+      overflow: hidden;
+      padding: var(--local-button-size) 0 0 var(--local-button-size);
+      pointer-events: auto;
+      position: relative;
+      width: var(--local-button-size);
+
+      /* arrow */
+      &::before {
+        background-color: var(--user-color-foreground-light);
+        content: '';
+        display: block;
+        height: 100%;
+        left: 0;
+        mask-image: url('/assets/images/icons/angle-up.svg');
+        mask-repeat: no-repeat;
+        mask-size: 50%;
+        mask-position: center;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .NavigationTop {
+      --local-button-size: 40px;
+    }
+  }
+
+  @media (any-hover: hover) {
+    .NavigationTop {
+      :where(a) {
+        &:hover {
+          background-color: var(--user-color-background-light);
+          border: 1px solid var(--user-color-primary);
+
+          /* arrow */
+          &::before {
+            background-color: var(--user-color-primary);
+          }
+        }
+      }
+    }
+  }
+</style>

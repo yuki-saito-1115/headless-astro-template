@@ -1,20 +1,47 @@
 ---
-interface Props {
-  siteName: string;
-}
+import type { HTMLAttributes } from 'astro/types';
 
-const { siteName } = Astro.props;
-const year = new Date().getFullYear();
+export interface FooterPropType extends HTMLAttributes<'footer'> {}
+
+const { class: className, ..._rest } = Astro.props as FooterPropType;
 ---
-
-<footer class="site-footer">
-  <small>&copy; {year} {siteName}</small>
+<footer
+  class:list={['Footer', className]}
+  {..._rest}
+>
+  <div class:list={['Footer__outer']}>
+    <div class:list={['Footer__inner']}>
+      footer
+    </div>
+  </div>
 </footer>
 
+
 <style>
-  .site-footer {
-    padding: 2rem 1.5rem;
-    border-top: 1px solid #e5e7eb;
-    color: #6b7280;
+  .Footer {
+    border-top: 1px solid var(--user-color-outline-dark);
+    display: grid;
+    gap: 0 var(--user-outside-gutter-sp);
+    grid-area: footer;
+    grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+
+    :where(.Footer__outer) {
+      display: grid;
+      gap: 0 var(--user-outside-gutter-sp);
+      grid-column: 1 / 4;
+      grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+    }
+
+    :where(.Footer__inner) {
+      grid-column: 2 / 3;
+    }
+  }
+
+  @media (width >= 768px) {
+    .Footer {
+      :where(.Footer__outer) {
+        gap: 0 var(--user-outside-gutter-pc);
+      }
+    }
   }
 </style>

@@ -1,0 +1,50 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface HorizonProps extends HTMLAttributes<'hr'> {
+  theme?: 'dotted' | 'dashed' | undefined;
+}
+
+const { theme = undefined, class: className, ...rest } = Astro.props;
+const classList = ['Horizon'];
+let mergedClass = '';
+
+// undefined のときは theme- クラスを付けない
+if (theme != null && theme !== '') {
+  classList.push(`theme-${theme}`);
+}
+
+mergedClass = classList.join(' ');
+---
+
+<div
+  class:list={[mergedClass, className]}
+  {...rest}
+>
+  <slot />
+</div>
+
+
+<style>
+  .Horizon {
+    :where(hr) {
+      border-bottom: 0;
+      border-top: 1px solid var(--user-color-outline-dark);
+    }
+
+    /* 注意 */
+    &:where(.theme-dotted) {
+      :where(hr) {
+        border-top-style: dotted;
+      }
+    }
+
+    /* 破線 */
+    &:where(.theme-dashed) {
+      :where(hr) {
+        border-top-style: dashed;
+      }
+    }
+  }
+</style>
+

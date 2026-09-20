@@ -1,0 +1,107 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface BreadcrumbItem {
+  href?: string;
+  label: string;
+}
+
+export interface BreadcrumbPropsType extends HTMLAttributes<'nav'> {
+  items?: BreadcrumbItem[];
+}
+
+const {
+  items = [],
+  class: className,
+  ..._rest
+} = Astro.props as BreadcrumbPropsType;
+---
+
+<nav
+  class:list={['Breadcrumb', className]}
+  {..._rest}
+>
+  <div class:list={['Breadcrumb__outer']}>
+    <div class:list={['Breadcrumb__inner']}>
+      <ul>
+        {items.map((item) => (
+          <li>
+            {item.href ? (
+              <a href={item.href}>{item.label}</a>
+            ) : (
+              <a aria-current="page"><em>{item.label}</em></a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<style>
+  .Breadcrumb {
+    display: grid;
+    gap: 0 var(--user-outside-gutter-sp);
+    grid-area: breadcrumb;
+    grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+
+    :where(.Breadcrumb__outer) {
+      display: grid;
+      gap: 0 var(--user-outside-gutter-sp);
+      grid-column: 1 / 4;
+      grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+    }
+
+    :where(.Breadcrumb__inner) {
+      grid-column: 2 / 3;
+      padding: calc(var(--user-spacing) * 4) 0;
+
+      :where(ul) {
+        display: flex;
+        gap: 0.5rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      :where(li) {
+        display: inline;
+        font-size: calc(12 / var(--user-font-size-root) * 1rem);
+        list-style: none;
+      }
+
+      :where(li + li) {
+        &::before {
+          content: '>';
+        }
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .Breadcrumb {
+      :where(.Breadcrumb__outer) {
+        gap: 0 var(--user-outside-gutter-pc);
+      }
+
+      :where(.Breadcrumb__inner) {
+        :where(li) {
+          font-size: calc(14 / var(--user-font-size-root) * 1rem);
+        }
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .Breadcrumb {
+      :where(a) {
+        &:any-link {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+</style>

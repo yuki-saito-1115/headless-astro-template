@@ -1,0 +1,118 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface LayoutMediaPropType extends HTMLAttributes<'div'> {
+  directionPc?: 'row' | 'rowReverse' | 'column' | 'columnReverse';
+  directionSp?: 'row' | 'rowReverse' | 'column' | 'columnReverse';
+  media: HTMLElement;
+}
+
+const {
+  directionPc = 'row',
+  directionSp = 'columnReverse',
+  media,
+  class: className,
+  ...rest
+} = Astro.props;
+const classList = ['LayoutMedia__inner'];
+let mergedClass = '';
+
+if (directionSp) {
+  classList.push(`directionSp-${directionSp}`);
+}
+
+if (directionPc) {
+  classList.push(`directionPc-${directionPc}`);
+}
+
+mergedClass = classList.join(' ');
+---
+<div
+  class:list={['LayoutMedia', className]}
+  {...rest}
+>
+  <div class:list={[mergedClass]}>
+    <div class="LayoutMedia__content">
+      <slot name="content" />
+    </div>
+
+    <div class="LayoutMedia__media">
+      <slot name="media" />
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .LayoutMedia {
+    container-type: inline-size;
+
+    :where(.LayoutMedia__inner) {
+      display: grid;
+      gap: calc(var(--user-spacing) * 6);
+      grid-template-columns: minmax(0, 1fr) fit-content(50%);
+    }
+
+    :where(.LayoutMedia__content, .LayoutMedia__media) {
+      direction: ltr;
+
+      > :is(:first-child) {
+        margin-top: 0;
+      }
+
+      > :is(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @container (max-width: 767.98px) {
+    .LayoutMedia {
+      :where(.LayoutMedia__inner) {
+        gap: calc(var(--user-spacing) * 4)
+
+        &.directionSp-rowReverse {
+          direction: rtl;
+        }
+
+        &.directionSp-column,
+        &.directionSp-columnReverse {
+          display: flex;
+        }
+
+        &.directionSp-column {
+          flex-direction: column;
+        }
+
+        &.directionSp-columnReverse {
+          flex-direction: column-reverse;
+        }
+      }
+    }
+  }
+
+  @container (min-width: 768px) {
+    .LayoutMedia {
+      :where(.LayoutMedia__inner) {
+        gap: calc(var(--user-spacing) * 10);
+
+        &.directionPc-rowReverse {
+          direction: rtl;
+        }
+
+        &.directionPc-column,
+        &.directionPc-columnReverse {
+          display: flex;
+        }
+
+        &.directionPc-column {
+          flex-direction: column;
+        }
+
+        &.directionPc-columnReverse {
+          flex-direction: column-reverse;
+        }
+      }
+    }
+  }
+</style>

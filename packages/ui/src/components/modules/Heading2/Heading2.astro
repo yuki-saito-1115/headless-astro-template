@@ -1,0 +1,70 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Heading2Props extends HTMLAttributes<'div'> {}
+
+const { class: className, ...rest } = Astro.props;
+const classList = ['Heading2'];
+---
+
+<div
+  class:list={[classList, className]}
+  {...rest}
+>
+  <slot />
+</div>
+
+
+<style>
+  .Heading2 {
+    :where(h1, h2, h3, h4, h5, h6) {
+      font-weight: var(--user-font-weight-bold);
+      color: var(--user-color-foreground-dark);
+      text-align: center;
+      padding-bottom: calc(var(--user-spacing) * 6);
+      position: relative;
+      line-height: var(--text-2xl--line-height);
+      font-size: var(--text-2xl);
+
+      /* marker */
+      &::before {
+        background-color: var(--user-color-primary);
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 5px;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        width: 64px;
+      }
+
+      :where(a) {
+        color: var(--user-color-primary);
+        text-decoration: none;
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .Heading2 {
+      :where(h1, h2, h3, h4, h5, h6) {
+        line-height: var(--text-3xl--line-height);
+        font-size: var(--text-3xl);
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .Heading2 {
+      :where(h1, h2, h3, h4, h5, h6) {
+        :where(a) {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+</style>
+

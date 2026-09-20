@@ -1,14 +1,19 @@
 ---
-import { getHomePageCopy } from '@shared/content';
-import PageLayout from '@shared/ui/layouts/PageLayout/PageLayout.astro';
+import PageLayout from '@layouts/PageLayout/PageLayout.astro';
 
-const copy = getHomePageCopy();
+const title = 'Headless Astro Template';
+const description =
+  'Shared Astro app skeleton for Cloudflare Workers monorepos.';
 ---
 
-<PageLayout siteName={copy.title} title={copy.title}>
+<PageLayout
+  siteName={title}
+  title={title}
+  description={description}
+>
   <main>
-    <p>{copy.environment}</p>
-    <h1>{copy.title} - preview environment</h1>
-    <p>{copy.description}</p>
+    <p>Static Worker</p>
+    <h1>{title} - preview environment</h1>
+    <p>{description}</p>
   </main>
 </PageLayout>

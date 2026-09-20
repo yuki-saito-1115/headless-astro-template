@@ -1,0 +1,35 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface LinkPropType extends HTMLAttributes<'span'> {}
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<span
+  class:list={[className, 'Link']}
+  {...rest}
+>
+  <slot />
+</span>
+
+
+<style>
+  .Link {
+    :where(a) {
+      color: var(--user-color-primary);
+      text-decoration: none;
+      fill: var(--user-color-primary);
+    }
+  }
+
+  @media (any-hover: hover) {
+    .Link {
+      :where(a) {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+</style>

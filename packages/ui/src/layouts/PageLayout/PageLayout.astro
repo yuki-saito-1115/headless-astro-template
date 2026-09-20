@@ -1,24 +1,76 @@
 ---
-import Footer from '../../components/structures/Footer/Footer.astro';
-import Header from '../../components/structures/Header/Header.astro';
+import Footer from '@components/structures/Footer/Footer.astro';
+import Header from '@components/structures/Header/Header.astro';
+import NavigationTop from '@components/structures/NavigationTop/NavigationTop.astro';
+import Svg from '@components/structures/Svg/Svg.astro';
+import Wrap from '@components/structures/Wrap/Wrap.astro';
 
-interface Props {
-  siteName: string;
-  title: string;
+/* ページごとに設定が必要な値 */
+export interface PagePropsType {
+  description: string;
+  lang?: string;
+  ogImage?: string;
+  ogLocale?: string;
+  ogType?: string;
+  title?: string; // TOPページは省略
 }
 
-const { siteName, title } = Astro.props;
+const siteName = 'DUMMY_SITE_NAME';
+const siteUrl = 'https://playground.demo.mitsue.com';
+const currentUrl = new URL(Astro.url);
+const {
+  lang = 'ja',
+  title,
+  description,
+  ogType = 'website',
+  ogLocale = 'ja_JP',
+  ogImage = `${siteUrl}/ogp.webp`,
+}: PagePropsType = Astro.props as PagePropsType;
+const pageTitle = title ? `${title} | ${siteName}` : siteName;
 ---
+<!doctype html>
 
-<html lang="ja">
-  <head>
+<html lang={lang}>
+  <head prefix="og: https://ogp.me/ns#">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description" content={description} />
+
+    <title>{pageTitle}</title>
+
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={`${siteUrl}${currentUrl.pathname}`} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content={ogImage} />
   </head>
+
   <body>
-    <Header siteName={siteName} />
-    <slot />
-    <Footer siteName={siteName} />
+    <Wrap>
+      <Header />
+
+      <slot />
+
+      <NavigationTop />
+
+      <Footer />
+    </Wrap>
+
+    <Svg />
+
+    <style is:global>
+      @import '@styles/tailwind.css';
+    </style>
+
+    <script>
+      import { loadFonts } from '@scripts/runtime/loadFonts';
+
+      loadFonts();
+    </script>
   </body>
 </html>

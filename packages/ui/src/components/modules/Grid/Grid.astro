@@ -1,0 +1,158 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface GridPropType extends HTMLAttributes<'div'> {}
+
+const { theme, class: className, ...rest } = Astro.props;
+const classList = ['Grid'];
+---
+
+<div
+  class:list={[classList, className]}
+  {...rest}
+>
+  <div class:list={['Grid__inner']}>
+    <slot />
+  </div>
+</div>
+
+
+<style>
+  .Grid {
+    container-type: inline-size;
+
+    :where(.Grid__inner) {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    :where(.Grid__segment) {
+      list-style: none;
+      height: 100%;
+
+      > :is(:first-child) {
+        margin-top: 0;
+      }
+
+      > :is(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @container (max-width: 767.99px) {
+    .Grid {
+      :where(.Grid__inner) {
+        gap: calc(var(--user-spacing) * 6);
+      }
+
+      :where(.Grid__segment) {
+        &.gridSp-1 {
+          grid-column: span 1;
+        }
+
+        &.gridSp-2 {
+          grid-column: span 2;
+        }
+
+        &.gridSp-3 {
+          grid-column: span 3;
+        }
+
+        &.gridSp-4 {
+          grid-column: span 4;
+        }
+
+        &.gridSp-5 {
+          grid-column: span 5;
+        }
+
+        &.gridSp-6 {
+          grid-column: span 6;
+        }
+
+        &.gridSp-7 {
+          grid-column: span 7;
+        }
+
+        &.gridSp-8 {
+          grid-column: span 8;
+        }
+
+        &.gridSp-9 {
+          grid-column: span 9;
+        }
+
+        &.gridSp-10 {
+          grid-column: span 10;
+        }
+
+        &.gridSp-11 {
+          grid-column: span 11;
+        }
+
+        &.gridSp-12 {
+          grid-column: span 12;
+        }
+      }
+    }
+  }
+
+  @container (min-width: 768px) {
+    .Grid {
+      :where(.Grid__inner) {
+        gap: calc(var(--user-spacing) * 8);
+      }
+
+      :where(.Grid__segment) {
+        &.gridPc-1 {
+          grid-column: span 1;
+        }
+
+        &.gridPc-2 {
+          grid-column: span 2;
+        }
+
+        &.gridPc-3 {
+          grid-column: span 3;
+        }
+
+        &.gridPc-4 {
+          grid-column: span 4;
+        }
+
+        &.gridPc-5 {
+          grid-column: span 5;
+        }
+
+        &.gridPc-6 {
+          grid-column: span 6;
+        }
+
+        &.gridPc-7 {
+          grid-column: span 7;
+        }
+
+        &.gridPc-8 {
+          grid-column: span 8;
+        }
+
+        &.gridPc-9 {
+          grid-column: span 9;
+        }
+
+        &.gridPc-10 {
+          grid-column: span 10;
+        }
+
+        &.gridPc-11 {
+          grid-column: span 11;
+        }
+
+        &.gridPc-12 {
+          grid-column: span 12;
+        }
+      }
+    }
+  }
+</style>

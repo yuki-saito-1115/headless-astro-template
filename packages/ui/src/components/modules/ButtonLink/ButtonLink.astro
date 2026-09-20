@@ -1,0 +1,134 @@
+---
+import type { IconPropType } from '@components/modules/Icon/Icon.astro';
+import Icon from '@components/modules/Icon/Icon.astro';
+import type { HTMLAttributes } from 'astro/types';
+
+export interface ButtonLinkPropType extends HTMLAttributes<'a'> {
+  afterIcon?: IconPropType;
+  beforeIcon?: IconPropType;
+  disabled?: boolean;
+  label: string;
+  theme?: 'emphasis' | 'conversion';
+}
+
+const {
+  afterIcon,
+  beforeIcon,
+  disabled = false,
+  label,
+  theme,
+  class: className,
+  ...rest
+} = Astro.props;
+const classList = ['ButtonLink'];
+let mergedClass = '';
+
+if (theme) {
+  classList.push(`theme-${theme}`);
+}
+
+if (disabled) {
+  // hrefを削除してリンクを無効化する
+  delete rest.href;
+  classList.push('is-disabled');
+}
+
+mergedClass = classList.join(' ');
+---
+
+<a
+  class:list={[className, mergedClass]}
+  {...rest}
+>
+{beforeIcon && <Icon class:list={['ButtonLink__icon']} {...beforeIcon} />}
+
+<span class:list={['ButtonLink__content']}>{label}</span>
+
+{afterIcon && <Icon class:list={['ButtonLink__icon']} {...afterIcon} />}
+
+</a>
+
+
+<style>
+  .ButtonLink {
+    --local-foreground: var(--user-color-primary);
+    --local-background: var(--user-color-background-light);
+    --local-outline: var(--user-color-primary);
+
+    align-items: center;
+    background-color: var(--local-background);
+    border: 1px solid var(--local-outline);
+    color: var(--local-foreground);
+    cursor: pointer;
+    display: inline-flex;
+    fill: var(--local-foreground);
+    font-weight: normal;
+    gap: 0.5em;
+    justify-content: center;
+    line-height: 1.5;
+    padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 6);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+
+    /* 強調 */
+    &.theme-emphasis {
+      --local-foreground: var(--user-color-foreground-light);
+      --local-background: var(--user-color-primary);
+      --local-outline: var(--user-color-primary);
+    }
+
+    /* コンバージョン */
+    &.theme-conversion {
+      --local-foreground: var(--user-color-foreground-light);
+      --local-background: var(--user-color-danger-dark);
+      --local-outline: var(--user-color-danger-dark);
+    }
+
+    /* 非活性 */
+    &.is-disabled {
+      --local-foreground: var(--user-color-disabled-dark);
+      --local-background: var(--user-color-disabled-light);
+      --local-outline: var(--user-color-disabled-light);
+
+      cursor: text;
+    }
+
+    > :where(svg) {
+      color: currentColor;
+      display: inline-block;
+      flex: 0 0 auto;
+      height: 1em;
+      vertical-align: baseline;
+      width: 1em;
+    }
+  }
+
+  @media (any-hover: hover) {
+    .ButtonLink:not(.is-disabled) {
+      /* 強調 */
+      &.theme-emphasis {
+        &:hover {
+          --local-foreground: var(--user-color-primary);
+          --local-background: var(--user-color-background-light);
+          --local-outline: var(--user-color-primary);
+        }
+      }
+
+      /* コンバージョン */
+      &.theme-conversion {
+        &:hover {
+          --local-foreground: var(--user-color-danger-dark);
+          --local-background: var(--user-color-background-light);
+          --local-outline: var(--user-color-danger-dark);
+        }
+      }
+
+      &:hover {
+        --local-foreground: var(--user-color-foreground-light);
+        --local-background: var(--user-color-primary);
+        --local-outline: var(--user-color-primary);
+      }
+    }
+  }
+</style>

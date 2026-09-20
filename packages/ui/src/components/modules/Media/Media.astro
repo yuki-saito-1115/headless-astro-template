@@ -1,0 +1,73 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface MediaPropType extends HTMLAttributes<'div'> {}
+
+const { class: className, ...rest } = Astro.props;
+---
+<div
+  class:list={['Media', className]}
+  {...rest}
+>
+  <slot />
+</div>
+
+
+<style>
+  .Media {
+    text-align: center; /* デフォルト: 中央 */
+
+    &:has(figure[style*="text-align: left"]) {
+      text-align: left;
+    }
+
+    &:has(figure[style*="text-align: right"]) {
+      text-align: right;
+    }
+
+    :where(figure),
+    :where(a) {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: calc(var(--user-spacing) * 2);
+    }
+
+    :where(figure) {
+      max-width: 100%; /* width: 100% → max-width: 100% */
+    }
+
+    :where(a) {
+      color: var(--user-color-primary);
+      text-decoration: none;
+      fill: var(--user-color-primary);
+    }
+
+    :where(img) {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    :where(figcaption) {
+      width: 0;
+      min-width: 100%;
+      text-align: center;
+      font-size: var(--user-font-size-note);
+    }
+  }
+
+  @media (any-hover: hover) {
+    .Media {
+      :where(a) {
+        &:any-link {
+          &:hover {
+            opacity: 0.5;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+</style>

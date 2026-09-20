@@ -1,0 +1,57 @@
+{
+  "container": {
+    "$type": "dimension",
+    "3xs": {
+      "$description": "256px",
+      "$value": "16rem"
+    },
+    "2xs": {
+      "$description": "288px",
+      "$value": "18rem"
+    },
+    "xs": {
+      "$description": "320px",
+      "$value": "20rem"
+    },
+    "sm": {
+      "$description": "384px",
+      "$value": "24rem"
+    },
+    "md": {
+      "$description": "448px",
+      "$value": "28rem"
+    },
+    "lg": {
+      "$description": "512px",
+      "$value": "32rem"
+    },
+    "xl": {
+      "$description": "576px",
+      "$value": "36rem"
+    },
+    "2xl": {
+      "$description": "672px",
+      "$value": "42rem"
+    },
+    "3xl": {
+      "$description": "768px",
+      "$value": "48rem"
+    },
+    "4xl": {
+      "$description": "896px",
+      "$value": "56rem"
+    },
+    "5xl": {
+      "$description": "1024px",
+      "$value": "64rem"
+    },
+    "6xl": {
+      "$description": "1152px",
+      "$value": "72rem"
+    },
+    "7xl": {
+      "$description": "1280px",
+      "$value": "80rem"
+    }
+  }
+}

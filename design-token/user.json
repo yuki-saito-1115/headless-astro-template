@@ -1,0 +1,275 @@
+{
+  "user": {
+    "spacing": {
+      "$type": "dimension",
+      "$description": "スペースの基本となる数値",
+      "$value": "{spacing}"
+    },
+    "major-breakpoint": {
+      "$type": "dimension",
+      "$description": "メジャーブレークポイント",
+      "$value": "{breakpoint.md}"
+    },
+    "minor-breakpoint": {
+      "$type": "dimension",
+      "$description": "マイナーブレークポイント",
+      "$value": "{breakpoint.xl}"
+    },
+    "outside-gutter-sp": {
+      "$type": "dimension",
+      "$description": "コンテンツの外側のスペース幅（SP）",
+      "$value": "calc({spacing} * 4)"
+    },
+    "outside-gutter-pc": {
+      "$type": "dimension",
+      "$description": "コンテンツの外側のスペース幅（PC）",
+      "$value": "calc({spacing} * 8)"
+    },
+    "content-width-sp": {
+      "$type": "dimension",
+      "$description": "コンテンツの外側のスペース幅（SP）",
+      "$value": "calc(375px - ({user.outside-gutter-sp} * 2))"
+    },
+    "content-width-pc": {
+      "$type": "dimension",
+      "$description": "コンテンツの外側のスペース幅（PC）",
+      "$value": "{user.minor-breakpoint}"
+    },
+    "font": {
+      "size": {
+        "$type": "dimension",
+        "base": {
+          "$description": "基本のフォントサイズ",
+          "$value": "{text.base}"
+        },
+        "note": {
+          "$description": "基本のフォントサイズ（注釈）",
+          "$value": "{text.sm}"
+        }
+      },
+      "family": {
+        "$type": "fontFamily",
+        "ja": {
+          "$description": "基本の日本語フォント",
+          "$value": ["Roboto", "Noto Sans Japanese", "sans-serif"]
+        },
+        "en": {
+          "$description": "基本の英語フォント",
+          "$value": ["Roboto", "sans-serif"]
+        },
+        "mono": {
+          "$description": "基本のモノスペースフォント",
+          "$value": ["Roboto Mono", "Noto Sans Japanese", "sans-serif"]
+        }
+      },
+      "weight": {
+        "$type": "fontWeight",
+        "normal": {
+          "$description": "フォントウェイト（通常）",
+          "$value": "{font.normal}"
+        },
+        "bold": {
+          "$description": "フォントウェイト（太字）",
+          "$value": "{font.bold}"
+        }
+      }
+    },
+    "line-height": {
+      "$type": "number",
+      "$description": "基本の行高",
+      "$value": "{leading.normal}"
+    },
+    "border-radius": {
+      "$type": "dimension",
+      "$description": "基本の角丸",
+      "$value": "{radius.sm}"
+    },
+    "transition": {
+      "$type": "transition",
+      "$description": "基本のトランジション",
+      "$value": {
+        "duration": "300ms",
+        "delay": "0ms",
+        "timingFunction": [0.25, 0.8, 0.25, 1]
+      }
+    },
+    "text": {
+      "$type": "typography",
+      "normal": {
+        "$description": "通常テキスト",
+        "$value": {
+          "fontFamily": "{user.font.family.ja}",
+          "fontSize": "{user.font.size.base}",
+          "fontWeight": "{user.font.weight.normal}",
+          "letterSpacing": "{tracking.normal}",
+          "lineHeight": "{leading.relaxed}"
+        }
+      },
+      "note": {
+        "$description": "注釈テキスト",
+        "$value": {
+          "fontFamily": "{user.font.family.ja}",
+          "fontSize": "{user.font.size.note}",
+          "fontWeight": "{user.font.weight.normal}",
+          "letterSpacing": "{tracking.normal}",
+          "lineHeight": "{leading.relaxed}"
+        }
+      },
+      "h1": {
+        "$description": "h1テキスト",
+        "$value": {
+          "fontFamily": "{user.font.family.ja}",
+          "fontSize": "{text.4xl}",
+          "fontWeight": "{user.font.weight.bold}",
+          "letterSpacing": "{tracking.normal}",
+          "lineHeight": "{text.4xl--line-height}"
+        }
+      },
+      "h2": {
+        "$description": "h2テキスト",
+        "$value": {
+          "fontFamily": "{user.font.family.ja}",
+          "fontSize": "{text.2xl}",
+          "fontWeight": "{user.font.weight.bold}",
+          "letterSpacing": "{tracking.normal}",
+          "lineHeight": "{text.2xl--line-height}"
+        }
+      },
+      "h3": {
+        "$description": "h3テキスト",
+        "$value": {
+          "fontFamily": "{user.font.family.ja}",
+          "fontSize": "{text.lg}",
+          "fontWeight": "{user.font.weight.bold}",
+          "letterSpacing": "{tracking.normal}",
+          "lineHeight": "{text.lg--line-height}"
+        }
+      },
+      "h4": {
+        "$description": "h4テキスト",
+        "$value": {
+          "fontFamily": "{user.font.family.ja}",
+          "fontSize": "{text.base}",
+          "fontWeight": "{user.font.weight.bold}",
+          "letterSpacing": "{tracking.normal}",
+          "lineHeight": "{text.base--line-height}"
+        }
+      },
+      "h5": {
+        "$description": "h5テキスト",
+        "$value": {
+          "fontFamily": "{user.font.family.ja}",
+          "fontSize": "{text.sm}",
+          "fontWeight": "{user.font.weight.bold}",
+          "letterSpacing": "{tracking.normal}",
+          "lineHeight": "{text.sm--line-height}"
+        }
+      },
+      "h6": {
+        "$description": "h6テキスト",
+        "$value": {
+          "fontFamily": "{user.font.family.ja}",
+          "fontSize": "{text.xs}",
+          "fontWeight": "{user.font.weight.bold}",
+          "letterSpacing": "{tracking.normal}",
+          "lineHeight": "{text.xs--line-height}"
+        }
+      }
+    },
+    "color": {
+      "$type": "color",
+      "primary": {
+        "$description": "ブランドカラー（プライマリ）",
+        "$value": "{color.blue.700}"
+      },
+      "secondary1": {
+        "$description": "ブランドカラー（セカンダリ1）",
+        "$value": "{color.purple.600}"
+      },
+      "secondary2": {
+        "$description": "ブランドカラー（セカンダリ2）",
+        "$value": "{color.slate.600}"
+      },
+      "success": {
+        "dark": {
+          "$description": "成功カラー（濃）",
+          "$value": "{color.emerald.700}"
+        },
+        "light": {
+          "$description": "成功カラー（淡）",
+          "$value": "{color.emerald.50}"
+        }
+      },
+      "danger": {
+        "dark": {
+          "$description": "失敗カラー（濃）",
+          "$value": "{color.rose.500}"
+        },
+        "light": {
+          "$description": "失敗カラー（淡）",
+          "$value": "{color.rose.50}"
+        }
+      },
+      "warning": {
+        "dark": {
+          "$description": "警告カラー（濃）",
+          "$value": "{color.amber.500}"
+        },
+        "light": {
+          "$description": "警告カラー（淡）",
+          "$value": "{color.amber.50}"
+        }
+      },
+      "info": {
+        "dark": {
+          "$description": "情報カラー（濃）",
+          "$value": "{color.blue.700}"
+        },
+        "light": {
+          "$description": "情報カラー（淡）",
+          "$value": "{color.blue.50}"
+        }
+      },
+      "disabled": {
+        "dark": {
+          "$description": "非活性カラー（濃）",
+          "$value": "{color.gray.500}"
+        },
+        "light": {
+          "$description": "非活性カラー（淡）",
+          "$value": "{color.gray.300}"
+        }
+      },
+      "foreground": {
+        "dark": {
+          "$description": "前景色（濃）",
+          "$value": "{color.black}"
+        },
+        "light": {
+          "$description": "前景色（淡）",
+          "$value": "{color.white}"
+        }
+      },
+      "background": {
+        "dark": {
+          "$description": "背景色（濃）",
+          "$value": "{color.black}"
+        },
+        "light": {
+          "$description": "背景色（淡）",
+          "$value": "{color.white}"
+        }
+      },
+      "outline": {
+        "dark": {
+          "$description": "枠線色（濃）",
+          "$value": "{color.gray.500}"
+        },
+        "light": {
+          "$description": "枠線色（淡）",
+          "$value": "{color.gray.300}"
+        }
+      }
+    }
+  }
+}

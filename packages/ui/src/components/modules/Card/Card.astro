@@ -1,0 +1,163 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface CardPropType extends HTMLAttributes<'div' | 'li'> {
+  element?: 'div' | 'li';
+  theme?: 'point' | 'detail';
+}
+
+const { element = 'div', theme, class: className, ...rest } = Astro.props;
+
+const Element = element;
+
+const classList = ['Card__inner'];
+
+if (theme) {
+  classList.push(`theme-${theme}`);
+}
+
+const mergedClass = classList.join(' ');
+---
+<Element
+  class:list={[className, 'Card']}
+  {...rest}
+>
+  <div class={mergedClass}>
+    <slot />
+  </div>
+</Element>
+
+
+<style>
+  .Card {
+    gap: calc(var(--user-spacing) * 6);
+    display: grid;
+  }
+
+  .Card__inner {
+    display: grid;
+    grid-template-rows: subgrid;
+
+    &.theme-outline {
+      border: 1px solid var(--user-color-outline-light);
+      padding: calc(var(--user-spacing) * 4);
+    }
+  }
+
+  .Card__head,
+  .Card__body,
+  .Card__foot,
+  .Card__media {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    > * {
+      margin-top: 0 !important;
+    }
+  }
+
+  .Card__head {
+    justify-content: center;
+    gap: calc(var(--user-spacing) * 1);
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
+  .Card__body {
+    gap: calc(var(--user-spacing) * 4);
+  }
+
+  .Card__foot {
+    gap: calc(var(--user-spacing) * 4);
+  }
+
+  .Card__media {
+    align-items: center;
+    order: -1;
+  }
+
+  .Card__title {
+    font-size: calc(16 / var(--user-font-size-root) * 1rem);
+  }
+
+  .Card__title a {
+    color: inherit;
+  }
+
+  .Card__tagline {
+    font-size: calc(12 / var(--user-font-size-root) * 1rem);
+  }
+
+  /* SP Viewport */
+  @media (width < 768px) {
+    .Card__inner {
+      &.theme-outline {
+        padding: calc(var(--user-spacing) * 6);
+      }
+
+      &:not(.theme-stackSP) {
+        align-items: start;
+        gap: calc(var(--user-spacing) * 6);
+        grid-row: span 3;
+        grid-template-columns: repeat(2, 1fr);
+
+        :where(.Card__media) {
+          grid-row: span 2;
+        }
+
+        :where(.Card__foot) {
+          grid-column: span 2;
+        }
+      }
+
+      &.theme-stackSP {
+        grid-row: span 4;
+
+        :where(.Card__media) {
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  /* PC Viewport */
+  @media (width >= 768px) {
+    .Card__inner {
+      &.theme-outline {
+        padding: calc(var(--user-spacing) * 6);
+      }
+
+      &:not(.theme-stackPC) {
+        align-items: start;
+        gap: calc(var(--user-spacing) * 6);
+        grid-row: span 3;
+        grid-template-columns: repeat(2, 1fr);
+
+        :where(.Card__media) {
+          grid-row: span 2;
+        }
+
+        :where(.Card__foot) {
+          grid-column: span 2;
+        }
+      }
+
+      &.theme-stackPC {
+        grid-row: span 4;
+
+        :where(.Card__media) {
+          justify-content: center;
+        }
+      }
+    }
+
+    .Card__tagline {
+      font-size: calc(14 / var(--user-font-size-root) * 1rem);
+    }
+
+    .Card__title {
+      font-size: calc(18 / var(--user-font-size-root) * 1rem);
+    }
+  }
+</style>

@@ -1,0 +1,11 @@
+/**
+ * Information:
+ *   Tailwind CSSの読み込みファイルです
+ *
+ *   *   theme.css: Style Dictionaryによる生成
+ *   *   preflight.css: プロジェクト固有
+ */
+
+@import './theme.css';
+@import './preflight.css';
+@import 'tailwindcss/utilities.css' important;

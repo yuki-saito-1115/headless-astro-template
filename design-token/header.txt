@@ -1,0 +1,7 @@
+/**
+ * Information:
+ *   このファイルはStyle Dictionaryによる自動生成です。直接編集しないでください。
+ *   変更が必要な場合はdesign-token/user.jsonを編集し、再ビルドしてください。
+ *   design-token/core/*.jsonはTailwind CSSの機能に影響するため編集禁止です。
+ */
+

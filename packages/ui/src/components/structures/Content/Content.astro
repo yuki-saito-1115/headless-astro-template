@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface ContentPropType extends HTMLAttributes<'main'> {}
+
+const { class: className, ..._rest } = Astro.props;
+---
+
+<main
+  class:list={['Content', className]}
+  {..._rest}
+>
+  <slot />
+</main>
+
+
+<style>
+  .Content {
+    grid-area: content;
+  }
+</style>
