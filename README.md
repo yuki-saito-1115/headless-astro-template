@@ -34,6 +34,10 @@ npm run dev:preview
 
 `npm run dev` は、2つのアプリケーションworkspaceの開発サーバーをまとめて起動します。
 
+## Tailwind CSS の制約
+
+Vite プラグインで、各アプリケーションworkspaceの `src` と `packages/ui/src` にある `.astro` ファイルを検査します。Tailwind CSS の `@apply` と `@reference` は使用禁止です。
+
 ## デプロイ
 
 main WorkerはGitHub Actionsでビルド・デプロイします。

@@ -2,9 +2,5 @@
   "name": "@headless-astro-template/ui",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
-  "exports": {
-    "./components/*": "./src/components/*",
-    "./layouts/*": "./src/layouts/*"
-  }
+  "type": "module"
 }
