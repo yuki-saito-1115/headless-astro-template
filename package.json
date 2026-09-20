@@ -10,7 +10,7 @@
   "scripts": {
     "build": "npm run build:design-token && npm run build:openapi && run-p -l -c build:site build:preview build:storybook",
     "build:design-token": "style-dictionary build --config design-token/config.js",
-    "build:openapi": "node openapi/build.js",
+    "build:openapi": "node scripts/build-openapi.js",
     "build:site": "npm run build --workspace @headless-astro-template/site",
     "build:preview": "npm run build --workspace @headless-astro-template/preview",
     "build:storybook": "npm run build --workspace @headless-astro-template/storybook",
