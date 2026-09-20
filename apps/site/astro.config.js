@@ -19,6 +19,9 @@ const stylesPath = fileURLToPath(
 export default defineConfig({
   output: 'static',
   publicDir: publicPath,
+
+  compressHTML: false,
+
   vite: {
     plugins: [tailwindcss()],
     resolve: {

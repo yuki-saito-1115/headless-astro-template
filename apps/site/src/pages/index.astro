@@ -1,30 +1,29 @@
 ---
 import Text from '@components/modules/Text/Text.astro';
-
+import type { BreadcrumbListItemType } from '@components/structures/Breadcrumb/Breadcrumb.astro';
 import Breadcrumb from '@components/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@components/structures/Content/Content.astro';
 import Section from '@components/structures/Section/Section.astro';
 import type { PagePropsType } from '@layouts/PageLayout/PageLayout.astro';
 import PageLayout from '@layouts/PageLayout/PageLayout.astro';
 
+const breadcrumb: BreadcrumbListItemType[] = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: '羅生門',
+  },
+];
 const pageProps: PagePropsType = {
+  breadcrumb,
   description: 'DUMMY_DESCRIPTION',
 };
-
-// Breadcrumb用のオブジェクト
-interface BreadcrumbItem {
-  href?: string;
-  label: string;
-}
-
-const breadcrumbItems: BreadcrumbItem[] = [
-  { label: 'ホーム', href: '/' },
-  { label: '羅生門' },
-];
 ---
 
 <PageLayout {...pageProps}>
-  <Breadcrumb items={breadcrumbItems} />
+  <Breadcrumb items={breadcrumb} />
 
   <Content>
     <Section>

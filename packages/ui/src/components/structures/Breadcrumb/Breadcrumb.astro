@@ -1,35 +1,36 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-interface BreadcrumbItem {
-  href?: string;
-  label: string;
+// パンくずリスト項目の型
+export interface BreadcrumbListItemType {
+  name: string;
+  item?: string;
 }
 
 export interface BreadcrumbPropsType extends HTMLAttributes<'nav'> {
-  items?: BreadcrumbItem[];
+  items: BreadcrumbListItemType[];
 }
 
 const {
   items = [],
   class: className,
-  ..._rest
+  ...rest
 } = Astro.props as BreadcrumbPropsType;
 ---
 
 <nav
   class:list={['Breadcrumb', className]}
-  {..._rest}
+  {...rest}
 >
   <div class:list={['Breadcrumb__outer']}>
     <div class:list={['Breadcrumb__inner']}>
       <ul>
         {items.map((item) => (
           <li>
-            {item.href ? (
-              <a href={item.href}>{item.label}</a>
+            {item.item ? (
+              <a href={item.item}>{item.name}</a>
             ) : (
-              <a aria-current="page"><em>{item.label}</em></a>
+              <a aria-current="page"><em>{item.name}</em></a>
             )}
           </li>
         ))}
