@@ -1,0 +1,14 @@
+type: object
+description: TODO
+properties:
+  fieldId:
+    type: string
+    enum: ['imagelayout']
+  image:
+    $ref: './ImageType.yaml'
+  caption:
+    type: string
+    description: TODO
+  text:
+    type: string
+    description: TODO

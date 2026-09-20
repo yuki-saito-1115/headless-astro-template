@@ -75,6 +75,7 @@ config.local.*
 .env
 .env.*
 !.env.example
+.dev.vars
 
 # mise settings
 mise.local.*

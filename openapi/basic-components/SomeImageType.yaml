@@ -1,0 +1,10 @@
+type: object
+description: TODO
+properties:
+  fieldId:
+    type: string
+    enum: ['images']
+  images:
+    type: array
+    items:
+      $ref: './ImageType.yaml'

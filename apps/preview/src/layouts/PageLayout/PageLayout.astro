@@ -1,0 +1,101 @@
+---
+import type { BreadcrumbListItemType } from '@components/structures/Breadcrumb/Breadcrumb.astro';
+import Footer from '@components/structures/Footer/Footer.astro';
+import Header from '@components/structures/Header/Header.astro';
+import NavigationTop from '@components/structures/NavigationTop/NavigationTop.astro';
+import Svg from '@components/structures/Svg/Svg.astro';
+import Wrap from '@components/structures/Wrap/Wrap.astro';
+import PreviewNote from '../../components/structures/PreviewNote/PreviewNote.astro';
+import '@styles/tailwind.css';
+
+/* ページごとに設定が必要な値 */
+export interface PagePropsType {
+  breadcrumb?: BreadcrumbListItemType[];
+  description: string;
+  lang?: string;
+  ogImage?: string;
+  ogLocale?: string;
+  ogType?: string;
+  title?: string; // TOPページは省略
+}
+
+const siteName = 'DUMMY_SITE_NAME';
+const siteUrl = 'https://playground.demo.mitsue.com';
+const currentUrl = new URL(Astro.url);
+
+// ページコンポーネントから受け取ったデータを展開する
+const {
+  breadcrumb = [],
+  lang = 'ja',
+  title,
+  description,
+  ogType = 'website',
+  ogLocale = 'ja_JP',
+  ogImage = `${siteUrl}/ogp.webp`,
+}: PagePropsType = Astro.props as PagePropsType;
+
+// ページデータをもとにページタイトルを生成する
+const pageTitle = title ? `${title} | ${siteName}` : siteName;
+// パンくずリストをJSON-LDとして出力する
+const jsonLd = breadcrumb.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumb.map((item, index) => ({
+        '@type': 'ListItem',
+        item: item.item,
+        name: item.name,
+        position: index + 1,
+      })),
+    }
+  : undefined;
+
+// JSON-LD内の文字列でscript要素が意図せず閉じられないようにする
+const jsonLdText = jsonLd && JSON.stringify(jsonLd).replace(/</g, '\\u003c');
+---
+<!doctype html>
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{pageTitle}</title>
+
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={`${siteUrl}${currentUrl.pathname}`} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="description" content={description} />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content={ogImage} />
+
+    {jsonLdText && <script type="application/ld+json" set:html={jsonLdText}></script>}
+  </head>
+
+  <body>
+    <Wrap>
+      <PreviewNote />
+
+      <Header />
+
+      <slot />
+
+      <NavigationTop />
+
+      <Footer />
+    </Wrap>
+
+    <Svg />
+
+    <script>
+      import { loadFonts } from '@scripts/runtime/loadFonts';
+
+      loadFonts();
+    </script>
+  </body>
+</html>

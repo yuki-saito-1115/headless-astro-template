@@ -1,0 +1,10 @@
+type: object
+description: TODO
+properties:
+  fieldId:
+    type: string
+    enum: ['html']
+  html:
+    type: string
+    format: html
+    description: TODO

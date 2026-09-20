@@ -1,0 +1,38 @@
+type: object
+description: Sample item
+properties:
+  id:
+    type: string
+  createdAt:
+    type: string
+    format: date-time
+  updatedAt:
+    type: string
+    format: date-time
+  publishedAt:
+    type: string
+    format: date-time
+  revisedAt:
+    type: string
+    format: date-time
+
+  category:
+    type: array
+    description: カテゴリ
+    items:
+      type: string
+      enum:
+        - カテゴリ1
+        - カテゴリ2
+        - カテゴリ3
+        - カテゴリ4
+        - カテゴリ5
+  title:
+    type: string
+    description: タイトル
+  content:
+    type: string
+    description: 内容
+  link:
+    type: string
+    description: リンクURL

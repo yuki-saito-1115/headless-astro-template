@@ -1,0 +1,11 @@
+type: object
+description: TODO
+properties:
+  url:
+    type: string
+  alt:
+    type: string
+  width:
+    type: integer
+  height:
+    type: integer

@@ -1,0 +1,9 @@
+type: object
+description: TODO
+properties:
+  fieldId:
+    type: string
+    enum: ['text']
+  text:
+    type: string
+    description: TODO

@@ -1,0 +1,158 @@
+openapi: 3.0.0
+info:
+  title: microCMS API
+  version: 1.0.0
+paths:
+  /sample:
+    get:
+      summary: Get all samples
+      responses:
+        '200':
+          description: List of samples
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Sample Response
+                properties:
+                  contents:
+                    type: array
+                    items:
+                      type: object
+                      description: Sample item
+                      properties:
+                        id:
+                          type: string
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        publishedAt:
+                          type: string
+                          format: date-time
+                        revisedAt:
+                          type: string
+                          format: date-time
+                        category:
+                          type: array
+                          description: カテゴリ
+                          items:
+                            type: string
+                            enum:
+                              - カテゴリ1
+                              - カテゴリ2
+                              - カテゴリ3
+                              - カテゴリ4
+                              - カテゴリ5
+                        title:
+                          type: string
+                          description: タイトル
+                        content:
+                          type: string
+                          description: 内容
+                        link:
+                          type: string
+                          description: リンクURL
+                  totalCount:
+                    type: integer
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+components:
+  schemas:
+    Sample:
+      type: object
+      description: Sample item
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        publishedAt:
+          type: string
+          format: date-time
+        revisedAt:
+          type: string
+          format: date-time
+        category:
+          type: array
+          description: カテゴリ
+          items:
+            type: string
+            enum:
+              - カテゴリ1
+              - カテゴリ2
+              - カテゴリ3
+              - カテゴリ4
+              - カテゴリ5
+        title:
+          type: string
+          description: タイトル
+        content:
+          type: string
+          description: 内容
+        link:
+          type: string
+          description: リンクURL
+  responses:
+    SampleResponse:
+      description: Sampleの一覧
+      content:
+        application/json:
+          schema:
+            type: object
+            description: Sample Response
+            properties:
+              contents:
+                type: array
+                items:
+                  type: object
+                  description: Sample item
+                  properties:
+                    id:
+                      type: string
+                    createdAt:
+                      type: string
+                      format: date-time
+                    updatedAt:
+                      type: string
+                      format: date-time
+                    publishedAt:
+                      type: string
+                      format: date-time
+                    revisedAt:
+                      type: string
+                      format: date-time
+                    category:
+                      type: array
+                      description: カテゴリ
+                      items:
+                        type: string
+                        enum:
+                          - カテゴリ1
+                          - カテゴリ2
+                          - カテゴリ3
+                          - カテゴリ4
+                          - カテゴリ5
+                    title:
+                      type: string
+                      description: タイトル
+                    content:
+                      type: string
+                      description: 内容
+                    link:
+                      type: string
+                      description: リンクURL
+              totalCount:
+                type: integer
+              offset:
+                type: integer
+              limit:
+                type: integer

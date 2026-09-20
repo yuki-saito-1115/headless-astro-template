@@ -1,0 +1,21 @@
+type: object
+description: TODO
+properties:
+  fieldId:
+    type: string
+    enum: ['image']
+  image:
+    $ref: './ImageType.yaml'
+  caption:
+    type: string
+    description: TODO
+  imagelink:
+    type: string
+    format: url
+    description: TODO
+  targetblank:
+    type: boolean
+    description: TODO
+  alt:
+    type: string
+    description: TODO
