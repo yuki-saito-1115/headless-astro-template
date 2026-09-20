@@ -1,0 +1,56 @@
+---
+import SampleDetail from '@components/cms/sample/SampleDetail.astro';
+import Heading2 from '@components/modules/Heading2/Heading2.astro';
+import type { BreadcrumbListItemType } from '@components/structures/Breadcrumb/Breadcrumb.astro';
+import Breadcrumb from '@components/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@components/structures/Content/Content.astro';
+import Section from '@components/structures/Section/Section.astro';
+import { getSampleDetail, getSampleList } from '@scripts/build/getSample';
+import type { PagePropsType } from '../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
+
+const draftKey = Astro.url.searchParams.get('draftKey');
+
+export async function getStaticPaths() {
+  const samples = await getSampleList();
+
+  return samples
+    .filter((sample) => !!sample.id)
+    .map((sample) => ({
+      params: { slug: sample.id },
+    }));
+}
+
+const sample = await getSampleDetail(Astro.params.slug, {
+  draftKey,
+});
+const breadcrumb: BreadcrumbListItemType[] = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: '羅生門',
+  },
+];
+const pageProps: PagePropsType = {
+  breadcrumb,
+  description: 'DUMMY_DESCRIPTION',
+};
+---
+
+<PageLayout {...pageProps}>
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Heading2><h2>記事詳細サンプル</h2></Heading2>
+
+      <SampleDetail
+        sample={sample}
+        contentId={sample.id}
+        draftKey={draftKey}
+      />
+    </Section>
+  </Content>
+</PageLayout>

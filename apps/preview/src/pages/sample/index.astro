@@ -1,23 +1,20 @@
 ---
+import SampleList from '@components/cms/sample/SampleList.astro';
 import Heading2 from '@components/modules/Heading2/Heading2.astro';
-import Heading3 from '@components/modules/Heading3/Heading3.astro';
+import Text from '@components/modules/Text/Text.astro';
 import type { BreadcrumbListItemType } from '@components/structures/Breadcrumb/Breadcrumb.astro';
 import Breadcrumb from '@components/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@components/structures/Content/Content.astro';
 import Section from '@components/structures/Section/Section.astro';
-import { getDetail, type SampleType } from '@scripts/build/microcms';
+import { getSampleList } from '@scripts/build/getSample';
 import type { PagePropsType } from '../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../layouts/PageLayout/PageLayout.astro';
 
-const contentId = Astro.url.searchParams.get('contentId');
 const draftKey = Astro.url.searchParams.get('draftKey');
-const sample = contentId
-  ? await getDetail<SampleType>(
-      'sample',
-      contentId,
-      draftKey ? { draftKey } : undefined,
-    )
-  : null;
+const contentId = Astro.url.searchParams.get('contentId');
+const samples = await getSampleList({
+  draftKey,
+});
 const breadcrumb: BreadcrumbListItemType[] = [
   {
     name: 'ホーム',
@@ -38,25 +35,18 @@ const pageProps: PagePropsType = {
 
   <Content>
     <Section>
-      <Heading2><h2>記事詳細サンプル（プレビュー）</h2></Heading2>
+      <Heading2><h2>記事詳細Sample</h2></Heading2>
 
-      {
-        sample ? (
-          <>
-            <Heading3 class="mt-10 md:mt-20"><h3>{sample.title}</h3></Heading3>
+      <Text class="mt-6">
+        このページはシステムテンプレートのサンプルページです。
+      </Text>
 
-            <div class="mt-5 md:mt-10">{sample.category}</div>
-
-            <div class="mt-5 md:mt-10" set:html={sample.content} />
-
-            <div class="mt-5 md:mt-10"><a href={sample.link} target="_blank">詳細はこちら</a></div>
-          </>
-        ) : (
-          <div class="mt-10 md:mt-20">
-            プレビュー対象のコンテンツが見つかりませんでした。microCMSの管理画面からプレビューボタン経由でアクセスしてください。
-          </div>
-        )
-      }
+      <SampleList
+        class="mt-6"
+        samples={samples}
+        contentId={contentId}
+        draftKey={draftKey}
+      />
     </Section>
   </Content>
 </PageLayout>

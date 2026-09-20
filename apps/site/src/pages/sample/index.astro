@@ -1,0 +1,43 @@
+---
+import SampleList from '@components/cms/sample/SampleList.astro';
+import Heading2 from '@components/modules/Heading2/Heading2.astro';
+import Text from '@components/modules/Text/Text.astro';
+import type { BreadcrumbListItemType } from '@components/structures/Breadcrumb/Breadcrumb.astro';
+import Breadcrumb from '@components/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@components/structures/Content/Content.astro';
+import Section from '@components/structures/Section/Section.astro';
+import { getSampleList } from '@scripts/build/getSample';
+import type { PagePropsType } from '../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../layouts/PageLayout/PageLayout.astro';
+
+const samples = await getSampleList();
+const breadcrumb: BreadcrumbListItemType[] = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: '羅生門',
+  },
+];
+const pageProps: PagePropsType = {
+  breadcrumb,
+  description: 'DUMMY_DESCRIPTION',
+};
+---
+
+<PageLayout {...pageProps}>
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Heading2><h2>記事詳細Sample</h2></Heading2>
+
+      <Text class="mt-6">
+        このページはシステムテンプレートのサンプルページです。
+      </Text>
+
+      <SampleList class="mt-6" samples={samples} />
+    </Section>
+  </Content>
+</PageLayout>

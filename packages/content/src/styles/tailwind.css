@@ -9,3 +9,7 @@
 @import './theme.css';
 @import './preflight.css';
 @import 'tailwindcss/utilities.css' important;
+
+@source '../../../../apps/site/src';
+@source '../../../../apps/preview/src';
+@source '../../../ui/src';

@@ -49,6 +49,9 @@ paths:
                         title:
                           type: string
                           description: タイトル
+                        slug:
+                          type: string
+                          description: スラッグ
                         content:
                           type: string
                           description: 内容
@@ -95,6 +98,9 @@ components:
         title:
           type: string
           description: タイトル
+        slug:
+          type: string
+          description: スラッグ
         content:
           type: string
           description: 内容
@@ -144,6 +150,9 @@ components:
                     title:
                       type: string
                       description: タイトル
+                    slug:
+                      type: string
+                      description: スラッグ
                     content:
                       type: string
                       description: 内容
