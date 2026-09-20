@@ -56,7 +56,7 @@ export default {
             return `  ${key}: ${token.$value};${comment}`;
           })
           .join('\n');
-        return `${header}@theme {\n${vars}\n}\n`;
+        return `${header}@theme static {\n${vars}\n}\n`;
       },
     },
   },

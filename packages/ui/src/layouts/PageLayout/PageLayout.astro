@@ -5,6 +5,7 @@ import Header from '@components/structures/Header/Header.astro';
 import NavigationTop from '@components/structures/NavigationTop/NavigationTop.astro';
 import Svg from '@components/structures/Svg/Svg.astro';
 import Wrap from '@components/structures/Wrap/Wrap.astro';
+import '@styles/tailwind.css';
 
 /* ページごとに設定が必要な値 */
 export interface PagePropsType {
@@ -87,10 +88,6 @@ const jsonLdText = jsonLd && JSON.stringify(jsonLd).replace(/</g, '\\u003c');
     </Wrap>
 
     <Svg />
-
-    <style is:global>
-      @import '@styles/tailwind.css';
-    </style>
 
     <script>
       import { loadFonts } from '@scripts/runtime/loadFonts';

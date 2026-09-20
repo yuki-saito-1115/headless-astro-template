@@ -5,7 +5,7 @@
  *   design-token/core/*.jsonはTailwind CSSの機能に影響するため編集禁止です。
  */
 
-@theme {
+@theme static {
   --aspect-video: 16 / 9;
   --blur-xs: 4px;
   --blur-sm: 8px;
