@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url';
+import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField } from 'astro/config';
 import { checkTailwindDirective } from '../../vite/check-tailwind-directive.js';
@@ -8,6 +9,7 @@ const resolvePath = (path) => fileURLToPath(new URL(path, import.meta.url));
 
 export default defineConfig({
   publicDir: resolvePath('../../public'),
+  integrations: [mdx()],
   env: {
     schema: {
       MICROCMS_SERVICE_DOMAIN: envField.string({

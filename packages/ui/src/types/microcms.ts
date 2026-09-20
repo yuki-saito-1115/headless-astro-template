@@ -4,14 +4,14 @@
  */
 
 export interface paths {
-  '/sample': {
+  '/blogs': {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    /** Get all samples */
+    /** ブログの一覧取得 */
     get: {
       parameters: {
         query?: never;
@@ -21,38 +21,14 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description List of samples */
+        /** @description ブログの一覧 */
         200: {
           headers: {
             [name: string]: unknown;
           };
           content: {
             'application/json': {
-              contents?: {
-                id?: string;
-                /** Format: date-time */
-                createdAt?: string;
-                /** Format: date-time */
-                updatedAt?: string;
-                /** Format: date-time */
-                publishedAt?: string;
-                /** Format: date-time */
-                revisedAt?: string;
-                /** @description カテゴリ */
-                category?: (
-                  | 'カテゴリ1'
-                  | 'カテゴリ2'
-                  | 'カテゴリ3'
-                  | 'カテゴリ4'
-                  | 'カテゴリ5'
-                )[];
-                /** @description タイトル */
-                title?: string;
-                /** @description 内容 */
-                content?: string;
-                /** @description リンクURL */
-                link?: string;
-              }[];
+              contents?: components['schemas']['Blogs'][];
               totalCount?: number;
               offset?: number;
               limit?: number;
@@ -69,11 +45,241 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/blogs/{content_id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** ブログの詳細取得 */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          content_id: string;
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description ブログの詳細 */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': components['schemas']['Blogs'];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/categories': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** カテゴリの一覧取得 */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description カテゴリの一覧 */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': {
+              contents?: components['schemas']['Categories'][];
+              totalCount?: number;
+              offset?: number;
+              limit?: number;
+            };
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/categories/{content_id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** カテゴリの詳細取得 */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          content_id: string;
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description カテゴリの詳細 */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': components['schemas']['Categories'];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/sample': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** サンプルの一覧取得 */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description サンプルの一覧 */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': {
+              contents?: components['schemas']['Sample'][];
+              totalCount?: number;
+              offset?: number;
+              limit?: number;
+            };
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/sample/{content_id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** サンプルの詳細取得 */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          content_id: string;
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description サンプルの詳細 */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': components['schemas']['Sample'];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
-    /** @description Sample item */
+    /** @description ブログ */
+    Blogs: {
+      id?: string;
+      /** Format: date-time */
+      createdAt?: string;
+      /** Format: date-time */
+      updatedAt?: string;
+      /** Format: date-time */
+      publishedAt?: string | null;
+      /** Format: date-time */
+      revisedAt?: string | null;
+      /** @description タイトル */
+      title?: string;
+      /** @description 内容 */
+      content?: string;
+      /** @description アイキャッチ */
+      eyecatch?: Record<string, never>;
+      /** @description カテゴリ */
+      category?: Record<string, never>;
+    };
+    /** @description カテゴリ */
+    Categories: {
+      id?: string;
+      /** Format: date-time */
+      createdAt?: string;
+      /** Format: date-time */
+      updatedAt?: string;
+      /** Format: date-time */
+      publishedAt?: string | null;
+      /** Format: date-time */
+      revisedAt?: string | null;
+      /** @description カテゴリ名 */
+      name?: string;
+    };
+    /** @description サンプル */
     Sample: {
       id?: string;
       /** Format: date-time */
@@ -81,17 +287,19 @@ export interface components {
       /** Format: date-time */
       updatedAt?: string;
       /** Format: date-time */
-      publishedAt?: string;
+      publishedAt?: string | null;
       /** Format: date-time */
-      revisedAt?: string;
-      /** @description カテゴリ */
-      category?: (
+      revisedAt?: string | null;
+      /**
+       * @description カテゴリ
+       * @enum {string}
+       */
+      category?:
         | 'カテゴリ1'
         | 'カテゴリ2'
         | 'カテゴリ3'
         | 'カテゴリ4'
-        | 'カテゴリ5'
-      )[];
+        | 'カテゴリ5';
       /** @description タイトル */
       title?: string;
       /** @description 内容 */
@@ -100,46 +308,7 @@ export interface components {
       link?: string;
     };
   };
-  responses: {
-    /** @description Sampleの一覧 */
-    SampleResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        'application/json': {
-          contents?: {
-            id?: string;
-            /** Format: date-time */
-            createdAt?: string;
-            /** Format: date-time */
-            updatedAt?: string;
-            /** Format: date-time */
-            publishedAt?: string;
-            /** Format: date-time */
-            revisedAt?: string;
-            /** @description カテゴリ */
-            category?: (
-              | 'カテゴリ1'
-              | 'カテゴリ2'
-              | 'カテゴリ3'
-              | 'カテゴリ4'
-              | 'カテゴリ5'
-            )[];
-            /** @description タイトル */
-            title?: string;
-            /** @description 内容 */
-            content?: string;
-            /** @description リンクURL */
-            link?: string;
-          }[];
-          totalCount?: number;
-          offset?: number;
-          limit?: number;
-        };
-      };
-    };
-  };
+  responses: never;
   parameters: never;
   requestBodies: never;
   headers: never;

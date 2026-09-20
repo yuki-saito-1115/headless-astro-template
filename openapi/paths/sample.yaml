@@ -1,9 +1,0 @@
-get:
-  summary: Get all samples
-  responses:
-    '200':
-      description: List of samples
-      content:
-        application/json:
-          schema:
-            $ref: '../responses/SampleResponse.yaml'

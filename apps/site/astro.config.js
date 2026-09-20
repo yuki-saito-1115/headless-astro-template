@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url';
+import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField } from 'astro/config';
@@ -15,7 +16,7 @@ export default defineConfig({
     enabled: false,
   },
   compressHTML: false,
-  integrations: [sitemap()],
+  integrations: [sitemap(), mdx()],
   env: {
     schema: {
       MICROCMS_SERVICE_DOMAIN: envField.string({

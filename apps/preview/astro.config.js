@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'node:url';
 import cloudflare from '@astrojs/cloudflare';
+import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField } from 'astro/config';
 import { checkTailwindDirective } from '../../vite/check-tailwind-directive.js';
@@ -10,6 +11,7 @@ const resolvePath = (path) => fileURLToPath(new URL(path, import.meta.url));
 export default defineConfig({
   output: 'server',
   adapter: cloudflare(),
+  integrations: [mdx()],
   publicDir: resolvePath('../../public'),
   devToolbar: {
     enabled: false,

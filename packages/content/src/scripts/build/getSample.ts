@@ -17,7 +17,7 @@ const getSampleList = async (
   queries?: MicroCMSQueries,
 ): Promise<SampleType[]> => {
   const mergedQueries: MicroCMSQueries = {
-    fields: 'id,title,slug',
+    fields: 'id,title',
     ...queries,
   };
 
