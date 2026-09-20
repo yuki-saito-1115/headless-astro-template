@@ -6,6 +6,7 @@
     "types": ["astro/client"],
     "paths": {
       "@shared/content": ["../../packages/content/src/index.ts"],
+      "@shared/content/*": ["../../packages/content/src/*"],
       "@shared/ui/*": ["../../packages/ui/src/*"]
     }
   },
