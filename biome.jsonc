@@ -6,13 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": [
-      "**",
-      "!**/.astro",
-      "!**/dist",
-      "!**/node_modules",
-      "!**/astro.config.js"
-    ]
+    "includes": ["**", "!**/.astro", "!**/dist", "!**/node_modules"]
   },
   "formatter": {
     "enabled": true,
