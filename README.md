@@ -26,6 +26,7 @@ packages/
 
 ```sh
 npm install
+npm run setup
 npm run build
 npm run dev
 npm run dev:site
@@ -33,6 +34,15 @@ npm run dev:preview
 ```
 
 `npm run dev` は、2つのアプリケーションworkspaceの開発サーバーをまとめて起動します。
+
+## ローカルセットアップ
+
+`npm run setup` は、ローカル開発に必要なGit設定と環境変数ファイルを初期化します。
+
+- `setup:git`: Git hooksの参照先を `.hooks` に設定し、Git LFSをローカルリポジトリに設定します。
+- `setup:env`: `.env.sample` から `.env` を作成し、各アプリケーションworkspaceの `.env` と、previewアプリケーションworkspaceの `.dev.vars` をシンボリックリンクとして作成します。
+
+`.env` と `.dev.vars` が既に存在する場合は上書きしません。`.dev.vars` はローカルでCloudflare Workers相当のSSR環境を動かすためのファイルで、Cloudflare上のWorkerではCloudflare側に設定したVariables / Secretsを使用します。
 
 ## Tailwind CSS の制約
 

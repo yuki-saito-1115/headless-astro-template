@@ -35,7 +35,10 @@
     "versions:site": "npm run versions --workspace @headless-astro-template/site",
     "versions:preview": "npm run versions --workspace @headless-astro-template/preview",
     "versions:storybook": "npm run versions --workspace @headless-astro-template/storybook",
-    "prepare": "git config core.hooksPath .hooks && git lfs install --local"
+    "setup": "run-s -l setup:*",
+    "setup:hooks": "git config core.hooksPath .hooks",
+    "setup:lfs": "git lfs install --local",
+    "setup:env": "node scripts/setup-env.js"
   },
   "devDependencies": {
     "@apidevtools/swagger-parser": "^13.0.0",
