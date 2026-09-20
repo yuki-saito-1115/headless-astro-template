@@ -2,6 +2,6 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "incremental": true,
-    "tsBuildInfoFile": "../../.cache/site/tsconfig.tsbuildinfo"
+    "tsBuildInfoFile": "../../.cache/site/typescript/tsconfig.tsbuildinfo"
   }
 }

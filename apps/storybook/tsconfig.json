@@ -1,9 +1,9 @@
 {
+  "include": [".storybook/**/*.js", "../../packages/ui/src/**/*.stories.js"],
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "incremental": true,
-    "tsBuildInfoFile": "../../.cache/storybook/tsconfig.tsbuildinfo",
+    "tsBuildInfoFile": "../../.cache/storybook/typescript/tsconfig.tsbuildinfo",
     "types": ["astro/client"]
-  },
-  "include": [".storybook/**/*.js", "../../packages/ui/src/**/*.stories.js"]
+  }
 }
