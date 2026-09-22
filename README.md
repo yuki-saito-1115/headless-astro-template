@@ -83,10 +83,6 @@ Style Dictionaryのビルド出力はpackages/content/src/styles/theme.cssで、
 ただし、公式のStorybookと比較するといくつかの機能が未実装である。\
 storiesファイルはコンポーネントと同じディレクトリで管理することで、コンポーネントの変更とストーリーの変更をセットで追跡しやすくしている。
 
-## Basic認証は未実装
-
-従来はWorkerとして実装していたが、[Cloudflare Access](https://www.cloudflare.com/ja-jp/sase/products/access/) を検討するか議論が必要なため、現時点では未実装としている。
-
 ## プレコミットフックによるチェック
 
 従来は手動実行のみを想定していたが、プレコミットフックでのチェックを実装した。\
