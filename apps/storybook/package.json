@@ -11,6 +11,8 @@
     "versions": "wrangler versions upload"
   },
   "dependencies": {
+    "@packages/content": "0.1.0",
+    "@packages/ui": "0.1.0",
     "astro": "^7.3.3"
   },
   "devDependencies": {

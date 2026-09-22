@@ -1,0 +1,174 @@
+---
+import type {
+  CommonTypeColumn,
+  CommonTypeLink,
+} from '@packages/content/types/CommonType';
+import type { HTMLAttributes } from 'astro/types';
+
+export interface LinkListPropType extends HTMLAttributes<'div'> {
+  columnPc?: CommonTypeColumn;
+  columnSp?: CommonTypeColumn;
+  datas: CommonTypeLink[];
+}
+
+const {
+  columnPc = 1,
+  columnSp = 1,
+  datas,
+  class: className,
+  ...rest
+} = Astro.props;
+const classList = ['LinkList'];
+let mergedClass = '';
+
+if (columnPc) {
+  classList.push(`columnPc-${columnPc}`);
+}
+
+if (columnSp) {
+  classList.push(`columnSp-${columnSp}`);
+}
+
+mergedClass = classList.join(' ');
+---
+
+<div
+  class:list={[mergedClass, className]}
+  {...rest}
+>
+  <ul>
+    {datas.map((data: CommonTypeLink) => (
+      <li>
+        <a href={data.href} target={data.target}>{data.label}</a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+
+<style>
+  .LinkList {
+    container-type: inline-size;
+
+    :where(ul) {
+      display: grid;
+    }
+
+    :where(li) {
+      list-style: none;
+      height: 100%;
+      list-style: none;
+      padding-left: 1.25em;
+      position: relative;
+
+      /* arrow */
+      &::before {
+        background-color: var(--user-color-primary);
+        content: '';
+        display: block;
+        height: 0.75em;
+        left: 0;
+        mask-image: url('/assets/images/icons/angle-right.svg');
+        mask-repeat: no-repeat;
+        mask-size: cover;
+        position: absolute;
+        top: 0.55em;
+        width: 0.75em;
+      }
+    }
+
+    :where(a) {
+      color: var(--user-color-primary);
+      text-decoration: none;
+      fill: var(--user-color-primary);
+    }
+  }
+
+  @container (max-width: 767.99px) {
+    .LinkList {
+      :where(ul) {
+        gap: calc(var(--user-spacing) * 2)  calc(var(--user-spacing) * 6);
+      }
+
+      &.columnSp-2 {
+        :where(ul) {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      &.columnSp-3 {
+        :where(ul) {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      &.columnSp-4 {
+        :where(ul) {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+
+      &.columnSp-auto {
+        :where(ul) {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        flex-wrap: wrap;
+
+        :where(li) {
+          flex: 0 0 auto;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  @container (min-width: 768px) {
+    .LinkList {
+      :where(ul) {
+        gap: calc(var(--user-spacing) * 2)  calc(var(--user-spacing) * 8);
+      }
+
+      &.columnPc-2 {
+        :where(ul) {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      &.columnPc-3 {
+        :where(ul) {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      &.columnPc-4 {
+        :where(ul) {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+
+      &.columnPc-auto {
+        :where(ul) {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        :where(li) {
+          flex: 0 0 auto;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .LinkList {
+      :where(a) {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+</style>

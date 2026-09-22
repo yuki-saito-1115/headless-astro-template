@@ -1,0 +1,53 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Heading6Props extends HTMLAttributes<'div'> {}
+
+const { class: className, ...rest } = Astro.props;
+const classList = ['Heading6'];
+---
+
+<div
+  class:list={[classList, className]}
+  {...rest}
+>
+  <slot />
+</div>
+
+
+<style>
+  .Heading6 {
+    :where(h1, h2, h3, h4, h5, h6) {
+      font-weight: var(--user-font-weight-bold);
+      color: var(--user-color-foreground-dark);
+      line-height: var(--text-sm--line-height);
+      font-size: var(--text-sm);
+
+      :where(a) {
+        color: var(--user-color-primary);
+        text-decoration: none;
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .Heading6 {
+      :where(h1, h2, h3, h4, h5, h6) {
+        line-height: var(--text-base--line-height);
+        font-size: var(--text-base);
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .Heading6 {
+      :where(h1, h2, h3, h4, h5, h6) {
+        :where(a) {
+        &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+</style>

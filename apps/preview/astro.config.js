@@ -41,10 +41,11 @@ export default defineConfig({
     ],
     resolve: {
       alias: {
-        '@components': resolvePath('../../packages/ui/src/components'),
-        '@scripts': resolvePath('../../packages/content/src/scripts'),
-        '@styles': resolvePath('../../packages/content/src/styles'),
-        '@types': resolvePath('../../packages/ui/src/types'),
+        '@preview/components': resolvePath('./src/components'),
+        '@preview/modules': resolvePath('./src/components/modules'),
+        '@preview/structures': resolvePath('./src/components/structures'),
+        '@preview/scripts': resolvePath('./src/scripts'),
+        '@preview/styles': resolvePath('./src/styles'),
       },
     },
   },

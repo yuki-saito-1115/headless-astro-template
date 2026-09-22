@@ -1,4 +1,4 @@
-import '@styles/tailwind.css';
+import '@packages/content/styles/tailwind.css';
 
 /** @type {import("@storybook-astro/framework").Preview} */
 const preview = {

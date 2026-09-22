@@ -1,5 +1,5 @@
 {
-  "include": [".storybook/**/*.js", "../../packages/ui/src/**/*.stories.js"],
+  "include": [".storybook/**/*.js"],
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "incremental": true,

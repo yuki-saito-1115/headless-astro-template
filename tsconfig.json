@@ -2,12 +2,6 @@
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "ignoreDeprecations": "5.0",
-    "paths": {
-      "@scripts/*": ["./packages/content/src/scripts/*"],
-      "@styles/*": ["./packages/content/src/styles/*"],
-      "@components/*": ["./packages/ui/src/components/*"],
-      "@types/*": ["./packages/ui/src/types/*"]
-    },
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"

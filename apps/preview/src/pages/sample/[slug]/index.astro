@@ -1,11 +1,14 @@
 ---
-import SampleDetail from '@components/cms/sample/SampleDetail.astro';
-import Heading2 from '@components/modules/Heading2/Heading2.astro';
-import type { BreadcrumbListItemType } from '@components/structures/Breadcrumb/Breadcrumb.astro';
-import Breadcrumb from '@components/structures/Breadcrumb/Breadcrumb.astro';
-import Content from '@components/structures/Content/Content.astro';
-import Section from '@components/structures/Section/Section.astro';
-import { getSampleDetail, getSampleList } from '@scripts/build/getSample';
+import {
+  getSampleDetail,
+  getSampleList,
+} from '@packages/content/build/getSample';
+import SampleDetail from '@packages/ui/microCMS/sample/SampleDetail.astro';
+import Heading2 from '@packages/ui/modules/Heading2/Heading2.astro';
+import type { BreadcrumbListItemType } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
 import type { PagePropsType } from '../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
 

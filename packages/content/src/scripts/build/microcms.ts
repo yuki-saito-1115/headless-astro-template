@@ -1,5 +1,5 @@
 import { getSecret } from 'astro:env/server';
-import type { components } from '../../../../ui/src/types/microcms';
+import type { components } from '../../types/microcms';
 
 type MicroCMSEndpoint = 'sample';
 

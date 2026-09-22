@@ -14,8 +14,9 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.2",
-    "astro": "^7.3.3",
-    "microcms-js-sdk": "^3.5.1"
+    "@packages/content": "0.1.0",
+    "@packages/ui": "0.1.0",
+    "astro": "^7.3.3"
   },
   "devDependencies": {
     "wrangler": "^4.133.0"

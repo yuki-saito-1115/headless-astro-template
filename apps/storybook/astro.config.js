@@ -35,10 +35,11 @@ export default defineConfig({
     ],
     resolve: {
       alias: {
-        '@components': resolvePath('../../packages/ui/src/components'),
-        '@scripts': resolvePath('../../packages/content/src/scripts'),
-        '@styles': resolvePath('../../packages/content/src/styles'),
-        '@types': resolvePath('../../packages/ui/src/types'),
+        '@storybook/components': resolvePath('./src/components'),
+        '@storybook/modules': resolvePath('./src/components/modules'),
+        '@storybook/structures': resolvePath('./src/components/structures'),
+        '@storybook/scripts': resolvePath('./src/scripts'),
+        '@storybook/styles': resolvePath('./src/styles'),
       },
     },
   },

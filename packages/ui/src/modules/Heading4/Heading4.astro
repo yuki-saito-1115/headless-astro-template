@@ -1,0 +1,67 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Heading4Props extends HTMLAttributes<'div'> {}
+
+const { class: className, ...rest } = Astro.props;
+const classList = ['Heading4'];
+---
+
+<div
+  class:list={[classList, className]}
+  {...rest}
+>
+  <slot />
+</div>
+
+
+<style>
+  .Heading4 {
+    :where(h1, h2, h3, h4, h5, h6) {
+      font-weight: var(--user-font-weight-bold);
+      color: var(--user-color-foreground-dark);
+      padding-left: calc(var(--user-spacing) * 6);
+      position: relative;
+      line-height: var(--text-lg--line-height);
+      font-size: var(--text-lg);
+
+      /* marker */
+      &::before {
+        background-color: var(--user-color-primary);
+        content: '';
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 5px;
+      }
+
+      :where(a) {
+        color: var(--user-color-primary);
+        text-decoration: none;
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .Heading4 {
+      :where(h1, h2, h3, h4, h5, h6) {
+        line-height: var(--text-xl--line-height);
+        font-size: var(--text-xl);
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .Heading4 {
+      :where(h1, h2, h3, h4, h5, h6) {
+        :where(a) {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+</style>

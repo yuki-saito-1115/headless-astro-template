@@ -1,0 +1,140 @@
+---
+import type { CommonTypeColumn } from '@packages/content/types/CommonType';
+import type { HTMLAttributes } from 'astro/types';
+
+export interface NumberListPropType extends HTMLAttributes<'div'> {
+  columnPc?: CommonTypeColumn;
+  columnSp?: CommonTypeColumn;
+}
+
+const { columnPc = 1, columnSp = 1, class: className, ...rest } = Astro.props;
+const classList = ['NumberList'];
+
+if (columnPc) {
+  classList.push(`columnPc-${columnPc}`);
+}
+
+if (columnSp) {
+  classList.push(`columnSp-${columnSp}`);
+}
+
+const mergedClass = classList.join(' ');
+---
+
+<div
+  class:list={[mergedClass, className]}
+  {...rest}
+>
+  <slot />
+</div>
+
+
+<style>
+  @counter-style list-number-default {
+    system: extends decimal;
+    suffix: '. ';
+    speak-as: numbers;
+  }
+
+  .NumberList {
+    container-type: inline-size;
+
+    :where(ol) {
+      display: grid;
+      padding-left: 2em;
+
+      :where(li) {
+        list-style: list-number-default;
+        height: 100%;
+
+        position: relative;
+
+        > :is(:first-child) {
+          margin-top: 0;
+        }
+
+        > :is(:last-child) {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  @container (max-width: 767.99px) {
+    .NumberList {
+      :where(ol) {
+        gap: calc(var(--user-spacing) * 2)  calc(var(--user-spacing) * 6);
+        margin-top: calc(var(--user-spacing) * 2) !important;
+      }
+
+      &.columnSp-2 {
+        :where(ol) {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      &.columnSp-3 {
+        :where(ol) {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      &.columnSp-4 {
+        :where(ol) {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+
+      &.columnSp-auto {
+        :where(ol) {
+          display: flex;
+          flex-wrap: wrap;
+
+          :where(li) {
+            flex: 0 0 auto;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  @container (min-width: 768px) {
+    .NumberList {
+      :where(ol) {
+        gap: calc(var(--user-spacing) * 2)  calc(var(--user-spacing) * 8);
+        margin-top: calc(var(--user-spacing) * 2) !important;
+      }
+
+      &.columnPc-2 {
+        :where(ol) {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      &.columnPc-3 {
+        :where(ol) {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      &.columnPc-4 {
+        :where(ol) {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+
+      &.columnPc-auto {
+        :where(ol) {
+          display: flex;
+          flex-wrap: wrap;
+
+          :where(li) {
+            flex: 0 0 auto;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+import type { CommonTypeColumn } from '@packages/content/types/CommonType';
+import type { HTMLAttributes } from 'astro/types';
+
+export interface ColumnPropType extends HTMLAttributes<'div'> {
+  columnPc?: CommonTypeColumn;
+  columnSp?: CommonTypeColumn;
+}
+
+const { columnPc = 1, columnSp = 1, class: className, ...rest } = Astro.props;
+const classList = ['Column__inner'];
+let mergedClass = '';
+
+if (columnPc) {
+  classList.push(`columnPc-${columnPc}`);
+}
+
+if (columnSp) {
+  classList.push(`columnSp-${columnSp}`);
+}
+
+mergedClass = classList.join(' ');
+---
+
+<div
+  class:list={['Column', className]}
+  {...rest}
+>
+  <div class:list={[mergedClass]}>
+    <slot />
+  </div>
+</div>
+
+
+<style>
+  .Column {
+    container-type: inline-size;
+
+    :where(.Column__inner) {
+      display: grid;
+    }
+
+    :where(.Column__segment) {
+      list-style: none;
+      height: 100%;
+
+      > :is(:first-child) {
+        margin-top: 0;
+      }
+
+      > :is(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @container (max-width: 767.99px) {
+    .Column {
+      :where(.Column__inner) {
+        gap: calc(var(--user-spacing) * 6);
+
+        &.columnSp-2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        &.columnSp-3 {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        &.columnSp-4 {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        &.columnSp-auto {
+          display: flex;
+          flex-wrap: wrap;
+
+          :where(.Column__segment) {
+            flex: 0 0 auto;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  @container (min-width: 768px) {
+    .Column {
+      :where(.Column__inner) {
+        gap: calc(var(--user-spacing) * 8);
+
+        &.columnPc-2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        &.columnPc-3 {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        &.columnPc-4 {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        &.columnPc-auto {
+          display: flex;
+          flex-wrap: wrap;
+
+          :where(.Column__segment) {
+            flex: 0 0 auto;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+</style>

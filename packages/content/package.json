@@ -1,6 +1,19 @@
 {
-  "name": "@headless-astro-template/content",
+  "name": "@packages/content",
   "version": "0.1.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "exports": {
+    "./build/*": "./src/scripts/build/*.ts",
+    "./runtime/*": "./src/scripts/runtime/*.ts",
+    "./styles/*": "./src/styles/*",
+    "./types/*": "./src/types/*.ts"
+  },
+  "scripts": {
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "astro": "^7.3.3",
+    "microcms-js-sdk": "^3.5.1"
+  }
 }

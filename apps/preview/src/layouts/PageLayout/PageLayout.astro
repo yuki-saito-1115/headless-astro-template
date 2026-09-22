@@ -1,12 +1,12 @@
 ---
-import type { BreadcrumbListItemType } from '@components/structures/Breadcrumb/Breadcrumb.astro';
-import Footer from '@components/structures/Footer/Footer.astro';
-import Header from '@components/structures/Header/Header.astro';
-import NavigationTop from '@components/structures/NavigationTop/NavigationTop.astro';
-import Svg from '@components/structures/Svg/Svg.astro';
-import Wrap from '@components/structures/Wrap/Wrap.astro';
+import '@packages/content/styles/tailwind.css';
+import type { BreadcrumbListItemType } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Footer from '@packages/ui/structures/Footer/Footer.astro';
+import Header from '@packages/ui/structures/Header/Header.astro';
+import NavigationTop from '@packages/ui/structures/NavigationTop/NavigationTop.astro';
+import Svg from '@packages/ui/structures/Svg/Svg.astro';
+import Wrap from '@packages/ui/structures/Wrap/Wrap.astro';
 import PreviewNote from '../../components/structures/PreviewNote/PreviewNote.astro';
-import '@styles/tailwind.css';
 
 /* ページごとに設定が必要な値 */
 export interface PagePropsType {
@@ -93,7 +93,7 @@ const jsonLdText = jsonLd && JSON.stringify(jsonLd).replace(/</g, '\\u003c');
     <Svg />
 
     <script>
-      import { loadFonts } from '@scripts/runtime/loadFonts';
+      import { loadFonts } from '@packages/content/runtime/loadFonts';
 
       loadFonts();
     </script>

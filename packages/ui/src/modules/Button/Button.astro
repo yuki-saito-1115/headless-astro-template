@@ -1,0 +1,155 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { IconPropType } from '../Icon/Icon.astro';
+import Icon from '../Icon/Icon.astro';
+
+export interface ButtonPropType extends HTMLAttributes<'button'> {
+  afterIcon?: IconPropType;
+  beforeIcon?: IconPropType;
+  label: string;
+  theme?: 'emphasis' | 'conversion' | 'text';
+}
+
+const {
+  afterIcon,
+  beforeIcon,
+  label,
+  theme,
+  class: className,
+  ...rest
+} = Astro.props;
+const classList = ['Button'];
+let mergedClass = '';
+
+if (theme) {
+  classList.push(`theme-${theme}`);
+}
+
+mergedClass = classList.join(' ');
+---
+
+<button
+  class:list={[className, mergedClass]}
+  type={rest.type ?? 'button'}
+  {...rest}
+>
+  {beforeIcon && <Icon class:list={['Button__icon']} {...beforeIcon} />}
+
+  <span class:list={['Button__content']}>{label}</span>
+
+  {afterIcon && <Icon class:list={['Button__icon']} {...afterIcon} />}
+</button>
+
+
+<style>
+  .Button {
+    --local-foreground: var(--user-color-primary);
+    --local-background: var(--user-color-background-light);
+    --local-outline: var(--user-color-primary);
+
+    /* Preflight */
+    :where(button) {
+      /* デフォルトスタイルリセットするため */
+      font: unset;
+    }
+
+    align-items: center;
+    background-color: var(--local-background);
+    border: 1px solid var(--local-outline);
+    color: var(--local-foreground);
+    cursor: pointer;
+    display: inline-flex;
+    fill: var(--local-foreground);
+    font-weight: normal;
+    gap: 0.5em;
+    justify-content: center;
+    line-height: 1.5;
+    padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 6);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+
+    /* 強調 */
+    &.theme-emphasis {
+      --local-foreground: var(--user-color-foreground-light);
+      --local-background: var(--user-color-primary);
+      --local-outline: var(--user-color-primary);
+    }
+
+    /* コンバージョン */
+    &.theme-conversion {
+      --local-foreground: var(--user-color-foreground-light);
+      --local-background: var(--user-color-danger-dark);
+      --local-outline: var(--user-color-danger-dark);
+    }
+
+    /* テキスト */
+    &.theme-text {
+      --local-foreground: var(--user-color-foreground-dark);
+      --local-background: transparent;
+      --local-outline: transparent;
+
+      fill: var(--user-color-primary);
+      min-width: unset;
+      padding: unset;
+      vertical-align: baseline;
+    }
+
+    /* 非活性 */
+    &:disabled {
+      --local-foreground: var(--user-color-disabled-dark);
+      --local-background: var(--user-color-disabled-light);
+      --local-outline: var(--user-color-disabled-light);
+
+      cursor: text;
+    }
+
+    > :where(.Button__icon) {
+      color: currentColor;
+      display: inline-block;
+      flex: 0 0 auto;
+      height: 1em;
+      vertical-align: baseline;
+      width: 1em;
+    }
+  }
+
+  @media (any-hover: hover) {
+    .Button:not(:disabled) {
+      /* 強調 */
+      &.theme-emphasis {
+        &:hover {
+          --local-foreground: var(--user-color-primary);
+          --local-background: var(--user-color-background-light);
+          --local-outline: var(--user-color-primary);
+        }
+      }
+
+      /* コンバージョン */
+      &.theme-conversion {
+        &:hover {
+          --local-foreground: var(--user-color-danger-dark);
+          --local-background: var(--user-color-background-light);
+          --local-outline: var(--user-color-danger-dark);
+        }
+      }
+
+      /* テキスト */
+      &.theme-text {
+        &:hover {
+          --local-foreground: var(--user-color-primary);
+          --local-background: transparent;
+          --local-outline: transparent;
+
+          text-decoration: underline;
+        }
+      }
+
+      &:hover {
+        --local-foreground: var(--user-color-foreground-light);
+        --local-background: var(--user-color-primary);
+        --local-outline: var(--user-color-primary);
+      }
+    }
+  }
+</style>

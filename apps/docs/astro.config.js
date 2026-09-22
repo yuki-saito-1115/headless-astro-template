@@ -14,5 +14,14 @@ export default defineConfig({
   integrations: [mdx()],
   vite: {
     cacheDir: resolvePath('../../.cache/docs/vite'),
+    resolve: {
+      alias: {
+        '@docs/components': resolvePath('./src/components'),
+        '@docs/modules': resolvePath('./src/components/modules'),
+        '@docs/structures': resolvePath('./src/components/structures'),
+        '@docs/scripts': resolvePath('./src/scripts'),
+        '@docs/styles': resolvePath('./src/styles'),
+      },
+    },
   },
 });

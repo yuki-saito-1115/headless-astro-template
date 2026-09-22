@@ -1,9 +1,5 @@
-import {
-  getAllContents,
-  getDetail,
-  type SampleType,
-} from '@scripts/build/microcms';
 import type { MicroCMSQueries } from 'microcms-js-sdk';
+import { getAllContents, getDetail, type SampleType } from './microcms';
 
 const ENDPOINT = 'sample';
 

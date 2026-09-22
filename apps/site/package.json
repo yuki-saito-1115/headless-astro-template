@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
+    "@packages/content": "0.1.0",
+    "@packages/ui": "0.1.0",
     "astro": "^7.3.3"
   },
   "devDependencies": {

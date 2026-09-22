@@ -10,7 +10,7 @@ const envPath = resolve(rootDirectory, '.env');
 const outputPath = resolve(rootDirectory, 'public/openapi.yaml');
 const typeOutputPath = resolve(
   rootDirectory,
-  'packages/ui/src/types/microcms.ts',
+  'packages/content/src/types/microcms.ts',
 );
 
 if (existsSync(envPath)) {

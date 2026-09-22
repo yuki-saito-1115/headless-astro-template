@@ -1,6 +1,21 @@
 {
-  "name": "@headless-astro-template/ui",
+  "name": "@packages/ui",
   "version": "0.1.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "exports": {
+    "./microCMS/*": "./src/microCMS/*",
+    "./modules/*": "./src/modules/*",
+    "./structures/*": "./src/structures/*"
+  },
+  "scripts": {
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@packages/content": "0.1.0",
+    "astro": "^7.3.3"
+  },
+  "devDependencies": {
+    "@storybook/react": "^10.6.0"
+  }
 }
