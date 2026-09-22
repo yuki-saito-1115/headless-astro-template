@@ -7,8 +7,5 @@
     "binding": "ASSETS",
     "directory": "./dist",
     "run_worker_first": true
-  },
-  "secrets": {
-    "required": ["CLOUDFLARE_BASIC_USER", "CLOUDFLARE_BASIC_PASS"]
   }
 }
