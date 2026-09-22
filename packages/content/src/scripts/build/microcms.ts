@@ -21,6 +21,7 @@ if (!MICROCMS_SERVICE_DOMAIN || !MICROCMS_API_KEY) {
 export const client = createClient({
   serviceDomain: MICROCMS_SERVICE_DOMAIN,
   apiKey: MICROCMS_API_KEY,
+  retry: true,
 });
 
 /*
@@ -34,17 +35,11 @@ export type SampleType = components['schemas']['Sample'];
 export const getList = async <T>(
   endpoint: MicroCMSEndpoint,
   queries?: MicroCMSQueries,
-): Promise<MicroCMSListResponse<T> | null> => {
-  try {
-    const result = await client.getList<T>({
-      endpoint,
-      queries,
-    });
-
-    return result;
-  } catch (_error) {
-    return null;
-  }
+): Promise<MicroCMSListResponse<T>> => {
+  return client.getList<T>({
+    endpoint,
+    queries,
+  });
 };
 
 /*
@@ -54,17 +49,12 @@ export const getDetail = async <T>(
   endpoint: MicroCMSEndpoint,
   contentId: string,
   queries?: MicroCMSQueries,
-): Promise<T | null> => {
-  try {
-    const result = await client.getListDetail<T>({
-      endpoint,
-      contentId,
-      queries,
-    });
-    return result;
-  } catch (_error) {
-    return null;
-  }
+): Promise<T> => {
+  return client.getListDetail<T>({
+    endpoint,
+    contentId,
+    queries,
+  });
 };
 
 /*
@@ -73,14 +63,9 @@ export const getDetail = async <T>(
 export const getAllContents = async <T>(
   endpoint: MicroCMSEndpoint,
   queries?: MicroCMSQueries,
-): Promise<T[] | null> => {
-  try {
-    const result = await client.getAllContents<T>({
-      endpoint,
-      queries,
-    });
-    return result;
-  } catch (_error) {
-    return null;
-  }
+): Promise<T[]> => {
+  return client.getAllContents<T>({
+    endpoint,
+    queries,
+  });
 };

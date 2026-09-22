@@ -19,10 +19,6 @@ const getSampleList = async (
 
   const samples = await getAllContents<SampleType>(ENDPOINT, mergedQueries);
 
-  if (samples === null) {
-    throw new Error('サンプル一覧の取得に失敗しました');
-  }
-
   return samples;
 };
 
@@ -42,10 +38,6 @@ const getSampleDetail = async (
   }
 
   const sample = await getDetail<SampleType>(ENDPOINT, id, queries);
-
-  if (!sample) {
-    throw new Error(`サンプル詳細（${id}）の取得に失敗しました`);
-  }
 
   return sample;
 };
