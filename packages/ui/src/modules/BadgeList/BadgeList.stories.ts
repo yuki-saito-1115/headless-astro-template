@@ -23,7 +23,7 @@ const meta = {
         '各要素は `Badge` コンポーネントが受け取るPropsと同じ形式で指定してください。',
       table: {
         category: 'Props',
-        type: { summary: 'BadgeProps[]' },
+        type: { summary: 'Props as BadgePropType[]' },
         defaultValue: { summary: '[]' },
       },
     },

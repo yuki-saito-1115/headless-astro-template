@@ -1,4 +1,6 @@
+import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { Props as CardPropType } from './Card.astro';
 import Card from './Card.astro';
 
 const meta = {
@@ -26,38 +28,11 @@ const meta = {
         defaultValue: { summary: 'div' },
       },
     },
-
-    outline: {
-      control: 'boolean',
-      description: 'アウトライン（枠線）スタイルを適用します。',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-
-    stackSP: {
-      control: 'boolean',
-      description: 'SP サイズでカードを縦積みレイアウトにします。',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-
-    stackPC: {
-      control: 'boolean',
-      description: 'PC サイズでカードを縦積みレイアウトにします。',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
   },
-} satisfies Meta;
+} satisfies Meta<StoryArgs<CardPropType>>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryArgs<CardPropType>>;
 
 export const Default: Story = {
   args: {

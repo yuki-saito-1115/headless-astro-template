@@ -1,4 +1,6 @@
+import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { Props as GridPropType } from './Grid.astro';
 import Grid from './Grid.astro';
 
 const meta = {
@@ -23,28 +25,14 @@ const meta = {
         defaultValue: { summary: undefined },
       },
     },
-    gridPc: {
-      control: false,
-      description: `直下の \`div.Grid__segment\` に \`class="gridPc-4"\` のようにクラス名を付与することでグリッド段数を設定できます。<br>1行あたりの合計が12になるように指定してください（例: 4 + 4 + 4、6 + 6、3 + 3 + 3 + 3 など）。`,
-      table: {
-        category: 'Children Classes',
-        type: { summary: '1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12' },
-        defaultValue: { summary: undefined },
-      },
-    },
-    gridSp: {
-      control: false,
-      description: `直下の \`div.Grid__segment\` に \`class="gridSp-4"\` のようにクラス名を付与することでグリッド段数を設定できます。<br>1行あたりの合計が12になるように指定してください（例: 4 + 4 + 4、6 + 6、3 + 3 + 3 + 3 など）。`,
-      table: {
-        category: 'Children Classes',
-        type: { summary: '1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12' },
-        defaultValue: { summary: undefined },
-      },
-    },
   },
   decorators: [
     // Storybook のデフォルトのデコレーターを上書き
     (Story) => {
+      if (typeof document === 'undefined') {
+        return Story();
+      }
+
       const style = document.createElement('style');
       style.textContent = `
         .Grid__segment {
@@ -56,10 +44,10 @@ const meta = {
       return Story();
     },
   ],
-} satisfies Meta;
+} satisfies Meta<StoryArgs<GridPropType>>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryArgs<GridPropType>>;
 
 export const Default: Story = {
   args: {

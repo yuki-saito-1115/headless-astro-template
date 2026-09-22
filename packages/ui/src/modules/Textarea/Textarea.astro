@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface TextareaPropType extends HTMLAttributes<'textarea'> {
+export interface Props extends HTMLAttributes<'textarea'> {
   size?: 'small' | 'medium' | 'large' | 'full';
   state?: 'valid' | 'invalid' | 'disabled';
 }

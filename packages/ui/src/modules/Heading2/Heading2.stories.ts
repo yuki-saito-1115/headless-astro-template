@@ -1,4 +1,6 @@
+import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { Props as Heading2PropType } from './Heading2.astro';
 import Heading2 from './Heading2.astro';
 
 const meta = {
@@ -27,10 +29,10 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<StoryArgs<Heading2PropType>>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryArgs<Heading2PropType>>;
 
 export const Default: Story = {
   args: {

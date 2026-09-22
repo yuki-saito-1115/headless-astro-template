@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface SectionPropsType extends HTMLAttributes<'section'> {
+export interface Props extends HTMLAttributes<'section'> {
   size?: 'small' | 'medium' | 'large' | 'full';
   theme?: 'dark' | 'light';
 }
@@ -11,8 +11,9 @@ const {
   size = 'large',
   class: className,
   ...rest
-} = Astro.props as SectionPropsType;
+} = Astro.props as Props;
 const classList = ['Section'];
+const slotHtml = await Astro.slots.render('default');
 let mergedClass = '';
 
 if (size) {
@@ -30,9 +31,7 @@ mergedClass = classList.join(' ');
   class:list={[mergedClass, className ]}
   {...rest}
 >
-  <div class="Section__inner">
-    <slot />
-  </div>
+  {slotHtml && <div class="Section__inner" set:html={slotHtml} />}
 </section>
 
 <style>

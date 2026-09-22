@@ -1,16 +1,17 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface ContentPropType extends HTMLAttributes<'main'> {}
+export interface Props extends HTMLAttributes<'main'> {}
 
 const { class: className, ..._rest } = Astro.props;
+const slotHtml = await Astro.slots.render('default');
 ---
 
 <main
   class:list={['Content', className]}
   {..._rest}
 >
-  <slot />
+  {slotHtml && <Fragment set:html={slotHtml} />}
 </main>
 
 

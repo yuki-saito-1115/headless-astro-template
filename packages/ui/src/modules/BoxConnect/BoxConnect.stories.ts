@@ -1,4 +1,6 @@
+import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { Props as BoxConnectPropType } from './BoxConnect.astro';
 import BoxConnect from './BoxConnect.astro';
 
 const meta = {
@@ -24,10 +26,10 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<StoryArgs<BoxConnectPropType>>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryArgs<BoxConnectPropType>>;
 
 export const Default: Story = {
   args: {

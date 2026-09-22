@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface LayoutMediaPropType extends HTMLAttributes<'div'> {
+export interface Props extends HTMLAttributes<'div'> {
   directionPc?: 'row' | 'rowReverse' | 'column' | 'columnReverse';
   directionSp?: 'row' | 'rowReverse' | 'column' | 'columnReverse';
   media: HTMLElement;
@@ -15,6 +15,8 @@ const {
   ...rest
 } = Astro.props;
 const classList = ['LayoutMedia__inner'];
+const contentHtml = await Astro.slots.render('content');
+const mediaHtml = await Astro.slots.render('media');
 let mergedClass = '';
 
 if (directionSp) {
@@ -32,13 +34,9 @@ mergedClass = classList.join(' ');
   {...rest}
 >
   <div class:list={[mergedClass]}>
-    <div class="LayoutMedia__content">
-      <slot name="content" />
-    </div>
+    {contentHtml && <div class="LayoutMedia__content" set:html={contentHtml} />}
 
-    <div class="LayoutMedia__media">
-      <slot name="media" />
-    </div>
+    {mediaHtml && <div class="LayoutMedia__media" set:html={mediaHtml} />}
   </div>
 </div>
 

@@ -1,4 +1,6 @@
+import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { Props as HorizonPropType } from './Horizon.astro';
 import Horizon from './Horizon.astro';
 
 const meta = {
@@ -37,10 +39,10 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<StoryArgs<HorizonPropType>>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryArgs<HorizonPropType>>;
 
 export const Default: Story = {
   args: {

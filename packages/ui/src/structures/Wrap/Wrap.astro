@@ -1,16 +1,17 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface WrapPropsType extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'div'> {}
 
-const { class: className, ...rest } = Astro.props as WrapPropsType;
+const { class: className, ...rest } = Astro.props as Props;
+const slotHtml = await Astro.slots.render('default');
 ---
 
 <div
   class:list={['Wrap', className]}
   {...rest}
 >
-  <slot />
+  {slotHtml && <Fragment set:html={slotHtml} />}
 </div>
 
 <style>

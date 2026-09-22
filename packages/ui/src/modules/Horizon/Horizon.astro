@@ -1,16 +1,17 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface HorizonProps extends HTMLAttributes<'hr'> {
+export interface Props extends HTMLAttributes<'hr'> {
   theme?: 'dotted' | 'dashed' | undefined;
 }
 
 const { theme = undefined, class: className, ...rest } = Astro.props;
 const classList = ['Horizon'];
+const slotHtml = await Astro.slots.render('default');
 let mergedClass = '';
 
 // undefined のときは theme- クラスを付けない
-if (theme != null && theme !== '') {
+if (theme) {
   classList.push(`theme-${theme}`);
 }
 
@@ -21,7 +22,7 @@ mergedClass = classList.join(' ');
   class:list={[mergedClass, className]}
   {...rest}
 >
-  <slot />
+  {slotHtml && <Fragment set:html={slotHtml} />}
 </div>
 
 

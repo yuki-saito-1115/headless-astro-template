@@ -1,4 +1,6 @@
+import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { Props as MediaPropType } from './Media.astro';
 import Media from './Media.astro';
 
 const meta = {
@@ -27,10 +29,10 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<StoryArgs<MediaPropType>>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryArgs<MediaPropType>>;
 
 export const Default: Story = {
   args: {

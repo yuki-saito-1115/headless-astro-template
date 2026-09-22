@@ -1,5 +1,7 @@
 import { COMMON_TYPE_HEADING_VALUES } from '@packages/content/types/CommonType';
+import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { Props as BoxPropType } from './Box.astro';
 import Box from './Box.astro';
 
 const meta = {
@@ -84,10 +86,10 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<StoryArgs<BoxPropType>>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryArgs<BoxPropType>>;
 
 export const Default: Story = {
   args: {

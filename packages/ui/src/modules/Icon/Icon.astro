@@ -2,7 +2,7 @@
 import type { CommonTypeIconSprite } from '@packages/content/types/CommonType';
 import type { HTMLAttributes } from 'astro/types';
 
-export interface IconPropType extends HTMLAttributes<'svg'> {
+export interface Props extends HTMLAttributes<'svg'> {
   label?: string;
   lang?: 'ja' | 'en';
   sprite: CommonTypeIconSprite;

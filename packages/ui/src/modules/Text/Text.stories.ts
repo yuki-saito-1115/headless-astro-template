@@ -1,4 +1,6 @@
+import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { Props as TextPropType } from './Text.astro';
 import Text from './Text.astro';
 
 const meta = {
@@ -27,10 +29,10 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<StoryArgs<TextPropType>>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryArgs<TextPropType>>;
 
 export const Default: Story = {
   args: {

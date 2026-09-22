@@ -1,9 +1,9 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface PreviewNotePropsType extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'div'> {}
 
-const { class: className, ...rest } = Astro.props as PreviewNotePropsType;
+const { class: className, ...rest } = Astro.props as Props;
 ---
 
 <div

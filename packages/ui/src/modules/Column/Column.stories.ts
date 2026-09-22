@@ -1,5 +1,7 @@
 import { COMMON_TYPE_COLUMN_VALUES } from '@packages/content/types/CommonType';
+import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { Props as ColumnPropType } from './Column.astro';
 import Column from './Column.astro';
 
 const meta = {
@@ -51,6 +53,10 @@ const meta = {
   decorators: [
     // Storybook のデフォルトのデコレーターを上書き
     (Story) => {
+      if (typeof document === 'undefined') {
+        return Story();
+      }
+
       const style = document.createElement('style');
       style.textContent = `
         .Column__segment {
@@ -62,10 +68,10 @@ const meta = {
       return Story();
     },
   ],
-} satisfies Meta;
+} satisfies Meta<StoryArgs<ColumnPropType>>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryArgs<ColumnPropType>>;
 
 export const Default: Story = {
   args: {

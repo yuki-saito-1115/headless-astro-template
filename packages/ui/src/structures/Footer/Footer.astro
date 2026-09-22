@@ -1,9 +1,9 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface FooterPropType extends HTMLAttributes<'footer'> {}
+export interface Props extends HTMLAttributes<'footer'> {}
 
-const { class: className, ..._rest } = Astro.props as FooterPropType;
+const { class: className, ..._rest } = Astro.props as Props;
 ---
 <footer
   class:list={['Footer', className]}

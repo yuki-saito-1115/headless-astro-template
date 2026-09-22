@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface CalendarPropType extends HTMLAttributes<'input'> {
+export interface Props extends HTMLAttributes<'input'> {
   size?: 'small' | 'medium' | 'large' | 'full';
   state?: 'valid' | 'invalid' | 'disabled';
 }

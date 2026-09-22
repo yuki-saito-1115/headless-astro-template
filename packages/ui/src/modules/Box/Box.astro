@@ -2,8 +2,9 @@
 import type { CommonTypeHeading } from '@packages/content/types/CommonType';
 import type { HTMLAttributes } from 'astro/types';
 
-export interface BoxProps extends HTMLAttributes<'div' | 'details'> {
+export interface Props extends HTMLAttributes<'div' | 'details'> {
   element?: 'div' | 'details';
+  open?: boolean;
   scroll?: boolean;
   theme?: 'related' | 'important' | 'alert' | undefined;
   title?: string;
@@ -20,12 +21,13 @@ const {
   ...rest
 } = Astro.props;
 const Element = element;
+const slotHtml = await Astro.slots.render('default');
 const TitleElement = element === 'details' ? 'summary' : titleElement;
 const classList = ['Box'];
 let mergedClass = '';
 
 // undefined のときは theme- クラスを付けない
-if (theme != null && theme !== '') {
+if (theme) {
   classList.push(`theme-${theme}`);
 }
 
@@ -46,9 +48,7 @@ mergedClass = classList.join(' ');
     </TitleElement>
   )}
 
-  <div class:list={['Box__body']}>
-    <slot />
-  </div>
+  {slotHtml && <div class:list={['Box__body']} set:html={slotHtml} />}
 </Element>
 
 

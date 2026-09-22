@@ -1,10 +1,10 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import type { BadgeProps } from '../Badge/Badge.astro';
+import type { Props as BadgePropType } from '../Badge/Badge.astro';
 import Badge from '../Badge/Badge.astro';
 
-export interface BadgeListProps extends HTMLAttributes<'ul'> {
-  datas: BadgeProps[];
+export interface Props extends HTMLAttributes<'ul'> {
+  datas: BadgePropType[];
 }
 
 const { datas, class: className, ...rest } = Astro.props;
@@ -16,7 +16,7 @@ const classList = ['BadgeList'];
   {...rest}
 >
   <ul>
-    {datas.map((data: BadgeProps) => (
+    {datas.map((data: BadgePropType) => (
       <li>
         <Badge {...data} />
       </li>

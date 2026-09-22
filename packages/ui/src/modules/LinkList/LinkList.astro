@@ -5,15 +5,15 @@ import type {
 } from '@packages/content/types/CommonType';
 import type { HTMLAttributes } from 'astro/types';
 
-export interface LinkListPropType extends HTMLAttributes<'div'> {
+export interface Props extends HTMLAttributes<'div'> {
   columnPc?: CommonTypeColumn;
   columnSp?: CommonTypeColumn;
   datas: CommonTypeLink[];
 }
 
 const {
-  columnPc = 1,
-  columnSp = 1,
+  columnPc = '1',
+  columnSp = '1',
   datas,
   class: className,
   ...rest

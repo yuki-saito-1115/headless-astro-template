@@ -1,5 +1,7 @@
+import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Meta, StoryObj } from '@storybook/react';
 import Media from '../Media/Media.astro';
+import type { Props as LayoutMediaPropType } from './LayoutMedia.astro';
 import LayoutMedia from './LayoutMedia.astro';
 
 const meta = {
@@ -71,6 +73,10 @@ const meta = {
   decorators: [
     // Storybook のデフォルトのデコレーターを上書き
     (Story) => {
+      if (typeof document === 'undefined') {
+        return Story();
+      }
+
       const style = document.createElement('style');
       style.textContent = `
         .LayoutMedia__segment {
@@ -82,10 +88,10 @@ const meta = {
       return Story();
     },
   ],
-} satisfies Meta;
+} satisfies Meta<StoryArgs<LayoutMediaPropType>>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryArgs<LayoutMediaPropType>>;
 
 export const Default: Story = {
   args: {

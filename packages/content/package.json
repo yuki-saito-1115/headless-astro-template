@@ -6,8 +6,8 @@
   "exports": {
     "./build/*": "./src/scripts/build/*.ts",
     "./plugins/vite/*": {
-      "types": "./plugins/vite/*.d.ts",
-      "default": "./plugins/vite/*.js"
+      "types": "./src/plugins/vite/*.d.ts",
+      "default": "./src/plugins/vite/*.js"
     },
     "./runtime/*": "./src/scripts/runtime/*.ts",
     "./styles/*": "./src/styles/*",

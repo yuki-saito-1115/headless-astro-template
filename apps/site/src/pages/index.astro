@@ -1,13 +1,13 @@
 ---
 import Text from '@packages/ui/modules/Text/Text.astro';
-import type { BreadcrumbListItemType } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import type { BreadcrumbItem } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
-import type { PagePropsType } from '../layouts/PageLayout/PageLayout.astro';
+import type { Props as PagePropType } from '../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../layouts/PageLayout/PageLayout.astro';
 
-const breadcrumb: BreadcrumbListItemType[] = [
+const breadcrumb: BreadcrumbItem[] = [
   {
     name: 'ホーム',
     item: '/',
@@ -16,7 +16,7 @@ const breadcrumb: BreadcrumbListItemType[] = [
     name: '羅生門',
   },
 ];
-const pageProps: PagePropsType = {
+const pageProps: PagePropType = {
   breadcrumb,
   description: 'DUMMY_DESCRIPTION',
 };

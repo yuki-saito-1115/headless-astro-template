@@ -3,7 +3,7 @@
  * フォント一覧はこのファイルの FONT_DEFINITIONS。config.ts の plugins.fontList.path にこのファイルパスを指定する。
  */
 
-export interface FontDefinition {
+interface FontDefinition {
   family: string;
   style: string;
   url: string;
@@ -11,7 +11,7 @@ export interface FontDefinition {
 }
 
 /** このファイルが loadFonts の唯一の定義元。weightは theme.css の --user-font-weight-* に合わせて 400/700 のみを列挙する */
-export const FONT_DEFINITIONS: FontDefinition[] = [
+const FONT_DEFINITIONS: FontDefinition[] = [
   {
     family: 'Noto Sans Japanese',
     weight: '400',

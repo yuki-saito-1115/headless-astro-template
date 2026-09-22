@@ -1,16 +1,17 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface LinkPropType extends HTMLAttributes<'span'> {}
+export interface Props extends HTMLAttributes<'span'> {}
 
 const { class: className, ...rest } = Astro.props;
+const slotHtml = await Astro.slots.render('default');
 ---
 
 <span
   class:list={[className, 'Link']}
   {...rest}
 >
-  <slot />
+  {slotHtml && <Fragment set:html={slotHtml} />}
 </span>
 
 

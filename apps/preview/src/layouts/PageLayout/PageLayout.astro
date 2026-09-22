@@ -1,6 +1,6 @@
 ---
 import '@packages/content/styles/tailwind.css';
-import type { BreadcrumbListItemType } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import type { BreadcrumbItem } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Footer from '@packages/ui/structures/Footer/Footer.astro';
 import Header from '@packages/ui/structures/Header/Header.astro';
 import NavigationTop from '@packages/ui/structures/NavigationTop/NavigationTop.astro';
@@ -9,8 +9,8 @@ import Wrap from '@packages/ui/structures/Wrap/Wrap.astro';
 import PreviewNote from '../../components/structures/PreviewNote/PreviewNote.astro';
 
 /* ページごとに設定が必要な値 */
-export interface PagePropsType {
-  breadcrumb?: BreadcrumbListItemType[];
+export interface Props {
+  breadcrumb?: BreadcrumbItem[];
   description: string;
   lang?: string;
   ogImage?: string;
@@ -32,7 +32,7 @@ const {
   ogType = 'website',
   ogLocale = 'ja_JP',
   ogImage = `${siteUrl}/ogp.webp`,
-}: PagePropsType = Astro.props as PagePropsType;
+}: Props = Astro.props as Props;
 
 // ページデータをもとにページタイトルを生成する
 const pageTitle = title ? `${title} | ${siteName}` : siteName;

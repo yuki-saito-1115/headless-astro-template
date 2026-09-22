@@ -1,12 +1,16 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface BadgeProps extends HTMLAttributes<'a' | 'span'> {
+interface CommonProps {
   label: string;
   outline?: boolean;
-  shape?: 'rounded' | 'pill' | undefined;
-  theme?: 'caution' | 'warning' | undefined;
+  shape?: 'rounded' | 'pill';
+  theme?: 'caution' | 'warning';
 }
+
+export type Props =
+  | (CommonProps & HTMLAttributes<'a'> & { href: string })
+  | (CommonProps & HTMLAttributes<'span'> & { href?: never });
 
 const {
   label,
@@ -20,13 +24,11 @@ const Element = rest?.href ? 'a' : 'span';
 const classList = ['Badge'];
 let mergedClass = '';
 
-// undefined のときは theme- クラスを付けない
-if (theme != null && theme !== '') {
+if (theme) {
   classList.push(`theme-${theme}`);
 }
 
-// undefined のときは shape- クラスを付けない
-if (shape != null && shape !== '') {
+if (shape) {
   classList.push(`shape-${shape}`);
 }
 

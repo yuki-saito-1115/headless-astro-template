@@ -2,7 +2,14 @@
  * カラム状の段組を指定するためのpropsの型
  */
 /* Storybookのoptionsなど、ランタイムで値の列挙が必要な場合に使用する */
-export const COMMON_TYPE_COLUMN_VALUES = [1, 2, 3, 4, 5, 'auto'] as const;
+export const COMMON_TYPE_COLUMN_VALUES = [
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  'auto',
+] as const;
 /* `COMMON_TYPE_COLUMN_VALUES` を型の単一の情報源とし、props の型定義に使用する */
 export type CommonTypeColumn = (typeof COMMON_TYPE_COLUMN_VALUES)[number];
 

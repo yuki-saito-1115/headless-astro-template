@@ -1,5 +1,7 @@
 import { COMMON_TYPE_COLUMN_VALUES } from '@packages/content/types/CommonType';
+import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { Props as NumberListPropType } from './NumberList.astro';
 import NumberList from './NumberList.astro';
 
 const meta = {
@@ -48,10 +50,10 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<StoryArgs<NumberListPropType>>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<StoryArgs<NumberListPropType>>;
 
 export const Default: Story = {
   args: {

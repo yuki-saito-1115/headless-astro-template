@@ -1,19 +1,18 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface GridPropType extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'div'> {}
 
-const { theme, class: className, ...rest } = Astro.props;
+const { class: className, ...rest } = Astro.props;
 const classList = ['Grid'];
+const slotHtml = await Astro.slots.render('default');
 ---
 
 <div
   class:list={[classList, className]}
   {...rest}
 >
-  <div class:list={['Grid__inner']}>
-    <slot />
-  </div>
+  {slotHtml && <div class:list={['Grid__inner']} set:html={slotHtml} />}
 </div>
 
 

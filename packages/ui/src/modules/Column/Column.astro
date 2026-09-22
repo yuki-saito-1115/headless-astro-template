@@ -2,13 +2,19 @@
 import type { CommonTypeColumn } from '@packages/content/types/CommonType';
 import type { HTMLAttributes } from 'astro/types';
 
-export interface ColumnPropType extends HTMLAttributes<'div'> {
+export interface Props extends HTMLAttributes<'div'> {
   columnPc?: CommonTypeColumn;
   columnSp?: CommonTypeColumn;
 }
 
-const { columnPc = 1, columnSp = 1, class: className, ...rest } = Astro.props;
+const {
+  columnPc = '1',
+  columnSp = '1',
+  class: className,
+  ...rest
+} = Astro.props;
 const classList = ['Column__inner'];
+const slotHtml = await Astro.slots.render('default');
 let mergedClass = '';
 
 if (columnPc) {
@@ -26,9 +32,7 @@ mergedClass = classList.join(' ');
   class:list={['Column', className]}
   {...rest}
 >
-  <div class:list={[mergedClass]}>
-    <slot />
-  </div>
+  {slotHtml && <div class:list={[mergedClass]} set:html={slotHtml} />}
 </div>
 
 

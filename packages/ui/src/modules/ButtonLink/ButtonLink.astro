@@ -1,9 +1,9 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import type { IconPropType } from '../Icon/Icon.astro';
+import type { Props as IconPropType } from '../Icon/Icon.astro';
 import Icon from '../Icon/Icon.astro';
 
-export interface ButtonLinkPropType extends HTMLAttributes<'a'> {
+export interface Props extends HTMLAttributes<'a'> {
   afterIcon?: IconPropType;
   beforeIcon?: IconPropType;
   disabled?: boolean;

@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface RadioPropType extends HTMLAttributes<'input'> {
+export interface Props extends HTMLAttributes<'input'> {
   label?: string;
   reversed?: boolean;
   state?: 'valid' | 'invalid' | 'disabled';

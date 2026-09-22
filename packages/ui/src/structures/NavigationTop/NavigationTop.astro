@@ -1,9 +1,9 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface NavigationTopPropsType extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'div'> {}
 
-const { class: className, ..._rest } = Astro.props as NavigationTopPropsType;
+const { class: className, ..._rest } = Astro.props as Props;
 ---
 
 <div

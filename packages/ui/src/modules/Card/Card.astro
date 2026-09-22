@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface CardPropType extends HTMLAttributes<'div' | 'li'> {
+export interface Props extends HTMLAttributes<'div' | 'li'> {
   element?: 'div' | 'li';
   theme?: 'point' | 'detail';
 }
@@ -9,6 +9,7 @@ export interface CardPropType extends HTMLAttributes<'div' | 'li'> {
 const { element = 'div', theme, class: className, ...rest } = Astro.props;
 
 const Element = element;
+const slotHtml = await Astro.slots.render('default');
 
 const classList = ['Card__inner'];
 
@@ -22,9 +23,7 @@ const mergedClass = classList.join(' ');
   class:list={[className, 'Card']}
   {...rest}
 >
-  <div class={mergedClass}>
-    <slot />
-  </div>
+  {slotHtml && <div class={mergedClass} set:html={slotHtml} />}
 </Element>
 
 
