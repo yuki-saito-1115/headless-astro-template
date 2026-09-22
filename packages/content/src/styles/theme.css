@@ -18,10 +18,8 @@
   --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl:
-    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --inset-shadow-2xs: inset 0 1px rgb(0 0 0 / 0.05);
   --inset-shadow-xs: inset 0 1px 1px rgb(0 0 0 / 0.05);
@@ -338,13 +336,9 @@
   --drop-shadow-lg: 0 4px 4px rgb(0 0 0 / 0.15);
   --drop-shadow-xl: 0 9px 7px rgb(0 0 0 / 0.1);
   --drop-shadow-2xl: 0 25px 25px rgb(0 0 0 / 0.15);
-  --font-sans:
-    ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-  --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   --font-thin: 100;
   --font-extralight: 200;
   --font-light: 300;
@@ -407,41 +401,24 @@
   --spacing: 0.25rem; /** 4px */
   --text-shadow-2xs: 0px 1px 0px rgb(0 0 0 / 0.15);
   --text-shadow-xs: 0px 1px 1px rgb(0 0 0 / 0.2);
-  --text-shadow-sm:
-    0px 1px 0px rgb(0 0 0 / 0.075), 0px 1px 1px rgb(0 0 0 / 0.075),
-    0px 2px 2px rgb(0 0 0 / 0.075);
-  --text-shadow-md:
-    0px 1px 1px rgb(0 0 0 / 0.1), 0px 1px 2px rgb(0 0 0 / 0.1),
-    0px 2px 4px rgb(0 0 0 / 0.1);
-  --text-shadow-lg:
-    0px 1px 2px rgb(0 0 0 / 0.1), 0px 3px 2px rgb(0 0 0 / 0.1),
-    0px 4px 8px rgb(0 0 0 / 0.1);
+  --text-shadow-sm: 0px 1px 0px rgb(0 0 0 / 0.075), 0px 1px 1px rgb(0 0 0 / 0.075), 0px 2px 2px rgb(0 0 0 / 0.075);
+  --text-shadow-md: 0px 1px 1px rgb(0 0 0 / 0.1), 0px 1px 2px rgb(0 0 0 / 0.1), 0px 2px 4px rgb(0 0 0 / 0.1);
+  --text-shadow-lg: 0px 1px 2px rgb(0 0 0 / 0.1), 0px 3px 2px rgb(0 0 0 / 0.1), 0px 4px 8px rgb(0 0 0 / 0.1);
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --user-spacing: 0.25rem; /** スペースの基本となる数値 */
   --user-major-breakpoint: 48rem; /** メジャーブレークポイント */
   --user-minor-breakpoint: 80rem; /** マイナーブレークポイント */
-  --user-outside-gutter-sp: calc(
-    0.25rem *
-    4
-  ); /** コンテンツの外側のスペース幅（SP） */
-  --user-outside-gutter-pc: calc(
-    0.25rem *
-    8
-  ); /** コンテンツの外側のスペース幅（PC） */
-  --user-content-width-sp: calc(
-    375px -
-    (calc(0.25rem * 4) * 2)
-  ); /** コンテンツの外側のスペース幅（SP） */
+  --user-outside-gutter-sp: calc(0.25rem * 4); /** コンテンツの外側のスペース幅（SP） */
+  --user-outside-gutter-pc: calc(0.25rem * 8); /** コンテンツの外側のスペース幅（PC） */
+  --user-content-width-sp: calc(375px - (calc(0.25rem * 4) * 2)); /** コンテンツの外側のスペース幅（SP） */
   --user-content-width-pc: 80rem; /** コンテンツの外側のスペース幅（PC） */
   --user-font-size-base: 1rem; /** 基本のフォントサイズ */
   --user-font-size-note: 0.875rem; /** 基本のフォントサイズ（注釈） */
-  --user-font-family-ja:
-    Roboto, 'Noto Sans Japanese', sans-serif; /** 基本の日本語フォント */
+  --user-font-family-ja: Roboto, 'Noto Sans Japanese', sans-serif; /** 基本の日本語フォント */
   --user-font-family-en: Roboto, sans-serif; /** 基本の英語フォント */
-  --user-font-family-mono:
-    'Roboto Mono', 'Noto Sans Japanese', sans-serif; /** 基本のモノスペースフォント */
+  --user-font-family-mono: 'Roboto Mono', 'Noto Sans Japanese', sans-serif; /** 基本のモノスペースフォント */
   --user-font-weight-normal: 400; /** フォントウェイト（通常） */
   --user-font-weight-bold: 700; /** フォントウェイト（太字） */
   --user-line-height: 1.5; /** 基本の行高 */
@@ -467,56 +444,43 @@
   --user-color-outline-light: #d1d5dcff; /** 枠線色（淡） */
   --user-transition-duration: 300ms; /** 基本のトランジション */
   --user-transition-delay: 0ms; /** 基本のトランジション */
-  --user-transition-timingFunction: cubic-bezier(
-    0.25,
-    0.8,
-    0.25,
-    1
-  ); /** 基本のトランジション */
-  --user-text-normal-fontFamily:
-    Roboto, 'Noto Sans Japanese', sans-serif; /** 通常テキスト */
+  --user-transition-timingFunction: cubic-bezier(0.25, 0.8, 0.25, 1); /** 基本のトランジション */
+  --user-text-normal-fontFamily: Roboto, 'Noto Sans Japanese', sans-serif; /** 通常テキスト */
   --user-text-normal-fontSize: 1rem; /** 通常テキスト */
   --user-text-normal-fontWeight: 400; /** 通常テキスト */
   --user-text-normal-letterSpacing: 0em; /** 通常テキスト */
   --user-text-normal-lineHeight: 1.625; /** 通常テキスト */
-  --user-text-note-fontFamily:
-    Roboto, 'Noto Sans Japanese', sans-serif; /** 注釈テキスト */
+  --user-text-note-fontFamily: Roboto, 'Noto Sans Japanese', sans-serif; /** 注釈テキスト */
   --user-text-note-fontSize: 0.875rem; /** 注釈テキスト */
   --user-text-note-fontWeight: 400; /** 注釈テキスト */
   --user-text-note-letterSpacing: 0em; /** 注釈テキスト */
   --user-text-note-lineHeight: 1.625; /** 注釈テキスト */
-  --user-text-h1-fontFamily:
-    Roboto, 'Noto Sans Japanese', sans-serif; /** h1テキスト */
+  --user-text-h1-fontFamily: Roboto, 'Noto Sans Japanese', sans-serif; /** h1テキスト */
   --user-text-h1-fontSize: 2.25rem; /** h1テキスト */
   --user-text-h1-fontWeight: 700; /** h1テキスト */
   --user-text-h1-letterSpacing: 0em; /** h1テキスト */
   --user-text-h1-lineHeight: calc(2.5 / 2.25); /** h1テキスト */
-  --user-text-h2-fontFamily:
-    Roboto, 'Noto Sans Japanese', sans-serif; /** h2テキスト */
+  --user-text-h2-fontFamily: Roboto, 'Noto Sans Japanese', sans-serif; /** h2テキスト */
   --user-text-h2-fontSize: 1.5rem; /** h2テキスト */
   --user-text-h2-fontWeight: 700; /** h2テキスト */
   --user-text-h2-letterSpacing: 0em; /** h2テキスト */
   --user-text-h2-lineHeight: calc(2 / 1.5); /** h2テキスト */
-  --user-text-h3-fontFamily:
-    Roboto, 'Noto Sans Japanese', sans-serif; /** h3テキスト */
+  --user-text-h3-fontFamily: Roboto, 'Noto Sans Japanese', sans-serif; /** h3テキスト */
   --user-text-h3-fontSize: 1.125rem; /** h3テキスト */
   --user-text-h3-fontWeight: 700; /** h3テキスト */
   --user-text-h3-letterSpacing: 0em; /** h3テキスト */
   --user-text-h3-lineHeight: calc(1.75 / 1.125); /** h3テキスト */
-  --user-text-h4-fontFamily:
-    Roboto, 'Noto Sans Japanese', sans-serif; /** h4テキスト */
+  --user-text-h4-fontFamily: Roboto, 'Noto Sans Japanese', sans-serif; /** h4テキスト */
   --user-text-h4-fontSize: 1rem; /** h4テキスト */
   --user-text-h4-fontWeight: 700; /** h4テキスト */
   --user-text-h4-letterSpacing: 0em; /** h4テキスト */
   --user-text-h4-lineHeight: calc(1.5 / 1); /** h4テキスト */
-  --user-text-h5-fontFamily:
-    Roboto, 'Noto Sans Japanese', sans-serif; /** h5テキスト */
+  --user-text-h5-fontFamily: Roboto, 'Noto Sans Japanese', sans-serif; /** h5テキスト */
   --user-text-h5-fontSize: 0.875rem; /** h5テキスト */
   --user-text-h5-fontWeight: 700; /** h5テキスト */
   --user-text-h5-letterSpacing: 0em; /** h5テキスト */
   --user-text-h5-lineHeight: calc(1.25 / 0.875); /** h5テキスト */
-  --user-text-h6-fontFamily:
-    Roboto, 'Noto Sans Japanese', sans-serif; /** h6テキスト */
+  --user-text-h6-fontFamily: Roboto, 'Noto Sans Japanese', sans-serif; /** h6テキスト */
   --user-text-h6-fontSize: 0.75rem; /** h6テキスト */
   --user-text-h6-fontWeight: 700; /** h6テキスト */
   --user-text-h6-letterSpacing: 0em; /** h6テキスト */
