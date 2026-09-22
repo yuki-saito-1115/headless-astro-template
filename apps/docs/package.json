@@ -9,6 +9,7 @@
     "check": "run-p -l -c check:*",
     "check:astro": "astro check",
     "check:type": "tsc --noEmit",
+    "check:worker": "tsc --noEmit --project tsconfig.worker.json",
     "deploy": "wrangler deploy",
     "versions": "wrangler versions upload"
   },

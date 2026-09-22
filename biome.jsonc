@@ -11,7 +11,8 @@
       "!**/.astro",
       "!**/dist",
       "!**/node_modules",
-      "!packages/content/src/styles/theme.css"
+      "!packages/content/src/styles/theme.css",
+      "!apps/**/worker-configuration.d.ts"
     ]
   },
   "formatter": {

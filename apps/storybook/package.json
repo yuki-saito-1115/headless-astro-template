@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "storybook dev --port 4323",
     "build": "storybook build",
-    "check": "tsc --noEmit",
+    "check": "run-p -l -c check:type check:worker",
+    "check:type": "tsc --noEmit",
+    "check:worker": "tsc --noEmit --project tsconfig.worker.json",
     "deploy": "wrangler deploy",
     "versions": "wrangler versions upload"
   },

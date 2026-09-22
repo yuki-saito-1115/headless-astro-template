@@ -2,7 +2,13 @@
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "sample-docs",
   "compatibility_date": "2026-09-17",
+  "main": "_worker/index.ts",
   "assets": {
-    "directory": "./dist"
+    "binding": "ASSETS",
+    "directory": "./dist",
+    "run_worker_first": true
+  },
+  "secrets": {
+    "required": ["CLOUDFLARE_BASIC_USER", "CLOUDFLARE_BASIC_PASS"]
   }
 }

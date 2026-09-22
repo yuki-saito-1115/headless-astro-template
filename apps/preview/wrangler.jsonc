@@ -4,5 +4,8 @@
   "compatibility_date": "2026-09-17",
   "assets": {
     "directory": "./dist"
+  },
+  "secrets": {
+    "required": ["CLOUDFLARE_BASIC_USER", "CLOUDFLARE_BASIC_PASS"]
   }
 }
