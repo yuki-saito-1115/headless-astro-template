@@ -1,9 +1,9 @@
 import { fileURLToPath } from 'node:url';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import { checkTailwindDirective } from '@packages/content/plugins/vite/check-tailwind-directive';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField } from 'astro/config';
-import { checkTailwindDirective } from '../../vite/check-tailwind-directive.js';
 
 // 設定ファイルを基準に相対パスを絶対ファイルパスへ変換する。
 const resolvePath = (path) => fileURLToPath(new URL(path, import.meta.url));

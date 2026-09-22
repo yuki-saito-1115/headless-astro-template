@@ -5,6 +5,10 @@
   "type": "module",
   "exports": {
     "./build/*": "./src/scripts/build/*.ts",
+    "./plugins/vite/*": {
+      "types": "./plugins/vite/*.d.ts",
+      "default": "./plugins/vite/*.js"
+    },
     "./runtime/*": "./src/scripts/runtime/*.ts",
     "./styles/*": "./src/styles/*",
     "./types/*": "./src/types/*.ts"
