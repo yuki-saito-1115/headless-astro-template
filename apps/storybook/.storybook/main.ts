@@ -1,3 +1,4 @@
+import './docgen-windows-path-workaround.ts';
 import { fileURLToPath } from 'node:url';
 import { checkTailwindDirective } from '@packages/content/plugins/vite/check-tailwind-directive';
 import tailwindcss from '@tailwindcss/vite';
