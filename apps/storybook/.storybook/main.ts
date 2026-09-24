@@ -10,17 +10,9 @@ const resolvePath = (path: string) =>
 const config = {
   stories: ['../../../packages/ui/src/**/*.stories.@(js|ts)'],
   addons: ['@storybook/addon-a11y', '@storybook/addon-docs'],
-  docs: {
-    autodocs: true,
-  },
   staticDirs: ['../../../public'],
   framework: {
     name: '@storybook-astro/framework',
-    options: {
-      docgen: {
-        propFilter: () => true,
-      },
-    },
   },
   async viteFinal(config: InlineConfig) {
     return {

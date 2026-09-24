@@ -3,7 +3,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: Badge,
+  tags: ['autodocs'],
   title: 'Components/Badge/Badge',
+  argTypes: {
+    class: { table: { disable: true } },
+  },
   parameters: {
     controls: { sort: 'requiredFirst' },
     layout: 'padded',
