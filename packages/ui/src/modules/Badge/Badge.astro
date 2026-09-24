@@ -2,7 +2,8 @@
 import type { HTMLAttributes } from 'astro/types';
 
 /**
- * テキストを簡潔に示すラベルです。
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ * - このコンポーネントは原則として単品での利用を想定していません。`BadgeList` コンポーネントを使用してください。
  */
 export interface Props extends HTMLAttributes<'a' | 'span'> {
   /** テキストノード以外は指定できません。 */
