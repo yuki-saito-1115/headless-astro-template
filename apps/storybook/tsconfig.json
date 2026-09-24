@@ -1,5 +1,5 @@
 {
-  "include": [".storybook/**/*.js"],
+  "include": [".storybook/**/*.ts"],
   "exclude": ["_worker"],
   "extends": "../../tsconfig.json",
   "compilerOptions": {

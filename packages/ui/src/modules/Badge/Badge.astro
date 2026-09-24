@@ -1,26 +1,32 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-interface CommonProps {
+/**
+ * テキストを簡潔に示すラベルです。
+ */
+export interface Props extends HTMLAttributes<'a' | 'span'> {
+  /** テキストノード以外は指定できません。 */
   label: string;
+  /** 塗りと線の配色を逆転します。 */
   outline?: boolean;
+  /** 角丸または楕円の形状を設定します。 */
   shape?: 'rounded' | 'pill';
+  /** 注意または警告を示す配色を設定します。 */
   theme?: 'caution' | 'warning';
+  /** リンク先を設定します。指定すると `a` 要素を出力します。 */
+  href?: string;
 }
-
-export type Props =
-  | (CommonProps & HTMLAttributes<'a'> & { href: string })
-  | (CommonProps & HTMLAttributes<'span'> & { href?: never });
 
 const {
   label,
   outline = false,
   shape = undefined,
   theme = undefined,
+  href,
   class: className,
   ...rest
 } = Astro.props;
-const Element = rest?.href ? 'a' : 'span';
+const Element = href ? 'a' : 'span';
 const classList = ['Badge'];
 let mergedClass = '';
 
@@ -41,6 +47,7 @@ mergedClass = classList.join(' ');
 
 <Element
   class:list={[mergedClass, className]}
+  href={href}
   {...rest}
 >
   {label}
@@ -59,8 +66,8 @@ mergedClass = classList.join(' ');
     display: inline-block;
     font-size: var(--text-xs);
     line-height: 1;
+    outline: none;
     padding: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 4);
-    text-box-edge: cap alphabetic;
 
     /* 角丸 */
     &:where(.shape-rounded) {
@@ -96,15 +103,26 @@ mergedClass = classList.join(' ');
         --local-foreground: var(--user-color-danger-dark);
       }
     }
-  }
 
-  a.Badge {
-    text-decoration: none;
-  }
+    /* インタラクティブ要素の場合 */
+    &:where(
+      [href],
+      input:not([type='hidden']),
+      select,
+      textarea,
+      button,
+      iframe,
+      object,
+      embed,
+      video,
+      audio,
+      summary,
+      [tabindex]:not([tabindex='-1'])
+    ) {
+      text-decoration: none;
 
-  @media (any-hover: hover) {
-    a.Badge {
-      &:hover {
+      &:hover,
+      &:focus {
         --local-foreground: var(--user-color-foreground-dark);
         --local-background: var(--user-color-background-light);
         --local-outline: var(--local-foreground);
