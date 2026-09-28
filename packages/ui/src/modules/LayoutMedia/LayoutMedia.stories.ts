@@ -1,97 +1,28 @@
 import type { StoryArgs } from '@packages/content/types/Storybook';
+import type { Props } from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
+import LayoutMedia from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
+import Media from '@packages/ui/modules/Media/Media.astro';
 import type { Meta, StoryObj } from '@storybook/react';
-import Media from '../Media/Media.astro';
-import type { Props as LayoutMediaPropType } from './LayoutMedia.astro';
-import LayoutMedia from './LayoutMedia.astro';
 
 const meta = {
   component: LayoutMedia,
   tags: ['autodocs'],
-  title: 'Components/Layout/LayoutMedia',
+  title: 'Components/Layout/⭐ LayoutMedia',
   parameters: {
     controls: { sort: 'requiredFirst' },
-    layout: 'padded',
-    docs: {
-      description: {
-        component: `
-* __TODO: コンポーネントの入れ子プレビューが未実装のため準備中__
-* __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
-`,
-      },
-    },
   },
   argTypes: {
-    slots: {
-      control: 'object',
-      description:
-        '`content` スロットにはあらゆるHTML要素およびAstroコンポーネントを配置できます。<br>`media` スロットには `Media` コンポーネントのみ使用を許容します。',
-      table: {
-        category: 'Slots',
-        type: { summary: 'string | HTMLElement | AstroComponentFactory' },
-        defaultValue: { summary: undefined },
-      },
-    },
-    directionPc: {
-      control: 'select',
-      options: [
-        undefined,
-        'row',
-        'rowReverse',
-        'column',
-        'columnReverse',
-        'undefined',
-      ],
-      description: 'PC幅時の `flex-direction` の値を指定します。',
-      table: {
-        category: 'Props',
-        type: {
-          summary: 'row | rowReverse | column | columnReverse | undefined',
-        },
-        defaultValue: { summary: 'row' },
-      },
-    },
-    directionSp: {
-      control: 'select',
-      options: [
-        undefined,
-        'row',
-        'rowReverse',
-        'column',
-        'columnReverse',
-        'undefined',
-      ],
-      description: 'SP幅時の `flex-direction` の値を指定します。',
-      table: {
-        category: 'Props',
-        type: {
-          summary: 'row | rowReverse | column | columnReverse | undefined',
-        },
-        defaultValue: { summary: 'columnReverse' },
-      },
-    },
+    class: { table: { disable: true } },
   },
-  decorators: [
-    // Storybook のデフォルトのデコレーターを上書き
-    (Story) => {
-      if (typeof document === 'undefined') {
-        return Story();
-      }
-
-      const style = document.createElement('style');
-      style.textContent = `
-        .LayoutMedia__segment {
-          padding: 1em;
-          border: 1px dashed #999;
-        }
-      `;
-      document.head.appendChild(style);
-      return Story();
-    },
-  ],
-} satisfies Meta<StoryArgs<LayoutMediaPropType>>;
+} satisfies Meta<Props>;
 
 export default meta;
-type Story = StoryObj<StoryArgs<LayoutMediaPropType>>;
+
+/**
+ * ストーリーの型。このコンポーネントはPropsに `Polymorphic` を使っていないため、出力要素ごとに型を絞る必要はありません
+ * `StoryArgs` は `args` に `slots` を追加します
+ */
+type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
@@ -109,31 +40,9 @@ export const Default: Story = {
       },
     },
   },
-  // TODO: コード出力機能未実装につき手動設定
-  parameters: {
-    docs: {
-      source: {
-        code: `// このサンプルコードはControlによる操作から更新されません
-      <LayoutMedia>
-        <div slot="content">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-        </div>
-
-        <div slot="media">
-          <Media>
-            <figure>
-              <img src="https://dummyimage.com/600x400/ddd/fff" width="600" height="400" alt="" />
-              <figcaption>Lorem ipsum dolor sit amet</figcaption>
-            </figure>
-          <Media>
-        </div>
-      </LayoutMedia>`,
-      },
-    },
-  },
 };
 
-export const Reversed: Story = {
+export const RowReversed: Story = {
   args: {
     slots: {
       content:
@@ -148,28 +57,47 @@ export const Reversed: Story = {
         },
       },
     },
-    directionPc: 'rowReverse',
+    directPc: 'row-reverse',
+    directSp: 'row-reverse',
   },
-  // TODO: コード出力機能未実装につき手動設定
-  parameters: {
-    docs: {
-      source: {
-        code: `// このサンプルコードはControlによる操作から更新されません
-      <LayoutMedia directionPc="rowReverse">
-        <div slot="content">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-        </div>
+};
 
-        <div slot="media">
-          <Media>
-            <figure>
-              <img src="https://dummyimage.com/600x400/ddd/fff" width="600" height="400" alt="" />
-              <figcaption>Lorem ipsum dolor sit amet</figcaption>
-            </figure>
-          <Media>
-        </div>
-      </LayoutMedia>`,
+export const Column: Story = {
+  args: {
+    slots: {
+      content:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.',
+      media: {
+        component: Media,
+        slots: {
+          default: `<figure>
+  <img src="https://dummyimage.com/600x400/ddd/fff" width="600" height="400" alt="" />
+  <figcaption>Lorem ipsum dolor sit amet</figcaption>
+</figure>`,
+        },
       },
     },
+    directPc: 'column',
+    directSp: 'column',
+  },
+};
+
+export const ColumnReversed: Story = {
+  args: {
+    slots: {
+      content:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.',
+      media: {
+        component: Media,
+        slots: {
+          default: `<figure>
+  <img src="https://dummyimage.com/600x400/ddd/fff" width="600" height="400" alt="" />
+  <figcaption>Lorem ipsum dolor sit amet</figcaption>
+</figure>`,
+        },
+      },
+    },
+    directPc: 'column-reverse',
+    directSp: 'column-reverse',
   },
 };

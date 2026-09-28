@@ -1,18 +1,27 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
 export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
-const classList = ['BoxConnect'];
-const slotHtml = await Astro.slots.render('default');
+const attrs: Record<string, unknown> = { ...rest };
+
+if (!Astro.slots.has('default')) {
+  throw new Error('BoxConnect: slotの中身が空です。');
+}
 ---
 
 <div
-  class:list={[classList, className]}
-  {...rest}
+  class:list={[
+    'BoxConnect',
+    className,
+  ]}
+  {...attrs}
 >
-  {slotHtml && <Fragment set:html={slotHtml} />}
+  <slot />
 </div>
 
 

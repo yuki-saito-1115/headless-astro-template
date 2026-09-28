@@ -1,77 +1,30 @@
-import { COMMON_TYPE_ICON_SPRITE_VALUES } from '@packages/content/types/CommonType';
+import type { StoryArgs } from '@packages/content/types/Storybook';
+import type { Props } from '@packages/ui/modules/Icon/Icon.astro';
+import Icon from '@packages/ui/modules/Icon/Icon.astro';
 import type { Meta, StoryObj } from '@storybook/react';
-import Icon from './Icon.astro';
 
 const meta = {
   component: Icon,
   tags: ['autodocs'],
-  title: 'Components/Media/Icon',
+  title: 'Components/Media/⭐ Icon',
   parameters: {
     controls: { sort: 'requiredFirst' },
-    layout: 'padded',
-    docs: {
-      description: {
-        component: `
-* __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
-* このコンポーネントは原則として単品での利用を想定していません。
-`,
-      },
-    },
   },
   argTypes: {
-    sprite: {
-      control: 'select',
-      options: [...COMMON_TYPE_ICON_SPRITE_VALUES],
-      description: 'SVGスプライトの `id` 属性値を指定します。',
-      table: {
-        category: 'Props',
-        type: {
-          summary: `COMMON_TYPE_ICON_SPRITE_VALUES`,
-        },
-        defaultValue: { summary: '' },
-      },
-    },
-
-    lang: {
-      control: 'radio',
-      options: ['ja', 'en', undefined],
-      description: `\`svg\` 要素の中の \`title\` 要素に、日本語を使用するか英語を使用するかを選択できます。`,
-      table: {
-        category: 'Props',
-        type: { summary: 'ja | en | undefined' },
-        defaultValue: { summary: 'ja' },
-      },
-    },
-
-    label: {
-      control: 'text',
-      description: `予め設定された \`title\` 要素の内容を上書きしたいときにこの値を設定してください。`,
-      table: {
-        category: 'Props',
-        type: { summary: 'string | undefined' },
-        defaultValue: { summary: 'undefined' },
-      },
-    },
+    class: { table: { disable: true } },
   },
-} satisfies Meta;
+} satisfies Meta<Props>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+
+/**
+ * ストーリーの型。このコンポーネントはPropsに `Polymorphic` を使っていないため、出力要素ごとに型を絞る必要はありません
+ * `StoryArgs` は `args` に `slots` を追加します
+ */
+type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
-    sprite: 'download',
-  },
-};
-
-export const FileExcel: Story = {
-  args: {
-    sprite: 'file-excel',
-  },
-};
-
-export const FilePdf: Story = {
-  args: {
-    sprite: 'file-pdf',
+    name: 'download',
   },
 };

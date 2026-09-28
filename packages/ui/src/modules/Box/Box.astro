@@ -1,18 +1,27 @@
 ---
-import type { CommonTypeHeading } from '@packages/content/types/CommonType';
-import type { HTMLAttributes } from 'astro/types';
+import type { Polymorphic } from 'astro/types';
 
-export interface Props extends HTMLAttributes<'div' | 'details'> {
-  element?: 'div' | 'details';
-  open?: boolean;
-  scroll?: boolean;
-  theme?: 'related' | 'important' | 'alert' | undefined;
-  title?: string;
-  titleElement?: CommonTypeHeading | 'summary';
-}
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
+export type Props<Tag extends 'div' | 'details' = 'div' | 'details'> =
+  Polymorphic<{
+    as: Tag;
+  }> & {
+    /** 出力する要素を設定します。要素を選択すると、その要素の属性を指定できます。省略すると `div` 要素になります。 */
+    as?: Tag;
+    /** コンテンツ部分をスクロールさせるかどうかを指定します。`true` の場合はコンテンツ部分の高さが `200px` に固定されます。 */
+    scroll?: boolean;
+    /** 配色を設定できます。セマンティクスに変化はありません。 */
+    theme?: 'related' | 'important' | 'alert' | undefined;
+    /** テキストノード以外の使用を禁止します。必要ない場合は省略可能ですが `as` が `"details"` の場合は省略することができません。 */
+    title?: string;
+    /** タイトル部分のHTML要素を指定します。`as` が `"details"` の場合は強制的に `"summary"` が設定されます。 */
+    titleElement?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div';
+  };
 
 const {
-  element = 'div',
+  as: Element = 'div',
   scroll = false,
   theme = undefined,
   title = undefined,
@@ -20,27 +29,34 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-const Element = element;
-const slotHtml = await Astro.slots.render('default');
-const TitleElement = element === 'details' ? 'summary' : titleElement;
-const classList = ['Box'];
-let mergedClass = '';
+const attrs: Record<string, unknown> = { ...rest };
+const TitleElement = Element === 'details' ? 'summary' : titleElement;
 
-// undefined のときは theme- クラスを付けない
-if (theme) {
-  classList.push(`theme-${theme}`);
+switch (Element) {
+  case 'details':
+    break;
+  default:
+    delete attrs.open;
+    break;
 }
 
-if (scroll === true) {
-  classList.push('theme-scroll');
+if (!Astro.slots.has('default')) {
+  throw new Error('Box: slotの中身が空です。');
 }
 
-mergedClass = classList.join(' ');
+if (Element === 'details' && !title) {
+  throw new Error('Box: `as` が `details` の場合は `title` を省略できません。');
+}
 ---
 
 <Element
-  class:list={[mergedClass, className]}
-  {...rest}
+  class:list={[
+    'Box',
+    theme && `theme-${theme}`,
+    scroll && 'theme-scroll',
+    className,
+  ]}
+  {...attrs}
 >
   {title && (
     <TitleElement class:list={['Box__head']}>
@@ -48,7 +64,9 @@ mergedClass = classList.join(' ');
     </TitleElement>
   )}
 
-  {slotHtml && <div class:list={['Box__body']} set:html={slotHtml} />}
+  <div class:list={['Box__body']}>
+    <slot />
+  </div>
 </Element>
 
 
@@ -118,44 +136,45 @@ mergedClass = classList.join(' ');
         margin-bottom: 0;
       }
     }
-  }
 
-  details.Box {
-    padding-bottom: 0;
-
-    > :where(.Box__head) {
-      list-style: none;
-      cursor: pointer;
-      position: relative;
-
-      /* icon */
-      &::before {
-        background-color: currentColor;
-        content: '';
-        display: block;
-        height: 16px;
-        mask-image: url('/assets/images/icons/plus.svg');
-        mask-repeat: no-repeat;
-        mask-size: cover;
-        pointer-events: none;
-        position: absolute;
-        right: var(--local-padding);
-        top: 50%;
-        transform: translateY(-50%);
-        width: 16px;
-      }
-    }
-
-    &[open] {
-      padding-bottom: var(--local-padding);
+    &:where(details) {
+      padding-bottom: 0;
 
       > :where(.Box__head) {
+        list-style: none;
+        cursor: pointer;
+        position: relative;
+
+        /* icon */
         &::before {
-          mask-image: url('/assets/images/icons/minus.svg');
+          background-color: currentColor;
+          content: '';
+          display: block;
+          height: 16px;
+          mask-image: url('/assets/images/icons/plus.svg');
+          mask-repeat: no-repeat;
+          mask-size: cover;
+          pointer-events: none;
+          position: absolute;
+          right: var(--local-padding);
+          top: 50%;
+          transform: translateY(-50%);
+          width: 16px;
+        }
+      }
+
+      &:where([open]) {
+        padding-bottom: var(--local-padding);
+
+        > :where(.Box__head) {
+          &::before {
+            mask-image: url('/assets/images/icons/minus.svg');
+          }
         }
       }
     }
   }
+
 
   @media (width >= 768px) {
     .Box {

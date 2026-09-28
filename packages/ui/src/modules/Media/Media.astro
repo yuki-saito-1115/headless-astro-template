@@ -1,22 +1,29 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
+/**
+ * - __このコンポーネントはmicroCMSのリッチエディタの [画像](https://document.microcms.io/manual/rich-editor-usage#h7b3c950f25) と関連しています。__
+ */
 export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
-const slotHtml = await Astro.slots.render('default');
+const attrs: Record<string, unknown> = { ...rest };
+
+if (!Astro.slots.has('default')) {
+  throw new Error('Media: slotの中身が空です。');
+}
 ---
 <div
   class:list={['Media', className]}
-  {...rest}
+  {...attrs}
 >
-  {slotHtml && <Fragment set:html={slotHtml} />}
+  <slot />
 </div>
 
 
 <style>
   .Media {
-    text-align: center; /* デフォルト: 中央 */
+    text-align: center;
 
     &:has(figure[style*="text-align: left"]) {
       text-align: left;
@@ -36,7 +43,7 @@ const slotHtml = await Astro.slots.render('default');
     }
 
     :where(figure) {
-      max-width: 100%; /* width: 100% → max-width: 100% */
+      max-width: 100%;
     }
 
     :where(a) {

@@ -1,55 +1,63 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import type { Polymorphic } from 'astro/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  * - このコンポーネントは原則として単品での利用を想定していません。`BadgeList` コンポーネントを使用してください。
  */
-export interface Props extends HTMLAttributes<'a' | 'span'> {
+export type Props<
+  Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button',
+> = Polymorphic<{
+  as: Tag;
+}> & {
+  /** 出力する要素を設定します。要素を選択すると、その要素の属性を指定できます。 */
+  as?: Tag;
   /** テキストノード以外は指定できません。 */
   label: string;
   /** 塗りと線の配色を逆転します。 */
   outline?: boolean;
   /** 角丸または楕円の形状を設定します。 */
   shape?: 'rounded' | 'pill';
-  /** 注意または警告を示す配色を設定します。 */
+  /** 配色を設定できます。セマンティクスに変化はありません。 */
   theme?: 'caution' | 'warning';
-  /** リンク先を設定します。指定すると `a` 要素を出力します。 */
-  href?: string;
-}
+};
 
 const {
+  as: Element = 'span',
   label,
   outline = false,
   shape = undefined,
   theme = undefined,
-  href,
   class: className,
   ...rest
 } = Astro.props;
-const Element = href ? 'a' : 'span';
-const classList = ['Badge'];
-let mergedClass = '';
+const attrs: Record<string, unknown> = { ...rest };
 
-if (theme) {
-  classList.push(`theme-${theme}`);
+switch (Element) {
+  case 'a':
+    delete attrs.disabled;
+    delete attrs.type;
+    break;
+  case 'button':
+    delete attrs.href;
+    break;
+  default:
+    delete attrs.disabled;
+    delete attrs.href;
+    delete attrs.type;
+    break;
 }
-
-if (shape) {
-  classList.push(`shape-${shape}`);
-}
-
-if (outline) {
-  classList.push('theme-outline');
-}
-
-mergedClass = classList.join(' ');
 ---
 
 <Element
-  class:list={[mergedClass, className]}
-  href={href}
-  {...rest}
+  class:list={[
+    'Badge',
+    theme && `theme-${theme}`,
+    shape && `shape-${shape}`,
+    outline && 'theme-outline',
+    className,
+  ]}
+  {...attrs}
 >
   {label}
 </Element>
@@ -65,7 +73,11 @@ mergedClass = classList.join(' ');
     border: 1px solid var(--local-outline);
     color: var(--local-foreground);
     display: inline-block;
+    /* button要素はフォントを継承しないため */
+    font: inherit;
     font-size: var(--text-xs);
+    /* button要素は文字間隔を継承しないため */
+    letter-spacing: inherit;
     line-height: 1;
     outline: none;
     padding: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 4);
@@ -83,11 +95,19 @@ mergedClass = classList.join(' ');
     /* 注意 */
     &:where(.theme-caution) {
       --local-background: var(--user-color-warning-dark);
+
+      &:where(.theme-outline) {
+        --local-foreground: var(--user-color-warning-dark);
+      }
     }
 
     /* 警告 */
     &:where(.theme-warning) {
       --local-background: var(--user-color-danger-dark);
+
+      &:where(.theme-outline) {
+        --local-foreground: var(--user-color-danger-dark);
+      }
     }
 
     /* 罫線 */
@@ -95,35 +115,17 @@ mergedClass = classList.join(' ');
       --local-foreground: var(--user-color-foreground-dark);
       --local-background: var(--user-color-background-light);
       --local-outline: var(--local-foreground);
-
-      &:where(.theme-caution) {
-        --local-foreground: var(--user-color-warning-dark);
-      }
-
-      &:where(.theme-warning) {
-        --local-foreground: var(--user-color-danger-dark);
-      }
     }
 
     /* インタラクティブ要素の場合 */
-    &:where(
-      [href],
-      input:not([type='hidden']),
-      select,
-      textarea,
-      button,
-      iframe,
-      object,
-      embed,
-      video,
-      audio,
-      summary,
-      [tabindex]:not([tabindex='-1'])
-    ) {
+    &:where([href], button) {
       text-decoration: none;
+    }
+  }
 
-      &:hover,
-      &:focus {
+  @media (any-hover: hover) {
+    .Badge:not(span, :disabled) {
+      &:hover {
         --local-foreground: var(--user-color-foreground-dark);
         --local-background: var(--user-color-background-light);
         --local-outline: var(--local-foreground);
@@ -133,11 +135,19 @@ mergedClass = classList.join(' ');
         /* 注意 */
         &:where(.theme-caution) {
           --local-foreground: var(--user-color-warning-dark);
+
+          &:where(.theme-outline) {
+            --local-background: var(--user-color-warning-dark);
+          }
         }
 
         /* 警告 */
         &:where(.theme-warning) {
           --local-foreground: var(--user-color-danger-dark);
+
+          &:where(.theme-outline) {
+            --local-background: var(--user-color-danger-dark);
+          }
         }
 
         /* 罫線 */
@@ -145,16 +155,6 @@ mergedClass = classList.join(' ');
           --local-foreground: var(--user-color-foreground-light);
           --local-background: var(--user-color-background-dark);
           --local-outline: var(--local-background);
-
-          /* 注意 */
-          &:where(.theme-caution) {
-            --local-background: var(--user-color-warning-dark);
-          }
-
-          /* 警告 */
-          &:where(.theme-warning) {
-            --local-background: var(--user-color-danger-dark);
-          }
         }
       }
     }

@@ -1,77 +1,27 @@
-import { COMMON_TYPE_COLUMN_VALUES } from '@packages/content/types/CommonType';
 import type { StoryArgs } from '@packages/content/types/Storybook';
+import type { Props } from '@packages/ui/modules/Column/Column.astro';
+import Column from '@packages/ui/modules/Column/Column.astro';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { Props as ColumnPropType } from './Column.astro';
-import Column from './Column.astro';
 
 const meta = {
   component: Column,
   tags: ['autodocs'],
-  title: 'Components/Layout/Column',
+  title: 'Components/Layout/⭐ Column',
   parameters: {
     controls: { sort: 'requiredFirst' },
-    layout: 'padded',
-    docs: {
-      description: {
-        component: `
-* __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
-`,
-      },
-    },
   },
   argTypes: {
-    slots: {
-      control: 'object',
-      description: `直下には \`div.Column__segment\` のみ配置を許容します。<br>\`div.Column__segment\` の中ではあらゆるHTML要素およびAstroコンポーネントの使用を許容します。<br>要素・コンポーネント同士の間隔調整はTailwind CSSのユーティリティを利用してください。`,
-      table: {
-        category: 'Slots',
-        type: { summary: 'HTMLDivElement' },
-        defaultValue: { summary: undefined },
-      },
-    },
-    columnPc: {
-      control: 'select',
-      options: [...COMMON_TYPE_COLUMN_VALUES, undefined],
-      description: 'PCサイズでの列数を指定します。',
-      table: {
-        category: 'Props',
-        type: { summary: 'CommonTypeColumn | undefined' },
-        defaultValue: { summary: '1' },
-      },
-    },
-    columnSp: {
-      control: 'select',
-      options: [...COMMON_TYPE_COLUMN_VALUES, undefined],
-      description: 'SPサイズでの列数を指定します。',
-      table: {
-        category: 'Props',
-        type: { summary: 'CommonTypeColumn | undefined' },
-        defaultValue: { summary: '1' },
-      },
-    },
+    class: { table: { disable: true } },
   },
-  decorators: [
-    // Storybook のデフォルトのデコレーターを上書き
-    (Story) => {
-      if (typeof document === 'undefined') {
-        return Story();
-      }
-
-      const style = document.createElement('style');
-      style.textContent = `
-        .Column__segment {
-          padding: 1em;
-          border: 1px dashed #999;
-        }
-      `;
-      document.head.appendChild(style);
-      return Story();
-    },
-  ],
-} satisfies Meta<StoryArgs<ColumnPropType>>;
+} satisfies Meta<Props>;
 
 export default meta;
-type Story = StoryObj<StoryArgs<ColumnPropType>>;
+
+/**
+ * ストーリーの型。このコンポーネントはPropsに `Polymorphic` を使っていないため、出力要素ごとに型を絞る必要はありません
+ * `StoryArgs` は `args` に `slots` を追加します
+ */
+type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
@@ -89,23 +39,6 @@ export const Default: Story = {
 <div class="Column__segment">
   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
 </div>`,
-    },
-  },
-  // TODO: コード出力機能未実装につき手動設定
-  parameters: {
-    docs: {
-      source: {
-        code: `// このサンプルコードはControlによる操作から更新されません
-        <Column columnPc="1" columnSp="1">
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-        </Column>`,
-      },
     },
   },
 };
@@ -126,27 +59,6 @@ export const Column2: Story = {
 <div class="Column__segment">
   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
 </div>`,
-    },
-  },
-  // TODO: コード出力機能未実装につき手動設定
-  parameters: {
-    docs: {
-      source: {
-        code: `// このサンプルコードはControlによる操作から更新されません
-        <Column columnPc="2" columnSp="1">
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-        </Column>`,
-      },
     },
   },
 };
@@ -171,31 +83,6 @@ export const Column3: Story = {
 <div class="Column__segment">
   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
 </div>`,
-    },
-  },
-  // TODO: コード出力機能未実装につき手動設定
-  parameters: {
-    docs: {
-      source: {
-        code: `// このサンプルコードはControlによる操作から更新されません
-        <Column columnPc="3" columnSp="2">
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-        </Column>`,
-      },
     },
   },
 };
@@ -224,35 +111,6 @@ export const Column4: Story = {
 <div class="Column__segment">
   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
 </div>`,
-    },
-  },
-  // TODO: コード出力機能未実装につき手動設定
-  parameters: {
-    docs: {
-      source: {
-        code: `// このサンプルコードはControlによる操作から更新されません
-        <Column columnPc="4" columnSp="2">
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-
-          <div class="Column__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-        </Column>`,
-      },
     },
   },
 };

@@ -1,33 +1,17 @@
 import type { StoryArgs } from '@packages/content/types/Storybook';
+import type { Props as CardPropType } from '@packages/ui/modules/Card/Card.astro';
+import Card from '@packages/ui/modules/Card/Card.astro';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { Props as CardPropType } from './Card.astro';
-import Card from './Card.astro';
 
 const meta = {
-  title: 'Components/Card/Card（準備中）',
   component: Card,
-  parameters: {
-    layout: 'padded',
-    docs: {
-      description: {
-        component: `
-- このコンポーネントは○○の目的で使用します。それ以外の目的での使用は推奨しません。
-- __このコンポーネントはリッチエディタのスタイルや構造と関連しているため、改修の際は併せてリッチエディタの修正もお願いします。__
-`,
-      },
-    },
-  },
   tags: ['autodocs'],
+  title: 'Components/Card/⭐ Card',
+  parameters: {
+    controls: { sort: 'requiredFirst' },
+  },
   argTypes: {
-    element: {
-      control: 'radio',
-      options: ['div', 'li'],
-      description: 'レンダリングする HTML 要素を設定します。',
-      table: {
-        type: { summary: 'div | li' },
-        defaultValue: { summary: 'div' },
-      },
-    },
+    class: { table: { disable: true } },
   },
 } satisfies Meta<StoryArgs<CardPropType>>;
 
@@ -36,68 +20,146 @@ type Story = StoryObj<StoryArgs<CardPropType>>;
 
 export const Default: Story = {
   args: {
+    title: 'タイトルタイトルタイトル',
+    date: '2026-09-25 08:30',
+    media: {
+      src: 'https://dummyimage.com/600x400/dddddd/fff',
+      alt: 'DUMMY_ALT',
+      width: 600,
+      height: 400,
+      loading: 'lazy',
+    },
     slots: {
-      default: `<div class="Card__head">
-  <div class="Card__title">Card Title</div>
-</div>
-
-<div class="Card__body">
-  <div class="Card__body__content">Card Body</div>
-</div>
-
-<div class="Card__foot">
-  <div class="Card__foot__content">Card Foot</div>
-</div>
-
-<div class="Card__media">
-  <div class="Card__media__content">Card Media</div>
-</div>`,
+      default:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
     },
   },
 };
 
-export const Point: Story = {
+export const Headless: Story = {
   args: {
-    slots: {
-      default: `<div class="Card__head">
-  <div class="Card__title">Card Title</div>
-</div>
-
-<div class="Card__body">
-  <div class="Card__body__content">Card Body</div>
-</div>
-
-<div class="Card__foot">
-  <div class="Card__foot__content">Card Foot</div>
-</div>
-
-<div class="Card__media">
-  <div class="Card__media__content">Card Media</div>
-</div>`,
+    date: '2026-09-25 08:30',
+    media: {
+      src: 'https://dummyimage.com/600x400/dddddd/fff',
+      alt: 'DUMMY_ALT',
+      width: 600,
+      height: 400,
+      loading: 'lazy',
     },
-    theme: 'point',
+    slots: {
+      default:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+    },
   },
 };
 
-export const Detail: Story = {
+export const Outline: Story = {
   args: {
-    slots: {
-      default: `<div class="Card__head">
-  <div class="Card__title">Card Title</div>
-</div>
-
-<div class="Card__body">
-  <div class="Card__body__content">Card Body</div>
-</div>
-
-<div class="Card__foot">
-  <div class="Card__foot__content">Card Foot</div>
-</div>
-
-<div class="Card__media">
-  <div class="Card__media__content">Card Media</div>
-</div>`,
+    date: '2026-09-25 08:30',
+    outline: true,
+    media: {
+      src: 'https://dummyimage.com/600x400/dddddd/fff',
+      alt: 'DUMMY_ALT',
+      width: 600,
+      height: 400,
+      loading: 'lazy',
     },
-    theme: 'detail',
+    slots: {
+      default:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+    },
+  },
+};
+
+export const DirectColumnReverse: Story = {
+  args: {
+    date: '2026-09-25 08:30',
+    directSp: 'column-reverse',
+    directPc: 'column-reverse',
+    media: {
+      src: 'https://dummyimage.com/600x400/dddddd/fff',
+      alt: 'DUMMY_ALT',
+      width: 600,
+      height: 400,
+      loading: 'lazy',
+    },
+    slots: {
+      default:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+    },
+  },
+};
+
+export const DirectRow: Story = {
+  args: {
+    date: '2026-09-25 08:30',
+    directSp: 'row',
+    directPc: 'row',
+    media: {
+      src: 'https://dummyimage.com/600x400/dddddd/fff',
+      alt: 'DUMMY_ALT',
+      width: 600,
+      height: 400,
+      loading: 'lazy',
+    },
+    slots: {
+      default:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+    },
+  },
+};
+
+export const DirectRowReverse: Story = {
+  args: {
+    date: '2026-09-25 08:30',
+    directSp: 'row-reverse',
+    directPc: 'row-reverse',
+    media: {
+      src: 'https://dummyimage.com/600x400/dddddd/fff',
+      alt: 'DUMMY_ALT',
+      width: 600,
+      height: 400,
+      loading: 'lazy',
+    },
+    slots: {
+      default:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+    },
+  },
+};
+
+export const ThemeCaution: Story = {
+  args: {
+    date: '2026-09-25 08:30',
+    theme: 'caution',
+    media: {
+      src: 'https://dummyimage.com/600x400/dddddd/fff',
+      alt: 'DUMMY_ALT',
+      width: 600,
+      height: 400,
+      loading: 'lazy',
+    },
+    slots: {
+      default:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+    },
+  },
+};
+
+export const ThemeWarning: Story = {
+  args: {
+    date: '2026-09-25 08:30',
+    theme: 'warning',
+    media: {
+      src: 'https://dummyimage.com/600x400/dddddd/fff',
+      alt: 'DUMMY_ALT',
+      width: 600,
+      height: 400,
+      loading: 'lazy',
+    },
+    slots: {
+      default:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+    },
   },
 };

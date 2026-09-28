@@ -13,6 +13,15 @@ const config = {
   staticDirs: ['../../../public'],
   framework: {
     name: '@storybook-astro/framework',
+    options: {
+      sanitization: {
+        sanitizeHtml: {
+          allowedAttributes: {
+            figure: ['style'],
+          },
+        },
+      },
+    },
   },
   async viteFinal(config: InlineConfig) {
     return {

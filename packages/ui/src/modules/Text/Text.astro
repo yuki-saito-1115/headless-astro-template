@@ -1,19 +1,28 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-export interface Props extends HTMLAttributes<'p'> {}
+/**
+ * - __このコンポーネントはmicroCMSのリッチエディタの [改行と段落](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[太字](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[斜体](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[下線](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[打ち消し線](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[コード](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491) と関連しています。__
+ */
+export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
-const classList = ['Text'];
-const slotHtml = await Astro.slots.render('default');
+const attrs: Record<string, unknown> = { ...rest };
+
+if (!Astro.slots.has('default')) {
+  throw new Error('Text: slotの中身が空です。');
+}
 ---
 
-<p
-  class:list={[classList, className]}
-  {...rest}
+<div
+  class:list={[
+    'Text',
+    className
+  ]}
+  {...attrs}
 >
-  {slotHtml && <Fragment set:html={slotHtml} />}
-</p>
+  <p><slot /></p>
+</div>
 
 
 <style>

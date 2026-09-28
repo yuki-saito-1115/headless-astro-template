@@ -1,53 +1,27 @@
 import type { StoryArgs } from '@packages/content/types/Storybook';
+import type { Props } from '@packages/ui/modules/Grid/Grid.astro';
+import Grid from '@packages/ui/modules/Grid/Grid.astro';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { Props as GridPropType } from './Grid.astro';
-import Grid from './Grid.astro';
 
 const meta = {
-  title: 'Components/Layout/Grid',
   component: Grid,
-  parameters: {
-    layout: 'padded',
-    docs: {
-      description: {
-        component: `__このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__`,
-      },
-    },
-  },
   tags: ['autodocs'],
-  argTypes: {
-    slots: {
-      control: 'object',
-      description: `直下には \`div.Grid__segment\` のみ配置を許容します。<br>\`div.Grid__segment\` の中ではあらゆるHTML要素およびAstroコンポーネントの使用を許容します。<br>要素・コンポーネント同士の間隔調整はTailwind CSSのユーティリティを利用してください。`,
-      table: {
-        category: 'Slots',
-        type: { summary: 'HTMLDivElement' },
-        defaultValue: { summary: undefined },
-      },
-    },
+  title: 'Components/Layout/⭐ Grid',
+  parameters: {
+    controls: { sort: 'requiredFirst' },
   },
-  decorators: [
-    // Storybook のデフォルトのデコレーターを上書き
-    (Story) => {
-      if (typeof document === 'undefined') {
-        return Story();
-      }
-
-      const style = document.createElement('style');
-      style.textContent = `
-        .Grid__segment {
-          padding: 1em;
-          border: 1px dashed #999;
-        }
-      `;
-      document.head.appendChild(style);
-      return Story();
-    },
-  ],
-} satisfies Meta<StoryArgs<GridPropType>>;
+  argTypes: {
+    class: { table: { disable: true } },
+  },
+} satisfies Meta<Props>;
 
 export default meta;
-type Story = StoryObj<StoryArgs<GridPropType>>;
+
+/**
+ * ストーリーの型。このコンポーネントはPropsに `Polymorphic` を使っていないため、出力要素ごとに型を絞る必要はありません
+ * `StoryArgs` は `args` に `slots` を追加します
+ */
+type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
@@ -55,19 +29,6 @@ export const Default: Story = {
       default: `<div class="Grid__segment gridPc-1 gridSp-1">1</div>
 
 <div class="Grid__segment gridPc-11 gridSp-11">11</div>`,
-    },
-  },
-  // TODO: コード出力機能未実装につき手動設定
-  parameters: {
-    docs: {
-      source: {
-        code: `// このサンプルコードはControlによる操作から更新されません
-        <Grid>
-          <div class="Grid__segment gridPc-1 gridSp-1">1</div>
-
-          <div class="Grid__segment gridPc-11 gridSp-11">11</div>
-        </Grid>`,
-      },
     },
   },
 };
@@ -84,25 +45,6 @@ export const Sample1: Story = {
 <div class="Grid__segment gridPc-1 gridSp-1">1</div>
 
 <div class="Grid__segment gridPc-8 gridSp-8">8</div>`,
-    },
-  },
-  // TODO: コード出力機能未実装につき手動設定
-  parameters: {
-    docs: {
-      source: {
-        code: `// このサンプルコードはControlによる操作から更新されません
-        <Grid>
-          <div class="Grid__segment gridPc-1 gridSp-1">1</div>
-
-          <div class="Grid__segment gridPc-1 gridSp-1">1</div>
-
-          <div class="Grid__segment gridPc-1 gridSp-1">1</div>
-
-          <div class="Grid__segment gridPc-1 gridSp-1">1</div>
-
-          <div class="Grid__segment gridPc-8 gridSp-8">8</div>
-        </Grid>`,
-      },
     },
   },
 };
@@ -123,29 +65,6 @@ export const Sample2: Story = {
 <div class="Grid__segment gridPc-3 gridSp-3">3</div>
 
 <div class="Grid__segment gridPc-3 gridSp-3">3</div>`,
-    },
-  },
-  // TODO: コード出力機能未実装につき手動設定
-  parameters: {
-    docs: {
-      source: {
-        code: `// このサンプルコードはControlによる操作から更新されません
-        <Grid>
-          <div class="Grid__segment gridPc-1 gridSp-1">1</div>
-
-          <div class="Grid__segment gridPc-1 gridSp-1">1</div>
-
-          <div class="Grid__segment gridPc-1 gridSp-1">1</div>
-
-          <div class="Grid__segment gridPc-1 gridSp-1">1</div>
-
-          <div class="Grid__segment gridPc-2 gridSp-2">2</div>
-
-          <div class="Grid__segment gridPc-3 gridSp-3">3</div>
-
-          <div class="Grid__segment gridPc-3 gridSp-3">3</div>
-        </Grid>`,
-      },
     },
   },
 };

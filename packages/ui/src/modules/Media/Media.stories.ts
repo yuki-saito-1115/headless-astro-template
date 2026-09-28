@@ -1,38 +1,27 @@
 import type { StoryArgs } from '@packages/content/types/Storybook';
+import type { Props } from '@packages/ui/modules/Media/Media.astro';
+import Media from '@packages/ui/modules/Media/Media.astro';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { Props as MediaPropType } from './Media.astro';
-import Media from './Media.astro';
 
 const meta = {
   component: Media,
   tags: ['autodocs'],
-  title: 'Components/Media/Media',
+  title: 'Components/Media/⭐ Media',
   parameters: {
     controls: { sort: 'requiredFirst' },
-    layout: 'padded',
-    docs: {
-      description: {
-        component: `
-* __このコンポーネントはmicroCMSのリッチエディタの [画像](https://document.microcms.io/manual/rich-editor-usage#h7b3c950f25) と関連しています。__
-`,
-      },
-    },
   },
   argTypes: {
-    slots: {
-      control: 'object',
-      description: `microCMSのリッチエディタの [画像](https://document.microcms.io/manual/rich-editor-usage#h7b3c950f25) のHTML構造のみを許容します。`,
-      table: {
-        category: 'Slots',
-        type: { summary: 'HTMLElement' },
-        defaultValue: { summary: undefined },
-      },
-    },
+    class: { table: { disable: true } },
   },
-} satisfies Meta<StoryArgs<MediaPropType>>;
+} satisfies Meta<Props>;
 
 export default meta;
-type Story = StoryObj<StoryArgs<MediaPropType>>;
+
+/**
+ * ストーリーの型。このコンポーネントはPropsに `Polymorphic` を使っていないため、出力要素ごとに型を絞る必要はありません
+ * `StoryArgs` は `args` に `slots` を追加します
+ */
+type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {

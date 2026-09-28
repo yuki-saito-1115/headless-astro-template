@@ -1,35 +1,27 @@
 import type { StoryArgs } from '@packages/content/types/Storybook';
+import type { Props } from '@packages/ui/modules/BoxConnect/BoxConnect.astro';
+import BoxConnect from '@packages/ui/modules/BoxConnect/BoxConnect.astro';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { Props as BoxConnectPropType } from './BoxConnect.astro';
-import BoxConnect from './BoxConnect.astro';
 
 const meta = {
-  title: 'Components/Box/BoxConnect',
   component: BoxConnect,
-  parameters: {
-    layout: 'padded',
-    docs: {
-      description: {
-        component: `__このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__`,
-      },
-    },
-  },
   tags: ['autodocs'],
-  argTypes: {
-    slots: {
-      control: 'object',
-      description: `直下には \`div.BoxConnect__segment\` のみ配置を許容します。<br>\`div.BoxConnect__segment\` の中ではあらゆるHTML要素およびAstroコンポーネントの使用を許容します。<br>要素・コンポーネント同士の間隔調整はTailwind CSSのユーティリティを利用してください。`,
-      table: {
-        category: 'Slots',
-        type: { summary: 'HTMLDivElement' },
-        defaultValue: { summary: undefined },
-      },
-    },
+  title: 'Components/Box/⭐ BoxConnect',
+  parameters: {
+    controls: { sort: 'requiredFirst' },
   },
-} satisfies Meta<StoryArgs<BoxConnectPropType>>;
+  argTypes: {
+    class: { table: { disable: true } },
+  },
+} satisfies Meta<Props>;
 
 export default meta;
-type Story = StoryObj<StoryArgs<BoxConnectPropType>>;
+
+/**
+ * ストーリーの型。このコンポーネントはPropsに `Polymorphic` を使っていないため、出力要素ごとに型を絞る必要はありません
+ * `StoryArgs` は `args` に `slots` を追加します
+ */
+type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
@@ -41,23 +33,6 @@ export const Default: Story = {
 <div class="BoxConnect__segment">
   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,</p>
 </div>`,
-    },
-  },
-  // TODO: コード出力機能未実装につき手動設定
-  parameters: {
-    docs: {
-      source: {
-        code: `// このサンプルコードはControlによる操作から更新されません
-        <BoxConnect>
-          <div class="BoxConnect__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-
-          <div class="BoxConnect__segment">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit...
-          </div>
-        </BoxConnect>`,
-      },
     },
   },
 };

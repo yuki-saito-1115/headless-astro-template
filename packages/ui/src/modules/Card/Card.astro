@@ -1,162 +1,187 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import type { HTMLAttributes, Polymorphic } from 'astro/types';
 
-export interface Props extends HTMLAttributes<'div' | 'li'> {
-  element?: 'div' | 'li';
-  theme?: 'point' | 'detail';
-}
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
+export type Props<Tag extends 'div' | 'li' = 'div' | 'li'> = Polymorphic<{
+  as: Tag;
+}> & {
+  /** 出力する要素を設定します。要素を選択すると、その要素の属性を指定できます。省略すると `"div"` になります。 */
+  as?: Tag;
+  /** 外枠を表示します。 */
+  outline?: boolean;
+  /** SP幅時の画像とテキストの並び方向を設定します。 */
+  directSp?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  /** PC幅時の画像とテキストの並び方向を設定します。 */
+  directPc?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  /** 配色を設定できます。セマンティクスに変化はありません。 */
+  theme?: 'caution' | 'warning';
+  /** タイトルを設定できます。`Column` コンポーネント内では、同じ行に並ぶ `Card` 同士で有無を揃えてください。混在すると高さ揃えがずれます。 */
+  title?: string;
+  /** 日付を設定できます。`Column` コンポーネント内では、同じ行に並ぶ `Card` 同士で有無を揃えてください。混在すると高さ揃えがずれます。 */
+  date?: string;
+  /** 画像を設定できます。 */
+  media: HTMLAttributes<'img'>;
+};
 
-const { element = 'div', theme, class: className, ...rest } = Astro.props;
-
-const Element = element;
-const slotHtml = await Astro.slots.render('default');
-
-const classList = ['Card__inner'];
-
-if (theme) {
-  classList.push(`theme-${theme}`);
-}
-
-const mergedClass = classList.join(' ');
+const {
+  as: Element = 'div',
+  outline = false,
+  directSp = 'column',
+  directPc = 'column',
+  theme = undefined,
+  class: className,
+  title,
+  date,
+  media,
+  ...rest
+} = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
 ---
 <Element
-  class:list={[className, 'Card']}
-  {...rest}
+  class:list={[
+    'Card',
+    theme && `theme-${theme}`,
+    outline && 'theme-outline',
+    `directSp-${directSp}`,
+    `directPc-${directPc}`,
+    className,
+  ]}
+  {...attrs}
 >
-  {slotHtml && <div class={mergedClass} set:html={slotHtml} />}
+  <div class:list={['Card__media']}>
+    <img class:list={['Card__mediaItem']} {...media}>
+  </div>
+
+  {title && <div class:list={['Card__title']}>{title}</div>}
+
+  <div class:list={['Card__body']}>
+    <slot />
+  </div>
+
+  {date && <div class:list={['Card__date']}>{date}</div>}
 </Element>
 
 
 <style>
   .Card {
-    gap: calc(var(--user-spacing) * 6);
+    gap: calc(var(--user-spacing) * 4);
     display: grid;
-  }
-
-  .Card__inner {
-    display: grid;
+    grid-row: span 4;
     grid-template-rows: subgrid;
 
-    &.theme-outline {
-      border: 1px solid var(--user-color-outline-light);
+    &:where(.theme-caution, .theme-warning, .theme-outline) {
       padding: calc(var(--user-spacing) * 4);
     }
-  }
 
-  .Card__head,
-  .Card__body,
-  .Card__foot,
-  .Card__media {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    /* 注意 */
+    &:where(.theme-caution) {
+      background-color: var(--user-color-warning-dark);
+    }
 
-    > * {
-      margin-top: 0 !important;
+    /* 警告 */
+    &:where(.theme-warning) {
+      background-color: var(--user-color-danger-dark);
+    }
+
+    /* 罫線 */
+    &:where(.theme-outline) {
+      border: 1px solid var(--user-color-outline-light);
     }
   }
 
-  .Card__head {
-    justify-content: center;
-    gap: calc(var(--user-spacing) * 1);
-    font-weight: bold;
-    line-height: 1.5;
-  }
-
-  .Card__body {
-    gap: calc(var(--user-spacing) * 4);
-  }
-
-  .Card__foot {
-    gap: calc(var(--user-spacing) * 4);
-  }
-
   .Card__media {
-    align-items: center;
-    order: -1;
+    width: 100%;
+    position: relative;
+
+    :where(img) {
+      display: block;
+      max-width: none;
+      width: 100%;
+      height: auto;
+    }
   }
 
   .Card__title {
-    font-size: calc(16 / var(--user-font-size-root) * 1rem);
+    font-weight: var(--user-font-weight-bold);
+    line-height: var(--user-line-height);
+    font-size: var(--text-sm);
   }
 
-  .Card__title a {
-    color: inherit;
+  .Card__date {
+    font-size: var(--text-xs);
   }
 
-  .Card__tagline {
-    font-size: calc(12 / var(--user-font-size-root) * 1rem);
-  }
-
-  /* SP Viewport */
   @media (width < 768px) {
-    .Card__inner {
-      &.theme-outline {
-        padding: calc(var(--user-spacing) * 6);
-      }
-
-      &:not(.theme-stackSP) {
-        align-items: start;
-        gap: calc(var(--user-spacing) * 6);
-        grid-row: span 3;
-        grid-template-columns: repeat(2, 1fr);
+    .Card {
+      &:where(.directSp-row) {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 
         :where(.Card__media) {
-          grid-row: span 2;
+          grid-column: 1;
+          grid-row: 1 / span 4;
         }
 
-        :where(.Card__foot) {
-          grid-column: span 2;
+        :where(.Card__title, .Card__body, .Card__date) {
+          grid-column: 2;
         }
       }
 
-      &.theme-stackSP {
-        grid-row: span 4;
+      &:where(.directSp-row-reverse) {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
 
         :where(.Card__media) {
-          justify-content: center;
+          grid-column: 2;
+          grid-row: 1 / span 4;
+        }
+
+        :where(.Card__title, .Card__body, .Card__date) {
+          grid-column: 1;
+        }
+      }
+
+      &:where(.directSp-column-reverse) {
+        :where(.Card__media) {
+          grid-row: 4;
         }
       }
     }
   }
 
-  /* PC Viewport */
   @media (width >= 768px) {
-    .Card__inner {
-      &.theme-outline {
-        padding: calc(var(--user-spacing) * 6);
-      }
-
-      &:not(.theme-stackPC) {
-        align-items: start;
-        gap: calc(var(--user-spacing) * 6);
-        grid-row: span 3;
-        grid-template-columns: repeat(2, 1fr);
+    .Card {
+      &:where(.directPc-row) {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 
         :where(.Card__media) {
-          grid-row: span 2;
+          grid-column: 1;
+          grid-row: 1 / span 4;
         }
 
-        :where(.Card__foot) {
-          grid-column: span 2;
+        :where(.Card__title, .Card__body, .Card__date) {
+          grid-column: 2;
         }
       }
 
-      &.theme-stackPC {
-        grid-row: span 4;
+      &:where(.directPc-row-reverse) {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
 
         :where(.Card__media) {
-          justify-content: center;
+          grid-column: 2;
+          grid-row: 1 / span 4;
+        }
+
+        :where(.Card__title, .Card__body, .Card__date) {
+          grid-column: 1;
         }
       }
-    }
 
-    .Card__tagline {
-      font-size: calc(14 / var(--user-font-size-root) * 1rem);
-    }
-
-    .Card__title {
-      font-size: calc(18 / var(--user-font-size-root) * 1rem);
+      &:where(.directPc-column-reverse) {
+        :where(.Card__media) {
+          grid-row: 4;
+        }
+      }
     }
   }
 </style>

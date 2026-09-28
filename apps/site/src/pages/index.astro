@@ -1,4 +1,7 @@
 ---
+import Card from '@packages/ui/modules/Card/Card.astro';
+import Column from '@packages/ui/modules/Column/Column.astro';
+import List from '@packages/ui/modules/List/List.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import type { BreadcrumbItem } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
@@ -27,10 +30,123 @@ const pageProps: PagePropType = {
 
   <Content>
     <Section>
-      <Text>
-        <p>ある日の暮方の事である。一人の下人が、羅生門の下で雨やみを待っていた。</p>
-        <p>広い門の下には、この男のほかに誰もいない。ただ、所々丹塗の剥げた、大きな円柱に、蟋蟀が一匹とまっている。羅生門が、朱雀大路にある以上は、この男のほかにも、雨やみをする市女笠や揉烏帽子が、もう二三人はありそうなものである。それが、この男のほかには誰もいない。</p>
-      </Text>
+      <Column columnPc="4" columnSp="1">
+        <Card
+          class="Column__segment"
+          title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると、その鴉が何羽となく輪を描いて、高い鴟尾のまわりを啼きながら、飛びまわっている"
+          date="2026-09-25 08:30"
+          media={{
+            src: 'https://dummyimage.com/600x400/dddddd/fff'
+          }}
+        >
+          aaaa
+        </Card>
+
+        <Card
+          class="Column__segment"
+          title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると"
+          date="2026-09-25 08:30"
+          media={{
+            src: 'https://dummyimage.com/600x400/dddddd/fff'
+          }}
+        >
+          aaaa
+        </Card>
+
+        <Card
+          class="Column__segment"
+          title="aaa"
+          date="2026-09-25 08:30"
+          media={{
+            src: 'https://dummyimage.com/600x400/dddddd/fff'
+          }}
+        >
+          aaaa
+        </Card>
+
+        <Card
+          class="Column__segment"
+          title="aaa"
+          date="2026-09-25 08:30"
+          media={{
+            src: 'https://dummyimage.com/600x400/dddddd/fff'
+          }}
+        >
+          aaaa
+        </Card>
+      </Column>
+
+      <Column class="mt-20" columnPc="3" columnSp="1">
+        <Card
+          class="Column__segment"
+          title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると、その鴉が何羽となく輪を描いて、高い鴟尾のまわりを啼きながら、飛びまわっている"
+          date="2026-09-25 08:30"
+          media={{
+            src: 'https://dummyimage.com/600x400/dddddd/fff'
+          }}
+        >
+          <Text>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+          </Text>
+
+          <List class="mt-4">
+            <ul>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Lorem ipsum dolor sit amet</li>
+            </ul>
+          </List>
+        </Card>
+
+        <Card
+          class="Column__segment"
+          title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると"
+          date="2026-09-25 08:30"
+          media={{
+            src: 'https://dummyimage.com/600x400/dddddd/fff'
+          }}
+        >
+          aaaa
+        </Card>
+
+        <Card
+          class="Column__segment"
+          title="aaa"
+          date="2026-09-25 08:30"
+          media={{
+            src: 'https://dummyimage.com/600x400/dddddd/fff'
+          }}
+        >
+          aaaa
+        </Card>
+      </Column>
+
+      <Column class="mt-20" columnPc="2" columnSp="2" >
+        <Card
+          class="Column__segment"
+          title="その代りまた鴉がどこからか"
+          date="2026-09-25 08:30"
+          directPc="row"
+          media={{
+            src: 'https://dummyimage.com/600x400/dddddd/fff'
+          }}
+        >
+          aaaa
+        </Card>
+
+        <Card
+          class="Column__segment"
+          title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると、その鴉が何羽となく輪を描いて、高い鴟尾のまわりを啼きながら、飛びまわっている"
+          date="2026-09-25 08:30"
+          directPc="row"
+          media={{
+            src: 'https://dummyimage.com/600x400/dddddd/fff'
+          }}
+        >
+          aaaa
+        </Card>
+      </Column>
     </Section>
 
     <Section theme="dark">

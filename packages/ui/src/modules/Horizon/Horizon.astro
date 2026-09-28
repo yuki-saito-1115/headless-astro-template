@@ -1,28 +1,31 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
+/**
+ * - __このコンポーネントはmicroCMSのリッチエディタの [区切り線](https://document.microcms.io/manual/rich-editor-usage#hbfbcb364fd) と関連しています。__
+ */
 export interface Props extends HTMLAttributes<'hr'> {
+  /** 罫線のスタイルを設定できます。ただしこのPropsはリッチエディタでは利用できません。 */
   theme?: 'dotted' | 'dashed' | undefined;
 }
 
 const { theme = undefined, class: className, ...rest } = Astro.props;
-const classList = ['Horizon'];
-const slotHtml = await Astro.slots.render('default');
-let mergedClass = '';
+const attrs: Record<string, unknown> = { ...rest };
 
-// undefined のときは theme- クラスを付けない
-if (theme) {
-  classList.push(`theme-${theme}`);
+if (!Astro.slots.has('default')) {
+  throw new Error('Horizon: slotの中身が空です。');
 }
-
-mergedClass = classList.join(' ');
 ---
 
 <div
-  class:list={[mergedClass, className]}
-  {...rest}
+  class:list={[
+    'Horizon',
+    theme && `theme-${theme}`,
+    className
+  ]}
+  {...attrs}
 >
-  {slotHtml && <Fragment set:html={slotHtml} />}
+  <slot />
 </div>
 
 

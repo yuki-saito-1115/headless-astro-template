@@ -1,38 +1,27 @@
 import type { StoryArgs } from '@packages/content/types/Storybook';
+import type { Props } from '@packages/ui/modules/Text/Text.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { Props as TextPropType } from './Text.astro';
-import Text from './Text.astro';
 
 const meta = {
   component: Text,
   tags: ['autodocs'],
-  title: 'Components/Text/Text',
+  title: 'Components/Text/⭐ Text',
   parameters: {
     controls: { sort: 'requiredFirst' },
-    layout: 'padded',
-    docs: {
-      description: {
-        component: `
-* __このコンポーネントはmicroCMSのリッチエディタの [改行と段落](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[太字](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[斜体](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[下線](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[打ち消し線](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[コード](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491) と関連しています。__
-`,
-      },
-    },
   },
   argTypes: {
-    slots: {
-      control: 'object',
-      description: `microCMSのリッチエディタの [改行と段落](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[太字](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[斜体](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[下線](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[打ち消し線](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491)、[コード](https://document.microcms.io/manual/rich-editor-usage#h860d8e4491) のHTML構造のみを許容します。<br>__ただし、太字は \`strong\` 要素、斜体は \`em\` 要素として扱われるため、見た目だけではなく分脈に影響を及ぼします。使用にはくれぐれも注意してください。__`,
-      table: {
-        category: 'Slots',
-        type: { summary: 'HTMLParagraphElement' },
-        defaultValue: { summary: undefined },
-      },
-    },
+    class: { table: { disable: true } },
   },
-} satisfies Meta<StoryArgs<TextPropType>>;
+} satisfies Meta<Props>;
 
 export default meta;
-type Story = StoryObj<StoryArgs<TextPropType>>;
+
+/**
+ * ストーリーの型。このコンポーネントはPropsに `Polymorphic` を使っていないため、出力要素ごとに型を絞る必要はありません
+ * `StoryArgs` は `args` に `slots` を追加します
+ */
+type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {

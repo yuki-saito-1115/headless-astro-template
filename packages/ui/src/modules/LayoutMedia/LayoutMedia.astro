@@ -1,42 +1,49 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
 export interface Props extends HTMLAttributes<'div'> {
-  directionPc?: 'row' | 'rowReverse' | 'column' | 'columnReverse';
-  directionSp?: 'row' | 'rowReverse' | 'column' | 'columnReverse';
-  media: HTMLElement;
+  /** SP幅時のコンテンツと画像の並び方向を設定します。 */
+  directSp?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  /** PC幅時のコンテンツと画像の並び方向を設定します。 */
+  directPc?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
 }
 
 const {
-  directionPc = 'row',
-  directionSp = 'columnReverse',
-  media,
+  directSp = 'column-reverse',
+  directPc = 'row',
   class: className,
   ...rest
 } = Astro.props;
-const classList = ['LayoutMedia__inner'];
-const contentHtml = await Astro.slots.render('content');
-const mediaHtml = await Astro.slots.render('media');
-let mergedClass = '';
+const attrs: Record<string, unknown> = { ...rest };
 
-if (directionSp) {
-  classList.push(`directionSp-${directionSp}`);
+if (!Astro.slots.has('content') || !Astro.slots.has('media')) {
+  throw new Error('LayoutMedia: content slotまたはmedia slotが空です。');
 }
-
-if (directionPc) {
-  classList.push(`directionPc-${directionPc}`);
-}
-
-mergedClass = classList.join(' ');
 ---
 <div
-  class:list={['LayoutMedia', className]}
-  {...rest}
+  class:list={[
+    'LayoutMedia',
+    className,
+  ]}
+  {...attrs}
 >
-  <div class:list={[mergedClass]}>
-    {contentHtml && <div class="LayoutMedia__content" set:html={contentHtml} />}
+  <div
+    class:list={[
+      'LayoutMedia__inner',
+      directSp && `directSp-${directSp}`,
+      directPc && `directPc-${directPc}`,
+    ]}
+  >
+    <div class="LayoutMedia__segment">
+      <slot name="content" />
+    </div>
 
-    {mediaHtml && <div class="LayoutMedia__media" set:html={mediaHtml} />}
+    <div class="LayoutMedia__segment">
+      <slot name="media" />
+    </div>
   </div>
 </div>
 
@@ -51,38 +58,29 @@ mergedClass = classList.join(' ');
       grid-template-columns: minmax(0, 1fr) fit-content(50%);
     }
 
-    :where(.LayoutMedia__content, .LayoutMedia__media) {
+    :where(.LayoutMedia__segment) {
       direction: ltr;
-
-      > :is(:first-child) {
-        margin-top: 0;
-      }
-
-      > :is(:last-child) {
-        margin-bottom: 0;
-      }
     }
   }
 
   @container (max-width: 767.98px) {
     .LayoutMedia {
       :where(.LayoutMedia__inner) {
-        gap: calc(var(--user-spacing) * 4)
+        gap: calc(var(--user-spacing) * 4);
 
-        &.directionSp-rowReverse {
+        &:where(.directSp-row-reverse) {
           direction: rtl;
         }
 
-        &.directionSp-column,
-        &.directionSp-columnReverse {
+        &:where(.directSp-column, .directSp-column-reverse) {
           display: flex;
         }
 
-        &.directionSp-column {
+        &:where(.directSp-column) {
           flex-direction: column;
         }
 
-        &.directionSp-columnReverse {
+        &:where(.directSp-column-reverse) {
           flex-direction: column-reverse;
         }
       }
@@ -94,20 +92,19 @@ mergedClass = classList.join(' ');
       :where(.LayoutMedia__inner) {
         gap: calc(var(--user-spacing) * 10);
 
-        &.directionPc-rowReverse {
+        &:where(.directPc-row-reverse) {
           direction: rtl;
         }
 
-        &.directionPc-column,
-        &.directionPc-columnReverse {
+        &:where(.directPc-column, .directPc-column-reverse) {
           display: flex;
         }
 
-        &.directionPc-column {
+        &:where(.directPc-column) {
           flex-direction: column;
         }
 
-        &.directionPc-columnReverse {
+        &:where(.directPc-column-reverse) {
           flex-direction: column-reverse;
         }
       }

@@ -30,23 +30,6 @@ export const COMMON_TYPE_HEADING_VALUES = [
 export type CommonTypeHeading = (typeof COMMON_TYPE_HEADING_VALUES)[number];
 
 /**
- * アイコンの種類を指定するためのpropsの型
- */
-export const COMMON_TYPE_ICON_SPRITE_VALUES = [
-  'download',
-  'file-excel',
-  'file-pdf',
-  'file-powerpoint',
-  'file-word',
-  'file-zipper',
-  'square-arrow-up-right',
-  'xmark',
-] as const;
-/* `COMMON_TYPE_ICON_SPRITE_VALUES` を型の単一の情報源とし、propsの型定義に使用する */
-export type CommonTypeIconSprite =
-  (typeof COMMON_TYPE_ICON_SPRITE_VALUES)[number];
-
-/**
  * リンクのpropsの型
  */
 export type CommonTypeLink = {

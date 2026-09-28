@@ -1,22 +1,31 @@
 ---
+import type { Props as BadgeProps } from '@packages/ui/modules/Badge/Badge.astro';
+import Badge from '@packages/ui/modules/Badge/Badge.astro';
 import type { HTMLAttributes } from 'astro/types';
-import type { Props as BadgePropType } from '../Badge/Badge.astro';
-import Badge from '../Badge/Badge.astro';
 
+type BadgeListItemsProps = BadgeProps<'a'> | BadgeProps<'button'>;
+
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
 export interface Props extends HTMLAttributes<'ul'> {
-  datas: BadgePropType[];
+  /** 各要素は `Badge` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
+  datas: BadgeListItemsProps[];
 }
 
 const { datas, class: className, ...rest } = Astro.props;
-const classList = ['BadgeList'];
+const attrs: Record<string, unknown> = { ...rest };
 ---
 
 <div
-  class:list={[classList, className]}
-  {...rest}
+  class:list={[
+    'BadgeList',
+    className,
+  ]}
+  {...attrs}
 >
   <ul>
-    {datas.map((data: BadgePropType) => (
+    {datas.map((data: BadgeListItemsProps) => (
       <li>
         <Badge {...data} />
       </li>

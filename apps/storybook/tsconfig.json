@@ -5,6 +5,6 @@
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "../../.cache/storybook/typescript/tsconfig.tsbuildinfo",
-    "types": ["astro/client"]
+    "types": ["astro/client", "@storybook-astro/framework/shim"]
   }
 }

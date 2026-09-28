@@ -4,7 +4,6 @@ import type { BreadcrumbItem } from '@packages/ui/structures/Breadcrumb/Breadcru
 import Footer from '@packages/ui/structures/Footer/Footer.astro';
 import Header from '@packages/ui/structures/Header/Header.astro';
 import NavigationTop from '@packages/ui/structures/NavigationTop/NavigationTop.astro';
-import Svg from '@packages/ui/structures/Svg/Svg.astro';
 import Wrap from '@packages/ui/structures/Wrap/Wrap.astro';
 import PreviewNote from '../../components/structures/PreviewNote/PreviewNote.astro';
 
@@ -89,8 +88,6 @@ const jsonLdText = jsonLd && JSON.stringify(jsonLd).replace(/</g, '\\u003c');
 
       <Footer />
     </Wrap>
-
-    <Svg />
 
     <script>
       import { loadFonts } from '@packages/content/runtime/loadFonts';

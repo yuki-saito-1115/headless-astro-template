@@ -1,44 +1,69 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
-import type { Props as IconPropType } from '../Icon/Icon.astro';
-import Icon from '../Icon/Icon.astro';
+import type { Props as IconProps } from '@packages/ui/modules/Icon/Icon.astro';
+import Icon from '@packages/ui/modules/Icon/Icon.astro';
+import type { Polymorphic } from 'astro/types';
 
-export interface Props extends HTMLAttributes<'button'> {
-  afterIcon?: IconPropType;
-  beforeIcon?: IconPropType;
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
+export type Props<
+  Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button',
+> = Polymorphic<{
+  as: Tag;
+}> & {
+  /** 出力する要素を設定します。要素を選択すると、その要素の属性を指定できます。省略すると非活性状態の `"span"` になります。 */
+  as?: Tag;
+  /** テキストノード以外の使用を禁止します。 */
   label: string;
+  /** ボタンの前に表示するアイコンを設定できます。`Media/Icon` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
+  iconBefore?: IconProps;
+  /** ボタンの後に表示するアイコンを設定できます。`Media/Icon` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
+  iconAfter?: IconProps;
+  /** 配色を設定できます。セマンティクスに変化はありません。 */
   theme?: 'emphasis' | 'conversion' | 'text';
-}
+};
 
 const {
-  afterIcon,
-  beforeIcon,
+  as: Element = 'span',
   label,
-  theme,
+  iconAfter = undefined,
+  iconBefore = undefined,
+  theme = undefined,
   class: className,
   ...rest
 } = Astro.props;
-const classList = ['Button'];
-let mergedClass = '';
+const attrs: Record<string, unknown> = { ...rest };
 
-if (theme) {
-  classList.push(`theme-${theme}`);
+switch (Element) {
+  case 'a':
+    delete attrs.disabled;
+    delete attrs.type;
+    break;
+  case 'button':
+    delete attrs.href;
+    break;
+  default:
+    delete attrs.disabled;
+    delete attrs.href;
+    delete attrs.type;
+    break;
 }
-
-mergedClass = classList.join(' ');
 ---
 
-<button
-  class:list={[className, mergedClass]}
-  type={rest.type ?? 'button'}
-  {...rest}
+<Element
+  class:list={[
+    'Button',
+    theme && `theme-${theme}`,
+    className,
+  ]}
+  {...attrs}
 >
-  {beforeIcon && <Icon class:list={['Button__icon']} {...beforeIcon} />}
+  {iconBefore && <Icon class:list={['Button__icon']} {...iconBefore} />}
 
   <span class:list={['Button__content']}>{label}</span>
 
-  {afterIcon && <Icon class:list={['Button__icon']} {...afterIcon} />}
-</button>
+  {iconAfter && <Icon class:list={['Button__icon']} {...iconAfter} />}
+</Element>
 
 
 <style>
@@ -47,12 +72,6 @@ mergedClass = classList.join(' ');
     --local-background: var(--user-color-background-light);
     --local-outline: var(--user-color-primary);
 
-    /* Preflight */
-    :where(button) {
-      /* デフォルトスタイルリセットするため */
-      font: unset;
-    }
-
     align-items: center;
     background-color: var(--local-background);
     border: 1px solid var(--local-outline);
@@ -60,9 +79,13 @@ mergedClass = classList.join(' ');
     cursor: pointer;
     display: inline-flex;
     fill: var(--local-foreground);
+    /* button要素はフォントを継承しないため */
+    font: inherit;
     font-weight: normal;
     gap: 0.5em;
     justify-content: center;
+    /* button要素は文字間隔を継承しないため */
+    letter-spacing: inherit;
     line-height: 1.5;
     padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 6);
     text-align: center;
@@ -70,21 +93,21 @@ mergedClass = classList.join(' ');
     vertical-align: middle;
 
     /* 強調 */
-    &.theme-emphasis {
+    &:where(.theme-emphasis) {
       --local-foreground: var(--user-color-foreground-light);
       --local-background: var(--user-color-primary);
       --local-outline: var(--user-color-primary);
     }
 
     /* コンバージョン */
-    &.theme-conversion {
+    &:where(.theme-conversion) {
       --local-foreground: var(--user-color-foreground-light);
       --local-background: var(--user-color-danger-dark);
       --local-outline: var(--user-color-danger-dark);
     }
 
     /* テキスト */
-    &.theme-text {
+    &:where(.theme-text) {
       --local-foreground: var(--user-color-foreground-dark);
       --local-background: transparent;
       --local-outline: transparent;
@@ -96,7 +119,7 @@ mergedClass = classList.join(' ');
     }
 
     /* 非活性 */
-    &:disabled {
+    &:is(span, :disabled) {
       --local-foreground: var(--user-color-disabled-dark);
       --local-background: var(--user-color-disabled-light);
       --local-outline: var(--user-color-disabled-light);
@@ -115,9 +138,9 @@ mergedClass = classList.join(' ');
   }
 
   @media (any-hover: hover) {
-    .Button:not(:disabled) {
+    .Button:not(span, :disabled) {
       /* 強調 */
-      &.theme-emphasis {
+      &:where(.theme-emphasis) {
         &:hover {
           --local-foreground: var(--user-color-primary);
           --local-background: var(--user-color-background-light);
@@ -126,7 +149,7 @@ mergedClass = classList.join(' ');
       }
 
       /* コンバージョン */
-      &.theme-conversion {
+      &:where(.theme-conversion) {
         &:hover {
           --local-foreground: var(--user-color-danger-dark);
           --local-background: var(--user-color-background-light);
@@ -135,7 +158,7 @@ mergedClass = classList.join(' ');
       }
 
       /* テキスト */
-      &.theme-text {
+      &:where(.theme-text) {
         &:hover {
           --local-foreground: var(--user-color-primary);
           --local-background: transparent;

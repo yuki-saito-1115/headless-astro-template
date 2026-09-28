@@ -1,10 +1,14 @@
 ---
-import type { CommonTypeColumn } from '@packages/content/types/CommonType';
 import type { HTMLAttributes } from 'astro/types';
 
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
 export interface Props extends HTMLAttributes<'div'> {
-  columnPc?: CommonTypeColumn;
-  columnSp?: CommonTypeColumn;
+  /** PCサイズでの列数を指定します。 */
+  columnPc?: '1' | '2' | '3' | '4' | '5' | 'auto';
+  /** SPサイズでの列数を指定します。 */
+  columnSp?: '1' | '2' | '3' | '4' | '5' | 'auto';
 }
 
 const {
@@ -13,26 +17,29 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-const classList = ['Column__inner'];
-const slotHtml = await Astro.slots.render('default');
-let mergedClass = '';
+const attrs: Record<string, unknown> = { ...rest };
 
-if (columnPc) {
-  classList.push(`columnPc-${columnPc}`);
+if (!Astro.slots.has('default')) {
+  throw new Error('Column: slotの中身が空です。');
 }
-
-if (columnSp) {
-  classList.push(`columnSp-${columnSp}`);
-}
-
-mergedClass = classList.join(' ');
 ---
 
 <div
-  class:list={['Column', className]}
-  {...rest}
+  class:list={[
+    'Column',
+    className
+  ]}
+  {...attrs}
 >
-  {slotHtml && <div class:list={[mergedClass]} set:html={slotHtml} />}
+  <div
+    class:list={[
+      'Column__inner',
+      columnPc && `columnPc-${columnPc}`,
+      columnSp && `columnSp-${columnSp}`,
+    ]}
+  >
+    <slot />
+  </div>
 </div>
 
 

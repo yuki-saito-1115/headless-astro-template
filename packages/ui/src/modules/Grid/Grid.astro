@@ -1,18 +1,31 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
 export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
-const classList = ['Grid'];
-const slotHtml = await Astro.slots.render('default');
+const attrs: Record<string, unknown> = { ...rest };
+
+if (!Astro.slots.has('default')) {
+  throw new Error('Grid: slotの中身が空です。');
+}
 ---
 
 <div
-  class:list={[classList, className]}
-  {...rest}
+  class:list={[
+    'Grid',
+    className
+  ]}
+  {...attrs}
 >
-  {slotHtml && <div class:list={['Grid__inner']} set:html={slotHtml} />}
+  <div
+    class:list={['Grid__inner']}
+  >
+    <slot />
+  </div>
 </div>
 
 
