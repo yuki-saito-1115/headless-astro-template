@@ -15,11 +15,7 @@ const config = {
     name: '@storybook-astro/framework',
     options: {
       sanitization: {
-        sanitizeHtml: {
-          allowedAttributes: {
-            figure: ['style'],
-          },
-        },
+        enabled: false,
       },
     },
   },

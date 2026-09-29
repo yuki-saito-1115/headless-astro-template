@@ -1,6 +1,6 @@
 ---
 import Card from '@packages/ui/modules/Card/Card.astro';
-import Column from '@packages/ui/modules/Column/Column.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
 import List from '@packages/ui/modules/List/List.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import type { BreadcrumbItem } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
@@ -30,9 +30,9 @@ const pageProps: PagePropType = {
 
   <Content>
     <Section>
-      <Column columnPc="4" columnSp="1">
+      <LayoutColumn columnPc="4" columnSp="1">
         <Card
-          class="Column__segment"
+          class="LayoutColumn__segment"
           title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると、その鴉が何羽となく輪を描いて、高い鴟尾のまわりを啼きながら、飛びまわっている"
           date="2026-09-25 08:30"
           media={{
@@ -43,7 +43,7 @@ const pageProps: PagePropType = {
         </Card>
 
         <Card
-          class="Column__segment"
+          class="LayoutColumn__segment"
           title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると"
           date="2026-09-25 08:30"
           media={{
@@ -54,7 +54,7 @@ const pageProps: PagePropType = {
         </Card>
 
         <Card
-          class="Column__segment"
+          class="LayoutColumn__segment"
           title="aaa"
           date="2026-09-25 08:30"
           media={{
@@ -65,7 +65,7 @@ const pageProps: PagePropType = {
         </Card>
 
         <Card
-          class="Column__segment"
+          class="LayoutColumn__segment"
           title="aaa"
           date="2026-09-25 08:30"
           media={{
@@ -74,11 +74,11 @@ const pageProps: PagePropType = {
         >
           aaaa
         </Card>
-      </Column>
+      </LayoutColumn>
 
-      <Column class="mt-20" columnPc="3" columnSp="1">
+      <LayoutColumn class="mt-20" columnPc="3" columnSp="1">
         <Card
-          class="Column__segment"
+          class="LayoutColumn__segment"
           title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると、その鴉が何羽となく輪を描いて、高い鴟尾のまわりを啼きながら、飛びまわっている"
           date="2026-09-25 08:30"
           media={{
@@ -100,7 +100,7 @@ const pageProps: PagePropType = {
         </Card>
 
         <Card
-          class="Column__segment"
+          class="LayoutColumn__segment"
           title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると"
           date="2026-09-25 08:30"
           media={{
@@ -111,7 +111,7 @@ const pageProps: PagePropType = {
         </Card>
 
         <Card
-          class="Column__segment"
+          class="LayoutColumn__segment"
           title="aaa"
           date="2026-09-25 08:30"
           media={{
@@ -120,11 +120,11 @@ const pageProps: PagePropType = {
         >
           aaaa
         </Card>
-      </Column>
+      </LayoutColumn>
 
-      <Column class="mt-20" columnPc="2" columnSp="2" >
+      <LayoutColumn class="mt-20" columnPc="2" columnSp="2" >
         <Card
-          class="Column__segment"
+          class="LayoutColumn__segment"
           title="その代りまた鴉がどこからか"
           date="2026-09-25 08:30"
           directPc="row"
@@ -136,7 +136,7 @@ const pageProps: PagePropType = {
         </Card>
 
         <Card
-          class="Column__segment"
+          class="LayoutColumn__segment"
           title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると、その鴉が何羽となく輪を描いて、高い鴟尾のまわりを啼きながら、飛びまわっている"
           date="2026-09-25 08:30"
           directPc="row"
@@ -146,7 +146,7 @@ const pageProps: PagePropType = {
         >
           aaaa
         </Card>
-      </Column>
+      </LayoutColumn>
     </Section>
 
     <Section theme="dark">

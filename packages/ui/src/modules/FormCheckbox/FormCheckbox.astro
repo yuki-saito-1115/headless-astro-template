@@ -1,0 +1,161 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
+export interface Props extends HTMLAttributes<'input'> {
+  /** フォームのIDを設定します。 */
+  id: string;
+  /** フォームのチェック状態を設定します。 */
+  checked?: boolean;
+  /** フォームを無効化します。 */
+  disabled?: boolean;
+  /** フォームのラベルを設定します。 */
+  label?: string;
+  /** フォームとラベルの位置を反転します。 */
+  reversed?: boolean;
+  /** フォームの状態を設定します。 */
+  state?: 'valid' | 'invalid';
+}
+
+const {
+  id,
+  checked = false,
+  disabled = false,
+  label,
+  reversed = false,
+  state,
+  class: className,
+  ...rest
+} = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
+---
+
+<label
+  for={id}
+  class:list={[
+    'FormCheckbox',
+    reversed && 'theme-reverse',
+    state && `is-${state}`,
+    className
+  ]}
+>
+  <input
+    id={id}
+    class:list={['FormCheckbox__item']}
+    type="checkbox"
+    checked={checked}
+    disabled={disabled}
+    {...attrs}
+  />
+  {label && <span class:list={['FormCheckbox__text']}>{label}</span>}
+</label>
+
+
+<style>
+  .FormCheckbox {
+    --local-foreground: var(--user-color-primary);
+    --local-background: var(--color-white);
+    --local-outline: var(--user-color-outline-dark);
+    --local-iconSize: 1em;
+
+    display: inline-flex;
+    position: relative;
+
+    &::before,
+    &::after {
+      border: 1px solid transparent;
+      content: '';
+      display: block;
+      height: var(--local-iconSize);
+      left: 0;
+      position: absolute;
+      top: 0.25em;
+      width: var(--local-iconSize);
+    }
+
+    /* outside */
+    &::before {
+      background-color: var(--local-background);
+      border-color: var(--local-outline);
+    }
+
+    /* inside */
+    &::after {
+      background-color: var(--local-foreground);
+      mask-image: url('/assets/images/icons/check.svg');
+      mask-repeat: no-repeat;
+      mask-size: cover;
+      opacity: 0;
+      transform: scale(0.6);
+    }
+
+    &.theme-reverse {
+      &::before,
+      &::after {
+        left: auto;
+        right: 0;
+      }
+
+      :where(.FormCheckbox__text) {
+        padding-left: 0;
+        padding-right: calc(var(--local-iconSize) + var(--user-spacing) * 2);
+      }
+    }
+
+    &.is-invalid {
+      --local-foreground: var(--user-color-danger-dark);
+      --local-background: var(--user-color-danger-light);
+      --local-outline: var(--user-color-danger-dark);
+
+      color: var(--local-foreground);
+    }
+
+    &.is-valid {
+      --local-foreground: var(--user-color-success-dark);
+      --local-background: var(--user-color-success-light);
+      --local-outline: var(--user-color-success-dark);
+
+      color: var(--local-foreground);
+    }
+
+    &:has(:disabled) {
+      --local-foreground: var(--user-color-disabled-dark);
+      --local-background: var(--user-color-disabled-light);
+      --local-outline: var(--user-color-disabled-light);
+
+      cursor: not-allowed;
+      color: var(--local-foreground);
+    }
+
+    &:has(:checked) {
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    &:has(:focus-visible) {
+      &::before {
+        border: 0;
+        outline: medium solid currentColor;
+      }
+    }
+
+    :where(.FormCheckbox__item) {
+      appearance: none;
+      height: 1px;
+      left: 10px;
+      opacity: 0;
+      position: absolute;
+      top: 10px;
+      width: 1px;
+    }
+
+    :where(.FormCheckbox__text) {
+      color: currentColor;
+      padding-left: calc(var(--local-iconSize) + var(--user-spacing) * 2);
+      position: relative;
+    }
+  }
+</style>

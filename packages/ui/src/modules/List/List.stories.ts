@@ -1,8 +1,7 @@
-import { COMMON_TYPE_COLUMN_VALUES } from '@packages/content/types/CommonType';
 import type { StoryArgs } from '@packages/content/types/Storybook';
+import type { Props } from '@packages/ui/modules/List/List.astro';
+import List from '@packages/ui/modules/List/List.astro';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { Props as ListPropType } from './List.astro';
-import List from './List.astro';
 
 const meta = {
   component: List,
@@ -10,50 +9,19 @@ const meta = {
   title: 'Components/List/List',
   parameters: {
     controls: { sort: 'requiredFirst' },
-    layout: 'padded',
-    docs: {
-      description: {
-        component: `
-* __このコンポーネントはmicroCMSのリッチエディタの [リスト](https://document.microcms.io/manual/rich-editor-usage#h4334dcd5e5) と関連しています。__
-`,
-      },
-    },
   },
   argTypes: {
-    slots: {
-      control: 'object',
-      description: `microCMSのリッチエディタの [リスト](https://document.microcms.io/manual/rich-editor-usage#h4334dcd5e5) のHTML構造のみを許容します。`,
-      table: {
-        category: 'Slots',
-        type: { summary: 'HTMLUListElement' },
-        defaultValue: { summary: undefined },
-      },
-    },
-    columnPc: {
-      control: 'select',
-      options: [...COMMON_TYPE_COLUMN_VALUES, undefined],
-      description: `PCサイズでの列数を指定します。<br>__このpropsはリッチエディタでは利用できません。__`,
-      table: {
-        category: 'Props',
-        type: { summary: 'CommonTypeColumn | undefined' },
-        defaultValue: { summary: '1' },
-      },
-    },
-    columnSp: {
-      control: 'select',
-      options: [...COMMON_TYPE_COLUMN_VALUES, undefined],
-      description: `SPサイズでの列数を指定します。<br>__このpropsはリッチエディタでは利用できません。__`,
-      table: {
-        category: 'Props',
-        type: { summary: 'CommonTypeColumn | undefined' },
-        defaultValue: { summary: '1' },
-      },
-    },
+    class: { table: { disable: true } },
   },
-} satisfies Meta<StoryArgs<ListPropType>>;
+} satisfies Meta<Props>;
 
 export default meta;
-type Story = StoryObj<StoryArgs<ListPropType>>;
+
+/**
+ * ストーリーの型。このコンポーネントはPropsに `Polymorphic` を使っていないため、出力要素ごとに型を絞る必要はありません
+ * `StoryArgs` は `args` に `slots` を追加します
+ */
+type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
@@ -68,6 +36,102 @@ export const Default: Story = {
   },
 };
 
+export const Ordered: Story = {
+  args: {
+    slots: {
+      default: `<ol>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Lorem ipsum dolor sit amet</li>
+</ol>`,
+    },
+  },
+};
+
+export const Note: Story = {
+  args: {
+    note: true,
+    slots: {
+      default: `<ul>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Lorem ipsum dolor sit amet</li>
+</ul>`,
+    },
+  },
+};
+
+export const OrderedNote: Story = {
+  args: {
+    note: true,
+    slots: {
+      default: `<ol>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Lorem ipsum dolor sit amet</li>
+</ol>`,
+    },
+  },
+};
+
+export const OptionalNumber: Story = {
+  args: {
+    slots: {
+      default: `<ul>
+<li>Lorem ipsum dolor sit amet</li>
+<li value="88">Lorem ipsum dolor sit amet</li>
+<li value="888">Lorem ipsum dolor sit amet</li>
+</ul>
+<ol>
+<li>Lorem ipsum dolor sit amet</li>
+<li value="88">Lorem ipsum dolor sit amet</li>
+<li value="888">Lorem ipsum dolor sit amet</li>
+</ol>`,
+    },
+  },
+};
+
+export const OptionalNumberNote: Story = {
+  args: {
+    note: true,
+    slots: {
+      default: `<ul>
+<li>Lorem ipsum dolor sit amet</li>
+<li value="88">Lorem ipsum dolor sit amet</li>
+<li value="888">Lorem ipsum dolor sit amet</li>
+</ul>
+<ol>
+<li>Lorem ipsum dolor sit amet</li>
+<li value="88">Lorem ipsum dolor sit amet</li>
+<li value="888">Lorem ipsum dolor sit amet</li>
+</ol>`,
+    },
+  },
+};
+
+export const OptionalMarker: Story = {
+  args: {
+    slots: {
+      default: `<ul>
+<li>Lorem ipsum dolor sit amet</li>
+<li value="①">Lorem ipsum dolor sit amet</li>
+<li value="③">Lorem ipsum dolor sit amet</li>
+<li value="④">Lorem ipsum dolor sit amet</li>
+<li value="⑨">Lorem ipsum dolor sit amet</li>
+</ul>
+<ol>
+<li value="①">Lorem ipsum dolor sit amet</li>
+<li value="③">Lorem ipsum dolor sit amet</li>
+<li value="④">Lorem ipsum dolor sit amet</li>
+<li value="⑨">Lorem ipsum dolor sit amet</li>
+</ol>`,
+    },
+  },
+};
+
 export const Nested: Story = {
   args: {
     slots: {
@@ -75,63 +139,19 @@ export const Nested: Story = {
 <li>Lorem ipsum dolor sit amet</li>
 <li>Lorem ipsum dolor sit amet<ul>
 <li>Lorem ipsum dolor sit amet</li>
-<li>Lorem ipsum dolor sit amet<ul>
-<li>Lorem ipsum dolor sit amet</li>
 <li>Lorem ipsum dolor sit amet</li>
 <li>Lorem ipsum dolor sit amet</li>
 <li>Lorem ipsum dolor sit amet</li>
 </ul></li>
 <li>Lorem ipsum dolor sit amet</li>
-<li>Lorem ipsum dolor sit amet</li>
-</ul></li>
-<li>Lorem ipsum dolor sit amet</li>
-<li>Lorem ipsum dolor sit amet</li>
-</ul>`,
-    },
-  },
-};
-
-export const Column2: Story = {
-  args: {
-    slots: {
-      default: `<ul>
+<li>Lorem ipsum dolor sit amet<ol>
 <li>Lorem ipsum dolor sit amet</li>
 <li>Lorem ipsum dolor sit amet</li>
 <li>Lorem ipsum dolor sit amet</li>
+<li>Lorem ipsum dolor sit amet</li>
+</ol></li>
 <li>Lorem ipsum dolor sit amet</li>
 </ul>`,
     },
-    columnPc: '2',
-    columnSp: '2',
-  },
-};
-
-export const Column3: Story = {
-  args: {
-    slots: {
-      default: `<ul>
-<li>Lorem ipsum dolor sit amet</li>
-<li>Lorem ipsum dolor sit amet</li>
-<li>Lorem ipsum dolor sit amet</li>
-<li>Lorem ipsum dolor sit amet</li>
-</ul>`,
-    },
-    columnPc: '3',
-    columnSp: '2',
-  },
-};
-
-export const Column4: Story = {
-  args: {
-    slots: {
-      default: `<ul>
-<li>Lorem ipsum dolor sit amet</li>
-<li>Lorem ipsum dolor sit amet</li>
-<li>Lorem ipsum dolor sit amet</li>
-<li>Lorem ipsum dolor sit amet</li>
-</ul>`,
-    },
-    columnPc: '4',
-    columnSp: '2',
   },
 };

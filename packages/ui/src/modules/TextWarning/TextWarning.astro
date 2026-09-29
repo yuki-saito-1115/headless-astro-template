@@ -1,0 +1,59 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
+export interface Props extends HTMLAttributes<'div'> {}
+
+const { class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
+
+if (!Astro.slots.has('default')) {
+  throw new Error('TextWarning: slotの中身が空です。');
+}
+---
+
+<div
+  class:list={[
+    'TextWarning',
+    className
+  ]}
+  {...attrs}
+>
+  <slot />
+</div>
+
+
+<style>
+  .TextWarning {
+    color: var(--user-color-danger-dark);
+    font-weight: var(--user-font-weight-bold);
+    line-height: var(--user-line-height);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--user-spacing) * 4);
+    padding-left: 1.5em;
+    position: relative;
+
+    /* icon */
+    &::before {
+      background-color: currentColor;
+      content: '';
+      display: block;
+      height: 1em;
+      left: 0;
+      mask-image: url('/assets/images/icons/triangle-exclamation.svg');
+      mask-repeat: no-repeat;
+      mask-size: cover;
+      position: absolute;
+      top: 0.3em;
+      width: 1em;
+    }
+
+    :where(div, p) {
+      flex: 0 0 auto;
+      font-weight: bold;
+    }
+  }
+</style>

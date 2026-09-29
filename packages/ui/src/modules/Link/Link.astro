@@ -1,17 +1,27 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
+/**
+ * - __このコンポーネントはmicroCMSのリッチエディタの [リンク](https://document.microcms.io/manual/rich-editor-usage#he4ba96ecb5) と関連しています。__
+ */
 export interface Props extends HTMLAttributes<'span'> {}
 
 const { class: className, ...rest } = Astro.props;
-const slotHtml = await Astro.slots.render('default');
+const attrs: Record<string, unknown> = { ...rest };
+
+if (!Astro.slots.has('default')) {
+  throw new Error('Link: slotの中身が空です。');
+}
 ---
 
 <span
-  class:list={[className, 'Link']}
-  {...rest}
+  class:list={[
+    'Link',
+    className
+  ]}
+  {...attrs}
 >
-  {slotHtml && <Fragment set:html={slotHtml} />}
+  <slot />
 </span>
 
 

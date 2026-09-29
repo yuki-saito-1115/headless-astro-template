@@ -1,0 +1,42 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
+export interface Props extends HTMLAttributes<'div'> {}
+
+const { class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
+
+if (!Astro.slots.has('default')) {
+  throw new Error('TextLead: slotの中身が空です。');
+}
+---
+
+<div
+  class:list={[
+    'TextLead',
+    className
+  ]}
+  {...attrs}
+>
+  <slot />
+</div>
+
+
+<style>
+  .TextLead {
+    font-size: var(--text-2xl);
+    font-weight: var(--user-font-weight-bold);
+    line-height: var(--user-line-height);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--user-spacing) * 4);
+
+    :where(div, p) {
+      flex: 0 0 auto;
+      font-weight: bold;
+    }
+  }
+</style>

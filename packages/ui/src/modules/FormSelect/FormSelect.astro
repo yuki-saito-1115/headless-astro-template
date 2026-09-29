@@ -1,0 +1,172 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
+export interface Props extends HTMLAttributes<'select'> {
+  /** フォームを無効化します。 */
+  disabled?: boolean;
+  /** 選択肢を設定します。 */
+  options: HTMLAttributes<'option'>[];
+  /** フォームのサイズを設定します。 */
+  size?: 'small' | 'medium' | 'large' | 'full';
+  /** フォームの状態を設定します。 */
+  state?: 'valid' | 'invalid';
+}
+
+const {
+  disabled = false,
+  options,
+  size,
+  state,
+  class: className,
+  ...rest
+} = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
+---
+
+<span
+  class:list={[
+    'FormSelect',
+    size && `theme-${size}`,
+    state && `is-${state}`,
+    className,
+  ]}
+>
+  <select
+    class:list={['FormSelect__item']}
+    disabled={disabled}
+    {...attrs}
+  >
+    {options.map((option) => (
+      <option {...option}>{option.label}</option>
+    ))}
+  </select>
+</span>
+
+
+<style>
+  .FormSelect {
+    --local-foreground: var(--user-color-foreground-dark);
+    --local-background: var(--user-color-background-light);
+    --local-outline: var(--user-color-outline-dark);
+    --local-width: auto;
+    --local-iconSize: 1em;
+
+    /* Preflight */
+    :where(.FormSelect__item) {
+      /* デフォルトスタイルリセットするため */
+      font: unset;
+
+      /* ブラウザごとの差異を統一するため */
+      color: currentColor;
+      appearance: none;
+
+      /* SPでフォーカス時にズームしないために16pxに固定 */
+      font-size: var(--text-base); /* 2 */
+
+      /* 要素の中のテキストの高さを限定するため */
+      line-height: 1;
+      border-radius: 0;
+
+      /* ブラウザごとの差異を統一しデフォルトスタイルリセットするため */
+      ::placeholder {
+        font-style: normal;
+        color: var(--color-gray-400);
+        opacity: 1;
+      }
+    }
+
+    border: 1px solid var(--local-outline);
+    display: inline-flex;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    width: var(--local-width);
+
+    /* icon */
+    &::before {
+      background-color: currentColor;
+      content: '';
+      height: var(--local-iconSize);
+      mask-image: url('/assets/images/icons/angle-down.svg');
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: 70%;
+      pointer-events: none;
+      position: absolute;
+      right: calc(var(--user-spacing) * 2);
+      top: 50%;
+      transform: translateY(-50%);
+      width: var(--local-iconSize);
+    }
+
+    &:focus-within {
+      outline: medium solid currentColor;
+    }
+
+    :where(.FormSelect__item) {
+      appearance: none;
+      background-color: var(--local-background);
+      border: 0;
+      color: var(--local-foreground);
+      display: block;
+      outline: none;
+      padding:
+        calc(var(--user-spacing) * 1)
+        calc(var(--local-iconSize) + (var(--user-spacing) * 2 * 2))
+        calc(var(--user-spacing) * 1)
+        calc(var(--user-spacing) * 2);
+      width: 100%;
+    }
+
+    &.is-valid,
+    :global(&.is-valid) {
+      --local-foreground: var(--user-color-success-dark);
+      --local-background: var(--user-color-success-light);
+      --local-outline: var(--user-color-success-dark);
+    }
+
+    &.is-invalid,
+    :global(&.is-invalid) {
+      --local-foreground: var(--user-color-danger-dark);
+      --local-background: var(--user-color-danger-light);
+      --local-outline: var(--user-color-danger-dark);
+
+      &::before {
+        color: var(--local-foreground);
+      }
+    }
+
+    &:has(:disabled) {
+      --local-foreground: var(--user-color-disabled-dark);
+      --local-background: var(--user-color-disabled-light);
+      --local-outline: var(--user-color-disabled-light);
+
+      :is(&::before) {
+        color: var(--local-foreground);
+      }
+
+      :is(.FormSelect__item) {
+        cursor: not-allowed;
+      }
+    }
+
+    &.theme-small {
+      --local-width: 25%;
+    }
+
+    &.theme-medium {
+      --local-width: 50%;
+    }
+
+    &.theme-large {
+      --local-width: 75%;
+    }
+
+    &.theme-full {
+      --local-width: 100%;
+    }
+  }
+</style>

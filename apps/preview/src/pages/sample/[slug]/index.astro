@@ -4,7 +4,7 @@ import {
   getSampleList,
 } from '@packages/content/build/getSample';
 import SampleDetail from '@packages/ui/microCMS/sample/SampleDetail.astro';
-import Heading2 from '@packages/ui/modules/Heading2/Heading2.astro';
+import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
 import type { BreadcrumbItem } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
@@ -47,7 +47,7 @@ const pageProps: PagePropType = {
 
   <Content>
     <Section>
-      <Heading2><h2>記事詳細サンプル</h2></Heading2>
+      <HeadingLevel2><h2>記事詳細サンプル</h2></HeadingLevel2>
 
       <SampleDetail
         sample={sample}

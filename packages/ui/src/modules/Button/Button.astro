@@ -1,6 +1,6 @@
 ---
-import type { Props as IconProps } from '@packages/ui/modules/Icon/Icon.astro';
-import Icon from '@packages/ui/modules/Icon/Icon.astro';
+import type { Props as MediaIconProps } from '@packages/ui/modules/MediaIcon/MediaIcon.astro';
+import MediaIcon from '@packages/ui/modules/MediaIcon/MediaIcon.astro';
 import type { Polymorphic } from 'astro/types';
 
 /**
@@ -16,9 +16,9 @@ export type Props<
   /** テキストノード以外の使用を禁止します。 */
   label: string;
   /** ボタンの前に表示するアイコンを設定できます。`Media/Icon` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
-  iconBefore?: IconProps;
+  iconBefore?: MediaIconProps;
   /** ボタンの後に表示するアイコンを設定できます。`Media/Icon` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
-  iconAfter?: IconProps;
+  iconAfter?: MediaIconProps;
   /** 配色を設定できます。セマンティクスに変化はありません。 */
   theme?: 'emphasis' | 'conversion' | 'text';
 };
@@ -58,11 +58,11 @@ switch (Element) {
   ]}
   {...attrs}
 >
-  {iconBefore && <Icon class:list={['Button__icon']} {...iconBefore} />}
+  {iconBefore && <MediaIcon class:list={['Button__icon']} {...iconBefore} />}
 
   <span class:list={['Button__content']}>{label}</span>
 
-  {iconAfter && <Icon class:list={['Button__icon']} {...iconAfter} />}
+  {iconAfter && <MediaIcon class:list={['Button__icon']} {...iconAfter} />}
 </Element>
 
 

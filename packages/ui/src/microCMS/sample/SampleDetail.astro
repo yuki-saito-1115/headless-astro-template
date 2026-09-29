@@ -1,7 +1,7 @@
 ---
 import type { SampleType } from '@packages/content/build/microcms';
 import type { HTMLAttributes } from 'astro/types';
-import Heading3 from '../../modules/Heading3/Heading3.astro';
+import HeadingLevel3 from '../../modules/HeadingLevel3/HeadingLevel3.astro';
 
 export interface Props extends HTMLAttributes<'div'> {
   sample: SampleType | null;
@@ -17,7 +17,7 @@ const classList = ['SampleDetail'];
   class:list={[classList, className]}
   {...rest}
 >
-  <Heading3 class="mt-10 md:mt-20">{sample?.title}</Heading3>
+  <HeadingLevel3 class="mt-10 md:mt-20">{sample?.title}</HeadingLevel3>
 
   <div class="mt-5 md:mt-10">{sample?.category}</div>
 

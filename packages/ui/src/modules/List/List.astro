@@ -1,154 +1,148 @@
 ---
-import type { CommonTypeColumn } from '@packages/content/types/CommonType';
 import type { HTMLAttributes } from 'astro/types';
 
+/**
+ * -  __このコンポーネントはmicroCMSのリッチエディタの [リスト](https://document.microcms.io/manual/rich-editor-usage#h4334dcd5e5)、[番号付きリスト](https://document.microcms.io/manual/rich-editor-usage#h8baf1c3620) と関連しています。__
+ */
 export interface Props extends HTMLAttributes<'div'> {
-  columnPc?: CommonTypeColumn;
-  columnSp?: CommonTypeColumn;
+  /** PCサイズでの列数を指定します。 */
+  columnPc?: '1' | '2' | '3' | '4' | '5' | 'auto';
+  /** SPサイズでの列数を指定します。 */
+  columnSp?: '1' | '2' | '3' | '4' | '5' | 'auto';
+  /** スタイルを設定できます。ただしこのPropsはリッチエディタでは利用できません。 */
+  note?: boolean;
 }
 
 const {
   columnPc = '1',
   columnSp = '1',
+  note = false,
   class: className,
   ...rest
 } = Astro.props;
-const classList = ['List'];
-const slotHtml = await Astro.slots.render('default');
+const attrs: Record<string, unknown> = { ...rest };
 
-if (columnPc) {
-  classList.push(`columnPc-${columnPc}`);
+if (!Astro.slots.has('default')) {
+  throw new Error('List: slotの中身が空です。');
 }
-
-if (columnSp) {
-  classList.push(`columnSp-${columnSp}`);
-}
-
-const mergedClass = classList.join(' ');
 ---
 
 <div
-  class:list={[mergedClass, className]}
-  {...rest}
+  class:list={[
+    'List',
+    note && 'theme-note',
+    columnPc && `columnPc-${columnPc}`,
+    columnSp && `columnSp-${columnSp}`,
+    className
+  ]}
+  {...attrs}
 >
-  {slotHtml && <Fragment set:html={slotHtml} />}
+  <slot />
 </div>
 
 
 <style>
   .List {
+    --local-item-gap-x: calc(var(--user-spacing) * 6);
+    --local-item-gap-y: calc(var(--user-spacing) * 2);
+
     container-type: inline-size;
 
-    :where(ul) {
+    :where(ol, ul) {
       display: grid;
+      gap: var(--local-item-gap-y) var(--local-item-gap-x);
       padding-left: 2em;
 
-      :where(li) {
-        list-style: none;
-        height: 100%;
-        list-style: none;
-        padding-left: 1.25em;
-        position: relative;
+      :where(ol, ul) {
+        margin-top: var(--local-item-gap-y);
+      }
+    }
 
-        /* arrow */
+    :where(ol, ul) {
+      counter-reset: list-item;
+    }
+
+    :where(li) {
+      height: 100%;
+      position: relative;
+
+      &[value] {
+        list-style: none;
+
         &::before {
+          content: attr(value) '. ';
+          left: -2em;
+          position: absolute;
+          top: 0;
+        }
+      }
+    }
+
+    :where(ul) {
+      > :where(li) {
+        list-style: none;
+
+        &:not([value])::before {
           background-color: var(--user-color-primary);
           border-radius: 50%;
           content: '';
           display: block;
           height: 6px;
-          left: 0;
+          left: -1em;
           position: absolute;
           top: 0.75em;
           width: 6px;
         }
+      }
+    }
 
-        > :is(:first-child) {
-          margin-top: 0;
-        }
+    :where(ol) {
+      > :where(li) {
+        list-style: none;
 
-        > :is(:last-child) {
-          margin-bottom: 0;
+        &:not([value]) {
+          counter-increment: list-item;
+
+          &::before {
+            content: counter(list-item) '. ';
+            left: -2em;
+            position: absolute;
+            top: 0;
+          }
         }
       }
     }
-  }
 
-  @container (max-width: 767.99px) {
-    .List {
+    &.theme-note {
       :where(ul) {
-        gap: calc(var(--user-spacing) * 2)  calc(var(--user-spacing) * 6);
-        margin-top: calc(var(--user-spacing) * 2) !important;
-      }
+        > :where(li) {
+          font-size: var(--font-size-xs);
 
-      &.columnSp-2 {
-        :where(ul) {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          &:not([value])::before {
+            all: revert;
+            content: '※';
+            left: -1.2em;
+            position: absolute;
+            top: 0;
+          }
         }
       }
 
-      &.columnSp-3 {
-        :where(ul) {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-      }
+      :where(ol) {
+        > :where(li) {
+          font-size: var(--font-size-xs);
 
-      &.columnSp-4 {
-        :where(ul) {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-        }
-      }
+          &:not([value])::before {
+            content: '※' counter(list-item) ' ';
+            left: -2em;
+          }
 
-      &.columnSp-auto {
-        :where(ul) {
-          display: flex;
-          flex-wrap: wrap;
-
-          :where(li) {
-            flex: 0 0 auto;
-            max-width: 100%;
+          &[value]::before {
+            content: '※' attr(value) ' ';
           }
         }
       }
     }
   }
 
-  @container (min-width: 768px) {
-    .List {
-      :where(ul) {
-        gap: calc(var(--user-spacing) * 2)  calc(var(--user-spacing) * 8);
-        margin-top: calc(var(--user-spacing) * 2) !important;
-      }
-
-      &.columnPc-2 {
-        :where(ul) {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-      }
-
-      &.columnPc-3 {
-        :where(ul) {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-      }
-
-      &.columnPc-4 {
-        :where(ul) {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-        }
-      }
-
-      &.columnPc-auto {
-        :where(ul) {
-          display: flex;
-          flex-wrap: wrap;
-
-          :where(li) {
-            flex: 0 0 auto;
-            max-width: 100%;
-          }
-        }
-      }
-    }
-  }
 </style>

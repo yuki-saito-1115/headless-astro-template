@@ -1,0 +1,74 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+/**
+ * - __このコンポーネントはmicroCMSのリッチエディタの [見出し、段落](https://document.microcms.io/manual/rich-editor-usage#hdec08ed8b7) と関連しています。__
+ */
+export interface Props extends HTMLAttributes<'div'> {}
+
+const { class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
+
+if (!Astro.slots.has('default')) {
+  throw new Error('HeadingLevel4: slotの中身が空です。');
+}
+---
+
+<div
+  class:list={['HeadingLevel4', className]}
+  {...attrs}
+>
+  <slot />
+</div>
+
+
+<style>
+  .HeadingLevel4 {
+    :where(h1, h2, h3, h4, h5, h6) {
+      font-weight: var(--user-font-weight-bold);
+      color: var(--user-color-foreground-dark);
+      padding-left: calc(var(--user-spacing) * 6);
+      position: relative;
+      line-height: var(--text-lg--line-height);
+      font-size: var(--text-lg);
+
+      /* marker */
+      &::before {
+        background-color: var(--user-color-primary);
+        content: '';
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 5px;
+      }
+
+      :where(a) {
+        color: var(--user-color-primary);
+        text-decoration: none;
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .HeadingLevel4 {
+      :where(h1, h2, h3, h4, h5, h6) {
+        line-height: var(--text-xl--line-height);
+        font-size: var(--text-xl);
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .HeadingLevel4 {
+      :where(h1, h2, h3, h4, h5, h6) {
+        :where(a) {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+</style>
