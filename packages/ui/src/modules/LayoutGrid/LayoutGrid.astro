@@ -38,17 +38,9 @@ if (!Astro.slots.has('default')) {
       grid-template-columns: repeat(12, 1fr);
     }
 
-    :where(.LayoutGrid__segment) {
+    :global(:where(.LayoutGrid__segment)) {
       list-style: none;
       height: 100%;
-
-      > :is(:first-child) {
-        margin-top: 0;
-      }
-
-      > :is(:last-child) {
-        margin-bottom: 0;
-      }
     }
   }
 
@@ -58,52 +50,52 @@ if (!Astro.slots.has('default')) {
         gap: calc(var(--user-spacing) * 6);
       }
 
-      :where(.LayoutGrid__segment) {
-        &.gridSp-1 {
+      :global(:where(.LayoutGrid__segment)) {
+        &:where(.gridSp-1) {
           grid-column: span 1;
         }
 
-        &.gridSp-2 {
+        &:where(.gridSp-2) {
           grid-column: span 2;
         }
 
-        &.gridSp-3 {
+        &:where(.gridSp-3) {
           grid-column: span 3;
         }
 
-        &.gridSp-4 {
+        &:where(.gridSp-4) {
           grid-column: span 4;
         }
 
-        &.gridSp-5 {
+        &:where(.gridSp-5) {
           grid-column: span 5;
         }
 
-        &.gridSp-6 {
+        &:where(.gridSp-6) {
           grid-column: span 6;
         }
 
-        &.gridSp-7 {
+        &:where(.gridSp-7) {
           grid-column: span 7;
         }
 
-        &.gridSp-8 {
+        &:where(.gridSp-8) {
           grid-column: span 8;
         }
 
-        &.gridSp-9 {
+        &:where(.gridSp-9) {
           grid-column: span 9;
         }
 
-        &.gridSp-10 {
+        &:where(.gridSp-10) {
           grid-column: span 10;
         }
 
-        &.gridSp-11 {
+        &:where(.gridSp-11) {
           grid-column: span 11;
         }
 
-        &.gridSp-12 {
+        &:where(.gridSp-12) {
           grid-column: span 12;
         }
       }
@@ -116,52 +108,52 @@ if (!Astro.slots.has('default')) {
         gap: calc(var(--user-spacing) * 8);
       }
 
-      :where(.LayoutGrid__segment) {
-        &.gridPc-1 {
+      :global(:where(.LayoutGrid__segment)) {
+        &:where(.gridPc-1) {
           grid-column: span 1;
         }
 
-        &.gridPc-2 {
+        &:where(.gridPc-2) {
           grid-column: span 2;
         }
 
-        &.gridPc-3 {
+        &:where(.gridPc-3) {
           grid-column: span 3;
         }
 
-        &.gridPc-4 {
+        &:where(.gridPc-4) {
           grid-column: span 4;
         }
 
-        &.gridPc-5 {
+        &:where(.gridPc-5) {
           grid-column: span 5;
         }
 
-        &.gridPc-6 {
+        &:where(.gridPc-6) {
           grid-column: span 6;
         }
 
-        &.gridPc-7 {
+        &:where(.gridPc-7) {
           grid-column: span 7;
         }
 
-        &.gridPc-8 {
+        &:where(.gridPc-8) {
           grid-column: span 8;
         }
 
-        &.gridPc-9 {
+        &:where(.gridPc-9) {
           grid-column: span 9;
         }
 
-        &.gridPc-10 {
+        &:where(.gridPc-10) {
           grid-column: span 10;
         }
 
-        &.gridPc-11 {
+        &:where(.gridPc-11) {
           grid-column: span 11;
         }
 
-        &.gridPc-12 {
+        &:where(.gridPc-12) {
           grid-column: span 12;
         }
       }

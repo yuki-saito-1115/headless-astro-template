@@ -31,16 +31,6 @@ if (!Astro.slots.has('default')) {
     --local-arrow-height: 16px;
     --local-gutter: var(--user-spacing) * 8;
 
-    :where(.BoxConnect__segment) {
-      > :is(:first-child) {
-        margin-top: 0;
-      }
-
-      > :is(:last-child) {
-        margin-bottom: 0;
-      }
-    }
-
     :where(.BoxConnect__segment + .BoxConnect__segment) {
       position: relative;
       margin-top: calc(var(--local-arrow-height) + (var(--local-gutter) * 2)); /* アローの高さと上下余白 */

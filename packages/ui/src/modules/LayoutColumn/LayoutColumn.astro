@@ -6,9 +6,9 @@ import type { HTMLAttributes } from 'astro/types';
  */
 export interface Props extends HTMLAttributes<'div'> {
   /** PCサイズでの列数を指定します。 */
-  columnPc?: '1' | '2' | '3' | '4' | '5' | 'auto';
+  columnPc?: '1' | '2' | '3' | '4' | 'auto';
   /** SPサイズでの列数を指定します。 */
-  columnSp?: '1' | '2' | '3' | '4' | '5' | 'auto';
+  columnSp?: '1' | '2' | '3' | '4' | 'auto';
 }
 
 const {
@@ -49,18 +49,10 @@ if (!Astro.slots.has('default')) {
 
     :where(.LayoutColumn__inner) {
       display: grid;
-    }
 
-    :where(.LayoutColumn__segment) {
-      list-style: none;
-      height: 100%;
-
-      > :is(:first-child) {
-        margin-top: 0;
-      }
-
-      > :is(:last-child) {
-        margin-bottom: 0;
+      > :global(:where(.LayoutColumn__segment)) {
+        list-style: none;
+        height: 100%;
       }
     }
   }
@@ -70,23 +62,23 @@ if (!Astro.slots.has('default')) {
       :where(.LayoutColumn__inner) {
         gap: calc(var(--user-spacing) * 6);
 
-        &.columnSp-2 {
+        &:where(.columnSp-2) {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        &.columnSp-3 {
+        &:where(.columnSp-3) {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
-        &.columnSp-4 {
+        &:where(.columnSp-4) {
           grid-template-columns: repeat(4, minmax(0, 1fr));
         }
 
-        &.columnSp-auto {
+        &:where(.columnSp-auto) {
           display: flex;
           flex-wrap: wrap;
 
-          :where(.LayoutColumn__segment) {
+          > :global(:where(.LayoutColumn__segment)) {
             flex: 0 0 auto;
             max-width: 100%;
           }
@@ -100,23 +92,23 @@ if (!Astro.slots.has('default')) {
       :where(.LayoutColumn__inner) {
         gap: calc(var(--user-spacing) * 8);
 
-        &.columnPc-2 {
+        &:where(.columnPc-2) {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        &.columnPc-3 {
+        &:where(.columnPc-3) {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
-        &.columnPc-4 {
+        &:where(.columnPc-4) {
           grid-template-columns: repeat(4, minmax(0, 1fr));
         }
 
-        &.columnPc-auto {
+        &:where(.columnPc-auto) {
           display: flex;
           flex-wrap: wrap;
 
-          :where(.LayoutColumn__segment) {
+          > :global(:where(.LayoutColumn__segment)) {
             flex: 0 0 auto;
             max-width: 100%;
           }

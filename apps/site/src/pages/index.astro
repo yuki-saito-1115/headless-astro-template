@@ -1,6 +1,9 @@
 ---
-import Card from '@packages/ui/modules/Card/Card.astro';
+import Box from '@packages/ui/modules/Box/Box.astro';
+import BoxConnect from '@packages/ui/modules/BoxConnect/BoxConnect.astro';
+import Button from '@packages/ui/modules/Button/Button.astro';
 import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import LayoutGrid from '@packages/ui/modules/LayoutGrid/LayoutGrid.astro';
 import List from '@packages/ui/modules/List/List.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import type { BreadcrumbItem } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
@@ -30,123 +33,18 @@ const pageProps: PagePropType = {
 
   <Content>
     <Section>
-      <LayoutColumn columnPc="4" columnSp="1">
-        <Card
-          class="LayoutColumn__segment"
-          title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると、その鴉が何羽となく輪を描いて、高い鴟尾のまわりを啼きながら、飛びまわっている"
-          date="2026-09-25 08:30"
-          media={{
-            src: 'https://dummyimage.com/600x400/dddddd/fff'
-          }}
-        >
-          aaaa
-        </Card>
 
-        <Card
-          class="LayoutColumn__segment"
-          title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると"
-          date="2026-09-25 08:30"
-          media={{
-            src: 'https://dummyimage.com/600x400/dddddd/fff'
-          }}
-        >
-          aaaa
-        </Card>
 
-        <Card
-          class="LayoutColumn__segment"
-          title="aaa"
-          date="2026-09-25 08:30"
-          media={{
-            src: 'https://dummyimage.com/600x400/dddddd/fff'
-          }}
-        >
-          aaaa
-        </Card>
+      <List class="mt-4">
+        <ul>
+          <li>Listの項目です。</li>
+          <li>Listの項目です。</li>
+        </ul>
+      </List>
 
-        <Card
-          class="LayoutColumn__segment"
-          title="aaa"
-          date="2026-09-25 08:30"
-          media={{
-            src: 'https://dummyimage.com/600x400/dddddd/fff'
-          }}
-        >
-          aaaa
-        </Card>
-      </LayoutColumn>
-
-      <LayoutColumn class="mt-20" columnPc="3" columnSp="1">
-        <Card
-          class="LayoutColumn__segment"
-          title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると、その鴉が何羽となく輪を描いて、高い鴟尾のまわりを啼きながら、飛びまわっている"
-          date="2026-09-25 08:30"
-          media={{
-            src: 'https://dummyimage.com/600x400/dddddd/fff'
-          }}
-        >
-          <Text>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-          </Text>
-
-          <List class="mt-4">
-            <ul>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Lorem ipsum dolor sit amet</li>
-            </ul>
-          </List>
-        </Card>
-
-        <Card
-          class="LayoutColumn__segment"
-          title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると"
-          date="2026-09-25 08:30"
-          media={{
-            src: 'https://dummyimage.com/600x400/dddddd/fff'
-          }}
-        >
-          aaaa
-        </Card>
-
-        <Card
-          class="LayoutColumn__segment"
-          title="aaa"
-          date="2026-09-25 08:30"
-          media={{
-            src: 'https://dummyimage.com/600x400/dddddd/fff'
-          }}
-        >
-          aaaa
-        </Card>
-      </LayoutColumn>
-
-      <LayoutColumn class="mt-20" columnPc="2" columnSp="2" >
-        <Card
-          class="LayoutColumn__segment"
-          title="その代りまた鴉がどこからか"
-          date="2026-09-25 08:30"
-          directPc="row"
-          media={{
-            src: 'https://dummyimage.com/600x400/dddddd/fff'
-          }}
-        >
-          aaaa
-        </Card>
-
-        <Card
-          class="LayoutColumn__segment"
-          title="その代りまた鴉がどこからか、たくさん集って来た。昼間見ると、その鴉が何羽となく輪を描いて、高い鴟尾のまわりを啼きながら、飛びまわっている"
-          date="2026-09-25 08:30"
-          directPc="row"
-          media={{
-            src: 'https://dummyimage.com/600x400/dddddd/fff'
-          }}
-        >
-          aaaa
-        </Card>
-      </LayoutColumn>
+      <Text>
+        <p>作者はさっき、「下人が雨やみを待っていた」と書いた。しかし、下人は雨がやんでも、格別どうしようと云う当てはない。ふだんなら、勿論、主人の家へ帰る可き筈である。所がその主人からは、四五日前に暇を出された。前にも書いたように、当時京都の町は一通りならず衰微していた。今この下人が、永年、使われていた主人から、暇を出されたのも、実はこの衰微の小さな余波にほかならない。だから「下人が雨やみを待っていた」と云うよりも「雨にふりこめられた下人が、行き所がなくて、途方にくれていた」と云う方が、適当である。その上、今日の空模様も少からず、この平安朝の下人の Sentimentalisme に影響した。申の刻下りからふり出した雨は、いまだに上るけしきがない。そこで、下人は、何をおいても差当り明日の暮しをどうにかしようとして――云わばどうにもならない事を、どうにかしようとして、とりとめもない考えをたどりながら、さっきから朱雀大路にふる雨の音を、聞くともなく聞いていたのである。</p>
+      </Text>
     </Section>
 
     <Section theme="dark">

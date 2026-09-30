@@ -2,21 +2,21 @@
 import type { HTMLAttributes } from 'astro/types';
 
 /**
- * -  __このコンポーネントはmicroCMSのリッチエディタの [リスト](https://document.microcms.io/manual/rich-editor-usage#h4334dcd5e5)、[番号付きリスト](https://document.microcms.io/manual/rich-editor-usage#h8baf1c3620) と関連しています。__
+ * - __このコンポーネントはmicroCMSのリッチエディタの [リスト](https://document.microcms.io/manual/rich-editor-usage#h4334dcd5e5)、[番号付きリスト](https://document.microcms.io/manual/rich-editor-usage#h8baf1c3620) と関連しています。__
  */
 export interface Props extends HTMLAttributes<'div'> {
-  /** PCサイズでの列数を指定します。 */
-  columnPc?: '1' | '2' | '3' | '4' | '5' | 'auto';
-  /** SPサイズでの列数を指定します。 */
-  columnSp?: '1' | '2' | '3' | '4' | '5' | 'auto';
-  /** スタイルを設定できます。ただしこのPropsはリッチエディタでは利用できません。 */
-  note?: boolean;
+  /** PCサイズでの列数を指定します。ただし、この設定を利用するときは入れ子は使用できません。また、このPropsはリッチエディタでは利用できません。 */
+  columnPc?: '1' | '2' | '3' | '4' | 'auto';
+  /** SPサイズでの列数を指定します。ただし、この設定を利用するときは入れ子は使用できません。また、このPropsはリッチエディタでは利用できません。 */
+  columnSp?: '1' | '2' | '3' | '4' | 'auto';
+  /** 表示テーマを設定します。 */
+  theme?: 'note';
 }
 
 const {
   columnPc = '1',
   columnSp = '1',
-  note = false,
+  theme,
   class: className,
   ...rest
 } = Astro.props;
@@ -30,7 +30,7 @@ if (!Astro.slots.has('default')) {
 <div
   class:list={[
     'List',
-    note && 'theme-note',
+    theme && `theme-${theme}`,
     columnPc && `columnPc-${columnPc}`,
     columnSp && `columnSp-${columnSp}`,
     className
@@ -42,107 +42,177 @@ if (!Astro.slots.has('default')) {
 
 
 <style>
+  @counter-style list-number-default {
+    system: extends decimal;
+    suffix: '. ';
+  }
+
   .List {
-    --local-item-gap-x: calc(var(--user-spacing) * 6);
+    --local-item-gap-x: calc((var(--user-spacing) * 20));
     --local-item-gap-y: calc(var(--user-spacing) * 2);
 
     container-type: inline-size;
 
-    :where(ol, ul) {
+    :global(:where(ol, ul)) {
       display: grid;
       gap: var(--local-item-gap-y) var(--local-item-gap-x);
-      padding-left: 2em;
+      padding-left: 1.7em;
 
-      :where(ol, ul) {
+      :global(:where(ol, ul)) {
         margin-top: var(--local-item-gap-y);
+      }
+
+      :global(:where(li)) {
+        height: 100%;
+        position: relative;
       }
     }
 
-    :where(ol, ul) {
-      counter-reset: list-item;
-    }
-
-    :where(li) {
-      height: 100%;
-      position: relative;
-
-      &[value] {
+    :global(:where(ul)) {
+      > :global(:where(li)) {
         list-style: none;
 
         &::before {
-          content: attr(value) '. ';
-          left: -2em;
-          position: absolute;
-          top: 0;
-        }
-      }
-    }
-
-    :where(ul) {
-      > :where(li) {
-        list-style: none;
-
-        &:not([value])::before {
           background-color: var(--user-color-primary);
           border-radius: 50%;
           content: '';
           display: block;
           height: 6px;
-          left: -1em;
+          left: -1.7em;
           position: absolute;
-          top: 0.75em;
+          top: 0.7em;
           width: 6px;
         }
       }
     }
 
-    :where(ol) {
-      > :where(li) {
-        list-style: none;
-
-        &:not([value]) {
-          counter-increment: list-item;
-
-          &::before {
-            content: counter(list-item) '. ';
-            left: -2em;
-            position: absolute;
-            top: 0;
-          }
-        }
+    :global(:where(ol)) {
+      > :global(:where(li)) {
+        list-style: list-number-default;
       }
     }
 
-    &.theme-note {
-      :where(ul) {
-        > :where(li) {
-          font-size: var(--font-size-xs);
+    &:where(.theme-note) {
+      :global(:where(ol, ul)) {
+        font-size: var(--text-sm);
+        padding-left: 3em;
+      }
 
-          &:not([value])::before {
-            all: revert;
+      :global(:where(ul)) {
+        padding-left: 1.5em;
+
+        > :global(:where(li)) {
+          &::before {
+            background-color: transparent;
+            border-radius: 0;
             content: '※';
-            left: -1.2em;
-            position: absolute;
+            height: auto;
+            left: -1.5em;
             top: 0;
+            width: auto;
           }
         }
       }
 
-      :where(ol) {
-        > :where(li) {
-          font-size: var(--font-size-xs);
+      :global(:where(ol)) {
+        counter-reset: list-item;
 
-          &:not([value])::before {
-            content: '※' counter(list-item) ' ';
-            left: -2em;
+        > :global(:where(li)) {
+          counter-increment: list-item;
+          list-style: none;
+
+          &[value] {
+            counter-set: list-item attr(value type(<integer>));
           }
 
-          &[value]::before {
-            content: '※' attr(value) ' ';
+          &::before {
+            content: '※' counter(list-item);
+            left: -3em;
+            position: absolute;
+            top: 0;
           }
         }
       }
     }
   }
 
+  @container (max-width: 767.99px) {
+    .List {
+      &:where(.columnSp-2) {
+        > :global(:where(ol, ul)) {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      &:where(.columnSp-3) {
+        > :global(:where(ol, ul)) {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      &:where(.columnSp-4) {
+        > :global(:where(ol, ul)) {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+
+      &:where(.columnSp-5) {
+        > :global(:where(ol, ul)) {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+      }
+
+      &:where(.columnSp-auto) {
+        > :global(:where(ol, ul)) {
+          display: flex;
+          flex-wrap: wrap;
+
+          > :global(:where(li)) {
+            flex: 0 0 auto;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  @container (min-width: 768px) {
+    .List {
+      &:where(.columnPc-2) {
+        > :global(:where(ol, ul)) {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      &:where(.columnPc-3) {
+        > :global(:where(ol, ul)) {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      &:where(.columnPc-4) {
+        > :global(:where(ol, ul)) {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+
+      &:where(.columnPc-5) {
+        > :global(:where(ol, ul)) {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+      }
+
+      &:where(.columnPc-auto) {
+        > :global(:where(ol, ul)) {
+          display: flex;
+          flex-wrap: wrap;
+
+          > :global(:where(li)) {
+            flex: 0 0 auto;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
 </style>

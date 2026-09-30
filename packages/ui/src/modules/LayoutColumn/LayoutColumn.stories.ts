@@ -114,3 +114,31 @@ export const Column4: Story = {
     },
   },
 };
+
+export const ColumnAuto: Story = {
+  args: {
+    columnPc: 'auto',
+    columnSp: 'auto',
+    slots: {
+      default: `<div class="LayoutColumn__segment">
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+</div>
+
+<div class="LayoutColumn__segment">
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+</div>
+
+<div class="LayoutColumn__segment">
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+</div>
+
+<div class="LayoutColumn__segment">
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+</div>
+
+<div class="LayoutColumn__segment">
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+</div>`,
+    },
+  },
+};
