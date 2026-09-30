@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: BoxConnect,
   tags: ['autodocs'],
-  title: 'Components/Box/⭐ BoxConnect',
+  title: 'Components/Box/BoxConnect',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

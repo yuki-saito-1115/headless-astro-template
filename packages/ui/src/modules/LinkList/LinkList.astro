@@ -1,14 +1,16 @@
 ---
-import type {
-  CommonTypeColumn,
-  CommonTypeLink,
-} from '@packages/content/types/CommonType';
 import type { HTMLAttributes } from 'astro/types';
 
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
 export interface Props extends HTMLAttributes<'div'> {
-  columnPc?: CommonTypeColumn;
-  columnSp?: CommonTypeColumn;
-  datas: CommonTypeLink[];
+  /** PCサイズでの列数を指定します。 */
+  columnPc?: '1' | '2' | '3' | '4' | 'auto';
+  /** SPサイズでの列数を指定します。 */
+  columnSp?: '1' | '2' | '3' | '4' | 'auto';
+  /** リンク要素の属性を指定します。`title` はリンクテキストとして表示され、title属性には出力されません。 */
+  datas: HTMLAttributes<'a'>[];
 }
 
 const {
@@ -18,107 +20,97 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-const classList = ['LinkList'];
-let mergedClass = '';
-
-if (columnPc) {
-  classList.push(`columnPc-${columnPc}`);
-}
-
-if (columnSp) {
-  classList.push(`columnSp-${columnSp}`);
-}
-
-mergedClass = classList.join(' ');
+const attrs: Record<string, unknown> = { ...rest };
 ---
 
 <div
-  class:list={[mergedClass, className]}
-  {...rest}
+  class:list={[
+    'LinkList',
+    columnPc && `columnPc-${columnPc}`,
+    columnSp && `columnSp-${columnSp}`,
+    className,
+  ]}
+  {...attrs}
 >
   <ul>
-    {datas.map((data: CommonTypeLink) => (
+    {datas.map(({ title, ...linkAttrs }) => (
       <li>
-        <a href={data.href} target={data.target}>{data.label}</a>
+        <a {...linkAttrs}>{title}</a>
       </li>
     ))}
   </ul>
 </div>
 
-
 <style>
   .LinkList {
+    --local-item-gap-x: calc(var(--user-spacing) * 6);
+    --local-item-gap-y: calc(var(--user-spacing) * 2);
+
     container-type: inline-size;
 
-    :where(ul) {
+    > :where(ul) {
       display: grid;
-    }
+      gap: var(--local-item-gap-y) var(--local-item-gap-x);
 
-    :where(li) {
-      list-style: none;
-      height: 100%;
-      list-style: none;
-      padding-left: 1.25em;
-      position: relative;
+      > :where(li) {
+        height: 100%;
+        list-style: none;
+        padding-left: 1.25em;
+        position: relative;
 
-      /* arrow */
-      &::before {
-        background-color: var(--user-color-primary);
-        content: '';
-        display: block;
-        height: 0.75em;
-        left: 0;
-        mask-image: url('/assets/images/icons/angle-right.svg');
-        mask-repeat: no-repeat;
-        mask-size: cover;
-        position: absolute;
-        top: 0.55em;
-        width: 0.75em;
+        /* arrow */
+        &::before {
+          background-color: var(--user-color-primary);
+          content: '';
+          display: block;
+          height: 0.75em;
+          left: 0;
+          mask-image: url('/assets/images/icons/angle-right.svg');
+          mask-repeat: no-repeat;
+          mask-size: cover;
+          position: absolute;
+          top: 0.55em;
+          width: 0.75em;
+        }
+
+        > :where(a) {
+          color: var(--user-color-primary);
+          fill: var(--user-color-primary);
+          text-decoration: none;
+        }
       }
-    }
-
-    :where(a) {
-      color: var(--user-color-primary);
-      text-decoration: none;
-      fill: var(--user-color-primary);
     }
   }
 
   @container (max-width: 767.99px) {
     .LinkList {
-      :where(ul) {
-        gap: calc(var(--user-spacing) * 2)  calc(var(--user-spacing) * 6);
-      }
-
-      &.columnSp-2 {
-        :where(ul) {
+      &:where(.columnSp-2) {
+        > :where(ul) {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
-      &.columnSp-3 {
-        :where(ul) {
+      &:where(.columnSp-3) {
+        > :where(ul) {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
       }
 
-      &.columnSp-4 {
-        :where(ul) {
+      &:where(.columnSp-4) {
+        > :where(ul) {
           grid-template-columns: repeat(4, minmax(0, 1fr));
         }
       }
 
-      &.columnSp-auto {
-        :where(ul) {
+      &:where(.columnSp-auto) {
+        > :where(ul) {
           display: flex;
           flex-wrap: wrap;
-        }
 
-        flex-wrap: wrap;
-
-        :where(li) {
-          flex: 0 0 auto;
-          max-width: 100%;
+          > :where(li) {
+            flex: 0 0 auto;
+            max-width: 100%;
+          }
         }
       }
     }
@@ -126,37 +118,35 @@ mergedClass = classList.join(' ');
 
   @container (min-width: 768px) {
     .LinkList {
-      :where(ul) {
-        gap: calc(var(--user-spacing) * 2)  calc(var(--user-spacing) * 8);
-      }
+      --local-item-gap-x: calc(var(--user-spacing) * 8);
 
-      &.columnPc-2 {
-        :where(ul) {
+      &:where(.columnPc-2) {
+        > :where(ul) {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
-      &.columnPc-3 {
-        :where(ul) {
+      &:where(.columnPc-3) {
+        > :where(ul) {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
       }
 
-      &.columnPc-4 {
-        :where(ul) {
+      &:where(.columnPc-4) {
+        > :where(ul) {
           grid-template-columns: repeat(4, minmax(0, 1fr));
         }
       }
 
-      &.columnPc-auto {
-        :where(ul) {
+      &:where(.columnPc-auto) {
+        > :where(ul) {
           display: flex;
           flex-wrap: wrap;
-        }
 
-        :where(li) {
-          flex: 0 0 auto;
-          max-width: 100%;
+          > :where(li) {
+            flex: 0 0 auto;
+            max-width: 100%;
+          }
         }
       }
     }
@@ -164,9 +154,13 @@ mergedClass = classList.join(' ');
 
   @media (any-hover: hover) {
     .LinkList {
-      :where(a) {
-        &:hover {
-          text-decoration: underline;
+      > :where(ul) {
+        > :where(li) {
+          > :where(a) {
+            &:hover {
+              text-decoration: underline;
+            }
+          }
         }
       }
     }

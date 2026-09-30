@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: Button,
   tags: ['autodocs'],
-  title: 'Components/Button/⭐ Button',
+  title: 'Components/Button/Button',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -28,7 +28,7 @@ type Story<T extends Tag = Tag> = StoryObj<StoryArgs<Props<T>>>;
 
 export const LinkElement: Story<'a'> = {
   args: {
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     as: 'a',
     href: 'DUMMY_LINK',
   },
@@ -36,7 +36,7 @@ export const LinkElement: Story<'a'> = {
 
 export const ButtonElement: Story<'button'> = {
   args: {
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     as: 'button',
     type: 'button',
   },
@@ -44,7 +44,7 @@ export const ButtonElement: Story<'button'> = {
 
 export const ThemeEmphasis: Story<'a'> = {
   args: {
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     theme: 'emphasis',
     as: 'a',
     href: 'DUMMY_LINK',
@@ -53,7 +53,7 @@ export const ThemeEmphasis: Story<'a'> = {
 
 export const ThemeConversion: Story<'a'> = {
   args: {
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     theme: 'conversion',
     as: 'a',
     href: 'DUMMY_LINK',
@@ -62,7 +62,7 @@ export const ThemeConversion: Story<'a'> = {
 
 export const ThemeText: Story<'a'> = {
   args: {
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     theme: 'text',
     as: 'a',
     href: 'DUMMY_LINK',
@@ -71,7 +71,7 @@ export const ThemeText: Story<'a'> = {
 
 export const DisabledButton: Story<'button'> = {
   args: {
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     as: 'button',
     disabled: true,
   },
@@ -79,13 +79,13 @@ export const DisabledButton: Story<'button'> = {
 
 export const DisabledLink: Story = {
   args: {
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const IconBefore: Story<'a'> = {
   args: {
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     as: 'a',
     href: 'DUMMY_LINK',
     iconBefore: {
@@ -96,7 +96,7 @@ export const IconBefore: Story<'a'> = {
 
 export const IconAfter: Story<'a'> = {
   args: {
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     as: 'a',
     href: 'DUMMY_LINK',
     iconAfter: {

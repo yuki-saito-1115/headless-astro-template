@@ -13,7 +13,7 @@ export type Props<
   /** 出力する要素を設定します。要素を選択すると、その要素の属性を指定できます。 */
   as?: Tag;
   /** テキストノード以外は指定できません。 */
-  label: string;
+  title: string;
   /** 塗りと線の配色を逆転します。 */
   outline?: boolean;
   /** 角丸または楕円の形状を設定します。 */
@@ -24,7 +24,7 @@ export type Props<
 
 const {
   as: Element = 'span',
-  label,
+  title,
   outline = false,
   shape = undefined,
   theme = undefined,
@@ -59,7 +59,7 @@ switch (Element) {
   ]}
   {...attrs}
 >
-  {label}
+  {title}
 </Element>
 
 

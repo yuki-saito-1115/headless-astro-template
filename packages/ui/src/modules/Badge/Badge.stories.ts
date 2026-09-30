@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: Badge,
   tags: ['autodocs'],
-  title: 'Components/Badge/⭐ Badge',
+  title: 'Components/Badge/Badge',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -28,7 +28,7 @@ type Story<T extends Tag = Tag> = StoryObj<StoryArgs<Props<T>>>;
 
 export const Default: Story = {
   args: {
-    label: 'Lorem ipsum',
+    title: 'Lorem ipsum',
   },
 };
 
@@ -36,7 +36,7 @@ export const LinkElement: Story<'a'> = {
   args: {
     as: 'a',
     href: 'DUMMY_LINK',
-    label: 'Lorem ipsum',
+    title: 'Lorem ipsum',
   },
 };
 
@@ -44,41 +44,41 @@ export const ButtonElement: Story<'button'> = {
   args: {
     as: 'button',
     type: 'button',
-    label: 'Lorem ipsum',
+    title: 'Lorem ipsum',
   },
 };
 
 export const Outline: Story = {
   args: {
-    label: 'Lorem ipsum',
+    title: 'Lorem ipsum',
     outline: true,
   },
 };
 
 export const ThemeCaution: Story = {
   args: {
-    label: 'Lorem ipsum',
+    title: 'Lorem ipsum',
     theme: 'caution',
   },
 };
 
 export const ThemeWarning: Story = {
   args: {
-    label: 'Lorem ipsum',
+    title: 'Lorem ipsum',
     theme: 'warning',
   },
 };
 
 export const ShapeRounded: Story = {
   args: {
-    label: 'Lorem ipsum',
+    title: 'Lorem ipsum',
     shape: 'rounded',
   },
 };
 
 export const ShapePill: Story = {
   args: {
-    label: 'Lorem ipsum',
+    title: 'Lorem ipsum',
     shape: 'pill',
   },
 };

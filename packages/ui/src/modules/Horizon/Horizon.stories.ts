@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: Horizon,
   tags: ['autodocs'],
-  title: 'Components/Horizon/⭐ Horizon',
+  title: 'Components/Horizon/Horizon',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

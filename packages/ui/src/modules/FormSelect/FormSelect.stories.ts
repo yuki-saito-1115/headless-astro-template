@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: FormSelect,
   tags: ['autodocs'],
-  title: 'Components/Form/⭐ FormSelect',
+  title: 'Components/Form/FormSelect',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

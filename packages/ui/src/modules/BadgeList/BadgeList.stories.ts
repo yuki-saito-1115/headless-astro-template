@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: BadgeList,
   tags: ['autodocs'],
-  title: 'Components/Badge/⭐ BadgeList',
+  title: 'Components/Badge/BadgeList',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -27,18 +27,18 @@ export const Default: Story = {
   args: {
     datas: [
       {
-        label: 'badge 1',
+        title: 'badge 1',
         as: 'a',
         href: 'DUMMY_LINK',
       },
       {
-        label: 'badge 2',
+        title: 'badge 2',
         as: 'a',
         href: 'DUMMY_LINK',
         theme: 'caution',
       },
       {
-        label: 'badge 3',
+        title: 'badge 3',
         as: 'a',
         href: 'DUMMY_LINK',
         theme: 'warning',

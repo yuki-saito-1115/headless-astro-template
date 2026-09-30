@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: List,
   tags: ['autodocs'],
-  title: 'Components/List/⭐ List',
+  title: 'Components/List/List',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

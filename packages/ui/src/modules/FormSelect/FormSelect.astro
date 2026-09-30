@@ -7,7 +7,7 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'select'> {
   /** フォームを無効化します。 */
   disabled?: boolean;
-  /** 選択肢を設定します。 */
+  /** `option` 要素の属性を指定します。 */
   options: HTMLAttributes<'option'>[];
   /** フォームのサイズを設定します。 */
   size?: 'small' | 'medium' | 'large' | 'full';

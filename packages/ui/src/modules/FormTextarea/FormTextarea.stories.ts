@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: FormTextarea,
   tags: ['autodocs'],
-  title: 'Components/Form/⭐ FormTextarea',
+  title: 'Components/Form/FormTextarea',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

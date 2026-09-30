@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: MediaIcon,
   tags: ['autodocs'],
-  title: 'Components/Media/⭐ MediaIcon',
+  title: 'Components/Media/MediaIcon',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

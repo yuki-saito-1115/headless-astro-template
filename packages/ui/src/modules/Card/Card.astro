@@ -21,7 +21,7 @@ export type Props<Tag extends 'div' | 'li' = 'div' | 'li'> = Polymorphic<{
   title?: string;
   /** 日付を設定できます。`Column` コンポーネント内では、同じ行に並ぶ `Card` 同士で有無を揃えてください。混在すると高さ揃えがずれます。 */
   date?: string;
-  /** 画像を設定できます。 */
+  /** 画像要素の属性を指定します。 */
   media: HTMLAttributes<'img'>;
 };
 

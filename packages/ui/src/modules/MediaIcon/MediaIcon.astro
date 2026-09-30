@@ -6,7 +6,7 @@ import type { HTMLAttributes } from 'astro/types';
  */
 export interface Props extends HTMLAttributes<'svg'> {
   /** アイコンに任意のタイトルを設定できます。 */
-  label?: string;
+  title?: string;
   /** アイコンに任意のタイトルの言語を設定できます。 */
   lang?: 'ja' | 'en';
   /** アイコンの種類を設定できます。 */
@@ -21,7 +21,7 @@ export interface Props extends HTMLAttributes<'svg'> {
     | 'xmark';
 }
 
-const { label, lang = 'ja', name, class: className, ...rest } = Astro.props;
+const { title, lang = 'ja', name, class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 const icon = {
   download: {
@@ -75,7 +75,7 @@ const icon = {
   viewBox="0 0 160 160"
   {...attrs}
 >
-  <title>{label ?? icon[name][lang]}</title>
+  <title>{title ?? icon[name][lang]}</title>
   <Fragment set:html={icon[name].item} />
 </svg>
 

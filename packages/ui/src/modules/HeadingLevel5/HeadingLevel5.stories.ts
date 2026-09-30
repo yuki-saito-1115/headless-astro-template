@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: HeadingLevel5,
-  title: 'Components/Heading/⭐ HeadingLevel5',
+  title: 'Components/Heading/HeadingLevel5',
   tags: ['autodocs'],
   parameters: {
     controls: { sort: 'requiredFirst' },

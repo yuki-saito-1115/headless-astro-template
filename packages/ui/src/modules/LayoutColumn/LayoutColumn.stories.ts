@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: LayoutColumn,
   tags: ['autodocs'],
-  title: 'Components/Layout/⭐ LayoutColumn',
+  title: 'Components/Layout/LayoutColumn',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: LayoutGrid,
   tags: ['autodocs'],
-  title: 'Components/Layout/⭐ LayoutGrid',
+  title: 'Components/Layout/LayoutGrid',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

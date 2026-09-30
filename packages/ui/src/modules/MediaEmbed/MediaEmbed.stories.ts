@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: MediaEmbed,
   tags: ['autodocs'],
-  title: 'Components/Media/⭐ MediaEmbed',
+  title: 'Components/Media/MediaEmbed',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

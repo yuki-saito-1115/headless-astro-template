@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: TextLead,
   tags: ['autodocs'],
-  title: 'Components/Text/⭐ TextLead',
+  title: 'Components/Text/TextLead',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

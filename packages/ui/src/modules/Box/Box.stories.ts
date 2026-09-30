@@ -6,7 +6,7 @@ import Box from './Box.astro';
 const meta = {
   component: Box,
   tags: ['autodocs'],
-  title: 'Components/Box/⭐ Box',
+  title: 'Components/Box/Box',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

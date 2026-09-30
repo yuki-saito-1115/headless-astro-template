@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: FormRadio,
   tags: ['autodocs'],
-  title: 'Components/Form/⭐ FormRadio',
+  title: 'Components/Form/FormRadio',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -26,14 +26,14 @@ type Story = StoryObj<StoryArgs<Props>>;
 export const Default: Story = {
   args: {
     id: 'radio-default',
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const Checked: Story = {
   args: {
     id: 'radio-checked',
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     checked: true,
   },
 };
@@ -41,7 +41,7 @@ export const Checked: Story = {
 export const Disabled: Story = {
   args: {
     id: 'radio-disabled',
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     disabled: true,
   },
 };
@@ -49,7 +49,7 @@ export const Disabled: Story = {
 export const Reversed: Story = {
   args: {
     id: 'radio-reversed',
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     reversed: true,
   },
 };
@@ -57,7 +57,7 @@ export const Reversed: Story = {
 export const StateInvalid: Story = {
   args: {
     id: 'radio-invalid',
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     state: 'invalid',
     checked: true,
   },
@@ -66,7 +66,7 @@ export const StateInvalid: Story = {
 export const StateValid: Story = {
   args: {
     id: 'radio-valid',
-    label: 'Lorem ipsum dolor sit amet',
+    title: 'Lorem ipsum dolor sit amet',
     state: 'valid',
     checked: true,
   },

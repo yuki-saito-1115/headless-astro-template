@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: FormCalendar,
   tags: ['autodocs'],
-  title: 'Components/Form/⭐ FormCalendar',
+  title: 'Components/Form/FormCalendar',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

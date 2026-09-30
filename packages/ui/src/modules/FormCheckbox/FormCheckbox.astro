@@ -11,8 +11,8 @@ export interface Props extends HTMLAttributes<'input'> {
   checked?: boolean;
   /** フォームを無効化します。 */
   disabled?: boolean;
-  /** フォームのラベルを設定します。 */
-  label?: string;
+  /** フォームのタイトルを設定します。 */
+  title?: string;
   /** フォームとラベルの位置を反転します。 */
   reversed?: boolean;
   /** フォームの状態を設定します。 */
@@ -23,7 +23,7 @@ const {
   id,
   checked = false,
   disabled = false,
-  label,
+  title,
   reversed = false,
   state,
   class: className,
@@ -49,7 +49,7 @@ const attrs: Record<string, unknown> = { ...rest };
     disabled={disabled}
     {...attrs}
   />
-  {label && <span class:list={['FormCheckbox__text']}>{label}</span>}
+  {title && <span class:list={['FormCheckbox__text']}>{title}</span>}
 </label>
 
 
