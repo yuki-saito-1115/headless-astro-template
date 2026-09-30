@@ -44,6 +44,7 @@
     "versions:preview": "npm run versions --workspace @headless-astro-template/preview",
     "versions:storybook": "npm run versions --workspace @headless-astro-template/storybook",
     "versions:docs": "npm run versions --workspace @headless-astro-template/docs",
+    "format": "npx biome check --write",
     "setup": "run-s -l setup:*",
     "setup:hooks": "git config core.hooksPath .hooks",
     "setup:lfs": "git lfs install --local",
