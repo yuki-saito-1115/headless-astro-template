@@ -7,20 +7,22 @@ import type { Polymorphic } from 'astro/types';
  */
 export type Props<
   Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button',
-> = Polymorphic<{
-  as: Tag;
-}> & {
-  /** 出力する要素を設定します。要素を選択すると、その要素の属性を指定できます。 */
-  as?: Tag;
-  /** テキストノード以外は指定できません。 */
-  title: string;
-  /** 塗りと線の配色を逆転します。 */
-  outline?: boolean;
-  /** 角丸または楕円の形状を設定します。 */
-  shape?: 'rounded' | 'pill';
-  /** 配色を設定できます。セマンティクスに変化はありません。 */
-  theme?: 'caution' | 'warning';
-};
+> = Tag extends 'span' | 'a' | 'button'
+  ? Polymorphic<{
+      as: Tag;
+    }> & {
+      /** 出力する要素を設定します。要素を選択すると、その要素の属性を指定できます。 */
+      as?: Tag;
+      /** テキストノード以外は指定できません。 */
+      title: string;
+      /** 塗りと線の配色を逆転します。 */
+      outline?: boolean;
+      /** 角丸または楕円の形状を設定します。 */
+      shape?: 'rounded' | 'pill';
+      /** 配色を設定できます。セマンティクスに変化はありません。 */
+      theme?: 'caution' | 'warning';
+    }
+  : never;
 
 const {
   as: Element = 'span',
@@ -39,10 +41,12 @@ switch (Element) {
     delete attrs.type;
     break;
   case 'button':
+    delete attrs.download;
     delete attrs.href;
     break;
   default:
     delete attrs.disabled;
+    delete attrs.download;
     delete attrs.href;
     delete attrs.type;
     break;

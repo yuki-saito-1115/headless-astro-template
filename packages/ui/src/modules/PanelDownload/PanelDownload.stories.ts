@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: PanelDownload,
   tags: ['autodocs'],
-  title: 'Components/Panel/⚠️PanelDownload',
+  title: 'Components/Panel/PanelDownload',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -24,5 +24,16 @@ export default meta;
 type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    description: 'サービス紹介資料をダウンロードできます。',
+    button: {
+      as: 'a',
+      download: true,
+      href: '/service.pdf',
+      iconAfter: {
+        name: 'download',
+      },
+      title: 'ダウンロード',
+    },
+  },
 };

@@ -1,31 +1,59 @@
 ---
+import type { Props as ButtonProps } from '@packages/ui/modules/Button/Button.astro';
+import Button from '@packages/ui/modules/Button/Button.astro';
 import type { HTMLAttributes } from 'astro/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
-
-const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
-
-if (!Astro.slots.has('default')) {
-  throw new Error('PanelDownload: slotの中身が空です。');
+export interface Props extends HTMLAttributes<'div'> {
+  /** ダウンロードに関する説明を設定します。テキストノード以外は使用できません。 */
+  description: string;
+  /** ダウンロードリンクに使用する`Button`のPropsを設定します。 */
+  button: ButtonProps;
 }
+
+const { description, button, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
 ---
 
 <div
   class:list={[
     'PanelDownload',
-    className
+    className,
   ]}
   {...attrs}
 >
-  <slot />
+  <p class:list={['PanelDownload__description']}>{description}</p>
+
+  <div class:list={['PanelDownload__button']}>
+    <Button {...button} />
+  </div>
 </div>
 
 
 <style>
   .PanelDownload {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--user-spacing) * 4);
+
+    :where(.PanelDownload__button) {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  @media (width >= 768px) {
+    .PanelDownload {
+      align-items: center;
+      flex-direction: row;
+      gap: calc(var(--user-spacing) * 10);
+      justify-content: space-between;
+
+      :where(.PanelDownload__description) {
+        flex: 1 1 auto;
+      }
+    }
   }
 </style>

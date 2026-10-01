@@ -8,20 +8,22 @@ import type { Polymorphic } from 'astro/types';
  */
 export type Props<
   Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button',
-> = Polymorphic<{
-  as: Tag;
-}> & {
-  /** 出力する要素を設定します。要素を選択すると、その要素の属性を指定できます。省略すると非活性状態の `"span"` になります。 */
-  as?: Tag;
-  /** テキストノード以外の使用を禁止します。 */
-  title: string;
-  /** ボタンの前に表示するアイコンを設定できます。`Media/Icon` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
-  iconBefore?: MediaIconProps;
-  /** ボタンの後に表示するアイコンを設定できます。`Media/Icon` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
-  iconAfter?: MediaIconProps;
-  /** 配色を設定できます。セマンティクスに変化はありません。 */
-  theme?: 'emphasis' | 'conversion' | 'text';
-};
+> = Tag extends 'span' | 'a' | 'button'
+  ? Polymorphic<{
+      as: Tag;
+    }> & {
+      /** 出力する要素を設定します。要素を選択すると、その要素の属性を指定できます。省略すると非活性状態の `"span"` になります。 */
+      as?: Tag;
+      /** テキストノード以外の使用を禁止します。 */
+      title: string;
+      /** ボタンの前に表示するアイコンを設定できます。`Media/Icon` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
+      iconBefore?: MediaIconProps;
+      /** ボタンの後に表示するアイコンを設定できます。`Media/Icon` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
+      iconAfter?: MediaIconProps;
+      /** 配色を設定できます。セマンティクスに変化はありません。 */
+      theme?: 'emphasis' | 'conversion' | 'text';
+    }
+  : never;
 
 const {
   as: Element = 'span',
@@ -40,10 +42,12 @@ switch (Element) {
     delete attrs.type;
     break;
   case 'button':
+    delete attrs.download;
     delete attrs.href;
     break;
   default:
     delete attrs.disabled;
+    delete attrs.download;
     delete attrs.href;
     delete attrs.type;
     break;
