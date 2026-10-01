@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: NavigationSns,
   tags: ['autodocs'],
-  title: 'Components/Navigation/⚠️NavigationSns',
+  title: 'Components/Navigation/NavigationSns',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -24,5 +24,12 @@ export default meta;
 type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    share: { href: '#share' },
+    good: { href: '#good' },
+    facebook: { href: '#facebook' },
+    x: { href: '#x' },
+    instagram: { href: '#instagram' },
+    line: { href: '#line' },
+  },
 };

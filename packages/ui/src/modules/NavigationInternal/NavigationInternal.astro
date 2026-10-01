@@ -4,28 +4,118 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
-
-const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
-
-if (!Astro.slots.has('default')) {
-  throw new Error('NavigationInternal: slotの中身が空です。');
+export interface Props extends HTMLAttributes<'nav'> {
+  /** SP幅時のリンクの並び方向を設定します。 */
+  directSp?: 'row' | 'column';
+  /** PC幅時のリンクの並び方向を設定します。 */
+  directPc?: 'row' | 'column';
+  /** 表示するリンクの属性を設定します。`title`はリンクテキストとして表示され、title属性には出力されません。 */
+  datas: HTMLAttributes<'a'>[];
 }
+
+const {
+  directSp = 'row',
+  directPc = 'row',
+  datas,
+  class: className,
+  ...rest
+} = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
 ---
 
-<div
+<nav
   class:list={[
     'NavigationInternal',
-    className
+    directSp && `directSp-${directSp}`,
+    directPc && `directPc-${directPc}`,
+    className,
   ]}
   {...attrs}
 >
-  <slot />
-</div>
+  <ul class:list={['NavigationInternal__list']}>
+    {datas.map(({ title, ...linkAttrs }) => (
+      <li class:list={['NavigationInternal__item']}>
+        <a
+          class:list={['NavigationInternal__link']}
+          {...linkAttrs}
+        >
+          {title}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
 
 
 <style>
   .NavigationInternal {
+    :where(.NavigationInternal__list) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 6);
+    }
+
+    :where(.NavigationInternal__item) {
+      flex: 0 0 auto;
+      line-height: var(--user-line-height);
+      list-style: none;
+      max-width: 100%;
+      padding-left: 1.25em;
+      position: relative;
+
+      &::before {
+        background-color: var(--user-color-primary);
+        content: '';
+        display: block;
+        height: 0.75em;
+        left: 0;
+        mask-image: url('/assets/images/icons/angle-down.svg');
+        mask-repeat: no-repeat;
+        mask-size: cover;
+        position: absolute;
+        top: 0.3em;
+        width: 0.75em;
+      }
+    }
+
+    :where(.NavigationInternal__link) {
+      color: var(--user-color-primary);
+      text-decoration: none;
+    }
+  }
+
+  @media (width < 768px) {
+    .NavigationInternal {
+      &:where(.directSp-column) {
+        :where(.NavigationInternal__list) {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .NavigationInternal {
+      :where(.NavigationInternal__list) {
+        column-gap: calc(var(--user-spacing) * 8);
+        justify-content: center;
+      }
+
+      &:where(.directPc-column) {
+        :where(.NavigationInternal__list) {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .NavigationInternal {
+      :where(.NavigationInternal__link) {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 </style>

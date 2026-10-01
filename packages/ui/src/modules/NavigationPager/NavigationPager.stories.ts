@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: NavigationPager,
   tags: ['autodocs'],
-  title: 'Components/Navigation/⚠️NavigationPager',
+  title: 'Components/Navigation/NavigationPager',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -24,5 +24,25 @@ export default meta;
 type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    baseUrl: '/news',
+    currentPage: 3,
+    totalPages: 5,
+  },
+};
+
+export const FirstPage: Story = {
+  args: {
+    baseUrl: '/news',
+    currentPage: 1,
+    totalPages: 5,
+  },
+};
+
+export const LastPage: Story = {
+  args: {
+    baseUrl: '/news',
+    currentPage: 5,
+    totalPages: 5,
+  },
 };

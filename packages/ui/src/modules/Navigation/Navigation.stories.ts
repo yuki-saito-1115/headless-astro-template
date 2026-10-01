@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: Navigation,
   tags: ['autodocs'],
-  title: 'Components/Navigation/⚠️Navigation',
+  title: 'Components/Navigation/Navigation',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -24,5 +24,23 @@ export default meta;
 type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    back: {
+      href: '#previous',
+      title: '前のページへ戻る',
+    },
+    next: {
+      href: '#next',
+      title: '次のページへ進む',
+    },
+  },
+};
+
+export const BackToTop: Story = {
+  args: {
+    top: {
+      href: '#top',
+      title: 'ページ上部に戻る',
+    },
+  },
 };

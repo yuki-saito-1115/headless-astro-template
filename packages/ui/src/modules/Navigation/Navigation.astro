@@ -4,28 +4,154 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
-
-const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
-
-if (!Astro.slots.has('default')) {
-  throw new Error('Navigation: slotの中身が空です。');
+export interface Props extends HTMLAttributes<'nav'> {
+  /** 前のページへ戻るリンクの属性を設定します。`title` はリンクテキストとして表示され、title属性には出力されません。 */
+  back?: HTMLAttributes<'a'>;
+  /** 次のページへ進むリンクの属性を設定します。`title` はリンクテキストとして表示され、title属性には出力されません。 */
+  next?: HTMLAttributes<'a'>;
+  /** ページ上部へ戻るリンクの属性を設定します。`title` はリンクテキストとして表示され、title属性には出力されません。 */
+  top?: HTMLAttributes<'a'>;
 }
+
+const { back, next, top, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
+const backAttrs = { ...back, title: undefined };
+const nextAttrs = { ...next, title: undefined };
+const topAttrs = { ...top, title: undefined };
 ---
 
-<div
+<nav
   class:list={[
     'Navigation',
-    className
+    className,
   ]}
   {...attrs}
 >
-  <slot />
-</div>
+  <ul class:list={['Navigation__list']}>
+    {back && (
+      <li class:list={['Navigation__item']}>
+        <a
+          class:list={[
+            'Navigation__link',
+            'Navigation__link--back',
+          ]}
+          {...backAttrs}
+        >
+          {back.title}
+        </a>
+      </li>
+    )}
+
+    {next && (
+      <li class:list={['Navigation__item']}>
+        <a
+          class:list={[
+            'Navigation__link',
+            'Navigation__link--next',
+          ]}
+          {...nextAttrs}
+        >
+          {next.title}
+        </a>
+      </li>
+    )}
+
+    {top && (
+      <li class:list={['Navigation__item']}>
+        <a
+          class:list={[
+            'Navigation__link',
+            'Navigation__link--top',
+          ]}
+          {...topAttrs}
+        >
+          {top.title}
+        </a>
+      </li>
+    )}
+  </ul>
+</nav>
 
 
 <style>
   .Navigation {
+    :where(.Navigation__list) {
+      display: grid;
+      gap: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 6);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    :where(.Navigation__item) {
+      line-height: var(--user-line-height);
+      list-style: none;
+      position: relative;
+
+      &::before {
+        background-color: var(--user-color-primary);
+        content: '';
+        display: block;
+        height: 0.75em;
+        mask-repeat: no-repeat;
+        mask-size: cover;
+        position: absolute;
+        top: 0.4em;
+        width: 0.75em;
+      }
+
+      &:has(.Navigation__link--back, .Navigation__link--top) {
+        grid-column: 1;
+        padding-left: 1.25em;
+
+        &::before {
+          left: 0;
+        }
+      }
+
+      &:has(.Navigation__link--back) {
+        &::before {
+          mask-image: url('/assets/images/icons/angle-left.svg');
+        }
+      }
+
+      &:has(.Navigation__link--next) {
+        grid-column: 2;
+        padding-right: 1.25em;
+        text-align: right;
+
+        &::before {
+          mask-image: url('/assets/images/icons/angle-right.svg');
+          right: 0;
+        }
+      }
+
+      &:has(.Navigation__link--top) {
+        &::before {
+          mask-image: url('/assets/images/icons/angle-up.svg');
+        }
+      }
+    }
+
+    :where(.Navigation__link) {
+      color: var(--user-color-primary);
+      text-decoration: none;
+    }
+  }
+
+  @media (width >= 768px) {
+    .Navigation {
+      :where(.Navigation__list) {
+        column-gap: calc(var(--user-spacing) * 8);
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .Navigation {
+      :where(.Navigation__link) {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 </style>

@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: NavigationInternal,
   tags: ['autodocs'],
-  title: 'Components/Navigation/⚠️NavigationInternal',
+  title: 'Components/Navigation/NavigationInternal',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -24,5 +24,41 @@ export default meta;
 type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    datas: [
+      {
+        href: '#section-1',
+        title: 'セクション1',
+      },
+      {
+        href: '#section-2',
+        title: 'セクション2',
+      },
+      {
+        href: '#section-3',
+        title: 'セクション3',
+      },
+    ],
+  },
+};
+
+export const Column: Story = {
+  args: {
+    directSp: 'column',
+    directPc: 'column',
+    datas: [
+      {
+        href: '#section-1',
+        title: 'セクション1',
+      },
+      {
+        href: '#section-2',
+        title: 'セクション2',
+      },
+      {
+        href: '#section-3',
+        title: 'セクション3',
+      },
+    ],
+  },
 };

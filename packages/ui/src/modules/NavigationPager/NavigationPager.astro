@@ -4,28 +4,178 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
-
-const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
-
-if (!Astro.slots.has('default')) {
-  throw new Error('NavigationPager: slotの中身が空です。');
+export interface Props extends HTMLAttributes<'nav'> {
+  /** 現在のページ番号を設定します。 */
+  currentPage: number;
+  /** 総ページ数を設定します。 */
+  totalPages: number;
+  /** 1ページ目のURLを設定します。 */
+  baseUrl: string;
 }
+
+const {
+  currentPage,
+  totalPages,
+  baseUrl,
+  class: className,
+  ...rest
+} = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
+const setHref = (page: number) =>
+  page === 1 ? baseUrl : `${baseUrl}/page/${page}.html`;
+const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+const hasPrevPage = currentPage > 1;
+const hasNextPage = currentPage < totalPages;
 ---
 
-<div
+<nav
   class:list={[
     'NavigationPager',
-    className
+    className,
   ]}
   {...attrs}
 >
-  <slot />
-</div>
+  <ul class:list={['NavigationPager__list']}>
+    {hasPrevPage && (
+      <li class:list={['NavigationPager__item']}>
+        <a
+          class:list={[
+            'NavigationPager__link',
+            'NavigationPager__link--previous',
+          ]}
+          href={setHref(currentPage - 1)}
+        >
+          前のページ
+        </a>
+      </li>
+    )}
+
+    {pages.map((page) => (
+      <li
+        class:list={[
+          'NavigationPager__item',
+          page === currentPage && 'NavigationPager__item--current',
+        ]}
+      >
+        {page === currentPage ? (
+          <span class:list={['NavigationPager__current']}>{page}</span>
+        ) : (
+          <a
+            class:list={['NavigationPager__link']}
+            href={setHref(page)}
+          >
+            {page}
+          </a>
+        )}
+      </li>
+    ))}
+
+    {hasNextPage && (
+      <li class:list={['NavigationPager__item']}>
+        <a
+          class:list={[
+            'NavigationPager__link',
+            'NavigationPager__link--next',
+          ]}
+          href={setHref(currentPage + 1)}
+        >
+          次のページ
+        </a>
+      </li>
+    )}
+  </ul>
+</nav>
 
 
 <style>
   .NavigationPager {
+    :where(.NavigationPager__list) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: calc(var(--user-spacing) * 2);
+      justify-content: center;
+    }
+
+    :where(.NavigationPager__item) {
+      line-height: 1;
+      list-style: none;
+
+      &:has(.NavigationPager__link--previous) {
+        order: -1;
+      }
+
+      &:has(.NavigationPager__link--next) {
+        order: 1;
+      }
+    }
+
+    :where(.NavigationPager__link, .NavigationPager__current) {
+      align-items: center;
+      background-color: var(--user-color-background-light);
+      border: 1px solid var(--user-color-primary);
+      color: var(--user-color-primary);
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      min-width: 40px;
+      padding: calc(var(--user-spacing) * 2);
+      text-decoration: none;
+    }
+
+    :where(.NavigationPager__current) {
+      background-color: var(--user-color-primary);
+      color: var(--user-color-foreground-light);
+    }
+
+    :where(.NavigationPager__link--previous, .NavigationPager__link--next) {
+      overflow: hidden;
+      padding: calc(var(--user-spacing) * 10) 0 0 calc(var(--user-spacing) * 10);
+      position: relative;
+      width: 40px;
+
+      &::before {
+        background-color: currentColor;
+        content: '';
+        height: 100%;
+        left: 0;
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: 40%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    }
+
+    :where(.NavigationPager__link--previous) {
+      &::before {
+        mask-image: url('/assets/images/icons/arrow-left.svg');
+      }
+    }
+
+    :where(.NavigationPager__link--next) {
+      &::before {
+        mask-image: url('/assets/images/icons/arrow-right.svg');
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .NavigationPager {
+      :where(.NavigationPager__list) {
+        gap: calc(var(--user-spacing) * 4);
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .NavigationPager {
+      :where(.NavigationPager__link) {
+        &:hover {
+          background-color: var(--user-color-primary);
+          color: var(--user-color-foreground-light);
+        }
+      }
+    }
   }
 </style>

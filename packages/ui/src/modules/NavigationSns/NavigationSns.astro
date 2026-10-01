@@ -4,28 +4,233 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
-
-const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
-
-if (!Astro.slots.has('default')) {
-  throw new Error('NavigationSns: slotの中身が空です。');
+export interface Props extends HTMLAttributes<'nav'> {
+  /** シェアするリンクの属性を設定します。 */
+  share?: HTMLAttributes<'a'>;
+  /** Facebookで「いいね」するリンクの属性を設定します。 */
+  good?: HTMLAttributes<'a'>;
+  /** Facebookでシェアするリンクの属性を設定します。 */
+  facebook?: HTMLAttributes<'a'>;
+  /** Xでポストするリンクの属性を設定します。 */
+  x?: HTMLAttributes<'a'>;
+  /** Instagramでシェアするリンクの属性を設定します。 */
+  instagram?: HTMLAttributes<'a'>;
+  /** LINEで送るリンクの属性を設定します。 */
+  line?: HTMLAttributes<'a'>;
 }
+
+const {
+  share,
+  good,
+  facebook,
+  x,
+  instagram,
+  line,
+  class: className,
+  ...rest
+} = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
 ---
 
-<div
+<nav
   class:list={[
     'NavigationSns',
-    className
+    className,
   ]}
   {...attrs}
 >
-  <slot />
-</div>
+  <ul class:list={['NavigationSns__list']}>
+    {share && (
+      <li class:list={['NavigationSns__item']}>
+        <a
+          class:list={[
+            'NavigationSns__link',
+            'NavigationSns__link--share',
+          ]}
+          {...share}
+        >
+          シェアする
+        </a>
+      </li>
+    )}
+
+    {good && (
+      <li class:list={['NavigationSns__item']}>
+        <a
+          class:list={[
+            'NavigationSns__link',
+            'NavigationSns__link--good',
+          ]}
+          {...good}
+        >
+          Facebookで「いいね」する
+        </a>
+      </li>
+    )}
+
+    {facebook && (
+      <li class:list={['NavigationSns__item']}>
+        <a
+          class:list={[
+            'NavigationSns__link',
+            'NavigationSns__link--facebook',
+          ]}
+          {...facebook}
+        >
+          Facebookでシェア
+        </a>
+      </li>
+    )}
+
+    {x && (
+      <li class:list={['NavigationSns__item']}>
+        <a
+          class:list={[
+            'NavigationSns__link',
+            'NavigationSns__link--x',
+          ]}
+          {...x}
+        >
+          Xでポスト
+        </a>
+      </li>
+    )}
+
+    {instagram && (
+      <li class:list={['NavigationSns__item']}>
+        <a
+          class:list={[
+            'NavigationSns__link',
+            'NavigationSns__link--instagram',
+          ]}
+          {...instagram}
+        >
+          Instagramでシェア
+        </a>
+      </li>
+    )}
+
+    {line && (
+      <li class:list={['NavigationSns__item']}>
+        <a
+          class:list={[
+            'NavigationSns__link',
+            'NavigationSns__link--line',
+          ]}
+          {...line}
+        >
+          LINEで送る
+        </a>
+      </li>
+    )}
+  </ul>
+</nav>
 
 
 <style>
   .NavigationSns {
+    :where(.NavigationSns__list) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: calc(var(--user-spacing) * 2);
+    }
+
+    :where(.NavigationSns__item) {
+      line-height: var(--user-line-height);
+      list-style: none;
+    }
+
+    :where(.NavigationSns__link) {
+      --local-background: var(--user-color-primary);
+      --local-icon: url('/assets/images/icons/share.svg');
+      --local-icon-position: center 45%;
+      --local-icon-size: 50%;
+
+      display: block;
+      height: 32px;
+      overflow: hidden;
+      padding: calc(var(--user-spacing) * 8) 0 0 calc(var(--user-spacing) * 8);
+      position: relative;
+      text-decoration: none;
+      width: 32px;
+
+      &::before,
+      &::after {
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+      &::before {
+        background-color: var(--local-background);
+        border-radius: 50%;
+      }
+
+      &::after {
+        background-color: var(--user-color-foreground-light);
+        mask-image: var(--local-icon);
+        mask-position: var(--local-icon-position);
+        mask-repeat: no-repeat;
+        mask-size: var(--local-icon-size);
+      }
+
+      &:where(.NavigationSns__link--good, .NavigationSns__link--facebook) {
+        --local-background: #2926ff;
+      }
+
+      &:where(.NavigationSns__link--good) {
+        --local-icon: url('/assets/images/icons/thumbs-up.svg');
+      }
+
+      &:where(.NavigationSns__link--facebook) {
+        --local-icon: url('/assets/images/icons/facebook.svg');
+      }
+
+      &:where(.NavigationSns__link--x) {
+        --local-background: var(--user-color-foreground-dark);
+        --local-icon: url('/assets/images/icons/x-twitter.svg');
+      }
+
+      &:where(.NavigationSns__link--instagram) {
+        --local-background: #fc3657;
+        --local-icon: url('/assets/images/icons/instagram.svg');
+        --local-icon-position: center;
+        --local-icon-size: 60%;
+      }
+
+      &:where(.NavigationSns__link--line) {
+        --local-background: #00bd29;
+        --local-icon: url('/assets/images/icons/line.svg');
+        --local-icon-position: center;
+        --local-icon-size: 60%;
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .NavigationSns {
+      :where(.NavigationSns__list) {
+        gap: calc(var(--user-spacing) * 4);
+      }
+
+      :where(.NavigationSns__link) {
+        height: 40px;
+        padding: calc(var(--user-spacing) * 10) 0 0 calc(var(--user-spacing) * 10);
+        width: 40px;
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .NavigationSns {
+      :where(.NavigationSns__link) {
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
   }
 </style>
