@@ -1,12 +1,12 @@
 import type { StoryArgs } from '@packages/content/types/Storybook';
-import type { Props } from '@packages/ui/modules/WidgetRichEditor/WidgetRichEditor.astro';
-import WidgetRichEditor from '@packages/ui/modules/WidgetRichEditor/WidgetRichEditor.astro';
+import type { Props } from '@packages/ui/modules/WidgetRichEditorViewer/WidgetRichEditorViewer.astro';
+import WidgetRichEditorViewer from '@packages/ui/modules/WidgetRichEditorViewer/WidgetRichEditorViewer.astro';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  component: WidgetRichEditor,
+  component: WidgetRichEditorViewer,
   tags: ['autodocs'],
-  title: 'Components/Widget/⚠️WidgetRichEditor',
+  title: 'Components/Widget/⚠️WidgetRichEditorViewer',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },

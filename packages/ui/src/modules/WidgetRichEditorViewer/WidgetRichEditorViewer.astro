@@ -10,13 +10,13 @@ const { class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 
 if (!Astro.slots.has('default')) {
-  throw new Error('WidgetRichEditor: slotの中身が空です。');
+  throw new Error('WidgetRichEditorViewer: slotの中身が空です。');
 }
 ---
 
 <div
   class:list={[
-    'WidgetRichEditor',
+    'WidgetRichEditorViewer',
     className
   ]}
   {...attrs}
@@ -26,6 +26,6 @@ if (!Astro.slots.has('default')) {
 
 
 <style>
-  .WidgetRichEditor {
+  .WidgetRichEditorViewer {
   }
 </style>
