@@ -5,11 +5,11 @@ import type { HTMLAttributes } from 'astro/types';
  * - __このコンポーネントはmicroCMSのリッチエディタの [埋め込み編集](https://document.microcms.io/manual/rich-editor-usage#h8924563329) と関連しています。__
  */
 export interface Props extends HTMLAttributes<'div'> {
-  /** 埋め込みコンテンツを表示領域に入った時点で読み込みます。 */
-  facade?: boolean;
+  /** 埋め込みコンテンツを表示領域に入った時点で読み込みます。ただしこのPropsはリッチエディタでは利用できません。 */
+  lazyLoad?: boolean;
 }
 
-const { facade = true, class: className, ...rest } = Astro.props;
+const { lazyLoad = true, class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 
 if (!Astro.slots.has('default')) {
@@ -23,7 +23,7 @@ if (!Astro.slots.has('default')) {
   ]}
   {...attrs}
 >
-  {facade ? (
+  {lazyLoad ? (
     <template><slot /></template>
   ) : (
     <slot />
@@ -31,7 +31,7 @@ if (!Astro.slots.has('default')) {
 
   <script is:inline>
     (() => {
-      const setFacade = () => {
+      const setLazyLoad = () => {
         const root = document.currentScript.parentElement;
         const template = root.querySelector('template');
 
@@ -51,7 +51,7 @@ if (!Astro.slots.has('default')) {
         observer.observe(root);
       };
 
-      setFacade();
+      setLazyLoad();
     })();
   </script>
 </div>
@@ -59,17 +59,18 @@ if (!Astro.slots.has('default')) {
 
 <style>
   .MediaEmbed {
-    aspect-ratio: 16 / 9;
-
-    :where(div) {
+    :where(div:has(iframe)) {
+      aspect-ratio: 16 / 9;
       height: 100% !important;
+      left: revert !important;
       padding: revert !important;
-    }
+      width: 100% !important;
 
-    :where(iframe) {
-      display: block;
-      width: 100%;
-      height: 100%;
+      :where(iframe) {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 </style>

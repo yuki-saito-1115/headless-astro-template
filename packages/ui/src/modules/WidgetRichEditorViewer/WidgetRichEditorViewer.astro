@@ -4,14 +4,13 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
-
-const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
-
-if (!Astro.slots.has('default')) {
-  throw new Error('WidgetRichEditorViewer: slotの中身が空です。');
+export interface Props extends HTMLAttributes<'div'> {
+  /** リッチエディタで登録したHTMLを設定します。 */
+  datas: string;
 }
+
+const { datas, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
 ---
 
 <div
@@ -20,12 +19,313 @@ if (!Astro.slots.has('default')) {
     className
   ]}
   {...attrs}
->
-  <slot />
-</div>
+  set:html={datas}
+/>
 
 
 <style>
   .WidgetRichEditorViewer {
+    /* .HeadingLevel2 */
+    :where(h2) {
+      margin-top: calc(var(--user-spacing) * 10);
+      font-weight: var(--user-font-weight-bold);
+      color: var(--user-color-foreground-dark);
+      text-align: center;
+      padding-bottom: calc(var(--user-spacing) * 6);
+      position: relative;
+      line-height: var(--text-2xl--line-height);
+      font-size: var(--text-2xl);
+
+      /* marker */
+      &::before {
+        background-color: var(--user-color-primary);
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 5px;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        width: 64px;
+      }
+
+      :where(a) {
+        color: var(--user-color-primary);
+        text-decoration: none;
+      }
+    }
+
+    /* .HeadingLevel3 */
+    :where(h3) {
+      margin-top: calc(var(--user-spacing) * 10);
+      font-weight: var(--user-font-weight-bold);
+      color: var(--user-color-foreground-dark);
+      padding-bottom: calc(var(--user-spacing) * 4);
+      position: relative;
+      line-height: var(--text-xl--line-height);
+      font-size: var(--text-xl);
+
+      /* border */
+      &::before {
+        background-color: var(--user-color-primary);
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 1px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+      }
+
+      :where(a) {
+        color: var(--user-color-primary);
+        text-decoration: none;
+      }
+    }
+
+    /* .HeadingLevel4 */
+    :where(h4) {
+      margin-top: calc(var(--user-spacing) * 10);
+      font-weight: var(--user-font-weight-bold);
+      color: var(--user-color-foreground-dark);
+      padding-left: calc(var(--user-spacing) * 6);
+      position: relative;
+      line-height: var(--text-lg--line-height);
+      font-size: var(--text-lg);
+
+      /* marker */
+      &::before {
+        background-color: var(--user-color-primary);
+        content: '';
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 5px;
+      }
+
+      :where(a) {
+        color: var(--user-color-primary);
+        text-decoration: none;
+      }
+    }
+
+    /* .HeadingLevel5 */
+    :where(h5) {
+      margin-top: calc(var(--user-spacing) * 10);
+      font-weight: var(--user-font-weight-bold);
+      color: var(--user-color-foreground-dark);
+      padding-left: calc(var(--user-spacing) * 6);
+      position: relative;
+      line-height: var(--text-base--line-height);
+      font-size: var(--text-base);
+
+      /* marker */
+      &::before {
+        background-color: var(--user-color-primary);
+        content: '';
+        display: block;
+        height: 1em;
+        left: 0;
+        position: absolute;
+        top: 0.4em;
+        width: 1em;
+      }
+
+      :where(a) {
+        color: var(--user-color-primary);
+        text-decoration: none;
+      }
+    }
+
+    /* .HeadingLevel6 */
+    :where(h6) {
+      margin-top: calc(var(--user-spacing) * 10);
+      font-weight: var(--user-font-weight-bold);
+      color: var(--user-color-foreground-dark);
+      line-height: var(--text-sm--line-height);
+      font-size: var(--text-sm);
+
+      :where(a) {
+        color: var(--user-color-primary);
+        text-decoration: none;
+      }
+    }
+
+    /* .Text */
+    :where(p) {
+      margin-top: calc(var(--user-spacing) * 10);
+    }
+
+    :where(strong) {
+      font-weight: var(--user-font-weight-bold);
+    }
+
+    :where(em) {
+      font-style: italic;
+    }
+
+    :where(u) {
+      text-decoration: underline;
+    }
+
+    :where(s) {
+      text-decoration: line-through;
+    }
+
+    :where(code) {
+      font-family: var(--font-mono);
+      font-size: smaller;
+      padding: 0.125em 0.5em;
+      border-radius: var(--user-border-radius);
+      margin: 0 0.5em;
+      border: 1px solid var(--color-gray-300);
+      background-color: var(--color-gray-200);
+      vertical-align: baseline;
+      text-box-edge: cap alphabetic;
+      line-height: 1;
+    }
+
+    /* .Horizon */
+    :where(hr) {
+      margin-top: calc(var(--user-spacing) * 10);
+      border-bottom: 0;
+      border-top: 1px solid var(--user-color-outline-dark);
+    }
+
+    /* TODO: 「コードブロック」用コンポーネント未設計 */
+
+    /* .Table */
+    :where(table) {
+      margin-top: calc(var(--user-spacing) * 10);
+      background-color: var(--user-color-background-light);
+      border-collapse: collapse;
+      border-left: 1px solid var(--user-color-foreground-dark);
+      border-top: 1px solid var(--user-color-foreground-dark);
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    :where(th, td) {
+      border-bottom: 1px solid var(--user-color-foreground-dark);
+      border-right: 1px solid var(--user-color-foreground-dark);
+      padding: calc(var(--user-spacing) * 4);
+    }
+
+    :where(th) {
+      background-color: var(--color-gray-200);
+      font-weight: var(--user-font-weight-bold);
+      text-align: center;
+    }
+
+    /* .List */
+    :where(ol, ul) {
+      margin-top: calc(var(--user-spacing) * 10);
+      display: grid;
+      gap: var(--local-item-gap-y) var(--local-item-gap-x);
+      padding-left: 1.7em;
+
+      :where(ol, ul) {
+        margin-top: var(--local-item-gap-y);
+      }
+
+      :where(li) {
+        height: 100%;
+        position: relative;
+      }
+    }
+
+    :where(ul) {
+      > :global(:where(li)) {
+        list-style: none;
+
+        &::before {
+          background-color: var(--user-color-primary);
+          border-radius: 50%;
+          content: '';
+          display: block;
+          height: 6px;
+          left: -1.7em;
+          position: absolute;
+          top: 0.7em;
+          width: 6px;
+        }
+      }
+    }
+
+    :where(ol) {
+      > :global(:where(li)) {
+        list-style: list-number-default;
+      }
+    }
+
+    /* .Link */
+    :where(a) {
+      color: var(--user-color-primary);
+      text-decoration: none;
+      fill: var(--user-color-primary);
+    }
+
+    /* .Media */
+    :where(figure) {
+      margin-top: calc(var(--user-spacing) * 10);
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--user-spacing) * 2);
+      margin-inline: auto;
+      max-width: 100%;
+      width: fit-content;
+
+      &[style*='text-align: left'] {
+        text-align: revert !important;
+        margin-left: 0;
+      }
+
+      &[style*='text-align: right'] {
+        text-align: revert !important;
+        margin-right: 0;
+      }
+
+      :where(a) {
+        align-items: center;
+        color: var(--user-color-primary);
+        display: flex;
+        text-decoration: none;
+        fill: var(--user-color-primary);
+        flex-direction: column;
+        gap: calc(var(--user-spacing) * 2);
+      }
+
+      :where(img) {
+        display: block;
+        height: auto;
+        max-width: 100%;
+      }
+
+      :where(figcaption) {
+        font-size: var(--user-font-size-note);
+        min-width: 100%;
+        text-align: center;
+        width: 0;
+      }
+    }
+
+    /* .MediaEmbed */
+    :where(div:has(iframe)) {
+      margin-top: calc(var(--user-spacing) * 10);
+      aspect-ratio: 16 / 9;
+      height: 100% !important;
+      left: revert !important;
+      padding: revert !important;
+      width: 100% !important;
+
+      :where(iframe) {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 </style>
