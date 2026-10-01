@@ -4,9 +4,12 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはmicroCMSのリッチエディタの [埋め込み編集](https://document.microcms.io/manual/rich-editor-usage#h8924563329) と関連しています。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'div'> {
+  /** 埋め込みコンテンツを表示領域に入った時点で読み込みます。 */
+  facade?: boolean;
+}
 
-const { class: className, ...rest } = Astro.props;
+const { facade = true, class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 
 if (!Astro.slots.has('default')) {
@@ -14,19 +17,54 @@ if (!Astro.slots.has('default')) {
 }
 ---
 <div
-  class:list={['MediaEmbed', className]}
+  class:list={[
+    'MediaEmbed',
+    className,
+  ]}
   {...attrs}
 >
-  <slot />
+  {facade ? (
+    <template><slot /></template>
+  ) : (
+    <slot />
+  )}
 </div>
+
+
+<script define:vars={{ facade }}>
+  (() => {
+    const facade = () => {
+      if (!facade) {
+        return;
+      }
+
+      const root = document.currentScript.previousElementSibling;
+      const template = root.querySelector('template');
+
+      const observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        root.replaceChildren(template.content);
+        observer.unobserve(root);
+      });
+
+      observer.observe(root);
+    };
+
+    facade();
+  })();
+</script>
 
 
 <style>
   .MediaEmbed {
+    aspect-ratio: 16 / 9;
+
     :where(div) {
       height: revert !important;
       padding: revert !important;
-      aspect-ratio: 16 / 9;
     }
 
     :where(iframe) {

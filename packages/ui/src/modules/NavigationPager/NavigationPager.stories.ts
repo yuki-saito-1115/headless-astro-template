@@ -26,23 +26,23 @@ type Story = StoryObj<StoryArgs<Props>>;
 export const Default: Story = {
   args: {
     baseUrl: '/news',
-    currentPage: 3,
-    totalPages: 5,
+    current: 3,
+    total: 5,
   },
 };
 
 export const FirstPage: Story = {
   args: {
     baseUrl: '/news',
-    currentPage: 1,
-    totalPages: 5,
+    current: 1,
+    total: 5,
   },
 };
 
 export const LastPage: Story = {
   args: {
     baseUrl: '/news',
-    currentPage: 5,
-    totalPages: 5,
+    current: 5,
+    total: 5,
   },
 };

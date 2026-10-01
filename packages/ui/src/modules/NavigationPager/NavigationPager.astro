@@ -6,26 +6,20 @@ import type { HTMLAttributes } from 'astro/types';
  */
 export interface Props extends HTMLAttributes<'nav'> {
   /** 現在のページ番号を設定します。 */
-  currentPage: number;
+  current: number;
   /** 総ページ数を設定します。 */
-  totalPages: number;
+  total: number;
   /** 1ページ目のURLを設定します。 */
   baseUrl: string;
 }
 
-const {
-  currentPage,
-  totalPages,
-  baseUrl,
-  class: className,
-  ...rest
-} = Astro.props;
+const { current, total, baseUrl, class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 const setHref = (page: number) =>
   page === 1 ? baseUrl : `${baseUrl}/page/${page}.html`;
-const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
-const hasPrevPage = currentPage > 1;
-const hasNextPage = currentPage < totalPages;
+const pages = Array.from({ length: total }, (_, index) => index + 1);
+const hasPrevPage = current > 1;
+const hasNextPage = current < total;
 ---
 
 <nav
@@ -43,7 +37,7 @@ const hasNextPage = currentPage < totalPages;
             'NavigationPager__link',
             'NavigationPager__link--previous',
           ]}
-          href={setHref(currentPage - 1)}
+          href={setHref(current - 1)}
         >
           前のページ
         </a>
@@ -54,10 +48,10 @@ const hasNextPage = currentPage < totalPages;
       <li
         class:list={[
           'NavigationPager__item',
-          page === currentPage && 'NavigationPager__item--current',
+          page === current && 'NavigationPager__item--current',
         ]}
       >
-        {page === currentPage ? (
+        {page === current ? (
           <span class:list={['NavigationPager__current']}>{page}</span>
         ) : (
           <a
@@ -77,7 +71,7 @@ const hasNextPage = currentPage < totalPages;
             'NavigationPager__link',
             'NavigationPager__link--next',
           ]}
-          href={setHref(currentPage + 1)}
+          href={setHref(current + 1)}
         >
           次のページ
         </a>
