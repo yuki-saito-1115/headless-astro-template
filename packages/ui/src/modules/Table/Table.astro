@@ -4,9 +4,22 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはmicroCMSのリッチエディタの [テーブル](https://document.microcms.io/manual/rich-editor-usage#h361fd99869) と関連しています。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'div'> {
+  /** SP幅時のテーブルの並び方向を設定します。ただしこのPropsはリッチエディタでは利用できません。 */
+  directSp?: 'row' | 'column';
+  /** SP幅時にテーブルを横スクロールで表示します。ただしこのPropsはリッチエディタでは利用できません。 */
+  scrollSp?: boolean;
+  /** PC幅時にテーブルを横スクロールで表示します。ただしこのPropsはリッチエディタでは利用できません。 */
+  scrollPc?: boolean;
+}
 
-const { class: className, ...rest } = Astro.props;
+const {
+  directSp = 'row',
+  scrollSp = false,
+  scrollPc = false,
+  class: className,
+  ...rest
+} = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 
 if (!Astro.slots.has('default')) {
@@ -17,15 +30,125 @@ if (!Astro.slots.has('default')) {
 <div
   class:list={[
     'Table',
-    className
+    directSp && `directSp-${directSp}`,
+    scrollSp && 'scrollSp',
+    scrollPc && 'scrollPc',
+    className,
   ]}
   {...attrs}
 >
   <slot />
+
+  <script is:inline>
+    (() => {
+      const setScrollGuide = () => {
+        const root = document.currentScript.parentElement;
+
+        if (!root.classList.contains('scrollSp')) {
+          return;
+        }
+
+        root.addEventListener(
+          'scroll',
+          () => root.classList.remove('is-scrollGuide'),
+          { once: true },
+        );
+
+        root.classList.add('is-scrollGuide');
+      };
+
+      setScrollGuide();
+    })();
+  </script>
 </div>
 
 
 <style>
   .Table {
+    :where(table) {
+      background-color: var(--user-color-background-light);
+      border-collapse: collapse;
+      border-left: 1px solid var(--user-color-foreground-dark);
+      border-top: 1px solid var(--user-color-foreground-dark);
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    :where(th, td) {
+      border-bottom: 1px solid var(--user-color-foreground-dark);
+      border-right: 1px solid var(--user-color-foreground-dark);
+      padding: calc(var(--user-spacing) * 4);
+    }
+
+    :where(th) {
+      background-color: var(--color-gray-200);
+      font-weight: var(--user-font-weight-bold);
+      text-align: center;
+    }
+  }
+
+  @media (width < 768px) {
+    .Table {
+      &:where(.directSp-column) {
+        :where(table, tbody, tr, th, td) {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      &:where(.scrollSp) {
+        overflow: auto;
+        position: relative;
+
+        &:where(.is-scrollGuide) {
+          &::before,
+          &::after {
+            aspect-ratio: 1;
+            content: '';
+            height: min(calc(100% - (var(--user-spacing) * 2)), calc(var(--user-spacing) * 18));
+            left: 50%;
+            position: absolute;
+            pointer-events: none;
+            top: min(50%, calc(var(--user-spacing) * 28));
+            transform: translate(-50%, -50%);
+            width: auto;
+          }
+
+          &::before {
+            background-color: var(--user-color-foreground-dark);
+            border-radius: 50%;
+            opacity: 0.75;
+          }
+
+          &::after {
+            background-color: var(--user-color-foreground-light);
+            mask-image: url('/assets/images/icons/arrow-right.svg');
+            mask-position: center;
+            mask-repeat: no-repeat;
+            mask-size: 60%;
+          }
+        }
+
+        :where(table) {
+          width: calc(var(--user-major-breakpoint) - 1px);
+        }
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .Table {
+      &:where(.scrollPc) {
+        overflow: auto;
+
+        :where(table) {
+          width: var(--user-content-width-pc);
+        }
+      }
+
+      :where(th, td) {
+        padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 6);
+      }
+    }
   }
 </style>

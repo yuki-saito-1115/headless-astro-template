@@ -23,6 +23,135 @@ export default meta;
  */
 type Story = StoryObj<StoryArgs<Props>>;
 
-export const Default: Story = {
-  args: {},
+export const RowHeadings: Story = {
+  args: {
+    slots: {
+      default: `<table>
+  <tbody>
+    <tr>
+      <th>テキスト</th>
+      <th>テキスト</th>
+      <th>テキスト</th>
+    </tr>
+    <tr>
+      <td>テキスト</td>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+    <tr>
+      <td>テキスト</td>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+  </tbody>
+</table>`,
+    },
+  },
+};
+
+export const ColumnHeadings: Story = {
+  args: {
+    slots: {
+      default: `<table>
+  <tbody>
+    <tr>
+      <th>テキスト</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+    <tr>
+      <th>テキスト</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+    <tr>
+      <th>テキスト</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+  </tbody>
+</table>`,
+    },
+  },
+};
+
+export const BothHeadings: Story = {
+  args: {
+    slots: {
+      default: `<table>
+  <tbody>
+    <tr>
+      <th>テキスト</th>
+      <th>テキスト</th>
+      <th>テキスト</th>
+    </tr>
+    <tr>
+      <th>テキスト</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+    <tr>
+      <th>テキスト</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+  </tbody>
+</table>`,
+    },
+  },
+};
+
+export const Column: Story = {
+  args: {
+    directSp: 'column',
+    slots: {
+      default: `<table>
+  <tbody>
+    <tr>
+      <th>テキスト</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+    <tr>
+      <th>テキスト</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+    <tr>
+      <th>テキスト</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+  </tbody>
+</table>`,
+    },
+  },
+};
+
+export const Scroll: Story = {
+  args: {
+    scrollSp: true,
+    scrollPc: true,
+    slots: {
+      default: `<table>
+  <tbody>
+    <tr>
+      <th>テキスト</th>
+      <th>テキスト</th>
+      <th>テキスト</th>
+    </tr>
+    <tr>
+      <th>テキスト</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+    <tr>
+      <th>テキスト</th>
+      <td>テキスト</td>
+      <td>テキスト</td>
+    </tr>
+  </tbody>
+</table>`,
+    },
+  },
 };
