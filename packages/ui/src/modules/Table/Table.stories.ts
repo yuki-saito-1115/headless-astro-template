@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: Table,
   tags: ['autodocs'],
-  title: 'Components/Table/⚠️Table',
+  title: 'Components/Table/Table',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
