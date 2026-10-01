@@ -28,34 +28,33 @@ if (!Astro.slots.has('default')) {
   ) : (
     <slot />
   )}
-</div>
 
+  <script is:inline>
+    (() => {
+      const setFacade = () => {
+        const root = document.currentScript.parentElement;
+        const template = root.querySelector('template');
 
-<script define:vars={{ facade }}>
-  (() => {
-    const facade = () => {
-      if (!facade) {
-        return;
-      }
-
-      const root = document.currentScript.previousElementSibling;
-      const template = root.querySelector('template');
-
-      const observer = new IntersectionObserver(([entry]) => {
-        if (!entry.isIntersecting) {
+        if (!template) {
           return;
         }
 
-        root.replaceChildren(template.content);
-        observer.unobserve(root);
-      });
+        const observer = new IntersectionObserver(([entry]) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-      observer.observe(root);
-    };
+          root.replaceChildren(template.content);
+          observer.unobserve(root);
+        });
 
-    facade();
-  })();
-</script>
+        observer.observe(root);
+      };
+
+      setFacade();
+    })();
+  </script>
+</div>
 
 
 <style>
@@ -63,7 +62,7 @@ if (!Astro.slots.has('default')) {
     aspect-ratio: 16 / 9;
 
     :where(div) {
-      height: revert !important;
+      height: 100% !important;
       padding: revert !important;
     }
 
