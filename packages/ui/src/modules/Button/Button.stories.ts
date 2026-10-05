@@ -69,6 +69,42 @@ export const ThemeText: Story<'a'> = {
   },
 };
 
+export const SizeSmall: Story<'a'> = {
+  args: {
+    title: 'Lorem ipsum dolor sit amet',
+    size: 'small',
+    as: 'a',
+    href: 'DUMMY_LINK',
+  },
+};
+
+export const SizeMedium: Story<'a'> = {
+  args: {
+    title: 'Lorem ipsum dolor sit amet',
+    size: 'medium',
+    as: 'a',
+    href: 'DUMMY_LINK',
+  },
+};
+
+export const SizeLarge: Story<'a'> = {
+  args: {
+    title: 'Lorem ipsum dolor sit amet',
+    size: 'large',
+    as: 'a',
+    href: 'DUMMY_LINK',
+  },
+};
+
+export const SizeFull: Story<'a'> = {
+  args: {
+    title: 'Lorem ipsum dolor sit amet',
+    size: 'full',
+    as: 'a',
+    href: 'DUMMY_LINK',
+  },
+};
+
 export const DisabledButton: Story<'button'> = {
   args: {
     title: 'Lorem ipsum dolor sit amet',

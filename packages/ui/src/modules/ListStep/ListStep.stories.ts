@@ -24,5 +24,9 @@ export default meta;
 type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    slots: {
+      default: '手順の項目をここに配置します。',
+    },
+  },
 };

@@ -24,5 +24,9 @@ export default meta;
 type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    slots: {
+      default: 'フォームの複合要素をここに配置します。',
+    },
+  },
 };

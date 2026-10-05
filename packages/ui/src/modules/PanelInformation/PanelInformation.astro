@@ -8,24 +8,83 @@ export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
-
-if (!Astro.slots.has('default')) {
-  throw new Error('PanelInformation: slotの中身が空です。');
-}
 ---
 
-<div
-  class:list={[
-    'PanelInformation',
-    className
-  ]}
-  {...attrs}
->
-  <slot />
-</div>
+{Astro.slots.has('default') && (
+  <div
+    class:list={[
+      'PanelInformation',
+      className,
+    ]}
+    {...attrs}
+  >
+    <slot />
+  </div>
+)}
 
 
 <style>
   .PanelInformation {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--user-spacing) * 6);
+
+    :where(.PanelInformation__title) {
+      align-items: center;
+      display: flex;
+      font-size: var(--text-lg);
+      font-weight: var(--user-font-weight-bold);
+      gap: calc(var(--user-spacing) * 6);
+      justify-content: center;
+      line-height: var(--user-line-height);
+      text-align: center;
+    }
+
+    :where(.PanelInformation__number) {
+      align-items: center;
+      display: flex;
+      gap: calc(var(--user-spacing) * 2);
+      margin-top: calc(var(--user-spacing) * 2);
+      font-size: var(--text-2xl);
+      font-weight: var(--user-font-weight-bold);
+      line-height: 1;
+
+      &::before {
+        background-color: #00c61a;
+        content: '';
+        flex: 0 0 auto;
+        height: 1.2em;
+        mask-image: url('/assets/images/icons/free-dial.svg');
+        mask-repeat: no-repeat;
+        mask-size: contain;
+        width: 1.2em;
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .PanelInformation {
+      display: grid;
+      gap: calc(var(--user-spacing) * 10) clamp(1.5rem, 0.611rem + 1.85vw, 2rem);
+      grid-template-columns: 50% auto;
+      grid-template-rows: min-content min-content;
+
+      > :where(.PanelInformation__segment):last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+      }
+
+      :where(.PanelInformation__title) {
+        font-size: var(--text-xl);
+      }
+
+      :where(.PanelInformation__number) {
+        font-size: var(--text-3xl);
+
+        &::before {
+          height: 1.5em;
+          width: 1.5em;
+        }
+      }
+    }
   }
 </style>

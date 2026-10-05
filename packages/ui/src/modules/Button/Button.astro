@@ -22,6 +22,8 @@ export type Props<
       iconAfter?: MediaIconProps;
       /** 配色を設定できます。セマンティクスに変化はありません。 */
       theme?: 'emphasis' | 'conversion' | 'text';
+      /** ボタンのサイズを設定します。 */
+      size?: 'small' | 'medium' | 'large' | 'full';
     }
   : never;
 
@@ -31,6 +33,7 @@ const {
   iconAfter = undefined,
   iconBefore = undefined,
   theme = undefined,
+  size = undefined,
   class: className,
   ...rest
 } = Astro.props;
@@ -58,6 +61,7 @@ switch (Element) {
   class:list={[
     'Button',
     theme && `theme-${theme}`,
+    size && `size-${size}`,
     className,
   ]}
   {...attrs}
@@ -75,6 +79,7 @@ switch (Element) {
     --local-foreground: var(--user-color-primary);
     --local-background: var(--user-color-background-light);
     --local-outline: var(--user-color-primary);
+    --local-width: auto;
 
     align-items: center;
     background-color: var(--local-background);
@@ -95,6 +100,7 @@ switch (Element) {
     text-align: center;
     text-decoration: none;
     vertical-align: middle;
+    width: var(--local-width);
 
     /* 強調 */
     &:where(.theme-emphasis) {
@@ -129,6 +135,22 @@ switch (Element) {
       --local-outline: var(--user-color-disabled-light);
 
       cursor: text;
+    }
+
+    &:where(.size-small) {
+      --local-width: 25%;
+    }
+
+    &:where(.size-medium) {
+      --local-width: 50%;
+    }
+
+    &:where(.size-large) {
+      --local-width: 75%;
+    }
+
+    &:where(.size-full) {
+      --local-width: 100%;
     }
 
     > :where(.Button__icon) {
