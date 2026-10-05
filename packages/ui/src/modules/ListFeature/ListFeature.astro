@@ -4,28 +4,107 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
-
-const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
-
-if (!Astro.slots.has('default')) {
-  throw new Error('ListFeature: slotの中身が空です。');
+export interface Props extends HTMLAttributes<'ul'> {
+  /** 特長の内容を設定します。 */
+  datas: {
+    /** バッジに表示するテキストを設定します。 */
+    badge: string;
+    /** タイトルを設定します。 */
+    title: string;
+    /** 説明文を設定します。省略した場合は表示しません。 */
+    text?: string;
+  }[];
 }
+
+const { datas, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
 ---
 
-<div
+<ul
   class:list={[
     'ListFeature',
     className
   ]}
   {...attrs}
 >
-  <slot />
-</div>
+  {datas.map((data) => (
+    <li>
+      <span class="ListFeature__badge">{data.badge}</span>
+      <span class="ListFeature__title">{data.title}</span>
+      {data.text && <p class="ListFeature__text">{data.text}</p>}
+    </li>
+  ))}
+</ul>
 
 
 <style>
   .ListFeature {
+    display: grid;
+    row-gap: calc(var(--user-spacing) * 6);
+
+    > :global(li) {
+      display: grid;
+      list-style: none;
+      row-gap: calc(var(--user-spacing) * 2);
+
+      > :where(.ListFeature__badge) {
+        align-items: center;
+        background-color: var(--user-color-secondary2);
+        color: var(--user-color-foreground-light);
+        display: inline-flex;
+        font-size: var(--user-font-size-base);
+        font-weight: var(--user-font-weight-bold);
+        justify-content: center;
+        line-height: 1.5;
+        margin-bottom: calc(var(--user-spacing) * 1);
+        min-width: calc(var(--user-spacing) * 29);
+        padding: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 3);
+        text-align: center;
+      }
+
+      > :where(.ListFeature__title) {
+        font-size: var(--user-font-size-base);
+        font-weight: var(--user-font-weight-bold);
+      }
+
+      > :where(.ListFeature__text) {
+        font-size: var(--user-font-size-note);
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .ListFeature {
+      grid-template-columns: auto minmax(0, 1fr);
+
+      > :global(li) {
+        align-items: baseline;
+        column-gap: calc(var(--user-spacing) * 6);
+        grid-column: span 2;
+        grid-template-columns: subgrid;
+        row-gap: calc(var(--user-spacing) * 2);
+
+        &:has(.ListFeature__text) {
+          > :where(.ListFeature__badge) {
+            grid-row: span 2;
+          }
+        }
+
+        > :where(.ListFeature__badge) {
+          font-size: var(--text-lg);
+          margin-bottom: 0;
+          min-width: calc(var(--user-spacing) * 37);
+          width: 100%;
+        }
+
+        > :where(.ListFeature__title) {
+          font-size: var(--text-xl);
+        }
+
+        > :where(.ListFeature__text) {
+          font-size: var(--user-font-size-base);
+        }
+      }
+    }
   }
 </style>

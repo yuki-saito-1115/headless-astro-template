@@ -4,9 +4,19 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'div'> {
+  /** SP幅時のタイトルと内容の並び方を設定します。 */
+  directSp?: 'column' | 'row' | 'inline';
+  /** PC幅時のタイトルと内容の並び方を設定します。 */
+  directPc?: 'column' | 'row' | 'inline';
+}
 
-const { class: className, ...rest } = Astro.props;
+const {
+  directSp = 'column',
+  directPc = 'column',
+  class: className,
+  ...rest
+} = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 
 if (!Astro.slots.has('default')) {
@@ -17,6 +27,8 @@ if (!Astro.slots.has('default')) {
 <div
   class:list={[
     'ListDescription',
+    `directSp-${directSp}`,
+    `directPc-${directPc}`,
     className
   ]}
   {...attrs}
@@ -27,5 +39,87 @@ if (!Astro.slots.has('default')) {
 
 <style>
   .ListDescription {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--user-spacing) * 4);
+
+    > :global(dl) {
+      display: grid;
+      gap: calc(var(--user-spacing) * 2);
+      position: relative;
+      width: 100%;
+
+      > :global(dt) {
+        font-weight: var(--user-font-weight-bold);
+      }
+    }
+  }
+
+  @media (width < 768px) {
+    .ListDescription {
+      &:where(.directSp-row) {
+        > :global(dl) {
+          display: grid;
+          column-gap: calc(var(--user-spacing) * 4);
+          grid-template-columns: fit-content(30%) auto;
+        }
+      }
+
+      &:where(.directSp-inline) {
+        > :global(dl) {
+          display: block;
+
+          > :global(dt),
+          > :global(dd) {
+            display: inline;
+            width: auto;
+          }
+
+          > :global(dd + dt) {
+            border-left: 1px solid var(--user-color-outline-dark);
+            margin-left: calc(var(--user-spacing) * 2);
+            padding-left: calc(var(--user-spacing) * 2);
+          }
+
+          > :global(dt) {
+            margin-right: calc(var(--user-spacing) * 2);
+          }
+        }
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .ListDescription {
+      &:where(.directPc-row) {
+        > :global(dl) {
+          display: grid;
+          column-gap: calc(var(--user-spacing) * 6);
+          grid-template-columns: fit-content(30%) auto;
+        }
+      }
+
+      &:where(.directPc-inline) {
+        > :global(dl) {
+          display: block;
+
+          > :global(dt),
+          > :global(dd) {
+            display: inline;
+            width: auto;
+          }
+
+          > :global(dd + dt) {
+            border-left: 1px solid var(--user-color-outline-dark);
+            margin-left: calc(var(--user-spacing) * 4);
+            padding-left: calc(var(--user-spacing) * 4);
+          }
+
+          > :global(dt) {
+            margin-right: calc(var(--user-spacing) * 4);
+          }
+        }
+      }
+    }
   }
 </style>

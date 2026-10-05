@@ -4,28 +4,129 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
-
-const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
-
-if (!Astro.slots.has('default')) {
-  throw new Error('ListQuestion: slotの中身が空です。');
+export interface Props extends HTMLAttributes<'dl'> {
+  /** 質問と回答の内容を設定します。 */
+  datas: {
+    /** 質問を設定します。 */
+    question: string;
+    /** 回答を設定します。 */
+    answer: string;
+  }[];
 }
+
+const { datas, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
 ---
 
-<div
+<dl
   class:list={[
     'ListQuestion',
     className
   ]}
   {...attrs}
 >
-  <slot />
-</div>
+  {datas.map((data) => (
+    <div class="ListQuestion__item">
+      <dt>
+        <span class="ListQuestion__mark">Question</span>
+        <span class="ListQuestion__text">{data.question}</span>
+      </dt>
+      <dd>
+        <span class="ListQuestion__mark">Answer</span>
+        <span class="ListQuestion__text">{data.answer}</span>
+      </dd>
+    </div>
+  ))}
+</dl>
 
 
 <style>
   .ListQuestion {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--user-spacing) * 6);
+
+    :where(dt, dd) {
+      align-items: baseline;
+      display: flex;
+      gap: calc(var(--user-spacing) * 2);
+    }
+
+    :where(.ListQuestion__text) {
+      flex: 1 1 auto;
+    }
+
+    :where(dt) {
+      font-weight: var(--user-font-weight-bold);
+
+      :where(.ListQuestion__mark) {
+        background-color: var(--user-color-primary);
+      }
+
+      :where(.ListQuestion__text) {
+        font-size: var(--user-font-size-base);
+        line-height: 1.5;
+      }
+    }
+
+    :where(dd) {
+      margin-top: calc(var(--user-spacing) * 4);
+      padding-left: calc(var(--user-spacing) * 9);
+
+      :where(.ListQuestion__mark) {
+        background-color: var(--user-color-danger-dark);
+      }
+
+      :where(.ListQuestion__text) {
+        font-size: var(--user-font-size-note);
+      }
+    }
+
+    :where(.ListQuestion__mark) {
+      flex: 0 0 calc(var(--user-spacing) * 8);
+      font-size: 0;
+      height: calc(var(--user-spacing) * 8);
+      overflow: hidden;
+      text-align: center;
+      width: calc(var(--user-spacing) * 8);
+
+      &::first-letter {
+        color: var(--user-color-foreground-light);
+        font-family: var(--user-font-family-en);
+        font-size: var(--user-font-size-base);
+        line-height: calc(var(--user-spacing) * 8);
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .ListQuestion {
+      gap: calc(var(--user-spacing) * 10);
+
+      :where(dt) {
+        :where(.ListQuestion__text) {
+          font-size: var(--text-xl);
+        }
+      }
+
+      :where(dd) {
+        padding-left: calc(var(--user-spacing) * 12);
+
+        :where(.ListQuestion__text) {
+          font-size: var(--user-font-size-base);
+        }
+      }
+
+      :where(.ListQuestion__mark) {
+        flex-basis: calc(var(--user-spacing) * 10);
+        height: calc(var(--user-spacing) * 10);
+        width: calc(var(--user-spacing) * 10);
+
+        &::first-letter {
+          font-size: var(--text-xl);
+          line-height: calc(var(--user-spacing) * 10);
+        }
+      }
+    }
   }
 </style>

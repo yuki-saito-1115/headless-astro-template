@@ -1,31 +1,118 @@
 ---
+import type { components } from '@packages/content/types/microcms';
+import Badge from '@packages/ui/modules/Badge/Badge.astro';
 import type { HTMLAttributes } from 'astro/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'ol'> {
+  /** microCMSから取得したお知らせデータを設定します。同じ型のデータであれば手動でも設定できます。 */
+  datas: components['schemas']['News'][];
+}
 
-const { class: className, ...rest } = Astro.props;
+const { datas, class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 
-if (!Astro.slots.has('default')) {
-  throw new Error('ListNews: slotの中身が空です。');
-}
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat('ja-JP', {
+    day: '2-digit',
+    month: '2-digit',
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric',
+  })
+    .format(new Date(date))
+    .replaceAll('/', '.');
 ---
 
-<div
+<ol
   class:list={[
     'ListNews',
     className
   ]}
   {...attrs}
 >
-  <slot />
-</div>
+  {datas.map((data) => (
+    <li>
+      <a href={data.link || data.id}>
+        <div class="ListNews__head">
+          <time datetime={data.date}>{formatDate(data.date)}</time>
+          {data.category && (
+            <Badge class="ListNews__badge" title={data.category} />
+          )}
+        </div>
+        <span class="ListNews__title">{data.title}</span>
+      </a>
+    </li>
+  ))}
+</ol>
 
 
 <style>
   .ListNews {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--user-spacing) * 4);
+
+    :where(li) {
+      list-style: none;
+      width: 100%;
+    }
+
+    :where(a) {
+      color: var(--user-color-primary);
+      display: inline-flex;
+      flex-direction: column;
+      gap: calc(var(--user-spacing) * 2);
+      text-decoration: none;
+    }
+
+    :where(.ListNews__head, .ListNews__title) {
+      width: 100%;
+    }
+
+    :where(.ListNews__head) {
+      align-items: center;
+      display: flex;
+    }
+
+    :where(.ListNews__badge) {
+      margin-left: calc(var(--user-spacing) * 4);
+    }
+
+  }
+
+  @media (width >= 768px) {
+    .ListNews {
+      :where(a) {
+        align-items: center;
+        display: inline-flex;
+        flex-direction: row;
+        gap: calc(var(--user-spacing) * 6);
+      }
+
+      :where(.ListNews__head) {
+        flex: 0 0 auto;
+        width: auto;
+      }
+
+      :where(.ListNews__title) {
+        flex: 1 1 auto;
+        margin: 0;
+        width: auto;
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .ListNews {
+      :where(a) {
+        &:hover {
+          :where(.ListNews__title) {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 </style>

@@ -1,4 +1,3 @@
-import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/ListFeature/ListFeature.astro';
 import ListFeature from '@packages/ui/modules/ListFeature/ListFeature.astro';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -6,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: ListFeature,
   tags: ['autodocs'],
-  title: 'Components/List/⚠️ListFeature',
+  title: 'Components/List/ListFeature',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -19,14 +18,22 @@ export default meta;
 
 /**
  * ストーリーの型。このコンポーネントはPropsに `Polymorphic` を使っていないため、出力要素ごとに型を絞る必要はありません
- * `StoryArgs` は `args` に `slots` を追加します
  */
-type Story = StoryObj<StoryArgs<Props>>;
+type Story = StoryObj<Props>;
 
 export const Default: Story = {
   args: {
-    slots: {
-      default: '特長の項目をここに配置します。',
-    },
+    datas: [
+      {
+        badge: '特長1',
+        title: '特長のタイトル',
+        text: '特長の説明テキスト',
+      },
+      {
+        badge: '特長2',
+        title: '特長のタイトル',
+        text: '特長の説明テキスト',
+      },
+    ],
   },
 };

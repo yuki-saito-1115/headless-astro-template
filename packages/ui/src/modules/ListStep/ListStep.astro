@@ -4,28 +4,112 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
-
-const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
-
-if (!Astro.slots.has('default')) {
-  throw new Error('ListStep: slotの中身が空です。');
+export interface Props extends HTMLAttributes<'ol'> {
+  /** 手順の内容を設定します。 */
+  datas: {
+    /** 手順のタイトルを設定します。 */
+    title: string;
+    /** 手順の説明を設定します。 */
+    text: string;
+  }[];
 }
+
+const { datas, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
 ---
 
-<div
+<ol
   class:list={[
     'ListStep',
     className
   ]}
   {...attrs}
 >
-  <slot />
-</div>
+  {datas.map((data) => (
+    <li>
+      <span class="ListStep__title">{data.title}</span>
+      <span class="ListStep__text">{data.text}</span>
+    </li>
+  ))}
+</ol>
 
 
 <style>
   .ListStep {
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--user-spacing) * 6);
+
+    :where(li) {
+      background-color: var(--color-gray-200);
+      counter-increment: step;
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--user-spacing) * 4);
+      list-style: none;
+      padding: calc(var(--user-spacing) * 4);
+
+      position: relative;
+
+      &:not(:first-child)::before {
+        border-left: calc(var(--user-spacing) * 3) solid transparent;
+        border-right: calc(var(--user-spacing) * 3) solid transparent;
+        border-top: calc(var(--user-spacing) * 3) solid var(--color-gray-200);
+        bottom: calc(100% - (var(--user-spacing) * 3));
+        content: '';
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+      }
+    }
+
+    :where(.ListStep__title) {
+      font-weight: var(--user-font-weight-bold);
+      padding-left: calc(var(--user-spacing) * 10);
+      position: relative;
+
+      &::before {
+        align-items: center;
+        background-color: var(--user-color-secondary2);
+        color: var(--user-color-foreground-light);
+        content: counter(step);
+        display: flex;
+        height: calc(var(--user-spacing) * 8);
+        justify-content: center;
+        left: 0;
+        line-height: 1;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(var(--user-spacing) * 8);
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .ListStep {
+      gap: calc(var(--user-spacing) * 10);
+
+      :where(li) {
+        align-items: center;
+        flex-direction: row;
+        gap: calc(var(--user-spacing) * 6);
+      }
+
+      :where(.ListStep__title, .ListStep__text) {
+        flex: 0 1 auto;
+        max-width: 50%;
+      }
+
+      :where(.ListStep__title) {
+        padding-left: calc(var(--user-spacing) * 14);
+
+        &::before {
+          height: calc(var(--user-spacing) * 10);
+          width: calc(var(--user-spacing) * 10);
+        }
+      }
+    }
   }
 </style>

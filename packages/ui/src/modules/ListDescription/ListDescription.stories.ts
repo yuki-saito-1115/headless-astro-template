@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: ListDescription,
   tags: ['autodocs'],
-  title: 'Components/List/⚠️ListDescription',
+  title: 'Components/List/ListDescription',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -23,10 +23,45 @@ export default meta;
  */
 type Story = StoryObj<StoryArgs<Props>>;
 
-export const Default: Story = {
+export const Column: Story = {
   args: {
     slots: {
-      default: '説明リストの項目をここに配置します。',
+      default: `<dl>
+  <dt>項目</dt>
+  <dd>説明テキスト</dd>
+  <dt>項目</dt>
+  <dd>説明テキスト</dd>
+</dl>`,
+    },
+  },
+};
+
+export const Row: Story = {
+  args: {
+    directSp: 'row',
+    directPc: 'row',
+    slots: {
+      default: `<dl>
+  <dt>項目</dt>
+  <dd>説明テキスト</dd>
+  <dt>項目</dt>
+  <dd>説明テキスト</dd>
+</dl>`,
+    },
+  },
+};
+
+export const Inline: Story = {
+  args: {
+    directSp: 'inline',
+    directPc: 'inline',
+    slots: {
+      default: `<dl>
+  <dt>項目</dt>
+  <dd>説明テキスト</dd>
+  <dt>項目</dt>
+  <dd>説明テキスト</dd>
+</dl>`,
     },
   },
 };
