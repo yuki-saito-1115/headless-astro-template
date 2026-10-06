@@ -8,7 +8,6 @@
     "packages/*"
   ],
   "scripts": {
-    "clean": "node -e \"const { readdirSync, rmSync } = require('node:fs'); const { join } = require('node:path'); const targets = ['node_modules', 'dist', '.astro', 'storybook-static', '.wrangler', '.cache']; const ignored = ['.git', '.opencode']; const clean = (directory) => { for (const entry of readdirSync(directory, { withFileTypes: true })) { if (!entry.isDirectory() || ignored.includes(entry.name)) continue; const path = join(directory, entry.name); if (targets.includes(entry.name)) rmSync(path, { recursive: true, force: true }); else clean(path); } }; clean(process.cwd())\"",
     "build": "npm run build:design-token && npm run build:openapi && run-p -l -c build:site build:preview build:storybook build:docs",
     "build:design-token": "style-dictionary build --config design-token/config.js",
     "build:openapi": "node scripts/build-openapi.js",
@@ -51,25 +50,16 @@
     "setup:env": "node scripts/setup-env.js"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
-    "@astrojs/mdx": "^8.0.1",
     "@astrojs/ts-plugin": "^1.10.12",
     "@biomejs/biome": "^2.5.14",
     "@markuplint/astro-parser": "^5.0.0",
-    "@storybook-astro/framework": "^1.12.0",
-    "@storybook/addon-a11y": "^10.6.0",
-    "@storybook/addon-docs": "^10.6.0",
-    "@storybook/builder-vite": "^10.6.0",
-    "@tailwindcss/vite": "^4.3.3",
     "chokidar-cli": "^3.0.0",
     "js-yaml": "^5.4.2",
     "lint-staged": "^17.5.1",
     "markuplint": "^5.0.0",
     "npm-run-all2": "^9.0.3",
     "openapi-typescript": "^7.13.0",
-    "storybook": "^10.6.0",
     "style-dictionary": "^5.5.4",
-    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
   },
   "allowScripts": {
