@@ -28,32 +28,6 @@ if (!Astro.slots.has('default')) {
   ) : (
     <slot />
   )}
-
-  <script is:inline>
-    (() => {
-      const setLazyLoad = () => {
-        const root = document.currentScript.parentElement;
-        const template = root.querySelector('template');
-
-        if (!template) {
-          return;
-        }
-
-        const observer = new IntersectionObserver(([entry]) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          root.replaceChildren(template.content);
-          observer.unobserve(root);
-        });
-
-        observer.observe(root);
-      };
-
-      setLazyLoad();
-    })();
-  </script>
 </div>
 
 
@@ -74,3 +48,38 @@ if (!Astro.slots.has('default')) {
     }
   }
 </style>
+
+<script is:inline>
+  /** 表示領域に入った埋め込みコンテンツを読み込む。 */
+  const setMediaEmbed = (root) => {
+    const template = root.querySelector('template');
+
+    if (!template) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) {
+        return;
+      }
+
+      root.replaceChildren(template.content);
+      observer.unobserve(root);
+    });
+
+    observer.observe(root);
+  };
+
+  (() => {
+    const elements = document.querySelectorAll('.MediaEmbed');
+
+    elements.forEach((element) => {
+      if (element.dataset.initialized) {
+        return;
+      }
+
+      setMediaEmbed(element);
+      element.dataset.initialized = 'true';
+    });
+  })();
+</script>

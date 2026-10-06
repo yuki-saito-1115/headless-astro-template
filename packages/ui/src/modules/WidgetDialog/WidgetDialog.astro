@@ -1,12 +1,27 @@
 ---
+import Button from '@packages/ui/modules/Button/Button.astro';
 import type { HTMLAttributes } from 'astro/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ * - 開くボタンには `commandfor` にこのコンポーネントの `id` を、`command` に `"show-modal"` を指定してください。
  */
-export interface Props extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'dialog'> {
+  /** Invoker Commands APIで参照するダイアログのIDを設定します。 */
+  id: string;
+  /** ダイアログの見出しを設定します。 */
+  heading: string;
+  /** 閉じるボタンのテキストを設定します。 */
+  closeLabel?: string;
+}
 
-const { class: className, ...rest } = Astro.props;
+const {
+  id,
+  heading,
+  closeLabel = '閉じる',
+  class: className,
+  ...rest
+} = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 
 if (!Astro.slots.has('default')) {
@@ -14,18 +29,174 @@ if (!Astro.slots.has('default')) {
 }
 ---
 
-<div
+<dialog
+  id={id}
   class:list={[
     'WidgetDialog',
-    className
+    className,
   ]}
   {...attrs}
 >
-  <slot />
-</div>
+  <div class="WidgetDialog__outer">
+    <div class="WidgetDialog__inner">
+      <header class="WidgetDialog__head">
+        <button
+          command="close"
+          commandfor={id}
+          type="button"
+        >
+          {closeLabel}
+        </button>
+
+        <h2>{heading}</h2>
+      </header>
+
+      <div class="WidgetDialog__body" tabindex="0">
+        <slot />
+      </div>
+
+      <footer class="WidgetDialog__foot">
+        <Button
+          as="button"
+          command="close"
+          commandfor={id}
+          iconBefore={{ name: 'xmark' }}
+          theme="text"
+          title={closeLabel}
+        />
+      </footer>
+    </div>
+  </div>
+</dialog>
 
 
 <style>
   .WidgetDialog {
+    background-color: transparent;
+    border: 0;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    overscroll-behavior: none;
+    padding: 0;
+    scrollbar-width: none;
+    width: 100%;
+
+    &::backdrop {
+      background-color: color-mix(in srgb, var(--user-color-background-dark), transparent 40%);
+    }
+
+    .WidgetDialog__outer {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      padding: calc(var(--user-spacing) * 6);
+    }
+
+    .WidgetDialog__inner {
+      background-color: var(--user-color-background-light);
+      display: flex;
+      flex-direction: column;
+      max-height: 100%;
+      max-width: var(--user-minor-breakpoint);
+      width: 100%;
+    }
+
+    .WidgetDialog__head {
+      padding: calc(var(--user-spacing) * 6);
+      position: relative;
+
+      :where(button) {
+        background-color: transparent;
+        border: 0;
+        display: block;
+        height: calc(var(--user-spacing) * 10);
+        overflow: hidden;
+        padding: calc(var(--user-spacing) * 10) 0 0 calc(var(--user-spacing) * 10);
+        position: absolute;
+        right: calc(var(--user-spacing) * 2);
+        top: calc(var(--user-spacing) * 2);
+        width: calc(var(--user-spacing) * 10);
+
+        &::before {
+          background-color: currentColor;
+          content: '';
+          height: 100%;
+          left: 0;
+          mask-image: url('/assets/images/icons/xmark.svg');
+          mask-position: center;
+          mask-repeat: no-repeat;
+          mask-size: 40%;
+          position: absolute;
+          top: 0;
+          width: 100%;
+        }
+      }
+    }
+
+    :where(h2) {
+      font-size: var(--text-xl);
+      line-height: var(--text-xl--line-height);
+      margin: 0;
+      padding-right: calc(var(--user-spacing) * 10);
+    }
+
+    .WidgetDialog__body {
+      margin: 0 calc(var(--user-spacing) * 6);
+      overflow: auto;
+    }
+
+    .WidgetDialog__foot {
+      display: flex;
+      justify-content: center;
+      padding: calc(var(--user-spacing) * 10) calc(var(--user-spacing) * 6);
+    }
   }
+
+  @media (width >= 768px) {
+    .WidgetDialog {
+      .WidgetDialog__outer {
+        padding: calc(var(--user-spacing) * 10);
+      }
+
+      .WidgetDialog__head {
+        padding: calc(var(--user-spacing) * 8) calc(var(--user-spacing) * 16);
+      }
+
+      :where(h2) {
+        font-size: var(--text-2xl);
+        line-height: var(--text-2xl--line-height);
+      }
+
+      .WidgetDialog__closeButton {
+        right: calc(var(--user-spacing) * 4);
+        top: calc(var(--user-spacing) * 4);
+      }
+
+      .WidgetDialog__body {
+        margin: 0 calc(var(--user-spacing) * 16);
+      }
+
+      .WidgetDialog__foot {
+        padding: calc(var(--user-spacing) * 14) calc(var(--user-spacing) * 16);
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .WidgetDialog__head {
+      :where(button) {
+        &:hover {
+          background-color: var(--user-color-primary);
+          color: var(--user-color-foreground-light);
+
+          &::before {
+            background-color: currentColor;
+          }
+        }
+      }
+    }
+  }
+
 </style>

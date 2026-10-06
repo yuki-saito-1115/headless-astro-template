@@ -1,12 +1,18 @@
 import type { StoryArgs } from '@packages/content/types/Storybook';
+import Link from '@packages/ui/modules/Link/Link.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
 import type { Props } from '@packages/ui/modules/WidgetDialog/WidgetDialog.astro';
 import WidgetDialog from '@packages/ui/modules/WidgetDialog/WidgetDialog.astro';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
+
+const storybookComponent = (component: unknown) =>
+  component as AstroComponentFactory;
 
 const meta = {
   component: WidgetDialog,
   tags: ['autodocs'],
-  title: 'Components/Widget/⚠️WidgetDialog',
+  title: 'Components/Widget/WidgetDialog',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -25,8 +31,57 @@ type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
+    id: 'widget-dialog-story',
+    heading: 'ダイアログの見出し',
     slots: {
-      default: 'ダイアログの内容をここに配置します。',
+      default: [
+        {
+          component: storybookComponent(Text),
+          props: {
+            class: 'mb-4',
+          },
+          slots: {
+            default: '<p>ダイアログの内容をここに配置します。</p>',
+          },
+        },
+        {
+          component: storybookComponent(Link),
+          slots: {
+            default: '<a href="/">関連ページを見る</a>',
+          },
+        },
+      ],
+    },
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `---
+import Button from '@packages/ui/modules/Button/Button.astro';
+import Link from '@packages/ui/modules/Link/Link.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import WidgetDialog from '@packages/ui/modules/WidgetDialog/WidgetDialog.astro';
+---
+
+<Text>
+  <p>
+    <Button
+      as="button"
+      command="show-modal"
+      commandfor="contact-dialog"
+      theme="text"
+      title="ダイアログを開く"
+    />
+  </p>
+</Text>
+
+<WidgetDialog id="contact-dialog" heading="ダイアログの見出し">
+  <Text class="mb-4">
+    <p>ダイアログの内容をここに配置します。</p>
+  </Text>
+  <Link><a href="/">関連ページを見る</a></Link>
+</WidgetDialog>`,
+      },
     },
   },
 };

@@ -38,28 +38,6 @@ if (!Astro.slots.has('default')) {
   {...attrs}
 >
   <slot />
-
-  <script is:inline>
-    (() => {
-      const setScrollGuide = () => {
-        const root = document.currentScript.parentElement;
-
-        if (!root.classList.contains('scrollSp')) {
-          return;
-        }
-
-        root.addEventListener(
-          'scroll',
-          () => root.classList.remove('is-scrollGuide'),
-          { once: true },
-        );
-
-        root.classList.add('is-scrollGuide');
-      };
-
-      setScrollGuide();
-    })();
-  </script>
 </div>
 
 
@@ -152,3 +130,42 @@ if (!Astro.slots.has('default')) {
     }
   }
 </style>
+
+<script is:inline>
+  /** SP幅で横スクロールするテーブルに、初回だけスクロール操作のガイドを表示する。 */
+  const setTable = (root) => {
+    if (!root.classList.contains('scrollSp')) {
+      return;
+    }
+
+    /** 最初のスクロールでガイドを消す。 */
+    const bindEvent = () => {
+      root.addEventListener(
+        'scroll',
+        () => root.classList.remove('is-scrollGuide'),
+        { once: true },
+      );
+    };
+
+    /** スクロール前のガイドを表示する。 */
+    const build = () => {
+      root.classList.add('is-scrollGuide');
+    };
+
+    build();
+    bindEvent();
+  };
+
+  (() => {
+    const elements = document.querySelectorAll('.Table');
+
+    elements.forEach((element) => {
+      if (element.dataset.initialized) {
+        return;
+      }
+
+      setTable(element);
+      element.dataset.initialized = 'true';
+    });
+  })();
+</script>

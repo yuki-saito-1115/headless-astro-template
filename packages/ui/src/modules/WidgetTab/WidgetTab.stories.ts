@@ -1,12 +1,17 @@
 import type { StoryArgs } from '@packages/content/types/Storybook';
+import Text from '@packages/ui/modules/Text/Text.astro';
 import type { Props } from '@packages/ui/modules/WidgetTab/WidgetTab.astro';
 import WidgetTab from '@packages/ui/modules/WidgetTab/WidgetTab.astro';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
+
+const storybookComponent = (component: unknown) =>
+  component as AstroComponentFactory;
 
 const meta = {
   component: WidgetTab,
   tags: ['autodocs'],
-  title: 'Components/Widget/⚠️WidgetTab',
+  title: 'Components/Widget/WidgetTab',
   parameters: {
     controls: { sort: 'requiredFirst' },
   },
@@ -25,8 +30,31 @@ type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
+    id: 'tab-sample',
+    datas: [
+      { title: 'タブ1', slot: 'tab1' },
+      { title: 'タブ2', slot: 'tab2' },
+      { title: 'タブ3', slot: 'tab3' },
+    ],
     slots: {
-      default: 'タブの内容をここに配置します。',
+      tab1: {
+        component: storybookComponent(Text),
+        slots: {
+          default: '<p>タブ1の内容です。</p>',
+        },
+      },
+      tab2: {
+        component: storybookComponent(Text),
+        slots: {
+          default: '<p>タブ2の内容です。</p>',
+        },
+      },
+      tab3: {
+        component: storybookComponent(Text),
+        slots: {
+          default: '<p>タブ3の内容です。</p>',
+        },
+      },
     },
   },
 };

@@ -1,0 +1,239 @@
+---
+import Button from '@packages/ui/modules/Button/Button.astro';
+import type { HTMLAttributes } from 'astro/types';
+
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
+export interface Props extends HTMLAttributes<'div'> {
+  /** 折りたたむコンテンツの高さの閾値をピクセル単位で設定します。 */
+  threshold?: number;
+  /** 展開後はコンテンツを閉じる操作を表示しません。 */
+  oneway?: boolean;
+  /** コンテンツを表示するボタンのテキストを設定します。 */
+  showLabel?: string;
+  /** コンテンツを隠すボタンのテキストを設定します。 */
+  hideLabel?: string;
+}
+
+const {
+  threshold = 50,
+  oneway = false,
+  showLabel = 'もっと見る',
+  hideLabel = '閉じる',
+  class: className,
+  ...rest
+} = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
+
+if (!Astro.slots.has('default')) {
+  throw new Error('WidgetShowMore: slotの中身が空です。');
+}
+---
+
+<div
+  class:list={[
+    'WidgetShowMore',
+    className,
+  ]}
+  data-oneway={oneway}
+  data-threshold={threshold}
+  data-show-label={showLabel}
+  data-hide-label={hideLabel}
+  {...attrs}
+>
+  <div class="WidgetShowMore__content">
+    <div class="WidgetShowMore__inner">
+      <slot />
+    </div>
+  </div>
+
+  <Button
+    as="button"
+    class="WidgetShowMore__button"
+    hidden
+    title={showLabel}
+  />
+</div>
+
+<style>
+  .WidgetShowMore {
+    text-align: center;
+
+    :where(.WidgetShowMore__content) {
+      --local-max-content-height: 1fr;
+      --local-min-content-height: 0fr;
+
+      display: grid;
+      grid-template-rows: var(--local-max-content-height);
+      text-align: left;
+    }
+
+    &:where(.WidgetShowMore--hide) {
+      :where(.WidgetShowMore__content) {
+        grid-template-rows: var(--local-min-content-height);
+      }
+    }
+
+    :where(.WidgetShowMore__inner) {
+      grid-row: 1 / 3;
+      overflow: hidden;
+    }
+
+    :where(.WidgetShowMore__button) {
+      padding-left: calc(var(--user-spacing) * 6);
+      position: relative;
+      margin-top: calc(var(--user-spacing) * 10);
+    }
+  }
+
+  @media (scripting: none) {
+    .WidgetShowMore {
+      :where(.WidgetShowMore__button) {
+        display: none;
+      }
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    /**
+     * 1つのコンテンツを高さに応じて折りたたむ。JavaScript無効時は内容をすべて表示し、
+     * 有効時だけ必要な場合に操作ボタンを表示する。
+     */
+    const setShowMore = (root) => {
+      const content = root.querySelector('.WidgetShowMore__content');
+      const inner = root.querySelector('.WidgetShowMore__inner');
+      const button = root.querySelector('.WidgetShowMore__button');
+      const threshold = Number(root.dataset.threshold) || 120;
+      const showLabel = root.dataset.showLabel || 'もっと見る';
+      const hideLabel = root.dataset.hideLabel || '閉じる';
+      const oneway = root.dataset.oneway === 'true';
+      let isPanelShow = false;
+
+      if (!content || !inner || !button) {
+        return;
+      }
+
+      const buttonContent = button.querySelector('.Button__content');
+
+      if (!buttonContent) {
+        return;
+      }
+
+      /** URLハッシュがコンテンツ内の要素を指す場合に初期状態を開く。 */
+      const setInitialPanel = () => {
+        const target = document.getElementById(window.location.hash.slice(1));
+
+        if (content.contains(target)) {
+          isPanelShow = true;
+        }
+      };
+
+      /** 閉じた状態で先頭の閾値分だけを表示するための行サイズを設定する。 */
+      const setCustomProperty = (contentHeight) => {
+        content.style.setProperty('--local-min-content-height', `${threshold / contentHeight}fr`);
+      };
+
+      /** コンテンツを表示する。 */
+      const showPanel = () => {
+        root.classList.remove('WidgetShowMore--hide');
+        buttonContent.textContent = oneway ? '' : hideLabel;
+        button.hidden = oneway;
+        isPanelShow = true;
+      };
+
+      /** コンテンツを折りたたむ。 */
+      const hidePanel = () => {
+        root.classList.add('WidgetShowMore--hide');
+        buttonContent.textContent = showLabel;
+        isPanelShow = false;
+      };
+
+      /** 開閉ボタンを表示し、URLハッシュを反映した初期状態を設定する。 */
+      const build = () => {
+        const contentHeight = inner.scrollHeight;
+
+        // 閾値以下なら、内容はすべて表示したまま開閉機能を初期化しない。
+        if (contentHeight <= threshold) {
+          return false;
+        }
+
+        button.hidden = false;
+        setInitialPanel();
+        setCustomProperty(contentHeight);
+
+        if (isPanelShow) {
+          showPanel();
+        } else {
+          hidePanel();
+        }
+
+        return true;
+      };
+
+      /** クリック時にコンテンツの表示状態を切り替える。 */
+      const bindEvent = () => {
+        button.addEventListener('click', () => {
+          if (isPanelShow) {
+            hidePanel();
+          } else {
+            showPanel();
+          }
+        });
+
+        // 折りたたまれて見えない位置の要素へフォーカスが移った場合は展開する。
+        inner.addEventListener('focusin', (event) => {
+          if (isPanelShow || !(event.target instanceof HTMLElement)) {
+            return;
+          }
+
+          const offset = event.target.getBoundingClientRect().top - inner.getBoundingClientRect().top;
+
+          if (offset >= threshold) {
+            showPanel();
+          }
+        });
+
+      };
+
+      const initialize = () => {
+        if (!build()) {
+          return false;
+        }
+
+        bindEvent();
+
+        return true;
+      };
+
+      if (initialize()) {
+        return;
+      }
+
+      const observer = new ResizeObserver(() => {
+        if (!initialize()) {
+          return;
+        }
+
+        observer.disconnect();
+      });
+
+      observer.observe(inner);
+    };
+
+    requestAnimationFrame(() => {
+      const elements = document.querySelectorAll('.WidgetShowMore');
+
+      elements.forEach((element) => {
+        if (element.dataset.initialized) {
+          return;
+        }
+
+        element.dataset.initialized = 'true';
+        setShowMore(element);
+      });
+    });
+  })();
+</script>
