@@ -14,11 +14,16 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.2",
+    "@astrojs/mdx": "^8.0.1",
     "@packages/content": "0.1.0",
     "@packages/ui": "0.1.0",
     "astro": "^7.3.3"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@tailwindcss/vite": "^4.3.3",
+    "npm-run-all2": "^9.0.3",
+    "typescript": "^5.9.3",
     "wrangler": "^4.133.0"
   }
 }
