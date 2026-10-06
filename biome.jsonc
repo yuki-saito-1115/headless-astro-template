@@ -12,6 +12,7 @@
       "!**/dist",
       "!**/node_modules",
       "!packages/content/src/styles/theme.css",
+      "!packages/content/src/scripts/runtime/swiper/**",
       "!apps/**/worker-configuration.d.ts"
     ]
   },

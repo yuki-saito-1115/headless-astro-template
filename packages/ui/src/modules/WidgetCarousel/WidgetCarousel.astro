@@ -1,13 +1,28 @@
 ---
+import swiperBundleUrl from '@packages/content/runtime/swiper/swiper-bundle.min.js?url';
+import type { SwiperOptions } from '@packages/content/runtime/swiper/types';
 import type { HTMLAttributes } from 'astro/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ * - スライド数が表示枚数以下の場合、カルーセルの操作UIは表示されません。
  */
-export interface Props extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'div'> {
+  /** Swiperへ渡すオプションを設定します。 */
+  options?: SwiperOptions;
+}
 
-const { class: className, ...rest } = Astro.props;
+const { options = {}, class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
+const hasAutoplay = Boolean(options.autoplay);
+const hasNavigation =
+  options.navigation !== false &&
+  (typeof options.navigation !== 'object' ||
+    options.navigation.enabled !== false);
+const hasPagination =
+  options.pagination !== false &&
+  (typeof options.pagination !== 'object' ||
+    options.pagination.enabled !== false);
 
 if (!Astro.slots.has('default')) {
   throw new Error('WidgetCarousel: slotの中身が空です。');
@@ -17,15 +32,360 @@ if (!Astro.slots.has('default')) {
 <div
   class:list={[
     'WidgetCarousel',
-    className
+    className,
   ]}
+  data-options={JSON.stringify(options)}
   {...attrs}
 >
-  <slot />
-</div>
+  <div class="WidgetCarousel__track">
+    <slot />
+  </div>
 
+  <div class="WidgetCarousel__control" hidden>
+    {hasAutoplay && (
+      <button class="WidgetCarousel__toggle" type="button">
+        <span class="WidgetCarousel__label">一時停止</span>
+      </button>
+    )}
+
+    {hasNavigation && (
+      <button class="WidgetCarousel__arrow WidgetCarousel__arrow--prev" type="button">
+        <span class="WidgetCarousel__label">前のスライドへ</span>
+      </button>
+    )}
+
+    {hasPagination && <div class="WidgetCarousel__pagination"></div>}
+
+    {hasNavigation && (
+      <button class="WidgetCarousel__arrow WidgetCarousel__arrow--next" type="button">
+        <span class="WidgetCarousel__label">次のスライドへ</span>
+      </button>
+    )}
+  </div>
+</div>
 
 <style>
   .WidgetCarousel {
+    position: relative;
+
+    &.WidgetCarousel--initialized {
+      overflow: hidden;
+
+      .WidgetCarousel__track {
+        display: flex;
+      }
+    }
+
+    .WidgetCarousel__track {
+      box-sizing: content-box;
+      position: relative;
+      transition-property: transform;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .WidgetCarousel__slide {
+      flex-shrink: 0;
+      list-style: none;
+      position: relative;
+      width: 100%;
+    }
+
+    .WidgetCarousel__control {
+      align-items: center;
+      display: flex;
+      gap: calc(var(--user-spacing) * 6);
+      justify-content: center;
+      margin-top: calc(var(--user-spacing) * 6);
+    }
+
+    .WidgetCarousel__toggle,
+    .WidgetCarousel__arrow,
+    :global(.WidgetCarousel__paginationItem) {
+      background-color: transparent;
+      border: 0;
+      color: var(--user-color-primary);
+      cursor: pointer;
+      display: block;
+      flex: 0 0 auto;
+      height: calc(var(--user-spacing) * 10);
+      padding: 0;
+      position: relative;
+      width: calc(var(--user-spacing) * 10);
+
+      &::before {
+        background-color: currentColor;
+        content: '';
+        inset: 50% auto auto 50%;
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: contain;
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .WidgetCarousel__toggle {
+      order: 1;
+
+      &::before {
+        height: calc(var(--user-spacing) * 3);
+        mask-image: url('/assets/images/icons/pause.svg');
+        width: calc(var(--user-spacing) * 3);
+      }
+
+      &.WidgetCarousel__toggle--paused {
+        &::before {
+          mask-image: url('/assets/images/icons/play.svg');
+        }
+      }
+    }
+
+    .WidgetCarousel__arrow {
+      background-color: var(--user-color-background-light);
+      border: 1px solid var(--user-color-outline-dark);
+      border-radius: 50%;
+
+      &::before {
+        height: calc(var(--user-spacing) * 3);
+        width: calc(var(--user-spacing) * 3);
+      }
+
+      &:disabled,
+      &.WidgetCarousel__arrow--locked {
+        color: var(--user-color-disabled-dark);
+        cursor: default;
+      }
+    }
+
+    .WidgetCarousel__arrow--prev {
+      &::before {
+        mask-image: url('/assets/images/icons/angle-left.svg');
+      }
+    }
+
+    .WidgetCarousel__arrow--next {
+      order: 2;
+
+      &::before {
+        mask-image: url('/assets/images/icons/angle-right.svg');
+      }
+    }
+
+    .WidgetCarousel__pagination {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: auto;
+    }
+
+    :global(.WidgetCarousel__paginationItem) {
+      &::before {
+        background-color: var(--user-color-disabled-light);
+        border-radius: 50%;
+        height: calc(var(--user-spacing) * 2);
+        width: calc(var(--user-spacing) * 2);
+      }
+    }
+
+    :global(.WidgetCarousel__paginationItem--current) {
+      &::before {
+        background-color: var(--user-color-primary);
+      }
+    }
+
+    .WidgetCarousel__label,
+    :global(.WidgetCarousel__notification) {
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+  }
+
+  @media (any-hover: hover) {
+    .WidgetCarousel {
+      .WidgetCarousel__arrow {
+        &:not(:disabled, .WidgetCarousel__arrow--locked):hover {
+          background-color: var(--user-color-primary);
+          color: var(--user-color-foreground-light);
+        }
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .WidgetCarousel {
+      .WidgetCarousel__track {
+        transition-duration: 0ms !important;
+      }
+    }
+  }
+
+  @media (scripting: none) {
+    .WidgetCarousel {
+      .WidgetCarousel__control {
+        display: none;
+      }
+    }
   }
 </style>
+
+<script is:inline src={swiperBundleUrl} data-widget-carousel-swiper></script>
+
+<script is:inline>
+  (() => {
+    const componentOptions = {
+      a11y: {
+        containerMessage: 'カルーセル',
+        containerRole: 'region',
+        containerRoleDescriptionMessage: 'カルーセル',
+        itemRoleDescriptionMessage: 'スライド',
+        nextSlideMessage: '次のスライドへ',
+        notificationClass: 'WidgetCarousel__notification',
+        paginationBulletMessage: '{{index}}枚目のスライドを表示',
+        prevSlideMessage: '前のスライドへ',
+        slideLabelMessage: '{{index}} / {{slidesLength}}',
+        wrapperLiveRegion: false,
+      },
+      allowTouchMove: false,
+      loopAddBlankSlides: true,
+      navigation: {
+        enabled: true,
+      },
+      pagination: {
+        bulletElement: 'button',
+        clickable: true,
+        enabled: true,
+      },
+      slidesPerGroup: 1,
+      slidesPerView: 1,
+      spaceBetween: 16,
+      speed: 500,
+      watchOverflow: true,
+    };
+
+    const isPlainObject = (value) =>
+      Object.prototype.toString.call(value) === '[object Object]';
+
+    const mergeOptions = (target, source) => {
+      for (const [key, value] of Object.entries(source)) {
+        if (['__proto__', 'constructor', 'prototype'].includes(key)) {
+          continue;
+        }
+
+        const targetValue = target[key];
+
+        if (isPlainObject(targetValue) && isPlainObject(value)) {
+          mergeOptions(targetValue, value);
+        } else {
+          target[key] = value;
+        }
+      }
+
+      return target;
+    };
+
+    const initializeWidgetCarousel = (root) => {
+      const track = root.querySelector('.WidgetCarousel__track');
+      const control = root.querySelector('.WidgetCarousel__control');
+      const prev = root.querySelector('.WidgetCarousel__arrow--prev');
+      const next = root.querySelector('.WidgetCarousel__arrow--next');
+      const pagination = root.querySelector('.WidgetCarousel__pagination');
+      const toggle = root.querySelector('.WidgetCarousel__toggle');
+
+      if (!track || !control) {
+        return;
+      }
+
+      const propsOptions = JSON.parse(root.dataset.options || '{}');
+      const options = mergeOptions(structuredClone(componentOptions), propsOptions);
+      let paused = false;
+
+      const updateToggle = () => {
+        if (!toggle) {
+          return;
+        }
+
+        const text = paused ? '再生' : '一時停止';
+        const labelElement = toggle.querySelector('.WidgetCarousel__label');
+
+        toggle.classList.toggle('WidgetCarousel__toggle--paused', paused);
+        toggle.setAttribute('aria-label', text);
+
+        if (labelElement) {
+          labelElement.textContent = text;
+        }
+      };
+
+      const swiperOptions = mergeOptions(options, {
+        containerModifierClass: 'WidgetCarousel--',
+        navigation: options.navigation === false
+          ? false
+          : {
+              disabledClass: 'WidgetCarousel__arrow--disabled',
+              lockClass: 'WidgetCarousel__arrow--locked',
+              nextEl: next,
+              prevEl: prev,
+            },
+        pagination: options.pagination === false
+          ? false
+          : {
+              bulletActiveClass: 'WidgetCarousel__paginationItem--current',
+              bulletClass: 'WidgetCarousel__paginationItem',
+              el: pagination,
+              lockClass: 'WidgetCarousel__pagination--locked',
+            },
+        slideActiveClass: 'WidgetCarousel__slide--current',
+        slideBlankClass: 'WidgetCarousel__slide--blank',
+        slideClass: 'WidgetCarousel__slide',
+        wrapperClass: 'WidgetCarousel__track',
+      });
+      const swiper = new window.Swiper(root, swiperOptions);
+
+      control.hidden = swiper.isLocked;
+      swiper.on('lock', () => {
+        control.hidden = true;
+      });
+      swiper.on('unlock', () => {
+        control.hidden = false;
+      });
+
+      updateToggle();
+
+      toggle?.addEventListener('click', () => {
+        paused = !paused;
+
+        if (paused) {
+          swiper.autoplay.pause();
+        } else {
+          swiper.autoplay.resume();
+        }
+
+        updateToggle();
+      });
+    };
+
+    const initialize = () => {
+      document.querySelectorAll('.WidgetCarousel').forEach((element) => {
+        if (element.dataset.initialized) {
+          return;
+        }
+
+        element.dataset.initialized = 'true';
+        initializeWidgetCarousel(element);
+      });
+    };
+
+    if (window.Swiper) {
+      initialize();
+      return;
+    }
+
+    document
+      .querySelector('script[data-widget-carousel-swiper]')
+      ?.addEventListener('load', initialize, { once: true });
+  })();
+</script>
