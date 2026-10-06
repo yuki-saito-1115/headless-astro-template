@@ -24,7 +24,7 @@ export default meta;
  */
 type Story = StoryObj<StoryArgs<Props>>;
 
-export const Default: Story = {
+export const Row: Story = {
   args: {
     slots: {
       content:
