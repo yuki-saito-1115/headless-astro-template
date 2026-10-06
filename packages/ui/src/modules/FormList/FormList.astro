@@ -4,9 +4,19 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'dl'> {
+  /** SP幅時のコンテンツと画像の並び方向を設定します。 */
+  directSp?: 'row' | 'column';
+  /** PC幅時のコンテンツと画像の並び方向を設定します。 */
+  directPc?: 'row' | 'column';
+}
 
-const { class: className, ...rest } = Astro.props;
+const {
+  directSp = 'column',
+  directPc = 'row',
+  class: className,
+  ...rest
+} = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 
 if (!Astro.slots.has('default')) {
@@ -14,18 +24,104 @@ if (!Astro.slots.has('default')) {
 }
 ---
 
-<div
+<dl
   class:list={[
     'FormList',
+    `directSp-${directSp}`,
+    `directPc-${directPc}`,
     className
   ]}
   {...attrs}
 >
   <slot />
-</div>
+</dl>
 
 
 <style>
   .FormList {
+    --local-background: var(--user-color-background-light);
+    --local-title-background: var(--color-gray-100);
+    --local-outline: var(--user-color-outline-light);
+
+    background-color: var(--local-background);
+    border: 1px solid var(--local-outline);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+
+    > :global(dt),
+    > :global(dd) {
+      border-bottom: 1px solid var(--local-outline);
+      margin: 0;
+      padding: calc(var(--user-spacing) * 4);
+    }
+
+    > :global(dt) {
+      background-color: var(--local-title-background);
+      font-weight: var(--user-font-weight-bold);
+
+      > :global(label) {
+        display: flex;
+        gap: calc(var(--user-spacing) * 4);
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+
+    > :global(dd) {
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    > :global(dd) {
+      > :global(:first-child) {
+        margin-top: 0;
+      }
+
+      > :global(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @media (width < 768px) {
+    .FormList {
+      &:where(.directSp-row) {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
+
+        > :global(dt) {
+          border-right: 1px solid var(--local-outline);
+        }
+
+        > :global(dt:nth-last-child(2)) {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .FormList {
+      grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
+
+      > :global(dt),
+      > :global(dd) {
+        padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 6);
+      }
+
+      &:where(.directPc-row) {
+        > :global(dt) {
+          border-right: 1px solid var(--local-outline);
+        }
+
+        > :global(dt:nth-last-child(2)) {
+          border-bottom: 0;
+        }
+      }
+
+      &:where(.directPc-column) {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
   }
 </style>

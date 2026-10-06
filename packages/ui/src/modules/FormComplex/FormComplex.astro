@@ -4,9 +4,19 @@ import type { HTMLAttributes } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends HTMLAttributes<'div'> {}
+export interface Props extends HTMLAttributes<'div'> {
+  /** SP幅時のコンテンツと画像の並び方向を設定します。 */
+  directSp?: 'row' | 'column';
+  /** PC幅時のコンテンツと画像の並び方向を設定します。 */
+  directPc?: 'row' | 'column';
+}
 
-const { class: className, ...rest } = Astro.props;
+const {
+  directSp = 'row',
+  directPc = 'row',
+  class: className,
+  ...rest
+} = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 
 if (!Astro.slots.has('default')) {
@@ -17,6 +27,8 @@ if (!Astro.slots.has('default')) {
 <div
   class:list={[
     'FormComplex',
+    `directSp-${directSp}`,
+    `directPc-${directPc}`,
     className
   ]}
   {...attrs}
@@ -27,5 +39,31 @@ if (!Astro.slots.has('default')) {
 
 <style>
   .FormComplex {
+    align-items: center;
+    display: flex;
+    gap: calc(var(--user-spacing) * 2);
+
+    :global(.FormComplex__segment) {
+      display: flex;
+      gap: calc(var(--user-spacing) * 2);
+    }
+  }
+
+  @media (width < 768px) {
+    .FormComplex {
+      &:where(.directSp-column) {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .FormComplex {
+      &:where(.directPc-column) {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
   }
 </style>
