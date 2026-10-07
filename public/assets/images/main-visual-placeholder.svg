@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 500" role="img" aria-labelledby="title description">
+  <title id="title">メインビジュアルのプレースホルダー</title>
+  <desc id="description">青から紫に変化する抽象的な背景</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1447e6" />
+      <stop offset="1" stop-color="#9810fa" />
+    </linearGradient>
+    <radialGradient id="light" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".35" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1440" height="500" fill="url(#background)" />
+  <circle cx="360" cy="100" r="400" fill="url(#light)" />
+  <circle cx="1120" cy="440" r="360" fill="url(#light)" />
+</svg>

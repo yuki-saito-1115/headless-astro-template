@@ -1,0 +1,107 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import Badge, {
+  type Props as BadgeProps,
+} from '../../modules/Badge/Badge.astro';
+
+export interface Props extends HTMLAttributes<'section'> {
+  badge?: BadgeProps;
+  parentTitle?: string;
+  taglineBottom?: string;
+  taglineTop?: string;
+  title: string;
+}
+
+const {
+  badge,
+  taglineBottom,
+  taglineTop,
+  title,
+  class: className,
+  ...rest
+} = Astro.props as Props;
+
+if (!Astro.slots.has('media')) {
+  throw new Error('MainVisual: media slotの中身が空です。');
+}
+---
+
+<section
+  class:list={['MainVisual', className]}
+  {...rest}
+>
+  <h1 class="MainVisual__heading">
+    {badge && <Badge {...badge} />}
+    {taglineTop && <span class="MainVisual__tagline">{taglineTop}</span>}
+    {title}
+    {taglineBottom && <span class="MainVisual__tagline">{taglineBottom}</span>}
+  </h1>
+  <div class="MainVisual__media"><slot name="media" /></div>
+</section>
+
+<style>
+  .MainVisual {
+    display: grid;
+    gap: 0 var(--user-outside-gutter-sp);
+    grid-area: mainVisual;
+    grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+    min-height: clamp(8.5rem, -11.944rem + 42.59vw, 20rem);
+    overflow: hidden;
+    padding: calc(var(--user-spacing) * 8) 0;
+    position: relative;
+
+    :where(.MainVisual__heading) {
+      align-items: center;
+      color: var(--user-color-foreground-light);
+      display: flex;
+      flex-direction: column;
+      font-size: calc(var(--user-font-size-base) * 1.25);
+      gap: calc(var(--user-spacing) * 2);
+      grid-column: 2 / 3;
+      justify-content: center;
+      line-height: var(--user-line-height);
+      margin: 0;
+      text-align: center;
+      text-shadow: 1px 1px 5px rgb(0 0 0 / 0.5);
+      z-index: 1;
+    }
+
+    :where(.MainVisual__tagline) {
+      font-size: calc(var(--user-font-size-base) * 0.75);
+      line-height: var(--user-line-height);
+    }
+
+    :where(.MainVisual__media) {
+      height: 100%;
+      left: 50%;
+      max-width: none;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+
+      :global(img) {
+        display: block;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .MainVisual {
+      gap: 0 var(--user-outside-gutter-pc);
+      padding: calc(var(--user-spacing) * 16) 0;
+
+      :where(.MainVisual__heading) {
+        font-size: calc(var(--user-font-size-base) * 2.5);
+        gap: calc(var(--user-spacing) * 6);
+      }
+
+      :where(.MainVisual__tagline) {
+        font-size: calc(var(--user-font-size-base) * 1.5);
+      }
+    }
+  }
+</style>

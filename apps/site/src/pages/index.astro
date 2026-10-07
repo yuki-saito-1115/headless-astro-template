@@ -3,6 +3,7 @@ import Text from '@packages/ui/modules/Text/Text.astro';
 import type { BreadcrumbItem } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
 import type { Props as PagePropType } from '../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../layouts/PageLayout/PageLayout.astro';
@@ -23,6 +24,18 @@ const pageProps: PagePropType = {
 ---
 
 <PageLayout {...pageProps}>
+  <MainVisual
+    title="DUMMY_SITE_NAME"
+    taglineTop="テンプレート"
+    taglineBottom="メインビジュアル"
+    badge={{ title: 'ラベル' }}
+  >
+    <picture slot="media">
+      <source media="(width >= 768px)" srcset="/assets/images/main-visual-placeholder.svg" />
+      <img src="/assets/images/main-visual-placeholder.svg" alt="" />
+    </picture>
+  </MainVisual>
+
   <Breadcrumb items={breadcrumb} />
 
   <Content>
