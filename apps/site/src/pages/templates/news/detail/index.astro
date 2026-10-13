@@ -1,0 +1,77 @@
+---
+import Button from '@packages/ui/modules/Button/Button.astro';
+import Media from '@packages/ui/modules/Media/Media.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalInformation from '../../../../components/modules/LocalInformation/LocalInformation.astro';
+import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: 'ニュースリリース',
+    item: '/templates/news/',
+  },
+  {
+    name: 'お知らせ・ニュース（詳細）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'ニュース詳細の配置例です。',
+  title: 'お知らせ・ニュース（詳細）',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="「〇〇〇〇〇〇〇〇」を1月1日に発売">
+    <img slot="media" src="/templates/news/images/detail-mainVisual_sp.webp" alt="" />
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Text class="text-right">
+        <p>2022.12.10</p><p>株式会社○○○○</p>
+      </Text>
+
+      <Text class="mt-8 md:mt-10">
+        <p>説明テキストが入ります。発表内容の背景やサービスの詳細について紹介します。</p><p>説明テキストが入ります。発表内容の背景やサービスの詳細について紹介します。</p><p>説明テキストが入ります。発表内容の背景やサービスの詳細について紹介します。</p>
+      </Text>
+
+      <Media class="mt-8 md:mt-10">
+        <figure>
+          <img src="/templates/news/images/detail-image_sp.webp" width="600" height="400" alt="" />
+        </figure>
+      </Media>
+    </Section>
+
+    <Section theme="dark">
+      <LocalInformation />
+    </Section>
+
+    <Section>
+      <div class="text-center">
+        <Button
+          as="a"
+          href="/templates/news/"
+          title="ニュースリリース一覧に戻る"
+        />
+      </div>
+      <LocalSns />
+    </Section>
+  </Content>
+</PageLayout>

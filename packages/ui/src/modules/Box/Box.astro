@@ -75,12 +75,13 @@ if (Element === 'details' && !title) {
     --local-foreground: var(--user-color-foreground-dark);
     --local-background: var(--color-gray-100);
     --local-outline: transparent;
-    --local-padding: calc(var(--user-spacing) * 4);
+    --local-padding-x: calc(var(--user-spacing) * 4);
+    --local-padding-y: calc(var(--user-spacing) * 6);
 
     background-color: var(--local-background);
     border: 1px solid var(--local-outline);
-    padding-bottom: var(--local-padding);
-    padding-top: var(--local-padding);
+    padding-bottom: var(--local-padding-y);
+    padding-top: var(--local-padding-y);
 
     &:has(:where(.Box__head)) {
       padding-top: 0;
@@ -89,6 +90,14 @@ if (Element === 'details' && !title) {
     &:where(.theme-related) {
       --local-background: var(--user-color-background-light);
       --local-outline: var(--user-color-outline-dark);
+
+      > :where(.Box__head) {
+        background-color: var(--color-gray-200);
+      }
+
+      > :where(.Box__head + .Box__body) {
+        padding-top: var(--local-padding-y);
+      }
     }
 
     &:where(.theme-important) {
@@ -116,7 +125,7 @@ if (Element === 'details' && !title) {
 
     :where(.Box__head) {
       color: var(--local-foreground);
-      padding: var(--local-padding);
+      padding: var(--local-padding-y) var(--local-padding-x);
     }
 
     :where(.Box__title) {
@@ -126,7 +135,7 @@ if (Element === 'details' && !title) {
     }
 
     :where(.Box__body) {
-      padding: 0 var(--local-padding);
+      padding: 0 var(--local-padding-x);
     }
 
     &:where(details) {
@@ -148,7 +157,7 @@ if (Element === 'details' && !title) {
           mask-size: cover;
           pointer-events: none;
           position: absolute;
-          right: var(--local-padding);
+          right: var(--local-padding-x);
           top: 50%;
           transform: translateY(-50%);
           width: 16px;
@@ -156,7 +165,7 @@ if (Element === 'details' && !title) {
       }
 
       &:where([open]) {
-        padding-bottom: var(--local-padding);
+        padding-bottom: var(--local-padding-y);
 
         > :where(.Box__head) {
           &::before {
@@ -170,7 +179,13 @@ if (Element === 'details' && !title) {
 
   @media (width >= 768px) {
     .Box {
-      --local-padding: calc(var(--user-spacing) * 8);
+      --local-padding-x: calc(var(--user-spacing) * 8);
+
+      &:where(.theme-scroll) {
+        > :where(.Box__body) {
+          height: 300px;
+        }
+      }
 
       :where(.Box__title) {
         font-size: var(--text-xl);

@@ -81,9 +81,42 @@ if (!Astro.slots.has('default')) {
     }
 
     :where(.WidgetShowMore__button) {
-      padding-left: calc(var(--user-spacing) * 6);
-      position: relative;
       margin-top: calc(var(--user-spacing) * 10);
+      padding-left: calc(var(--user-spacing) * 10);
+      position: relative;
+
+      &::before {
+        background-color: var(--user-color-primary);
+        content: '';
+        height: calc(var(--user-spacing) * 4);
+        left: calc(var(--user-spacing) * 4);
+        mask-image: url('/assets/images/icons/minus.svg');
+        mask-repeat: no-repeat;
+        mask-size: cover;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(var(--user-spacing) * 4);
+      }
+    }
+
+    &:where(.WidgetShowMore--hide) {
+      :where(.WidgetShowMore__button) {
+        &::before {
+          mask-image: url('/assets/images/icons/plus.svg');
+        }
+      }
+    }
+  }
+
+  @media (any-hover: hover) {
+    .WidgetShowMore {
+      :where(.WidgetShowMore__button):hover {
+        &::before {
+          background-color: currentColor;
+        }
+      }
     }
   }
 

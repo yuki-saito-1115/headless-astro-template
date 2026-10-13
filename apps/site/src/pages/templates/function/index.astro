@@ -1,0 +1,412 @@
+---
+import Card from '@packages/ui/modules/Card/Card.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import List from '@packages/ui/modules/List/List.astro';
+import PanelDownload from '@packages/ui/modules/PanelDownload/PanelDownload.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalInformation from '../../../components/modules/LocalInformation/LocalInformation.astro';
+import LocalSns from '../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: '機能紹介（一覧）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'DUMMY_DESCRIPTION',
+  title: '機能紹介（一覧）',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="機能紹介">
+    <picture slot="media">
+      <source media="(width >= 768px)" srcset="/templates/function/images/index-mainVisual_pc.webp" />
+      <img src="/templates/function/images/index-mainVisual_sp.webp" alt="" />
+    </picture>
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <PanelDownload
+        description="ページ内の内容を簡単に解説する資料をダウンロードできます。"
+        button={{
+          as: "a",
+          href: "#",
+          download: true,
+          title: "機能紹介資料ダウンロード",
+        }}
+      />
+
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 1"
+            media={{
+              src: "/templates/function/images/index-image_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>機能の概要を説明するテキストです。</p><List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li><li>機能のポイント</li><li>
+                  機能のポイント
+                </li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 2"
+            media={{
+              src: "/templates/function/images/index-image-2_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>機能の概要を説明するテキストです。</p><List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li><li>機能のポイント</li><li>
+                  機能のポイント
+                </li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 3"
+            media={{
+              src: "/templates/function/images/index-image-3_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>機能の概要を説明するテキストです。</p><List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li><li>機能のポイント</li><li>
+                  機能のポイント
+                </li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 4"
+            media={{
+              src: "/templates/function/images/index-image-4_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>機能の概要を説明するテキストです。</p><List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li><li>機能のポイント</li><li>
+                  機能のポイント
+                </li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 5"
+            media={{
+              src: "/templates/function/images/index-image-5_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>機能の概要を説明するテキストです。</p><List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li><li>機能のポイント</li><li>
+                  機能のポイント
+                </li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 6"
+            media={{
+              src: "/templates/function/images/index-image-6_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>機能の概要を説明するテキストです。</p><List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li><li>機能のポイント</li><li>
+                  機能のポイント
+                </li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 7"
+            media={{
+              src: "/templates/function/images/index-image-7_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>機能の概要を説明するテキストです。</p><List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li><li>機能のポイント</li><li>
+                  機能のポイント
+                </li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 8"
+            media={{
+              src: "/templates/function/images/index-image-8_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>機能の概要を説明するテキストです。</p><List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li><li>機能のポイント</li><li>
+                  機能のポイント
+                </li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 9"
+            media={{
+              src: "/templates/function/images/index-image-9_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>機能の概要を説明するテキストです。</p>
+            <List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 10"
+            media={{
+              src: "/templates/function/images/index-image-10_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>機能の概要を説明するテキストです。</p>
+            <List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 11"
+            media={{
+              src: "/templates/function/images/index-image-11_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>機能の概要を説明するテキストです。</p>
+            <List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 12"
+            media={{
+              src: "/templates/function/images/index-image-12_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>機能の概要を説明するテキストです。</p>
+            <List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 13"
+            media={{
+              src: "/templates/function/images/index-image-13_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>機能の概要を説明するテキストです。</p>
+            <List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="機能タイトル 14"
+            media={{
+              src: "/templates/function/images/index-image-14_sp.webp",
+              alt: "",
+              width: 300,
+              height: 300,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>機能の概要を説明するテキストです。</p>
+            <List class="mt-8 md:mt-10">
+              <ul>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+                <li>機能のポイント</li>
+              </ul>
+            </List>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <LocalSns />
+    </Section>
+
+    <Section theme="dark">
+      <LocalInformation />
+    </Section>
+  </Content>
+</PageLayout>

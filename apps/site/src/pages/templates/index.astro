@@ -1,0 +1,269 @@
+---
+import Box from '@packages/ui/modules/Box/Box.astro';
+import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
+import HeadingLevel3 from '@packages/ui/modules/HeadingLevel3/HeadingLevel3.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import LinkList from '@packages/ui/modules/LinkList/LinkList.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import type { Props as PagePropType } from '../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'DUMMY_DESCRIPTION',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="テンプレート一覧">
+    <picture slot="media">
+      <source media="(width >= 768px)" srcset="/templates/images/index-mainVisual_pc.webp" />
+      <img src="/templates/images/index-mainVisual_sp.webp" alt="" />
+    </picture>
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <HeadingLevel2>
+        <h2>目次</h2>
+      </HeadingLevel2>
+
+      <Box class="mt-8 md:mt-10">
+        <LayoutColumn
+          columnPc="3"
+          columnSp="1"
+        >
+          <div class="LayoutColumn__segment">
+            <HeadingLevel3>
+              <h3>メインビジュアル</h3>
+            </HeadingLevel3>
+
+            <LinkList
+              class="mt-8 md:mt-10"
+              datas={[
+                {
+                  href: "/templates/mainVisual/",
+                  title: "タイプ1（デフォルト）",
+                },
+                {
+                  href: "/templates/mainVisual-2/",
+                  title: "タイプ2",
+                },
+                {
+                  href: "/templates/mainVisual-3/",
+                  title: "タイプ3",
+                },
+                {
+                  href: "/templates/mainVisual-4/",
+                  title: "タイプ4",
+                },
+              ]}
+            />
+          </div>
+
+          <div class="LayoutColumn__segment">
+            <HeadingLevel3>
+              <h3>商品・サービス</h3>
+            </HeadingLevel3>
+
+            <LinkList
+              class="mt-8 md:mt-10"
+              datas={[
+                {
+                  href: "/templates/products/",
+                  title: "一覧",
+                },
+                {
+                  href: "/templates/products/detail/",
+                  title: "詳細",
+                },
+                {
+                  href: "/templates/products/tab/",
+                  title: "詳細（タブ）",
+                },
+              ]}
+            />
+          </div>
+
+          <div class="LayoutColumn__segment">
+            <HeadingLevel3>
+              <h3>事例</h3>
+            </HeadingLevel3>
+
+            <LinkList
+              class="mt-8 md:mt-10"
+              datas={[
+                {
+                  href: "/templates/example/",
+                  title: "一覧",
+                },
+                {
+                  href: "/templates/example/detail/",
+                  title: "詳細",
+                },
+              ]}
+            />
+          </div>
+
+          <div class="LayoutColumn__segment">
+            <HeadingLevel3>
+              <h3>特長</h3>
+            </HeadingLevel3>
+
+            <LinkList
+              class="mt-8 md:mt-10"
+              datas={[
+                {
+                  href: "/templates/features/detail/",
+                  title: "特長",
+                },
+              ]}
+            />
+          </div>
+
+          <div class="LayoutColumn__segment">
+            <HeadingLevel3>
+              <h3>セミナー／イベント</h3>
+            </HeadingLevel3>
+
+            <LinkList
+              class="mt-8 md:mt-10"
+              datas={[
+                {
+                  href: "/templates/events/",
+                  title: "一覧",
+                },
+                {
+                  href: "/templates/events/detail/",
+                  title: "詳細",
+                },
+                {
+                  href: "/templates/events/pastIndex/",
+                  title: "過去のセミナー／イベントのレポート一覧",
+                },
+                {
+                  href: "/templates/events/pastDetail/",
+                  title: "過去のセミナー／イベントのレポート詳細",
+                },
+              ]}
+            />
+          </div>
+
+          <div class="LayoutColumn__segment">
+            <HeadingLevel3>
+              <h3>機能紹介</h3>
+            </HeadingLevel3>
+
+            <LinkList
+              class="mt-8 md:mt-10"
+              datas={[
+                {
+                  href: "/templates/function/",
+                  title: "一覧",
+                },
+                {
+                  href: "/templates/function/detail/",
+                  title: "詳細",
+                },
+              ]}
+            />
+          </div>
+
+          <div class="LayoutColumn__segment">
+            <HeadingLevel3>
+              <h3>お知らせ・ニュース</h3>
+            </HeadingLevel3>
+
+            <LinkList
+              class="mt-8 md:mt-10"
+              datas={[
+                {
+                  href: "/templates/news/",
+                  title: "一覧",
+                },
+                {
+                  href: "/templates/news/detail/",
+                  title: "詳細",
+                }
+              ]}
+            />
+          </div>
+
+          <div class="LayoutColumn__segment">
+            <HeadingLevel3>
+              <h3>価格</h3>
+            </HeadingLevel3>
+
+            <LinkList
+              class="mt-8 md:mt-10"
+              datas={[
+                {
+                  href: "/templates/price/detail/",
+                  title: "価格",
+                },
+              ]}
+            />
+          </div>
+
+          <div class="LayoutColumn__segment">
+            <HeadingLevel3>
+              <h3>よくあるご質問</h3>
+            </HeadingLevel3>
+
+            <LinkList
+              class="mt-8 md:mt-10"
+              datas={[
+                {
+                  href: "/templates/faq/",
+                  title: "よくあるご質問",
+                },
+              ]}
+            />
+          </div>
+
+          <div class="LayoutColumn__segment">
+            <HeadingLevel3>
+              <h3>お問い合わせフォーム</h3>
+            </HeadingLevel3>
+
+            <LinkList
+              class="mt-8 md:mt-10"
+              datas={[
+                {
+                  href: "/templates/inquiry/entry/",
+                  title: "入力",
+                },
+                {
+                  href: "/templates/inquiry/error/",
+                  title: "入力（エラー時）",
+                },
+                {
+                  href: "/templates/inquiry/confirm/",
+                  title: "確認",
+                },
+                {
+                  href: "/templates/inquiry/finish/",
+                  title: "完了",
+                },
+              ]}
+            />
+          </div>
+        </LayoutColumn>
+      </Box>
+    </Section>
+  </Content>
+</PageLayout>

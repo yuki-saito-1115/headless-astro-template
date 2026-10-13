@@ -27,7 +27,7 @@ if (!Astro.slots.has('default')) {
     :where(h1, h2, h3, h4, h5, h6) {
       font-weight: var(--user-font-weight-bold);
       color: var(--user-color-foreground-dark);
-      line-height: var(--text-sm--line-height);
+      line-height: var(--user-line-height);
       font-size: var(--text-sm);
 
       :where(a) {
@@ -40,7 +40,7 @@ if (!Astro.slots.has('default')) {
   @media (width >= 768px) {
     .HeadingLevel6 {
       :where(h1, h2, h3, h4, h5, h6) {
-        line-height: var(--text-base--line-height);
+        line-height: var(--user-line-height);
         font-size: var(--text-base);
       }
     }
@@ -50,7 +50,7 @@ if (!Astro.slots.has('default')) {
     .HeadingLevel6 {
       :where(h1, h2, h3, h4, h5, h6) {
         :where(a) {
-        &:hover {
+          &:hover {
             text-decoration: underline;
           }
         }

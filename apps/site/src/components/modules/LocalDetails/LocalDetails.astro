@@ -1,0 +1,200 @@
+---
+import Button from '@packages/ui/modules/Button/Button.astro';
+import Card from '@packages/ui/modules/Card/Card.astro';
+import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import ListDescription from '@packages/ui/modules/ListDescription/ListDescription.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+---
+
+<HeadingLevel2>
+  <h2>○○サービスの事例をご紹介します</h2>
+</HeadingLevel2>
+
+<LayoutColumn
+  class="mt-8 md:mt-10"
+  columnPc="3"
+  columnSp="1"
+>
+  <div class="LayoutColumn__segment">
+    <Card
+      outline
+      title="テキストテキストテキストテキストテキストテキストテキストテキスト"
+      media={{
+        src: "/templates/example/images/index-image_sp.webp",
+        alt: "",
+        width: 600,
+        height: 400,
+      }}
+      link={{
+        href: "#",
+      }}>
+      <Text>
+        <p>〇〇〇〇株式会社</p>
+      </Text>
+
+      <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
+        <dl>
+          <dt>業種</dt>
+          <dd>テキストテキスト</dd>
+          <dt>従業員数</dt>
+          <dd>1～10人</dd>
+          <dt>導入サービス</dt>
+          <dd>サービス名テキストテキスト</dd>
+        </dl>
+      </ListDescription>
+    </Card>
+  </div>
+
+  <div class="LayoutColumn__segment">
+    <Card
+      outline
+      title="テキストテキストテキストテキストテキストテキストテキストテキスト"
+      media={{
+        src: "/templates/example/images/index-image_sp.webp",
+        alt: "",
+        width: 600,
+        height: 400,
+      }}
+      link={{
+        href: "#",
+      }}>
+      <Text>
+        <p>〇〇〇〇株式会社</p>
+      </Text>
+
+      <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
+        <dl>
+          <dt>業種</dt>
+          <dd>テキストテキスト</dd>
+          <dt>従業員数</dt>
+          <dd>1～10人</dd>
+          <dt>導入サービス</dt>
+          <dd>サービス名テキストテキスト</dd>
+        </dl>
+      </ListDescription>
+    </Card>
+  </div>
+
+  <div class="LayoutColumn__segment">
+    <Card
+      outline
+      title="テキストテキストテキストテキストテキストテキストテキストテキスト"
+      media={{
+        src: "/templates/example/images/index-image_sp.webp",
+        alt: "",
+        width: 600,
+        height: 400,
+      }}
+      link={{
+        href: "#",
+      }}>
+      <Text>
+        <p>〇〇〇〇株式会社</p>
+      </Text>
+
+      <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
+        <dl>
+          <dt>業種</dt>
+          <dd>テキストテキスト</dd>
+          <dt>従業員数</dt>
+          <dd>1～10人</dd>
+          <dt>導入サービス</dt>
+          <dd>サービス名テキストテキスト</dd>
+        </dl>
+      </ListDescription>
+    </Card>
+  </div>
+</LayoutColumn>
+
+<LayoutColumn
+  class="mt-8 md:mt-10 md:justify-center"
+  columnPc="auto"
+  columnSp="1"
+>
+  <div class="LayoutColumn__segment">
+    <Button
+      as="a"
+      href="DUMMY_LINK"
+      title="すべて見る"
+    />
+  </div>
+</LayoutColumn>
+
+<HeadingLevel2 class="mt-8 md:mt-10">
+  <h2>導入サービスを詳しく知りたい方はこちら</h2>
+</HeadingLevel2>
+
+<LayoutColumn
+  class="mt-8 md:mt-10"
+  columnPc="3"
+  columnSp="1"
+>
+  <div class="LayoutColumn__segment">
+    <Card
+      outline
+      title="〇〇〇〇システム導入支援"
+      media={{
+        src: "/templates/products/images/index-image-2_sp.webp",
+        alt: "",
+        width: 600,
+        height: 400,
+      }}
+
+      link={{
+        href: "#",
+      }}>
+      <p>サービスの概要を紹介する説明テキストです。</p>
+    </Card>
+  </div>
+
+  <div class="LayoutColumn__segment">
+    <Card
+      outline
+      title="〇〇〇〇〇〇制作"
+      media={{
+        src: "/templates/products/images/index-image-3_sp.webp",
+        alt: "",
+        width: 600,
+        height: 400,
+      }}
+
+      link={{
+        href: "#",
+      }}>
+      <p>サービスの概要を紹介する説明テキストです。</p>
+    </Card>
+  </div>
+
+  <div class="LayoutColumn__segment">
+    <Card
+      outline
+      title="〇〇〇〇〇〇コンサルティング"
+      media={{
+        src: "/templates/products/images/index-image-4_sp.webp",
+        alt: "",
+        width: 600,
+        height: 400,
+      }}
+
+      link={{
+        href: "#",
+      }}>
+      <p>サービスの概要を紹介する説明テキストです。</p>
+    </Card>
+  </div>
+</LayoutColumn>
+
+<LayoutColumn
+  class="mt-8 md:mt-10 md:justify-center"
+  columnPc="auto"
+  columnSp="1"
+>
+  <div class="LayoutColumn__segment">
+    <Button
+      as="a"
+      href="DUMMY_LINK"
+      title="すべて見る"
+    />
+  </div>
+</LayoutColumn>

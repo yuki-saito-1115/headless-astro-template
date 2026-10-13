@@ -70,19 +70,21 @@ switch (Element) {
 <style>
   .Badge {
     --local-foreground: var(--user-color-foreground-light);
-    --local-background: var(--user-color-background-dark);
-    --local-outline: var(--local-background);
+    --local-background: var(--user-color-secondary2);
+    --local-outline: transparent;
 
+    align-items: center;
     background-color: var(--local-background);
     border: 1px solid var(--local-outline);
     color: var(--local-foreground);
-    display: inline-block;
+    display: inline-flex;
     /* button要素はフォントを継承しないため */
     font: inherit;
     font-size: var(--text-xs);
     /* button要素は文字間隔を継承しないため */
     letter-spacing: inherit;
-    line-height: 1;
+    justify-content: center;
+    line-height: var(--user-line-height);
     outline: none;
     padding: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 4);
 
@@ -102,6 +104,7 @@ switch (Element) {
 
       &:where(.theme-outline) {
         --local-foreground: var(--user-color-warning-dark);
+        --local-outline: var(--user-color-warning-dark);
       }
     }
 
@@ -111,6 +114,7 @@ switch (Element) {
 
       &:where(.theme-outline) {
         --local-foreground: var(--user-color-danger-dark);
+        --local-outline: var(--user-color-danger-dark);
       }
     }
 
@@ -118,12 +122,18 @@ switch (Element) {
     &:where(.theme-outline) {
       --local-foreground: var(--user-color-foreground-dark);
       --local-background: var(--user-color-background-light);
-      --local-outline: var(--local-foreground);
+      --local-outline: var(--user-color-secondary2);
     }
 
     /* インタラクティブ要素の場合 */
     &:where([href], button) {
       text-decoration: none;
+    }
+  }
+
+  @media (width >= 768px) {
+    .Badge {
+      font-size: calc(var(--user-font-size-base) * 0.8125);
     }
   }
 
@@ -142,6 +152,7 @@ switch (Element) {
 
           &:where(.theme-outline) {
             --local-background: var(--user-color-warning-dark);
+            --local-outline: var(--user-color-warning-dark);
           }
         }
 
@@ -151,6 +162,7 @@ switch (Element) {
 
           &:where(.theme-outline) {
             --local-background: var(--user-color-danger-dark);
+            --local-outline: var(--user-color-danger-dark);
           }
         }
 

@@ -39,13 +39,21 @@ const attrs: Record<string, unknown> = { ...rest };
     :where(ul) {
       display: flex;
       flex-wrap: wrap;
-      gap: calc(var(--user-spacing) * 1);
+      gap: calc(var(--user-spacing) * 2);
     }
 
     :where(li) {
       list-style: none;
       flex: 0 0 auto;
       max-width: 100%;
+    }
+  }
+
+  @media (width >= 768px) {
+    .BadgeList {
+      :where(ul) {
+        gap: calc(var(--user-spacing) * 4);
+      }
     }
   }
 </style>

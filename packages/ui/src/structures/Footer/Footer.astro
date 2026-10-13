@@ -39,6 +39,8 @@ const { class: className, ..._rest } = Astro.props as Props;
 
   @media (width >= 768px) {
     .Footer {
+      gap: 0 var(--user-outside-gutter-pc);
+
       :where(.Footer__outer) {
         gap: 0 var(--user-outside-gutter-pc);
       }

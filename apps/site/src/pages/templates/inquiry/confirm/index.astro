@@ -1,0 +1,78 @@
+---
+import Button from '@packages/ui/modules/Button/Button.astro';
+import FormList from '@packages/ui/modules/FormList/FormList.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: '問い合わせフォーム（確認）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: '問い合わせフォーム確認画面の配置例です。',
+  title: '問い合わせフォーム（確認）',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="お問い合わせ">
+    <img slot="media" src="/templates/inquiry/images/confirm-mainVisual_sp.webp" alt="" />
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Text>
+        <p>
+          内容をご確認の上、よろしければ「送信する」ボタンを押してください。
+        </p>
+      </Text>
+
+      <FormList class="mt-8 md:mt-10">
+        <dt>お問い合わせ内容</dt>
+        <dd>お問い合わせ内容テキスト</dd>
+        <dt>会社名</dt>
+        <dd>株式会社ミツエーリンクス</dd>
+        <dt>お名前</dt>
+        <dd>山田太郎</dd>
+        <dt>メールアドレス</dt>
+        <dd>info@example.com</dd>
+        <dt>電話番号</dt>
+        <dd>03-1234-5678</dd>
+        <dt>都道府県</dt>
+        <dd>東京都</dd>
+      </FormList>
+
+      <div class="mt-8 md:mt-10">
+        <Button
+          as="button"
+          type="button"
+          title="修正する"
+        />
+
+        <Button
+          as="button"
+          type="submit"
+          theme="conversion"
+          title="送信する"
+        />
+      </div>
+    </Section>
+  </Content>
+</PageLayout>

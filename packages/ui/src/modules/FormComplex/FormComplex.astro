@@ -5,10 +5,10 @@ import type { HTMLAttributes } from 'astro/types';
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
 export interface Props extends HTMLAttributes<'div'> {
-  /** SP幅時のコンテンツと画像の並び方向を設定します。 */
-  directSp?: 'row' | 'column';
-  /** PC幅時のコンテンツと画像の並び方向を設定します。 */
-  directPc?: 'row' | 'column';
+  /** SP幅時の並び方向を設定します。 */
+  directSp?: 'row' | 'column' | 'wrap';
+  /** PC幅時の並び方向を設定します。 */
+  directPc?: 'row' | 'column' | 'wrap';
 }
 
 const {
@@ -55,6 +55,10 @@ if (!Astro.slots.has('default')) {
         align-items: flex-start;
         flex-direction: column;
       }
+
+      &:where(.directSp-wrap) {
+        flex-wrap: wrap;
+      }
     }
   }
 
@@ -63,6 +67,10 @@ if (!Astro.slots.has('default')) {
       &:where(.directPc-column) {
         align-items: flex-start;
         flex-direction: column;
+      }
+
+      &:where(.directPc-wrap) {
+        flex-wrap: wrap;
       }
     }
   }

@@ -36,10 +36,12 @@ const attrs: Record<string, unknown> = { ...rest };
 
 <style>
   .ListStep {
+    --local-arrow-height: calc(var(--user-spacing) * 3);
+
     counter-reset: step;
     display: flex;
     flex-direction: column;
-    gap: calc(var(--user-spacing) * 6);
+    gap: calc(var(--user-spacing) * 5);
 
     :where(li) {
       background-color: var(--color-gray-200);
@@ -52,15 +54,17 @@ const attrs: Record<string, unknown> = { ...rest };
 
       position: relative;
 
-      &:not(:first-child)::before {
-        border-left: calc(var(--user-spacing) * 3) solid transparent;
-        border-right: calc(var(--user-spacing) * 3) solid transparent;
-        border-top: calc(var(--user-spacing) * 3) solid var(--color-gray-200);
-        bottom: calc(100% - (var(--user-spacing) * 3));
-        content: '';
-        left: 50%;
-        position: absolute;
-        transform: translateX(-50%);
+      &:not(:last-child) {
+        &::before {
+          border-left: calc(var(--user-spacing) * 3) solid transparent;
+          border-right: calc(var(--user-spacing) * 3) solid transparent;
+          border-top: var(--local-arrow-height) solid var(--color-gray-200);
+          top: 100%;
+          content: '';
+          left: 50%;
+          position: absolute;
+          transform: translateX(-50%);
+        }
       }
     }
 
@@ -89,7 +93,7 @@ const attrs: Record<string, unknown> = { ...rest };
 
   @media (width >= 768px) {
     .ListStep {
-      gap: calc(var(--user-spacing) * 10);
+      gap: calc(var(--user-spacing) * 8);
 
       :where(li) {
         align-items: center;

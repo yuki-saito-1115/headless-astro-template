@@ -1,0 +1,44 @@
+---
+import Text from '@packages/ui/modules/Text/Text.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: '価格',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: '価格ページの配置例です。',
+  title: '価格',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="価格">
+    <img slot="media" src="/templates/price/images/detail-mainVisual_sp.webp" alt="" />
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Text>
+        <p>ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト</p>
+      </Text>
+    </Section>
+  </Content>
+</PageLayout>

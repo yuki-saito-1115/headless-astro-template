@@ -1,0 +1,252 @@
+---
+import Box from '@packages/ui/modules/Box/Box.astro';
+import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
+import LayoutMedia from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
+import List from '@packages/ui/modules/List/List.astro';
+import ListDescription from '@packages/ui/modules/ListDescription/ListDescription.astro';
+import Media from '@packages/ui/modules/Media/Media.astro';
+import NavigationInternal from '@packages/ui/modules/NavigationInternal/NavigationInternal.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import TextLead from '@packages/ui/modules/TextLead/TextLead.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalDetails from '../../../../components/modules/LocalDetails/LocalDetails.astro';
+import LocalInformation from '../../../../components/modules/LocalInformation/LocalInformation.astro';
+import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: '事例',
+    item: '/templates/example/',
+  },
+  {
+    name: '事例（詳細）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: '事例詳細の配置例です。',
+  title: '事例（詳細）',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="リーズナブルで多機能。利用開始後約1年で売り上げが150%増加。">
+    <img slot="media" src="/templates/example/images/detail-mainVisual_sp.webp" alt="" />
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <LayoutMedia directSp="column-reverse" directPc="row-reverse">
+        <div slot="content">
+          <Text>
+            <p><b>〇〇〇〇株式会社</b></p>
+          </Text>
+
+          <ListDescription
+            class="mt-4"
+            directPc="inline"
+            directSp="column"
+          >
+            <dl>
+              <dt>業種</dt>
+              <dd>製造業</dd>
+              <dt>従業員数</dt>
+              <dd>1～10人</dd>
+              <dt>導入サービス</dt>
+              <dd>AI / IoT / クラウド</dd>
+            </dl>
+          </ListDescription>
+
+          <Text class="mt-4">
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Text>
+
+          <Text class="mt-4">
+            <p>ご担当者様 〇〇部 <b>山田太郎 様</b></p>
+          </Text>
+        </div>
+
+        <Media slot="media">
+          <figure>
+            <img src="/templates/example/images/detail-image_sp.webp" width="600" height="400" alt="" />
+          </figure>
+        </Media>
+      </LayoutMedia>
+
+      <NavigationInternal
+        class="mt-8 md:mt-10"
+        datas={[
+          {
+            href: "#DUMMY_ANCHOR",
+            title: "導入前の課題",
+          },
+          {
+            href: "#DUMMY_ANCHOR_2",
+            title: "選んだ理由",
+          },
+          {
+            href: "#DUMMY_ANCHOR_3",
+            title: "導入後の成果・効果",
+          },
+        ]}
+      />
+
+      <Box class="mt-8 md:mt-10">
+        <ListDescription directPc="column" directSp="column">
+          <dl>
+            <dt>導入前の課題</dt>
+            <dd>
+              <Text>
+                <p><b>いつも〇〇〇〇が〇〇〇〇であることに課題感があった</b></p>
+              </Text>
+
+              <List class="mt-4">
+                <ul>
+                  <li>〇〇〇〇にも負担なく〇〇〇〇や〇〇〇〇ができる仕組みが欲しかった</li>
+                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+                </ul>
+              </List>
+            </dd>
+            <dt>選んだ理由</dt>
+            <dd>
+              <Text>
+                <p><b>〇〇〇〇が無くなり〇〇〇〇の〇〇〇〇が減った</b></p>
+              </Text>
+
+              <List class="mt-4">
+                <ul>
+                  <li>〇〇〇〇と〇〇〇〇がマッチし、〇〇〇〇がわかりやすかった</li>
+                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+                </ul>
+              </List>
+            </dd>
+            <dt>導入後の成果・効果</dt>
+            <dd>
+              <Text>
+                <p><b>〇〇〇〇をさらに高めて〇〇〇〇率を向上させたい</b></p>
+              </Text>
+
+              <List class="mt-4">
+                <ul>
+                  <li>〇〇〇〇と〇〇〇〇がマッチし、〇〇〇〇がわかりやすかった</li>
+                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+                </ul>
+              </List>
+            </dd>
+          </dl>
+        </ListDescription>
+      </Box>
+
+      <HeadingLevel2 id="DUMMY_ANCHOR" class="mt-8 md:mt-10">
+        <h2>導入前の課題</h2>
+      </HeadingLevel2>
+
+      <TextLead class="mt-8 md:mt-10 text-center">
+        <p>いつも〇〇〇〇が〇〇〇〇であることに課題感があった</p>
+      </TextLead>
+
+      <Media class="mt-8 md:mt-10">
+        <figure>
+          <img src="/templates/example/images/detail-image_sp.webp" width="600" height="400" alt="" />
+        </figure>
+      </Media>
+
+      <Text class="mt-8 md:mt-10">
+        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      </Text>
+
+      <HeadingLevel2 id="DUMMY_ANCHOR_2" class="mt-8 md:mt-10">
+        <h2>選んだ理由</h2>
+      </HeadingLevel2>
+
+      <TextLead class="mt-8 md:mt-10 text-center">
+        <p>〇〇〇〇が無くなり〇〇〇〇の〇〇〇〇が減った</p>
+      </TextLead>
+
+      <Media class="mt-8 md:mt-10">
+        <figure>
+          <img src="/templates/example/images/detail-image_sp.webp" width="600" height="400" alt="" />
+        </figure>
+      </Media>
+
+      <Text class="mt-8 md:mt-10">
+        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      </Text>
+
+      <HeadingLevel2 id="DUMMY_ANCHOR_3" class="mt-8 md:mt-10">
+        <h2>導入後の成果・効果</h2>
+      </HeadingLevel2>
+
+      <TextLead class="mt-8 md:mt-10 text-center">
+        <p>〇〇〇〇をさらに高めて〇〇〇〇率を向上させたい</p>
+      </TextLead>
+
+      <Media class="mt-8 md:mt-10">
+        <figure>
+          <img src="/templates/example/images/detail-image_sp.webp" width="600" height="400" alt="" />
+        </figure>
+      </Media>
+
+      <Text class="mt-8 md:mt-10">
+        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      </Text>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>ご担当者様のコメント</h2>
+      </HeadingLevel2>
+
+      <LayoutMedia class="mt-8 md:mt-10" directSp="column-reverse" directPc="row-reverse">
+        <div slot="content">
+          <TextLead>
+            <p>〇〇〇〇によって社内の組織作りの基盤が固まりました。</p>
+          </TextLead>
+
+          <Text class="mt-4">
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Text>
+
+          <Text class="mt-4">
+            <p>ご担当者様 〇〇部 <b>山田太郎 様</b></p>
+          </Text>
+        </div>
+
+        <Media slot="media">
+          <figure>
+            <img src="/templates/example/images/detail-image_sp.webp" width="600" height="400" alt="" />
+          </figure>
+        </Media>
+      </LayoutMedia>
+    </Section>
+
+    <Section theme="dark">
+      <LocalInformation />
+    </Section>
+
+    <Section>
+      <LocalDetails />
+
+      <LocalSns />
+    </Section>
+  </Content>
+</PageLayout>

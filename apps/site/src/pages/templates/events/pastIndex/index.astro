@@ -1,0 +1,243 @@
+---
+import Card from '@packages/ui/modules/Card/Card.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import LinkList from '@packages/ui/modules/LinkList/LinkList.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalInformation from '../../../../components/modules/LocalInformation/LocalInformation.astro';
+import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: 'セミナー・イベント',
+    item: '/templates/events/',
+  },
+  {
+    name: '過去のセミナー／イベントのレポート（一覧）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'DUMMY_DESCRIPTION',
+  title: '過去のセミナー／イベントのレポート（一覧）',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="過去のセミナー・イベントのレポート">
+    <picture slot="media">
+      <source media="(width >= 768px)" srcset="/templates/events/images/pastIndex-mainVisual_pc.webp" />
+      <img src="/templates/events/images/pastIndex-mainVisual_sp.webp" alt="" />
+    </picture>
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <LinkList
+        datas={[
+          {
+            href: "/templates/events/",
+            title: "開催中のセミナー・イベント",
+          },
+        ]}
+      />
+
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="セミナー・イベントレポート 1"
+            date="2020年8月31日レポート"
+            media={{
+              src: "/templates/events/images/pastIndex-image_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>開催内容と当日の様子を紹介します。</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="セミナー・イベントレポート 2"
+            date="2020年9月1日レポート"
+            media={{
+              src: "/templates/events/images/pastIndex-image-2_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>開催内容と当日の様子を紹介します。</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="セミナー・イベントレポート 3"
+            date="2020年9月2日レポート"
+            media={{
+              src: "/templates/events/images/pastIndex-image-3_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>開催内容と当日の様子を紹介します。</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="セミナー・イベントレポート 4"
+            date="2020年9月3日レポート"
+            media={{
+              src: "/templates/events/images/pastIndex-image-4_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>開催内容と当日の様子を紹介します。</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="セミナー・イベントレポート 5"
+            date="2020年9月4日レポート"
+            media={{
+              src: "/templates/events/images/pastIndex-image-5_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>開催内容と当日の様子を紹介します。</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="セミナー・イベントレポート 6"
+            date="2020年9月5日レポート"
+            media={{
+              src: "/templates/events/images/pastIndex-image-6_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>開催内容と当日の様子を紹介します。</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="過去のイベント・セミナー 7"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/pastIndex-image-7_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>開催内容と当日の様子を紹介します。</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="過去のイベント・セミナー 8"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/pastIndex-image-8_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>開催内容と当日の様子を紹介します。</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="過去のイベント・セミナー 9"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/pastIndex-image-9_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>開催内容と当日の様子を紹介します。</p>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <LocalSns />
+    </Section>
+
+    <Section theme="dark">
+      <LocalInformation />
+    </Section>
+  </Content>
+</PageLayout>

@@ -1,0 +1,412 @@
+---
+import Box from '@packages/ui/modules/Box/Box.astro';
+import Card from '@packages/ui/modules/Card/Card.astro';
+import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
+import HeadingLevel3 from '@packages/ui/modules/HeadingLevel3/HeadingLevel3.astro';
+import HeadingLevel4 from '@packages/ui/modules/HeadingLevel4/HeadingLevel4.astro';
+import HeadingLevel5 from '@packages/ui/modules/HeadingLevel5/HeadingLevel5.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import LayoutMedia from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
+import List from '@packages/ui/modules/List/List.astro';
+import ListStep from '@packages/ui/modules/ListStep/ListStep.astro';
+import Media from '@packages/ui/modules/Media/Media.astro';
+import NavigationInternal from '@packages/ui/modules/NavigationInternal/NavigationInternal.astro';
+import PanelDownload from '@packages/ui/modules/PanelDownload/PanelDownload.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import TextLead from '@packages/ui/modules/TextLead/TextLead.astro';
+import WidgetTab from '@packages/ui/modules/WidgetTab/WidgetTab.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalDetails from '../../../../components/modules/LocalDetails/LocalDetails.astro';
+import LocalInformation from '../../../../components/modules/LocalInformation/LocalInformation.astro';
+import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: '商品・サービス',
+    item: '/templates/products/',
+  },
+  {
+    name: '商品サービス（詳細）タブ使用時の場合',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'タブを使用する商品詳細の配置例です。',
+  title: '商品サービス（詳細）タブ使用時の場合',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="〇〇〇〇システム導入支援">
+    <img slot="media" src="/templates/products/images/tab-mainVisual_sp.webp" alt="" />
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <PanelDownload
+        description="ページ内の内容を簡単に解説する短いコピーページ内の内容を簡単に解説。"
+        button={{
+          as: "a",
+          href: "#",
+          download: true,
+          title: "サービス紹介資料ダウンロード",
+        }}
+      />
+
+      <WidgetTab
+        class="mt-8 md:mt-10"
+        id="product-tabs"
+        datas={[
+          {
+            title: "概要",
+            slot: "DUMMY_TAB",
+          },
+          {
+            title: "機能",
+            slot: "DUMMY_TAB_2",
+          },
+          {
+            title: "事例",
+            slot: "DUMMY_TAB_3",
+          },
+        ]}
+      >
+        <div slot="DUMMY_TAB">
+          <HeadingLevel2>
+            <h2>概要</h2>
+          </HeadingLevel2>
+
+          <TextLead class="mt-8 md:mt-10 text-center">
+            <p>〇〇〇〇を〇〇〇〇にすることで〇〇〇〇を改善します</p>
+          </TextLead>
+
+          <Text class="mt-8 md:mt-10">
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Text>
+
+          <HeadingLevel3 class="mt-8 md:mt-10">
+            <h3>こんなお悩みありませんか?</h3>
+          </HeadingLevel3>
+
+          <List class="mt-8 md:mt-10">
+            <ul>
+              <li>〇〇が度々発生し、〇〇が進められていない</li>
+              <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+              <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+              <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+            </ul>
+          </List>
+
+          <HeadingLevel3 class="mt-8 md:mt-10">
+            <h3>成功のための3つのポイント</h3>
+          </HeadingLevel3>
+
+          <TextLead class="mt-8 md:mt-10 text-center">
+            <p>〇〇〇〇の改善は〇〇〇〇を〇〇〇〇する〇〇〇〇の検討が不可欠です</p>
+          </TextLead>
+
+          <LayoutColumn
+            class="mt-8 md:mt-10"
+            columnPc="3"
+            columnSp="1"
+          >
+            <div class="LayoutColumn__segment">
+              <Card
+                outline
+                title="サービス名テキストテキスト"
+                media={{
+                  src: "/templates/products/images/index-image-13_sp.webp",
+                  alt: "",
+                  width: 327,
+                  height: 200,
+                }}
+              >
+                <Text>
+                  <p>〇〇〇〇を〇〇〇〇することで〇〇〇〇にします。</p>
+                </Text>
+              </Card>
+            </div>
+
+            <div class="LayoutColumn__segment">
+              <Card
+                outline
+                title="サービス名テキストテキスト"
+                media={{
+                  src: "/templates/products/images/index-image-13_sp.webp",
+                  alt: "",
+                  width: 327,
+                  height: 200,
+                }}
+              >
+                <Text>
+                  <p>〇〇〇〇を〇〇〇〇することで〇〇〇〇にします。</p>
+                </Text>
+              </Card>
+            </div>
+
+            <div class="LayoutColumn__segment">
+              <Card
+                outline
+                title="サービス名テキストテキスト"
+                media={{
+                  src: "/templates/products/images/index-image-13_sp.webp",
+                  alt: "",
+                  width: 327,
+                  height: 200,
+                }}
+              >
+                <Text>
+                  <p>〇〇〇〇を〇〇〇〇することで〇〇〇〇にします。</p>
+                </Text>
+              </Card>
+            </div>
+          </LayoutColumn>
+
+          <HeadingLevel4 class="mt-8 md:mt-10">
+            <h4>ポイント1: 〇〇〇〇で〇〇〇〇を〇〇〇〇にして業務効率を改善</h4>
+          </HeadingLevel4>
+
+          <Media class="mt-8 md:mt-10">
+            <figure>
+              <img src="/templates/products/images/detail-image_sp.webp" width="600" height="400" alt="" />
+            </figure>
+          </Media>
+
+          <Text class="mt-8 md:mt-10">
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Text>
+
+          <HeadingLevel5 class="mt-8 md:mt-10">
+            <h5>効果1: 〇〇〇〇を〇〇〇〇にして担当者の負荷を軽減</h5>
+          </HeadingLevel5>
+
+          <LayoutMedia
+            class="mt-8 md:mt-10"
+            directSp="column-reverse"
+            directPc="row"
+          >
+            <div slot="content">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
+
+            <Media slot="media">
+              <figure>
+                <img src="/templates/products/images/detail-image_sp.webp" width="600" height="400" alt="" />
+              </figure>
+            </Media>
+          </LayoutMedia>
+
+          <HeadingLevel5 class="mt-8 md:mt-10">
+            <h5>効果2: 〇〇〇〇が〇〇〇〇だから作業ステップが半分に</h5>
+          </HeadingLevel5>
+
+          <LayoutMedia
+            class="mt-8 md:mt-10"
+            directSp="column-reverse"
+            directPc="row"
+          >
+            <div slot="content">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
+
+            <Media slot="media">
+              <figure>
+                <img src="/templates/products/images/detail-image_sp.webp" width="600" height="400" alt="" />
+              </figure>
+            </Media>
+          </LayoutMedia>
+
+          <HeadingLevel4 class="mt-8 md:mt-10">
+            <h4>ポイント2: 〇〇〇〇で〇〇〇〇を〇〇〇〇にして業務効率を改善</h4>
+          </HeadingLevel4>
+
+          <Media class="mt-8 md:mt-10">
+            <figure>
+              <img src="/templates/products/images/detail-image_sp.webp" width="600" height="400" alt="" />
+            </figure>
+          </Media>
+
+          <Text class="mt-8 md:mt-10">
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Text>
+
+          <HeadingLevel4 class="mt-8 md:mt-10">
+            <h4>ポイント3: 〇〇〇〇で〇〇〇〇を〇〇〇〇にして業務効率を改善</h4>
+          </HeadingLevel4>
+
+          <Media class="mt-8 md:mt-10">
+            <figure>
+              <img src="/templates/products/images/detail-image_sp.webp" width="600" height="400" alt="" />
+            </figure>
+          </Media>
+
+          <Text class="mt-8 md:mt-10">
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Text>
+        </div>
+
+        <div slot="DUMMY_TAB_2">
+          <HeadingLevel2>
+            <h2>機能</h2>
+          </HeadingLevel2>
+
+          <Box
+            class="mt-8 md:mt-10"
+            title="この機能で解決できること"
+          >
+            <NavigationInternal
+              directPc="column"
+              directSp="column"
+              datas={[
+                {
+                  href: "#DUMMY_ANCHOR",
+                  title: "〇〇〇〇が〇〇〇〇になることで工程がシンプルになる",
+                },
+                {
+                  href: "#DUMMY_ANCHOR_2",
+                  title: "〇〇〇〇が〇〇〇〇だから作業時間が約半分になる",
+                },
+                {
+                  href: "#DUMMY_ANCHOR_3",
+                  title: "〇〇〇〇が〇〇〇〇になるから〇〇〇〇なミスがなくなる",
+                },
+              ]}
+            />
+          </Box>
+
+          <HeadingLevel3
+            id="DUMMY_ANCHOR"
+            class="mt-8 md:mt-10"
+          >
+            <h3>△△機能: 〇〇〇〇が〇〇〇〇になることで工程がシンプルになる</h3>
+          </HeadingLevel3>
+
+          <LayoutMedia
+            class="mt-8 md:mt-10"
+            directSp="column-reverse"
+            directPc="row-reverse"
+          >
+            <div slot="content">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
+
+            <Media slot="media">
+              <figure>
+                <img src="/templates/products/images/detail-image_sp.webp" width="600" height="400" alt="" />
+              </figure>
+            </Media>
+          </LayoutMedia>
+
+          <HeadingLevel3
+            id="DUMMY_ANCHOR_2"
+            class="mt-8 md:mt-10"
+          >
+            <h3>△△機能: 〇〇〇〇が〇〇〇〇だから作業時間が約半分になる</h3>
+          </HeadingLevel3>
+
+          <LayoutMedia
+            class="mt-8 md:mt-10"
+            directSp="column-reverse"
+            directPc="row"
+          >
+            <div slot="content">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
+
+            <Media slot="media">
+              <figure>
+                <img src="/templates/products/images/detail-image_sp.webp" width="600" height="400" alt="" />
+              </figure>
+            </Media>
+          </LayoutMedia>
+
+          <HeadingLevel3
+            id="DUMMY_ANCHOR_3"
+            class="mt-8 md:mt-10"
+          >
+            <h3>△△機能: 〇〇〇〇が〇〇〇〇になるから〇〇〇〇なミスがなくなる</h3>
+          </HeadingLevel3>
+
+          <LayoutMedia
+            class="mt-8 md:mt-10"
+            directSp="column-reverse"
+            directPc="row-reverse"
+          >
+            <div slot="content">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
+
+            <Media slot="media">
+              <figure>
+                <img src="/templates/products/images/detail-image_sp.webp" width="600" height="400" alt="" />
+              </figure>
+            </Media>
+          </LayoutMedia>
+        </div>
+
+        <div slot="DUMMY_TAB_3">
+          <HeadingLevel2>
+            <h2>事例</h2>
+          </HeadingLevel2>
+
+          <HeadingLevel3 class="mt-8 md:mt-10">
+            <h3>導入までは3ステップ</h3>
+          </HeadingLevel3>
+
+          <ListStep
+            class="mt-8 md:mt-10"
+            datas={[
+              {
+                title: "ヒアリング",
+                text: "説明テキストテキストテキストテキストテキストテキスト",
+              },
+              {
+                title: "ご契約",
+                text: "説明テキストテキストテキストテキストテキストテキスト",
+              },
+              {
+                title: "利用開始",
+                text: "説明テキストテキストテキストテキストテキストテキスト",
+              },
+            ]}
+          />
+        </div>
+      </WidgetTab>
+    </Section>
+
+    <Section theme="dark">
+      <LocalInformation />
+    </Section>
+
+    <Section>
+      <LocalDetails />
+
+      <LocalSns />
+    </Section>
+  </Content>
+</PageLayout>

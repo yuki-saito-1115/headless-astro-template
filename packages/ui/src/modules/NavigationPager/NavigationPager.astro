@@ -123,8 +123,10 @@ const hasNextPage = current < total;
 
     :where(.NavigationPager__link--previous, .NavigationPager__link--next) {
       overflow: hidden;
-      padding: calc(var(--user-spacing) * 10) 0 0 calc(var(--user-spacing) * 10);
+      padding: 0;
       position: relative;
+      text-indent: 100%;
+      white-space: nowrap;
       width: 40px;
 
       &::before {

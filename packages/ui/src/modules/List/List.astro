@@ -48,7 +48,7 @@ if (!Astro.slots.has('default')) {
   }
 
   .List {
-    --local-item-gap-x: calc((var(--user-spacing) * 20));
+    --local-item-gap-x: calc(var(--user-spacing) * 6);
     --local-item-gap-y: calc(var(--user-spacing) * 2);
 
     container-type: inline-size;
@@ -73,7 +73,7 @@ if (!Astro.slots.has('default')) {
         list-style: none;
 
         &::before {
-          background-color: var(--user-color-primary);
+          background-color: var(--user-color-secondary2);
           border-radius: 50%;
           content: '';
           display: block;
@@ -179,6 +179,8 @@ if (!Astro.slots.has('default')) {
 
   @container (min-width: 768px) {
     .List {
+      --local-item-gap-x: calc(var(--user-spacing) * 8);
+
       &:where(.columnPc-2) {
         > :global(:where(ol, ul)) {
           grid-template-columns: repeat(2, minmax(0, 1fr));

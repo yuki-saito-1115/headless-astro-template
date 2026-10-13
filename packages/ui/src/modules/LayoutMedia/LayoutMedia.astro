@@ -54,7 +54,7 @@ if (!Astro.slots.has('content') || !Astro.slots.has('media')) {
 
     :where(.LayoutMedia__inner) {
       display: grid;
-      gap: calc(var(--user-spacing) * 6);
+      gap: calc(var(--user-spacing) * 4);
       grid-template-columns: minmax(0, 1fr) fit-content(50%);
     }
 
@@ -90,7 +90,7 @@ if (!Astro.slots.has('content') || !Astro.slots.has('media')) {
   @container (min-width: 768px) {
     .LayoutMedia {
       :where(.LayoutMedia__inner) {
-        gap: calc(var(--user-spacing) * 10);
+        gap: calc(var(--user-spacing) * 6);
 
         &:where(.directPc-row-reverse) {
           direction: rtl;

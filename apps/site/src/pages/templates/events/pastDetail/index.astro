@@ -1,0 +1,203 @@
+---
+import Card from '@packages/ui/modules/Card/Card.astro';
+import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import Media from '@packages/ui/modules/Media/Media.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: 'イベントレポート',
+    item: '/templates/events/pastIndex/',
+  },
+  {
+    name: '過去のセミナー／イベントのレポート（詳細）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'DUMMY_DESCRIPTION',
+  title: '過去のセミナー／イベントのレポート（詳細）',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual
+    title="〇〇〇〇を120%使いこなすためのポイント説明会"
+    taglineTop="イベントレポート"
+    taglineBottom="2020年8月31日（木）"
+  >
+    <picture slot="media">
+      <source media="(width >= 768px)" srcset="/templates/events/images/pastDetail-mainVisual_pc.webp" />
+      <img src="/templates/events/images/pastDetail-mainVisual_sp.webp" alt="" />
+    </picture>
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Media>
+        <figure>
+          <img src="/templates/events/images/pastDetail-image_sp.webp" width="600" height="400" alt="" />
+        </figure>
+      </Media>
+
+      <Text class="mt-8 md:mt-10">
+        <p>開催当時の状況や講演内容、参加者から寄せられた声を紹介します。</p>
+      </Text>
+
+      <HeadingLevel2>
+        <h2>開催当時の課題</h2>
+      </HeadingLevel2>
+
+      <Text class="mt-8 md:mt-10">
+        <p>開催当時の状況や講演内容、参加者から寄せられた声を紹介します。</p><p>開催当時の状況や講演内容、参加者から寄せられた声を紹介します。</p>
+      </Text>
+
+      <HeadingLevel2>
+        <h2>イベントで得られた成果</h2>
+      </HeadingLevel2>
+
+      <Text class="mt-8 md:mt-10">
+        <p>開催当時の状況や講演内容、参加者から寄せられた声を紹介します。</p><p>開催当時の状況や講演内容、参加者から寄せられた声を紹介します。</p>
+      </Text>
+
+      <HeadingLevel2>
+        <h2>その他のイベント・セミナーレポート</h2>
+      </HeadingLevel2>
+
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="イベントレポート 1"
+            media={{
+              src: "/templates/events/images/pastDetail-image-2_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>開催当時の状況や講演内容、参加者から寄せられた声を紹介します。</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="イベントレポート 2"
+            media={{
+              src: "/templates/events/images/pastDetail-image-3_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>開催当時の状況や講演内容、参加者から寄せられた声を紹介します。</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="イベントレポート 3"
+            media={{
+              src: "/templates/events/images/pastDetail-image-4_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>開催当時の状況や講演内容、参加者から寄せられた声を紹介します。</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="関連イベント・セミナー 4"
+            media={{
+              src: "/templates/events/images/pastDetail-image-7_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>開催当時の状況や講演内容、参加者から寄せられた声を紹介します。</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="関連イベント・セミナー 5"
+            media={{
+              src: "/templates/events/images/pastDetail-image-8_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>開催当時の状況や講演内容、参加者から寄せられた声を紹介します。</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="関連イベント・セミナー 6"
+            media={{
+              src: "/templates/events/images/pastDetail-image-9_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>開催当時の状況や講演内容、参加者から寄せられた声を紹介します。</p>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+
+      <LocalSns />
+    </Section>
+  </Content>
+</PageLayout>

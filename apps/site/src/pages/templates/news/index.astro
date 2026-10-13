@@ -1,0 +1,167 @@
+---
+import FormSelect from '@packages/ui/modules/FormSelect/FormSelect.astro';
+import ListNews from '@packages/ui/modules/ListNews/ListNews.astro';
+import NavigationPager from '@packages/ui/modules/NavigationPager/NavigationPager.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import WidgetTab from '@packages/ui/modules/WidgetTab/WidgetTab.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalSns from '../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: 'お知らせ・ニュース（一覧）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'DUMMY_DESCRIPTION',
+  title: 'お知らせ・ニュース（一覧）',
+};
+const allNews = [
+  {
+    category: 'カテゴリ1' as const,
+    date: '2026-10-01T00:00:00.000Z',
+    id: 'news-1',
+    title: '「〇〇〇〇〇〇〇〇」を1月1日に発売',
+  },
+  {
+    category: 'カテゴリ2' as const,
+    date: '2026-09-01T00:00:00.000Z',
+    id: 'news-2',
+    title: 'お知らせの内容を表示します 2',
+  },
+  {
+    category: 'カテゴリ1' as const,
+    date: '2026-08-01T00:00:00.000Z',
+    id: 'news-3',
+    title: 'お知らせの内容を表示します 3',
+  },
+  {
+    category: 'カテゴリ2' as const,
+    date: '2026-07-01T00:00:00.000Z',
+    id: 'news-4',
+    title: 'お知らせの内容を表示します 4',
+  },
+  {
+    category: 'カテゴリ1' as const,
+    date: '2026-06-01T00:00:00.000Z',
+    id: 'news-5',
+    title: 'お知らせの内容を表示します 5',
+  },
+  {
+    category: 'カテゴリ2' as const,
+    date: '2026-05-01T00:00:00.000Z',
+    id: 'news-6',
+    title: 'お知らせの内容を表示します 6',
+  },
+];
+const category1News = [allNews[0], allNews[2], allNews[4]];
+const category2News = [allNews[1], allNews[3], allNews[5]];
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="ニュースリリース">
+    <picture slot="media">
+      <source media="(width >= 768px)" srcset="/templates/news/images/index-mainVisual_pc.webp" />
+      <img src="/templates/news/images/index-mainVisual_sp.webp" alt="" />
+    </picture>
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Text>
+        <p>
+          掲載内容は発表時点の情報です。その後予告なく変更となる場合があります。
+        </p>
+      </Text>
+
+      <FormSelect
+        class="mt-8 md:mt-10"
+        options={[
+          {
+            label: "2026年",
+            value: "2026",
+          },
+          {
+            label: "2025年",
+            value: "2025",
+          },
+          {
+            label: "2024年",
+            value: "2024",
+          },
+          {
+            label: "2023年",
+            value: "2023",
+          },
+          {
+            label: "2022年",
+            value: "2022",
+          },
+          {
+            label: "2021年",
+            value: "2021",
+          },
+        ]}
+      />
+
+      <WidgetTab
+        class="mt-8 md:mt-10"
+        id="news-tabs"
+        datas={[
+          {
+            title: "すべて",
+            slot: "all",
+          },
+          {
+            title: "カテゴリ1",
+            slot: "category1",
+          },
+          {
+            title: "カテゴリ2",
+            slot: "category2",
+          },
+        ]}
+      >
+        <ListNews
+          slot="all"
+          datas={allNews}
+        />
+
+        <ListNews
+          slot="category1"
+          datas={category1News}
+        />
+
+        <ListNews
+          slot="category2"
+          datas={category2News}
+        />
+      </WidgetTab>
+
+      <NavigationPager
+        class="mt-8 md:mt-10"
+        baseUrl="/templates/news"
+        current={1}
+        total={5}
+      />
+
+      <LocalSns />
+    </Section>
+  </Content>
+</PageLayout>

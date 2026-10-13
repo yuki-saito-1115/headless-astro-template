@@ -29,7 +29,7 @@ if (!Astro.slots.has('default')) {
       color: var(--user-color-foreground-dark);
       padding-left: calc(var(--user-spacing) * 6);
       position: relative;
-      line-height: var(--text-lg--line-height);
+      line-height: var(--user-line-height);
       font-size: var(--text-lg);
 
       /* marker */
@@ -54,7 +54,7 @@ if (!Astro.slots.has('default')) {
   @media (width >= 768px) {
     .HeadingLevel4 {
       :where(h1, h2, h3, h4, h5, h6) {
-        line-height: var(--text-xl--line-height);
+        line-height: var(--user-line-height);
         font-size: var(--text-xl);
       }
     }

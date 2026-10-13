@@ -1,0 +1,273 @@
+---
+import Card from '@packages/ui/modules/Card/Card.astro';
+import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import List from '@packages/ui/modules/List/List.astro';
+import ListFeature from '@packages/ui/modules/ListFeature/ListFeature.astro';
+import ListQuestion from '@packages/ui/modules/ListQuestion/ListQuestion.astro';
+import NavigationInternal from '@packages/ui/modules/NavigationInternal/NavigationInternal.astro';
+import PanelDownload from '@packages/ui/modules/PanelDownload/PanelDownload.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import TextLead from '@packages/ui/modules/TextLead/TextLead.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalInformation from '../../../../components/modules/LocalInformation/LocalInformation.astro';
+import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: '特長',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: '特長ページの配置例です。',
+  title: '特長',
+};
+const questions = [
+  {
+    question: '〇〇〇〇は〇〇〇〇ですか?',
+    answer: '条件や利用方法について詳しくご案内します。',
+  },
+  {
+    question: '導入支援はありますか?',
+    answer: '担当者が導入から運用まで支援します。',
+  },
+];
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="特長">
+    <img slot="media" src="/templates/features/images/detail-mainVisual_sp.webp" alt="" />
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <PanelDownload
+        description="ページ内の内容を簡単に解説する短いコピーページ内の内容を簡単に解説。"
+        button={{
+          as: "a",
+          href: "#",
+          download: true,
+          title: "サービス紹介資料ダウンロード",
+        }}
+      />
+
+      <TextLead class="mt-8 md:mt-10">
+        <p>〇〇〇〇を〇〇〇〇にすることで〇〇〇〇を改善します</p>
+      </TextLead>
+
+      <Text class="mt-8 md:mt-10">
+        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      </Text>
+
+      <NavigationInternal
+        class="mt-8 md:mt-10"
+        datas={[
+          {
+            href: "#trouble",
+            title: "よくあるお悩み",
+          },
+          {
+            href: "#points",
+            title: "成功のための3つのポイント",
+          },
+          {
+            href: "#faq",
+            title: "よくあるご質問",
+          },
+          {
+            href: "#reason",
+            title: "信頼の理由",
+          },
+          {
+            href: "#voice",
+            title: "お客様の声",
+          },
+          {
+            href: "#award",
+            title: "受賞歴",
+          },
+        ]}
+      />
+
+      <div id="trouble" class="mt-8 md:mt-10">
+        <HeadingLevel2>
+          <h2>よくあるお悩み</h2>
+        </HeadingLevel2>
+
+        <TextLead class="mt-8 md:mt-10">
+          <p>こんなことでお悩みではありませんか?</p>
+        </TextLead>
+
+        <List class="mt-8 md:mt-10">
+          <ul>
+            <li>〇〇が度々発生し、〇〇が進められていない</li>
+            <li>〇〇が度々発生し、〇〇が進められていない</li>
+            <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+            <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+            <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+            <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+            <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+            <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+          </ul>
+        </List>
+      </div>
+
+      <div id="points" class="mt-8 md:mt-10">
+        <HeadingLevel2>
+          <h2>成功のための3つのポイント</h2>
+        </HeadingLevel2>
+
+        <TextLead class="mt-8 md:mt-10">
+          <p>〇〇〇〇の改善は〇〇〇〇を〇〇〇〇する〇〇〇〇の検討が不可欠です</p>
+        </TextLead>
+
+        <ListFeature
+          class="mt-8 md:mt-10"
+          datas={[
+            {
+              badge: "ポイント1",
+              title: "〇〇〇〇には〇〇〇〇対策",
+              text: "〇〇〇〇を〇〇〇〇することで〇〇〇〇にします。",
+            },
+            {
+              badge: "ポイント2",
+              title: "〇〇〇〇には〇〇〇〇対策",
+              text: "〇〇〇〇を〇〇〇〇することで〇〇〇〇にします。",
+            },
+            {
+              badge: "ポイント3",
+              title: "〇〇〇〇には〇〇〇〇対策",
+              text: "〇〇〇〇を〇〇〇〇することで〇〇〇〇にします。",
+            },
+          ]}
+        />
+
+        <LayoutColumn
+          class="mt-8 md:mt-10"
+          columnPc="3"
+          columnSp="1"
+        >
+          <div class="LayoutColumn__segment">
+            <Card
+              outline
+              title="信頼の理由"
+              media={{
+                src: "/templates/features/images/detail-image-7_sp.webp",
+                alt: "",
+                width: 600,
+                height: 400,
+              }}
+            >
+              <p>紹介テキストが入ります。</p>
+            </Card>
+          </div>
+
+          <div class="LayoutColumn__segment">
+            <Card
+              outline
+              title="お客様の声"
+              media={{
+                src: "/templates/features/images/detail-image-8_sp.webp",
+                alt: "",
+                width: 600,
+                height: 400,
+              }}
+            >
+              <p>紹介テキストが入ります。</p>
+            </Card>
+          </div>
+
+          <div class="LayoutColumn__segment">
+            <Card
+              outline
+              title="受賞歴"
+              media={{
+                src: "/templates/features/images/detail-image-9_sp.webp",
+                alt: "",
+                width: 600,
+                height: 400,
+              }}
+            >
+              <p>紹介テキストが入ります。</p>
+            </Card>
+          </div>
+        </LayoutColumn>
+      </div>
+
+      <div id="reason" class="mt-8 md:mt-10">
+        <HeadingLevel2>
+          <h2>信頼の理由</h2>
+        </HeadingLevel2>
+
+        <TextLead class="mt-8 md:mt-10">
+          <p>導入企業数・業界シェア共に実績が豊富です</p>
+          <p>導入企業は業界を問わず0000社以上</p>
+        </TextLead>
+
+        <Text class="mt-8 md:mt-10">
+          <p>連携できる外部サービスは〇〇以上。〇〇業務のプラットフォームになります。</p>
+          <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        </Text>
+      </div>
+
+      <div id="voice" class="mt-8 md:mt-10">
+        <HeadingLevel2>
+          <h2>お客様の声</h2>
+        </HeadingLevel2>
+
+        <Text class="mt-8 md:mt-10">
+          <p>お客様の声テキストテキストテキストテキストテキストテキスト</p>
+          <p>「効率が上がった」「楽になった」等の声が寄せられています</p>
+          <p>これまで大変だった〇〇〇〇が〇〇〇〇になりました!</p>
+          <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          <p>〇〇業界 営業担当</p>
+        </Text>
+      </div>
+
+      <div id="award" class="mt-8 md:mt-10">
+        <HeadingLevel2>
+          <h2>受賞歴</h2>
+        </HeadingLevel2>
+
+        <Text class="mt-8 md:mt-10">
+          <p>〇〇〇〇において〇〇年連続No.1獲得をはじめ多くの受賞歴があります</p>
+          <p>タイトルタイトルタイトル</p>
+          <p>サブタイトルサブタイトルサブタイトル</p>
+        </Text>
+      </div>
+
+      <div id="faq" class="mt-8 md:mt-10">
+        <HeadingLevel2>
+          <h2>よくあるご質問</h2>
+        </HeadingLevel2>
+
+        <ListQuestion
+          class="mt-8 md:mt-10"
+          datas={questions}
+        />
+      </div>
+
+      <LocalSns />
+    </Section>
+
+    <Section theme="dark">
+      <LocalInformation />
+    </Section>
+  </Content>
+</PageLayout>

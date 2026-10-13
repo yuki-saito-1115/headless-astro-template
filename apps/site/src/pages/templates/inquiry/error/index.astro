@@ -1,0 +1,130 @@
+---
+import Badge from '@packages/ui/modules/Badge/Badge.astro';
+import Button from '@packages/ui/modules/Button/Button.astro';
+import FormList from '@packages/ui/modules/FormList/FormList.astro';
+import FormText from '@packages/ui/modules/FormText/FormText.astro';
+import FormTextarea from '@packages/ui/modules/FormTextarea/FormTextarea.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import TextWarning from '@packages/ui/modules/TextWarning/TextWarning.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: '問い合わせフォーム（入力）※エラー時',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: '入力エラー時の問い合わせフォーム配置例です。',
+  title: '問い合わせフォーム（入力）※エラー時',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="お問い合わせ">
+    <img slot="media" src="/templates/inquiry/images/error-mainVisual_sp.webp" alt="" />
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Text>
+        <p>入力内容に誤りがあります。各項目をご確認ください。</p>
+      </Text>
+
+      <form class="mt-8 md:mt-10">
+        <FormList
+          directSp="column"
+          directPc="row"
+        >
+          <dt>
+            <label for="error-message" >お問い合わせ内容 <Badge
+                title="必須"
+                theme="warning"
+              /></label
+            >
+          </dt>
+          <dd>
+            <TextWarning>
+              <p>お問い合わせ内容を入力してください。</p>
+            </TextWarning>
+
+            <FormTextarea
+              class="mt-8 md:mt-10"
+              id="error-message"
+              name="message"
+              size="full"
+              state="invalid"
+            />
+          </dd>
+
+          <dt>
+            <label for="error-company" >会社名 <Badge
+                title="必須"
+                theme="warning"
+              /></label
+            >
+          </dt>
+          <dd>
+            <TextWarning>
+              <p>会社名を入力してください。</p>
+            </TextWarning>
+
+            <FormText
+              class="mt-8 md:mt-10"
+              id="error-company"
+              name="company"
+              size="full"
+              state="invalid"
+            />
+          </dd>
+
+          <dt>
+            <label for="error-email" >メールアドレス <Badge
+                title="必須"
+                theme="warning"
+              /></label
+            >
+          </dt>
+          <dd>
+            <TextWarning>
+              <p>正しいメールアドレスを入力してください。</p>
+            </TextWarning>
+
+            <FormText
+              class="mt-8 md:mt-10"
+              id="error-email"
+              name="email"
+              size="full"
+              state="invalid"
+              type="email"
+            />
+          </dd>
+        </FormList>
+
+        <div class="mt-8 md:mt-10">
+          <Button
+            as="button"
+            type="submit"
+            theme="conversion"
+            title="同意して確認画面へ"
+          />
+        </div>
+      </form>
+    </Section>
+  </Content>
+</PageLayout>

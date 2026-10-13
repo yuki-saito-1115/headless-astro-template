@@ -27,7 +27,7 @@ if (!Astro.slots.has('default')) {
 
 <style>
   .TextLead {
-    font-size: var(--text-2xl);
+    font-size: var(--text-lg);
     font-weight: var(--user-font-weight-bold);
     line-height: var(--user-line-height);
     display: flex;
@@ -37,6 +37,12 @@ if (!Astro.slots.has('default')) {
     :where(div, p) {
       flex: 0 0 auto;
       font-weight: bold;
+    }
+  }
+
+  @media (width >= 768px) {
+    .TextLead {
+      font-size: var(--text-xl);
     }
   }
 </style>

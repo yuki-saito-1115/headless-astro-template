@@ -27,6 +27,14 @@ if (!Astro.slots.has('default')) {
 
 <style>
   .Text {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--user-spacing) * 3);
+
+    :where(p) {
+      flex: 0 0 auto;
+    }
+
     :where(strong) {
       font-weight: var(--user-font-weight-bold);
     }
@@ -54,6 +62,12 @@ if (!Astro.slots.has('default')) {
       vertical-align: baseline;
       text-box-edge: cap alphabetic;
       line-height: 1;
+    }
+  }
+
+  @media (width >= 768px) {
+    .Text {
+      gap: calc(var(--user-spacing) * 4);
     }
   }
 </style>

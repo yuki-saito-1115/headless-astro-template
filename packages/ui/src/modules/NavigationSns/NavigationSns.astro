@@ -5,31 +5,33 @@ import type { HTMLAttributes } from 'astro/types';
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
 export interface Props extends HTMLAttributes<'nav'> {
-  /** シェアするリンクの属性を設定します。 */
-  share?: HTMLAttributes<'a'>;
-  /** Facebookで「いいね」するリンクの属性を設定します。 */
-  good?: HTMLAttributes<'a'>;
-  /** Facebookでシェアするリンクの属性を設定します。 */
-  facebook?: HTMLAttributes<'a'>;
-  /** Xでポストするリンクの属性を設定します。 */
-  x?: HTMLAttributes<'a'>;
-  /** Instagramでシェアするリンクの属性を設定します。 */
-  instagram?: HTMLAttributes<'a'>;
-  /** LINEで送るリンクの属性を設定します。 */
-  line?: HTMLAttributes<'a'>;
+  /** 表示するSNSとリンク先URLを設定します。 */
+  datas: Partial<Record<SnsName, string>>;
 }
 
-const {
-  share,
-  good,
-  facebook,
-  x,
-  instagram,
-  line,
-  class: className,
-  ...rest
-} = Astro.props;
+type SnsName = 'share' | 'good' | 'facebook' | 'x' | 'instagram' | 'line';
+const snsNames: SnsName[] = [
+  'share',
+  'good',
+  'facebook',
+  'x',
+  'instagram',
+  'line',
+];
+
+const { datas, class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
+const labels: Record<SnsName, string> = {
+  share: 'シェアする',
+  good: 'Facebookで「いいね」する',
+  facebook: 'Facebookでシェア',
+  x: 'Xでポスト',
+  instagram: 'Instagramでシェア',
+  line: 'LINEで送る',
+};
+const entries = Object.entries(datas).filter(
+  (entry): entry is [SnsName, string] => snsNames.includes(entry[0] as SnsName),
+);
 ---
 
 <nav
@@ -40,89 +42,22 @@ const attrs: Record<string, unknown> = { ...rest };
   {...attrs}
 >
   <ul class:list={['NavigationSns__list']}>
-    {share && (
-      <li class:list={['NavigationSns__item']}>
-        <a
-          class:list={[
-            'NavigationSns__link',
-            'NavigationSns__link--share',
-          ]}
-          {...share}
-        >
-          シェアする
-        </a>
-      </li>
-    )}
-
-    {good && (
-      <li class:list={['NavigationSns__item']}>
-        <a
-          class:list={[
-            'NavigationSns__link',
-            'NavigationSns__link--good',
-          ]}
-          {...good}
-        >
-          Facebookで「いいね」する
-        </a>
-      </li>
-    )}
-
-    {facebook && (
-      <li class:list={['NavigationSns__item']}>
-        <a
-          class:list={[
-            'NavigationSns__link',
-            'NavigationSns__link--facebook',
-          ]}
-          {...facebook}
-        >
-          Facebookでシェア
-        </a>
-      </li>
-    )}
-
-    {x && (
-      <li class:list={['NavigationSns__item']}>
-        <a
-          class:list={[
-            'NavigationSns__link',
-            'NavigationSns__link--x',
-          ]}
-          {...x}
-        >
-          Xでポスト
-        </a>
-      </li>
-    )}
-
-    {instagram && (
-      <li class:list={['NavigationSns__item']}>
-        <a
-          class:list={[
-            'NavigationSns__link',
-            'NavigationSns__link--instagram',
-          ]}
-          {...instagram}
-        >
-          Instagramでシェア
-        </a>
-      </li>
-    )}
-
-    {line && (
-      <li class:list={['NavigationSns__item']}>
-        <a
-          class:list={[
-            'NavigationSns__link',
-            'NavigationSns__link--line',
-          ]}
-          {...line}
-        >
-          LINEで送る
-        </a>
-      </li>
-    )}
+    {
+      entries.map(([name, href]) => (
+        <li class:list={['NavigationSns__item']}>
+          <a
+            class:list={[
+              'NavigationSns__link',
+              `NavigationSns__link--${name}`,
+            ]}
+            href={href}
+            target="_blank"
+          >
+            {labels[name]}
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </nav>
 

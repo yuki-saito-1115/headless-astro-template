@@ -46,6 +46,7 @@ const attrs: Record<string, unknown> = { ...rest };
     --local-outline: var(--user-color-outline-dark);
     --local-placeholder: var(--color-gray-500);
     --local-width: auto;
+    --local-padding: calc(var(--user-spacing) * 3);
 
     /* Preflight */
     :where(.FormText__item) {
@@ -88,7 +89,7 @@ const attrs: Record<string, unknown> = { ...rest };
       color: var(--local-foreground);
       display: block;
       outline: none;
-      padding: calc(var(--user-spacing) * 1) calc(var(--user-spacing) * 2);
+      padding: var(--local-padding);
       width: 100%;
 
       &::placeholder {

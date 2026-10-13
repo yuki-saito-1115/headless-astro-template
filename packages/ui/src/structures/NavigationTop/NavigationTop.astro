@@ -18,7 +18,7 @@ const { class: className, ..._rest } = Astro.props as Props;
 
 <style>
   .NavigationTop {
-    --local-button-size: 32px;
+    --local-button-size: calc(var(--user-spacing) * 10);
 
     bottom: 0;
     grid-area: navigationTop;
@@ -67,7 +67,7 @@ const { class: className, ..._rest } = Astro.props as Props;
 
   @media (width >= 768px) {
     .NavigationTop {
-      --local-button-size: 40px;
+      --local-button-size: calc(var(--user-spacing) * 12);
     }
   }
 

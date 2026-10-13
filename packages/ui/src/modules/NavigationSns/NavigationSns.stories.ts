@@ -25,11 +25,13 @@ type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
-    share: { href: '#share' },
-    good: { href: '#good' },
-    facebook: { href: '#facebook' },
-    x: { href: '#x' },
-    instagram: { href: '#instagram' },
-    line: { href: '#line' },
+    datas: {
+      share: '#share',
+      good: '#good',
+      facebook: '#facebook',
+      x: '#x',
+      instagram: '#instagram',
+      line: '#line',
+    },
   },
 };

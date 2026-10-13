@@ -29,7 +29,7 @@ if (!Astro.slots.has('default')) {
   .BoxConnect {
     --local-arrow-width: 24px;
     --local-arrow-height: 16px;
-    --local-gutter: var(--user-spacing) * 8;
+    --local-gutter: calc(var(--user-spacing) * 10);
 
     :where(.BoxConnect__segment + .BoxConnect__segment) {
       position: relative;
@@ -40,7 +40,7 @@ if (!Astro.slots.has('default')) {
         border-bottom: 0;
         border-left: var(--local-arrow-width) solid transparent;
         border-right: var(--local-arrow-width) solid transparent;
-        border-top: var(--local-arrow-height) solid #e8e8eb;
+        border-top: var(--local-arrow-height) solid var(--color-gray-200);
         bottom: calc(100% + var(--local-gutter)); /* ボックスの高さ + モジュールの余白 */
         content: '';
         display: block;
@@ -55,7 +55,7 @@ if (!Astro.slots.has('default')) {
     .BoxConnect {
       --local-arrow-width: 32px;
       --local-arrow-height: 24px;
-      --local-gutter: var(--user-spacing) * 10;
+      --local-gutter: calc(var(--user-spacing) * 16);
     }
   }
 </style>

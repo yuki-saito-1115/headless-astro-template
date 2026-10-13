@@ -1,0 +1,458 @@
+---
+import Badge from '@packages/ui/modules/Badge/Badge.astro';
+import Button from '@packages/ui/modules/Button/Button.astro';
+import Card from '@packages/ui/modules/Card/Card.astro';
+import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
+import HeadingLevel3 from '@packages/ui/modules/HeadingLevel3/HeadingLevel3.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import LayoutMedia from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
+import LinkList from '@packages/ui/modules/LinkList/LinkList.astro';
+import List from '@packages/ui/modules/List/List.astro';
+import ListDescription from '@packages/ui/modules/ListDescription/ListDescription.astro';
+import Media from '@packages/ui/modules/Media/Media.astro';
+import MediaEmbed from '@packages/ui/modules/MediaEmbed/MediaEmbed.astro';
+import Table from '@packages/ui/modules/Table/Table.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: 'セミナー／イベント（一覧）',
+    item: '/templates/events/',
+  },
+  {
+    name: 'セミナー／イベント（詳細）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'DUMMY_DESCRIPTION',
+  title: 'セミナー／イベント（詳細）',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual
+    title="〇〇〇〇を使いこなすためのポイント説明会"
+    taglineTop="2020年8月31日（木）"
+    badge={{
+      title: '受付中',
+    }}
+  >
+    <picture slot="media">
+      <source media="(width >= 768px)" srcset="/templates/events/images/detail-mainVisual_pc.webp" />
+      <img src="/templates/events/images/detail-mainVisual_sp.webp" alt="" />
+    </picture>
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Media>
+        <figure>
+          <img src="/templates/events/images/detail-image_sp.webp" width="327" height="200" alt="" />
+        </figure>
+      </Media>
+
+      <Text class="mt-8 md:mt-10">
+        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      </Text>
+
+      <Table
+        class="mt-8 md:mt-10"
+        directSp="column"
+      >
+        <table>
+          <tbody>
+            <tr><th>日時</th><td>2022年8月24日（水）14:00～15:00（受付開始13:45より）</td></tr>
+            <tr><th>テーマ</th><td>製品紹介</td></tr>
+            <tr><th>対象者</th><td>○○担当している方</td></tr>
+            <tr>
+              <th>申込締切</th>
+              <td>セミナー当日の午前10:00までとなります</td>
+            </tr>
+            <tr>
+              <th>会場</th>
+              <td>
+                <ListDescription>
+                  <dl>
+                    <dt>株式会社〇〇〇〇〇</dt>
+                    <dd>〒000-0000 東京都〇〇区〇〇〇〇0-0-0 〇〇ビル 5階（<a href="#" target="_blank">Google map</a>）</dd>
+                  </dl>
+                </ListDescription>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </Table>
+
+      <div class="mt-8 text-center md:mt-10">
+        <Button
+          as="a"
+          href="#"
+          theme="emphasis"
+          title="お申込み"
+        />
+      </div>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>こんなお悩みありませんか?</h2>
+      </HeadingLevel2>
+
+      <List class="mt-8 md:mt-10">
+        <ul>
+          <li>〇〇〇〇の課題があり、困っている</li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+        </ul>
+      </List>
+
+      <Text class="mt-8 md:mt-10">
+        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      </Text>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>こんな方におすすめ</h2>
+      </HeadingLevel2>
+
+      <List class="mt-8 md:mt-10">
+        <ul>
+          <li>〇〇〇〇を担当する〇〇〇〇担当者</li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+        </ul>
+      </List>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>講師</h2>
+      </HeadingLevel2>
+
+      <LayoutMedia
+        class="mt-8 md:mt-10"
+        directSp="column-reverse"
+        directPc="row-reverse"
+      >
+        <div slot="content">
+          <Text>
+            <div>代表取締役 <b>〇〇〇〇</b></div>
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Text>
+
+          <LinkList
+            class="mt-8 md:mt-10"
+            datas={[
+              {
+                href: '#',
+                target: '_blank',
+                title: 'Twitter',
+              },
+              {
+                href: '#',
+                target: '_blank',
+                title: 'Facebook',
+              },
+            ]}
+          />
+        </div>
+
+        <Media slot="media">
+          <figure>
+            <img src="/templates/events/images/detail-image-2_sp.webp" width="327" height="200" alt="" />
+          </figure>
+        </Media>
+      </LayoutMedia>
+
+      <HeadingLevel3 class="mt-8 md:mt-10">
+        <h3>略歴</h3>
+      </HeadingLevel3>
+
+      <ListDescription
+        class="mt-8 md:mt-10"
+        directPc="row"
+      >
+        <dl>
+          <dt>〇〇〇〇年〇月</dt>
+          <dd>株式会社〇〇〇〇入社</dd>
+          <dt>〇〇〇〇年〇月</dt>
+          <dd>テキストテキストテキストテキストテキスト</dd>
+          <dt>〇〇〇〇年〇月</dt>
+          <dd>テキストテキストテキストテキストテキスト</dd>
+        </dl>
+      </ListDescription>
+
+      <HeadingLevel3 class="mt-8 md:mt-10">
+        <h3>登壇歴</h3>
+      </HeadingLevel3>
+
+      <ListDescription
+        class="mt-8 md:mt-10"
+        directPc="row"
+      >
+        <dl>
+          <dt>〇〇〇〇年〇月</dt>
+          <dd>〇〇〇〇を使いこなすためのポイント説明会</dd>
+          <dt>〇〇〇〇年〇月</dt>
+          <dd>テキストテキストテキストテキストテキスト</dd>
+          <dt>〇〇〇〇年〇月</dt>
+          <dd>テキストテキストテキストテキストテキスト</dd>
+        </dl>
+      </ListDescription>
+
+      <HeadingLevel3 class="mt-8 md:mt-10">
+        <h3>寄稿実績</h3>
+      </HeadingLevel3>
+
+      <List class="mt-8 md:mt-10">
+        <ul>
+          <li>〇〇〇〇の〇〇〇〇が語る、〇〇〇〇の可能性</li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+        </ul>
+      </List>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>プログラム</h2>
+      </HeadingLevel2>
+
+      <Table
+        class="mt-8 md:mt-10"
+        directSp="column"
+      >
+        <table>
+          <tbody>
+            <tr>
+              <th>14:00-14:30</th>
+              <td>
+                <ListDescription>
+                  <dl>
+                    <dt>概要説明</dt>
+                    <dd>
+                      <List>
+                        <ul>
+                          <li>そもそも〇〇〇〇とは?</li>
+                          <li>テキストテキストテキストテキスト</li>
+                          <li>テキストテキストテキストテキスト</li>
+                          <li>テキストテキストテキストテキスト</li>
+                        </ul>
+                      </List>
+                    </dd>
+                  </dl>
+                </ListDescription>
+              </td>
+            </tr>
+            <tr>
+              <th>14:30-15:30</th>
+              <td>
+                <List>
+                  <ul>
+                    <li>（サービス名）を使ってみよう</li>
+                    <li>テキストテキストテキストテキスト</li>
+                    <li>テキストテキストテキストテキスト</li>
+                    <li>質疑応答・個別相談</li>
+                  </ul>
+                </List>
+              </td>
+            </tr>
+            <tr><th>15:30-16:00</th><td>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</td></tr>
+          </tbody>
+        </table>
+      </Table>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>関連資料</h2>
+      </HeadingLevel2>
+
+      <MediaEmbed class="mt-8 md:mt-10">
+        <div><iframe src="https://www.slideshare.net/slideshow/embed_code/key/DSKeGFhw7dGHaW" loading="lazy" title="DUMMY_TITLE"></iframe></div>
+      </MediaEmbed>
+
+      <MediaEmbed class="mt-8 md:mt-10">
+        <div><iframe src="https://www.youtube.com/embed/u8RiqNjVr9s?controls=0" loading="lazy" title="DUMMY_TITLE"></iframe></div>
+      </MediaEmbed>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>アクセス</h2>
+      </HeadingLevel2>
+
+      <MediaEmbed class="mt-8 md:mt-10">
+        <div><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.834866011881!2d140.88024881610326!3d38.260135791857316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8a28180c510b87%3A0xb2a30b91be1ffdbc!2z5LuZ5Y-w6aeF!5e0!3m2!1sja!2sjp!4v1662516061808!5m2!1sja!2sjp" loading="lazy" title="DUMMY_TITLE"></iframe></div>
+      </MediaEmbed>
+
+      <ListDescription class="mt-8 md:mt-10">
+        <dl>
+          <dt>株式会社〇〇〇〇〇</dt>
+          <dd>〒000-0000 東京都〇〇区〇〇〇〇0-0-0 〇〇ビル 5階（<a href="#" target="_blank">Google map</a>）</dd>
+        </dl>
+      </ListDescription>
+
+      <div class="mt-8 text-center md:mt-10">
+        <Button
+          as="a"
+          href="#"
+          theme="emphasis"
+          title="お申込み"
+        />
+      </div>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>関連セミナー</h2>
+      </HeadingLevel2>
+
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="〇〇〇〇を120%使いこなすためのポイント説明会"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: '/templates/events/images/detail-image-3_sp.webp',
+              alt: '',
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: '#',
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: ○○○○カンファレンスホール</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: '/templates/events/images/detail-image-4_sp.webp',
+              alt: '',
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: '#',
+            }}
+          >
+            <Badge
+              title="残りわずか"
+              theme="caution"
+            />
+            <p>場所: オンライン開催</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: '/templates/events/images/detail-image-5_sp.webp',
+              alt: '',
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: '#',
+            }}
+          >
+            <Badge
+              title="受付終了"
+              theme="warning"
+            />
+            <p>場所: ○○○○カンファレンスホール&オンライン開催</p>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>関連記事</h2>
+      </HeadingLevel2>
+
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
+            date="YYYY年M月D日（月）"
+            media={{
+              src: '/templates/events/images/detail-image-6_sp.webp',
+              alt: '',
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: '#',
+            }}
+          >
+            <span></span>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
+            date="YYYY年M月D日（月）"
+            media={{
+              src: '/templates/events/images/detail-image-7_sp.webp',
+              alt: '',
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: '#',
+            }}
+          >
+            <span></span>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
+            date="YYYY年M月D日（月）"
+            media={{
+              src: '/templates/events/images/detail-image-8_sp.webp',
+              alt: '',
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: '#',
+            }}
+          >
+            <span></span>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <LocalSns />
+    </Section>
+  </Content>
+</PageLayout>

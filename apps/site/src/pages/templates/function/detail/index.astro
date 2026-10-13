@@ -1,0 +1,166 @@
+---
+import Box from '@packages/ui/modules/Box/Box.astro';
+import HeadingLevel3 from '@packages/ui/modules/HeadingLevel3/HeadingLevel3.astro';
+import LayoutMedia from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
+import Media from '@packages/ui/modules/Media/Media.astro';
+import NavigationInternal from '@packages/ui/modules/NavigationInternal/NavigationInternal.astro';
+import PanelDownload from '@packages/ui/modules/PanelDownload/PanelDownload.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalDetails from '../../../../components/modules/LocalDetails/LocalDetails.astro';
+import LocalInformation from '../../../../components/modules/LocalInformation/LocalInformation.astro';
+import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: '機能紹介',
+    item: '/templates/function/',
+  },
+  {
+    name: '機能紹介（詳細）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'DUMMY_DESCRIPTION',
+  title: '機能紹介（詳細）',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="〇〇〇〇管理">
+    <picture slot="media">
+      <source media="(width >= 768px)" srcset="/templates/function/images/detail-mainVisual_pc.webp" />
+      <img src="/templates/function/images/detail-mainVisual_sp.webp" alt="" />
+    </picture>
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <PanelDownload
+        description="ページ内の内容をまとめた資料をダウンロードできます。"
+        button={{
+          as: "a",
+          href: "#",
+          download: true,
+          title: "機能紹介資料ダウンロード",
+        }}
+      />
+
+      <Box
+        class="mt-8 md:mt-10"
+        title="この機能で解決できること"
+      >
+        <NavigationInternal
+          directSp="column"
+          directPc="column"
+          datas={[
+            {
+              href: "#function-1",
+              title: "工程がシンプルになる",
+            },
+            {
+              href: "#function-2",
+              title: "作業時間が約半分になる",
+            },
+            {
+              href: "#function-3",
+              title: "入力ミスを防止できる",
+            },
+          ]}
+        />
+      </Box>
+
+      <div id="function-1" class="mt-8 md:mt-10">
+        <HeadingLevel3>
+          <h3>〇〇〇〇が〇〇〇〇になることで工程がシンプルになる</h3>
+        </HeadingLevel3>
+
+        <LayoutMedia
+          class="mt-8 md:mt-10"
+          directSp="column-reverse"
+          directPc="row-reverse"
+        >
+          <Text slot="content">
+            <p>機能の詳細を説明するテキストです。機能の利用場面と導入効果を紹介します。</p>
+          </Text>
+
+          <Media slot="media">
+            <figure>
+              <img src="/templates/function/images/detail-image_sp.webp" width="600" height="400" alt="" />
+            </figure>
+          </Media>
+        </LayoutMedia>
+      </div>
+
+      <div id="function-2" class="mt-8 md:mt-10">
+        <HeadingLevel3>
+          <h3>〇〇〇〇が〇〇〇〇だから作業時間が約半分になる</h3>
+        </HeadingLevel3>
+
+        <LayoutMedia
+          class="mt-8 md:mt-10"
+          directSp="column-reverse"
+          directPc="row"
+        >
+          <Text slot="content">
+            <p>機能の詳細を説明するテキストです。機能の利用場面と導入効果を紹介します。</p>
+          </Text>
+
+          <Media slot="media">
+            <figure>
+              <img src="/templates/function/images/detail-image-2_sp.webp" width="600" height="400" alt="" />
+            </figure>
+          </Media>
+        </LayoutMedia>
+      </div>
+
+      <div id="function-3" class="mt-8 md:mt-10">
+        <HeadingLevel3>
+          <h3>〇〇〇〇が〇〇〇〇になるから〇〇〇〇なミスがなくなる</h3>
+        </HeadingLevel3>
+
+        <LayoutMedia
+          class="mt-8 md:mt-10"
+          directSp="column-reverse"
+          directPc="row-reverse"
+        >
+          <Text slot="content">
+            <p>機能の詳細を説明するテキストです。機能の利用場面と導入効果を紹介します。</p>
+          </Text>
+
+          <Media slot="media">
+            <figure>
+              <img src="/templates/function/images/detail-image-3_sp.webp" width="600" height="400" alt="" />
+            </figure>
+          </Media>
+        </LayoutMedia>
+      </div>
+    </Section>
+
+    <Section theme="dark">
+      <LocalInformation />
+    </Section>
+
+    <Section>
+      <LocalDetails />
+
+      <LocalSns />
+    </Section>
+  </Content>
+</PageLayout>

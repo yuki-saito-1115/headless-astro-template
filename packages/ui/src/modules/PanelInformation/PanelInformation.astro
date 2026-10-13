@@ -29,6 +29,16 @@ const attrs: Record<string, unknown> = { ...rest };
     flex-direction: column;
     gap: calc(var(--user-spacing) * 6);
 
+    :where(.PanelInformation__segment) {
+      background-color: var(--user-color-background-light);
+      padding: calc(var(--user-spacing) * 6);
+
+      &:last-child:nth-child(odd) {
+        background-color: transparent;
+        padding: 0;
+      }
+    }
+
     :where(.PanelInformation__title) {
       align-items: center;
       display: flex;
@@ -69,8 +79,10 @@ const attrs: Record<string, unknown> = { ...rest };
       grid-template-columns: 50% auto;
       grid-template-rows: min-content min-content;
 
-      > :where(.PanelInformation__segment):last-child:nth-child(odd) {
-        grid-column: 1 / -1;
+      :where(.PanelInformation__segment) {
+        &:last-child:nth-child(odd) {
+          grid-column: 1 / -1;
+        }
       }
 
       :where(.PanelInformation__title) {

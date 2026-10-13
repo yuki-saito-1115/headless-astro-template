@@ -1,0 +1,55 @@
+---
+import Button from '@packages/ui/modules/Button/Button.astro';
+import PanelInformation from '@packages/ui/modules/PanelInformation/PanelInformation.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+---
+
+<PanelInformation>
+  <div class="PanelInformation__segment">
+    <div class="PanelInformation__title">Webからのお問い合わせ</div>
+
+    <Text class="mt-4">
+      <p>Webからお問い合わせの際は下記フォームからお問い合わせください。</p>
+    </Text>
+
+    <Text class="mt-4">
+      <p>Webからお問い合わせの際は下記フォームからお問い合わせください。</p>
+    </Text>
+
+    <Button
+      as="a"
+      class="mt-4 md:mt-6"
+      href="#"
+      size="full"
+      theme="conversion"
+      title="フォームから問い合わせる"
+    />
+  </div>
+
+  <div class="PanelInformation__segment">
+    <div class="PanelInformation__title">お電話からお問い合わせ</div>
+
+    <Text class="mt-4">
+      <p><b>XXXXカスタマーセンター</b></p>
+    </Text>
+
+    <div class="PanelInformation__number"><b>0120-000-000</b></div>
+
+    <Text class="mt-4">
+      <p>受付時間 9:00～17:00（土・日・祝日は除く）</p>
+    </Text>
+  </div>
+
+  <div class="PanelInformation__segment">
+    <div class="PanelInformation__title">製品紹介やお役立ち資料を無料でご活用いただけます</div>
+
+    <Button
+      as="a"
+      class="mt-4 md:mt-6"
+      href="#"
+      size="full"
+      theme="emphasis"
+      title="サービス紹介資料ダウンロード"
+    />
+  </div>
+</PanelInformation>

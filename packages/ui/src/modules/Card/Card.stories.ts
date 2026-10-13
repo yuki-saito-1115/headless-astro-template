@@ -71,6 +71,28 @@ export const Outline: Story = {
   },
 };
 
+export const Link: Story = {
+  args: {
+    title: 'タイトルタイトルタイトル',
+    date: '2026-09-25 08:30',
+    outline: true,
+    link: {
+      href: '#',
+    },
+    media: {
+      src: 'https://dummyimage.com/600x400/dddddd/fff',
+      alt: 'DUMMY_ALT',
+      width: 600,
+      height: 400,
+      loading: 'lazy',
+    },
+    slots: {
+      default:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+    },
+  },
+};
+
 export const DirectColumnReverse: Story = {
   args: {
     date: '2026-09-25 08:30',

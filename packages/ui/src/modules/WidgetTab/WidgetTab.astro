@@ -76,22 +76,25 @@ for (const data of datas) {
     --local-background: var(--user-color-background-light);
     --local-outline: var(--user-color-outline-dark);
 
-    :where(li) {
-      list-style: none;
-    }
+    :where(.WidgetTab__list) {
+      :where(li) {
+        list-style: none;
+      }
 
-    :where(a) {
-      line-height: var(--user-line-height);
-      text-align: center;
-      text-decoration: none;
-      vertical-align: top;
+      :where(a) {
+        line-height: var(--user-line-height);
+        text-align: center;
+        text-decoration: none;
+        vertical-align: top;
 
-      &[aria-selected='true'] {
-        --local-background: var(--user-color-secondary2);
-        --local-foreground: var(--user-color-foreground-light);
-        --local-outline: var(--user-color-secondary2);
+        &[aria-selected='true'] {
+          --local-background: var(--user-color-secondary2);
+          --local-foreground: var(--user-color-foreground-light);
+          --local-outline: var(--user-color-secondary2);
+        }
       }
     }
+
 
     .WidgetTab__container {
       margin-top: calc(var(--user-spacing) * 6);
@@ -100,20 +103,20 @@ for (const data of datas) {
 
   @media (width < 768px) {
     .WidgetTab {
-      .WidgetTab__list {
+      :where(.WidgetTab__list) {
         display: grid;
         gap: calc(var(--user-spacing) * 4);
         grid-template-columns: repeat(2, 1fr);
-      }
 
-      :where(a) {
-        align-items: center;
-        background-color: var(--local-background);
-        border: 1px solid var(--local-outline);
-        color: var(--local-foreground);
-        display: flex;
-        justify-content: center;
-        padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 6);
+        :where(a) {
+          align-items: center;
+          background-color: var(--local-background);
+          border: 1px solid var(--local-outline);
+          color: var(--local-foreground);
+          display: flex;
+          justify-content: center;
+          padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 6);
+        }
       }
     }
   }
@@ -124,19 +127,19 @@ for (const data of datas) {
         border-bottom: 1px solid var(--local-outline);
       }
 
-      .WidgetTab__list {
+      :where(.WidgetTab__list) {
         display: flex;
         gap: calc(var(--user-spacing) * 4);
-      }
 
-      :where(a) {
-        background-color: var(--local-background);
-        border-left: 1px solid var(--local-outline);
-        border-right: 1px solid var(--local-outline);
-        border-top: 1px solid var(--local-outline);
-        color: var(--local-foreground);
-        display: block;
-        padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 8);
+        :where(a) {
+          background-color: var(--local-background);
+          border-left: 1px solid var(--local-outline);
+          border-right: 1px solid var(--local-outline);
+          border-top: 1px solid var(--local-outline);
+          color: var(--local-foreground);
+          display: block;
+          padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 8);
+        }
       }
     }
   }

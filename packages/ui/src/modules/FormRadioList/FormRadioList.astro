@@ -1,0 +1,24 @@
+---
+import type { Props as FormRadioProps } from '@packages/ui/modules/FormRadio/FormRadio.astro';
+import FormRadio from '@packages/ui/modules/FormRadio/FormRadio.astro';
+import type { Props as LayoutColumnProps } from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
+export interface Props extends LayoutColumnProps {
+  /** 各要素は `FormRadio` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
+  datas: FormRadioProps[];
+}
+
+const { datas, ...rest } = Astro.props;
+---
+
+<LayoutColumn class="gap-2 md:gap-x-8 md:gap-x-4" {...rest}>
+  {datas.map((data) => (
+    <div class="LayoutColumn__segment">
+      <FormRadio {...data} />
+    </div>
+  ))}
+</LayoutColumn>

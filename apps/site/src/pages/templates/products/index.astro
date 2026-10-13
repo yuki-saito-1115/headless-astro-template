@@ -1,0 +1,398 @@
+---
+import Card from '@packages/ui/modules/Card/Card.astro';
+import FormFilter from '@packages/ui/modules/FormFilter/FormFilter.astro';
+import FormRadioList from '@packages/ui/modules/FormRadioList/FormRadioList.astro';
+import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import LayoutMedia from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
+import Media from '@packages/ui/modules/Media/Media.astro';
+import PanelDownload from '@packages/ui/modules/PanelDownload/PanelDownload.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import TextLead from '@packages/ui/modules/TextLead/TextLead.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalInformation from '../../../components/modules/LocalInformation/LocalInformation.astro';
+import LocalSns from '../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: '商品サービス（一覧）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'DUMMY_DESCRIPTION',
+  title: '商品サービス（一覧）',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="商品・サービス">
+    <picture slot="media">
+      <source media="(width >= 768px)" srcset="/templates/products/images/index-mainVisual_pc.webp" />
+      <img src="/templates/products/images/index-mainVisual_sp.webp" alt="" />
+    </picture>
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <PanelDownload
+        description="ページ内の内容を簡単に解説する短いコピーページ内の内容を簡単に解説。"
+        button={{
+          as: "a",
+          href: "#",
+          download: true,
+          title: "サービス紹介資料ダウンロード",
+        }}
+      />
+
+      <LayoutMedia
+        class="mt-8 md:mt-10"
+        directSp="column-reverse"
+      >
+        <div slot="content">
+          <TextLead>
+            <p>〇〇〇〇は〇〇〇〇に基づいた、売上アップに貢献するマーケティングコンサルティングを提供します。</p>
+          </TextLead>
+
+          <Text class="mt-8 md:mt-10">
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Text>
+        </div>
+
+        <Media slot="media">
+          <figure>
+            <img src="/templates/products/images/index-image_sp.webp" width="600" height="400" alt="" />
+          </figure>
+        </Media>
+      </LayoutMedia>
+
+      <FormFilter class="mt-8 md:mt-10">
+        <dt>絞り込み</dt>
+        <dd>
+          <FormRadioList
+            columnPc="4"
+            columnSp="1"
+            datas={[
+              {
+                id: 'DUMMY_ID',
+                name: 'DUMMY_FORM',
+                title: 'すべて',
+                value: '1',
+                checked: true,
+              },
+              {
+                id: 'DUMMY_ID_2',
+                name: 'DUMMY_FORM',
+                title: '〇〇〇〇支援',
+                value: '2',
+              },
+              {
+                id: 'DUMMY_ID_3',
+                name: 'DUMMY_FORM',
+                title: '絞り込み項目',
+                value: '3',
+              },
+              {
+                id: 'DUMMY_ID_4',
+                name: 'DUMMY_FORM',
+                title: '絞り込み項目',
+                value: '4',
+              },
+              {
+                id: 'DUMMY_ID_5',
+                name: 'DUMMY_FORM',
+                title: '絞り込み項目',
+                value: '5',
+              },
+              {
+                id: 'DUMMY_ID_6',
+                name: 'DUMMY_FORM',
+                title: '絞り込み項目',
+                value: '6',
+              },
+              {
+                id: 'DUMMY_ID_7',
+                name: 'DUMMY_FORM',
+                title: '絞り込み項目',
+                value: '7',
+              },
+              {
+                id: 'DUMMY_ID_8',
+                name: 'DUMMY_FORM',
+                title: '絞り込み項目',
+                value: '8',
+              },
+            ]}
+          />
+        </dd>
+      </FormFilter>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>〇〇〇〇支援</h2>
+      </HeadingLevel2>
+
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="〇〇〇〇システム導入支援"
+            media={{
+              src: "/templates/products/images/index-image-2_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>サービスの概要を紹介する説明テキストです。</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="〇〇〇〇〇〇制作"
+            media={{
+              src: "/templates/products/images/index-image-3_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>サービスの概要を紹介する説明テキストです。</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="〇〇〇〇〇〇コンサルティング"
+            media={{
+              src: "/templates/products/images/index-image-4_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <p>サービスの概要を紹介する説明テキストです。</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="サービス名テキストテキスト"
+            media={{
+              src: "/templates/products/images/index-image-11_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="サービス名テキストテキスト"
+            media={{
+              src: "/templates/products/images/index-image-12_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="サービス名テキストテキスト"
+            media={{
+              src: "/templates/products/images/index-image-13_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>〇〇〇〇支援</h2>
+      </HeadingLevel2>
+
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="サービス名テキストテキスト"
+            media={{
+              src: "/templates/products/images/index-image-13_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="サービス名テキストテキスト"
+            media={{
+              src: "/templates/products/images/index-image-13_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="サービス名テキストテキスト"
+            media={{
+              src: "/templates/products/images/index-image-13_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>〇〇〇〇支援</h2>
+      </HeadingLevel2>
+
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="サービス名テキストテキスト"
+            media={{
+              src: "/templates/products/images/index-image-13_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="サービス名テキストテキスト"
+            media={{
+              src: "/templates/products/images/index-image-13_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="サービス名テキストテキスト"
+            media={{
+              src: "/templates/products/images/index-image-13_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <LocalSns />
+    </Section>
+
+    <Section theme="dark">
+      <LocalInformation />
+    </Section>
+  </Content>
+</PageLayout>

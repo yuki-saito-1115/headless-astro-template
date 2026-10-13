@@ -1,0 +1,122 @@
+---
+import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
+import ListQuestion from '@packages/ui/modules/ListQuestion/ListQuestion.astro';
+import NavigationInternal from '@packages/ui/modules/NavigationInternal/NavigationInternal.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalInformation from '../../../components/modules/LocalInformation/LocalInformation.astro';
+import LocalSns from '../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: 'よくあるご質問',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'よくあるご質問の配置例です。',
+  title: 'よくあるご質問',
+};
+const questions = [
+  {
+    question: '〇〇〇〇は〇〇〇〇ですか?',
+    answer: '条件や利用方法について詳しくご案内します。',
+  },
+  {
+    question: '申し込みには何が必要ですか?',
+    answer: '専用フォームから必要事項をご入力ください。',
+  },
+  {
+    question: '利用開始までどのくらいかかりますか?',
+    answer: '内容を確認したうえで担当者からご案内します。',
+  },
+];
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="よくあるご質問">
+    <img slot="media" src="/templates/faq/images/index-mainVisual_sp.webp" alt="" />
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Text>
+        <p>
+          商品・サービスに関するよくある疑問・質問への回答をご用意しています。
+        </p>
+      </Text>
+
+      <NavigationInternal
+        class="mt-8 md:mt-10"
+        datas={[
+          {
+            href: "#faq-1",
+            title: "〇〇〇〇について",
+          },
+          {
+            href: "#faq-2",
+            title: "△△△△について",
+          },
+          {
+            href: "#faq-3",
+            title: "□□□□について",
+          },
+        ]}
+      />
+
+      <div id="faq-1" class="mt-8 md:mt-10">
+        <HeadingLevel2>
+          <h2>〇〇〇〇について</h2>
+        </HeadingLevel2>
+
+        <ListQuestion
+          class="mt-8 md:mt-10"
+          datas={questions}
+        />
+      </div>
+
+      <div id="faq-2" class="mt-8 md:mt-10">
+        <HeadingLevel2>
+          <h2>△△△△について</h2>
+        </HeadingLevel2>
+
+        <ListQuestion
+          class="mt-8 md:mt-10"
+          datas={questions}
+        />
+      </div>
+
+      <div id="faq-3" class="mt-8 md:mt-10">
+        <HeadingLevel2>
+          <h2>□□□□について</h2>
+        </HeadingLevel2>
+
+        <ListQuestion
+          class="mt-8 md:mt-10"
+          datas={questions}
+        />
+      </div>
+
+      <LocalSns />
+    </Section>
+
+    <Section theme="dark">
+      <LocalInformation />
+    </Section>
+  </Content>
+</PageLayout>

@@ -73,11 +73,20 @@ const { items = [], class: className, ...rest } = Astro.props as Props;
           content: '>';
         }
       }
+
+      :where(a) {
+        &:any-link {
+          color: var(--user-color-primary);
+          text-decoration: none;
+        }
+      }
     }
   }
 
   @media (width >= 768px) {
     .Breadcrumb {
+      gap: 0 var(--user-outside-gutter-pc);
+
       :where(.Breadcrumb__outer) {
         gap: 0 var(--user-outside-gutter-pc);
       }

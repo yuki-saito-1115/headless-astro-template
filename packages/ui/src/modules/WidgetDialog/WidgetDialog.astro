@@ -89,9 +89,13 @@ if (!Astro.slots.has('default')) {
     .WidgetDialog__outer {
       align-items: center;
       display: flex;
-      height: 100%;
+      height: calc(100% + 1px);
       justify-content: center;
-      padding: calc(var(--user-spacing) * 6);
+      padding: clamp(
+        calc(var(--user-spacing) * 6),
+        -13.611rem + 31.48vw,
+        calc(var(--user-spacing) * 40)
+      );
     }
 
     .WidgetDialog__inner {
@@ -104,20 +108,58 @@ if (!Astro.slots.has('default')) {
     }
 
     .WidgetDialog__head {
-      padding: calc(var(--user-spacing) * 6);
+      padding:
+        clamp(
+          calc(var(--user-spacing) * 6),
+          0.611rem + 1.85vw,
+          calc(var(--user-spacing) * 8)
+        )
+        clamp(
+          calc(var(--user-spacing) * 6),
+          -2.944rem + 9.26vw,
+          calc(var(--user-spacing) * 16)
+        );
       position: relative;
 
       :where(button) {
         background-color: transparent;
         border: 0;
         display: block;
-        height: calc(var(--user-spacing) * 10);
+        height: clamp(
+          calc(var(--user-spacing) * 8),
+          1.111rem + 1.85vw,
+          calc(var(--user-spacing) * 10)
+        );
         overflow: hidden;
-        padding: calc(var(--user-spacing) * 10) 0 0 calc(var(--user-spacing) * 10);
+        padding:
+          clamp(
+            calc(var(--user-spacing) * 8),
+            1.111rem + 1.85vw,
+            calc(var(--user-spacing) * 10)
+          )
+          0
+          0
+          clamp(
+            calc(var(--user-spacing) * 8),
+            1.111rem + 1.85vw,
+            calc(var(--user-spacing) * 10)
+          );
         position: absolute;
-        right: calc(var(--user-spacing) * 2);
-        top: calc(var(--user-spacing) * 2);
-        width: calc(var(--user-spacing) * 10);
+        right: clamp(
+          calc(var(--user-spacing) * 2),
+          -0.389rem + 1.85vw,
+          calc(var(--user-spacing) * 4)
+        );
+        top: clamp(
+          calc(var(--user-spacing) * 2),
+          -0.389rem + 1.85vw,
+          calc(var(--user-spacing) * 4)
+        );
+        width: clamp(
+          calc(var(--user-spacing) * 8),
+          1.111rem + 1.85vw,
+          calc(var(--user-spacing) * 10)
+        );
 
         &::before {
           background-color: currentColor;
@@ -136,50 +178,42 @@ if (!Astro.slots.has('default')) {
     }
 
     :where(h2) {
-      font-size: var(--text-xl);
-      line-height: var(--text-xl--line-height);
+      font-size: var(--text-2xl);
+      line-height: var(--user-line-height);
       margin: 0;
       padding-right: calc(var(--user-spacing) * 10);
     }
 
     .WidgetDialog__body {
-      margin: 0 calc(var(--user-spacing) * 6);
+      margin: 0 clamp(
+        calc(var(--user-spacing) * 6),
+        -2.944rem + 9.26vw,
+        calc(var(--user-spacing) * 16)
+      );
       overflow: auto;
     }
 
     .WidgetDialog__foot {
       display: flex;
       justify-content: center;
-      padding: calc(var(--user-spacing) * 10) calc(var(--user-spacing) * 6);
+      padding:
+        clamp(
+          calc(var(--user-spacing) * 10),
+          0.722rem + 3.7vw,
+          calc(var(--user-spacing) * 14)
+        )
+        clamp(
+          calc(var(--user-spacing) * 6),
+          -2.944rem + 9.26vw,
+          calc(var(--user-spacing) * 16)
+        );
     }
   }
 
   @media (width >= 768px) {
     .WidgetDialog {
-      .WidgetDialog__outer {
-        padding: calc(var(--user-spacing) * 10);
-      }
-
-      .WidgetDialog__head {
-        padding: calc(var(--user-spacing) * 8) calc(var(--user-spacing) * 16);
-      }
-
       :where(h2) {
-        font-size: var(--text-2xl);
-        line-height: var(--text-2xl--line-height);
-      }
-
-      .WidgetDialog__closeButton {
-        right: calc(var(--user-spacing) * 4);
-        top: calc(var(--user-spacing) * 4);
-      }
-
-      .WidgetDialog__body {
-        margin: 0 calc(var(--user-spacing) * 16);
-      }
-
-      .WidgetDialog__foot {
-        padding: calc(var(--user-spacing) * 14) calc(var(--user-spacing) * 16);
+        font-size: calc(var(--user-font-size-base) * 2);
       }
     }
   }

@@ -53,6 +53,7 @@ const attrs: Record<string, unknown> = { ...rest };
     --local-outline: var(--user-color-outline-dark);
     --local-width: auto;
     --local-iconSize: 1em;
+    --local-padding: calc(var(--user-spacing) * 3);
 
     /* Preflight */
     :where(.FormSelect__item) {
@@ -96,7 +97,7 @@ const attrs: Record<string, unknown> = { ...rest };
       mask-size: 70%;
       pointer-events: none;
       position: absolute;
-      right: calc(var(--user-spacing) * 2);
+      right: var(--local-padding);
       top: 50%;
       transform: translateY(-50%);
       width: var(--local-iconSize);
@@ -114,10 +115,10 @@ const attrs: Record<string, unknown> = { ...rest };
       display: block;
       outline: none;
       padding:
-        calc(var(--user-spacing) * 1)
-        calc(var(--local-iconSize) + (var(--user-spacing) * 2 * 2))
-        calc(var(--user-spacing) * 1)
-        calc(var(--user-spacing) * 2);
+        var(--local-padding)
+        calc(var(--local-iconSize) + (var(--local-padding) * 2))
+        var(--local-padding)
+        var(--local-padding);
       width: 100%;
     }
 

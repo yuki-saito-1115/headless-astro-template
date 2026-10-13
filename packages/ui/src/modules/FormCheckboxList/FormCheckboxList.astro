@@ -1,0 +1,24 @@
+---
+import type { Props as FormCheckboxProps } from '@packages/ui/modules/FormCheckbox/FormCheckbox.astro';
+import FormCheckbox from '@packages/ui/modules/FormCheckbox/FormCheckbox.astro';
+import type { Props as LayoutColumnProps } from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+
+/**
+ * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
+ */
+export interface Props extends LayoutColumnProps {
+  /** 各要素は `FormCheckbox` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
+  datas: FormCheckboxProps[];
+}
+
+const { datas, ...rest } = Astro.props;
+---
+
+<LayoutColumn class="gap-2 md:gap-x-8 md:gap-x-4" {...rest}>
+  {datas.map((data) => (
+    <div class="LayoutColumn__segment">
+      <FormCheckbox {...data} />
+    </div>
+  ))}
+</LayoutColumn>

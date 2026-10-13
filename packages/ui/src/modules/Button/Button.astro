@@ -96,6 +96,7 @@ switch (Element) {
     /* button要素は文字間隔を継承しないため */
     letter-spacing: inherit;
     line-height: 1.5;
+    min-width: calc(var(--user-spacing) * 60);
     padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 6);
     text-align: center;
     text-decoration: none;
@@ -143,18 +144,26 @@ switch (Element) {
 
     &:where(.size-small) {
       --local-width: 25%;
+
+      min-width: 0;
     }
 
     &:where(.size-medium) {
       --local-width: 50%;
+
+      min-width: 0;
     }
 
     &:where(.size-large) {
       --local-width: 75%;
+
+      min-width: 0;
     }
 
     &:where(.size-full) {
       --local-width: 100%;
+
+      min-width: 0;
     }
 
     > :where(.Button__icon) {

@@ -1,0 +1,180 @@
+---
+import Badge from '@packages/ui/modules/Badge/Badge.astro';
+import Button from '@packages/ui/modules/Button/Button.astro';
+import FormCheckboxList from '@packages/ui/modules/FormCheckboxList/FormCheckboxList.astro';
+import FormList from '@packages/ui/modules/FormList/FormList.astro';
+import FormSelect from '@packages/ui/modules/FormSelect/FormSelect.astro';
+import FormText from '@packages/ui/modules/FormText/FormText.astro';
+import FormTextarea from '@packages/ui/modules/FormTextarea/FormTextarea.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: '問い合わせフォーム（入力）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: '問い合わせフォーム入力画面の配置例です。',
+  title: '問い合わせフォーム（入力）',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="お問い合わせ">
+    <img slot="media" src="/templates/inquiry/images/entry-mainVisual_sp.webp" alt="" />
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Text>
+        <p>ご相談・お問い合わせは下記フォームをご利用ください。</p>
+        <p>03-1234-5678 平日00:00～00:00のみ</p>
+      </Text>
+
+      <form class="mt-8 md:mt-10">
+        <FormList
+          directSp="column"
+          directPc="row"
+        >
+          <dt>
+            <label for="message" >お問い合わせ内容 <Badge
+                title="必須"
+                theme="warning"
+              /></label
+            >
+          </dt>
+          <dd>
+            <FormTextarea
+              id="message"
+              name="message"
+              size="full"
+              placeholder="ご自由にご記入ください。"
+            />
+          </dd>
+
+          <dt>
+            <label for="company" >会社名 <Badge
+                title="必須"
+                theme="warning"
+              /></label
+            >
+          </dt>
+          <dd>
+            <FormText
+              id="company"
+              name="company"
+              size="full"
+              placeholder="例）株式会社ミツエーリンクス"
+            />
+          </dd>
+
+          <dt>
+            <label for="name" >お名前 <Badge
+                title="必須"
+                theme="warning"
+              /></label
+            >
+          </dt>
+          <dd>
+            <FormText
+              id="name"
+              name="name"
+              size="full"
+              placeholder="例）山田太郎"
+            />
+          </dd>
+
+          <dt><label for="prefecture">都道府県</label></dt>
+          <dd>
+            <FormSelect
+              id="prefecture"
+              name="prefecture"
+              options={[
+                {
+                  label: "選択してください",
+                  value: "",
+                },
+                {
+                  label: "北海道",
+                  value: "北海道",
+                },
+                {
+                  label: "東京都",
+                  value: "東京都",
+                },
+                {
+                  label: "神奈川県",
+                  value: "神奈川県",
+                },
+                {
+                  label: "大阪府",
+                  value: "大阪府",
+                },
+                {
+                  label: "福岡県",
+                  value: "福岡県",
+                },
+                {
+                  label: "沖縄県",
+                  value: "沖縄県",
+                },
+              ]}
+              size="full"
+            />
+          </dd>
+
+          <dt>当社を何で知りましたか?</dt>
+          <dd>
+            <FormCheckboxList
+              columnPc="2"
+              datas={[
+                {
+                  id: 'source-search',
+                  name: 'source',
+                  title: '検索エンジン',
+                },
+                {
+                  id: 'source-media',
+                  name: 'source',
+                  title: '新聞・雑誌・Webメディア',
+                },
+              ]}
+            />
+          </dd>
+        </FormList>
+
+        <Text class="mt-8 md:mt-10">
+          <p>
+            プライバシーポリシーをお読みになり、同意のうえ確認画面へ進んでください。
+          </p>
+        </Text>
+
+        <div class="mt-8 md:mt-10">
+          <Button
+            as="button"
+            type="submit"
+            theme="conversion"
+            title="同意して確認画面へ"
+          />
+        </div>
+      </form>
+    </Section>
+  </Content>
+</PageLayout>

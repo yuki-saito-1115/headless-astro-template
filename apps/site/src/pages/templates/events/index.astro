@@ -1,0 +1,447 @@
+---
+import Badge from '@packages/ui/modules/Badge/Badge.astro';
+import Card from '@packages/ui/modules/Card/Card.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import LinkList from '@packages/ui/modules/LinkList/LinkList.astro';
+import NavigationPager from '@packages/ui/modules/NavigationPager/NavigationPager.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
+import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
+import Content from '@packages/ui/structures/Content/Content.astro';
+import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
+import Section from '@packages/ui/structures/Section/Section.astro';
+import LocalSns from '../../../components/modules/LocalSns/LocalSns.astro';
+import type { Props as PagePropType } from '../../../layouts/PageLayout/PageLayout.astro';
+import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
+
+const breadcrumb = [
+  {
+    name: 'ホーム',
+    item: '/',
+  },
+  {
+    name: 'テンプレート一覧',
+    item: '/templates/',
+  },
+  {
+    name: 'セミナー／イベント（一覧）',
+  },
+];
+const pageProps: PagePropType = {
+  breadcrumb,
+  description: 'DUMMY_DESCRIPTION',
+  title: 'セミナー／イベント（一覧）',
+};
+---
+
+<PageLayout {...pageProps}>
+  <MainVisual title="セミナー・イベント">
+    <picture slot="media">
+      <source media="(width >= 768px)" srcset="/templates/events/images/index-mainVisual_pc.webp" />
+      <img src="/templates/events/images/index-mainVisual_sp.webp" alt="" />
+    </picture>
+  </MainVisual>
+
+  <Breadcrumb items={breadcrumb} />
+
+  <Content>
+    <Section>
+      <Text>
+        <p>
+          ビジネスや業界動向に関するさまざまなイベント・セミナーを開催しています。
+        </p>
+      </Text>
+
+      <LinkList
+        class="mt-8 md:mt-10"
+        datas={[
+          {
+            href: "/templates/events/pastIndex/",
+            title: "過去のセミナー・イベントのレポート",
+          },
+        ]}
+      />
+
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="〇〇〇〇を120%使いこなすためのポイント説明会"
+            date="2026年8月31日 14:00～16:00"
+            media={{
+              src: "/templates/events/images/index-image_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <Badge title="受付中" /><p>場所: ○○○○カンファレンスホール</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="セミナー・イベント 2"
+            date="2026年8月31日 14:00～16:00"
+            media={{
+              src: "/templates/events/images/index-image-2_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <Badge
+              title="残りわずか"
+              theme="caution"
+            /><p>
+              場所: オンライン開催
+            </p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="セミナー・イベント 3"
+            date="2026年8月31日 14:00～16:00"
+            media={{
+              src: "/templates/events/images/index-image-3_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <Badge
+              title="受付終了"
+              theme="warning"
+            /><p>
+              場所: ○○○○カンファレンスホール
+            </p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="セミナー・イベント 4"
+            date="2026年9月1日 14:00～16:00"
+            media={{
+              src: "/templates/events/images/index-image-4_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <Badge title="受付中" /><p>場所: オンライン開催</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="セミナー・イベント 5"
+            date="2026年9月2日 14:00～16:00"
+            media={{
+              src: "/templates/events/images/index-image-5_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <Badge title="受付中" /><p>場所: ○○○○カンファレンスホール</p>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="セミナー・イベント 6"
+            date="2026年9月3日 14:00～16:00"
+            media={{
+              src: "/templates/events/images/index-image-6_sp.webp",
+              alt: "",
+              width: 600,
+              height: 400,
+            }}
+
+            link={{
+              href: "#",
+            }}>
+            <Badge title="受付中" /><p>場所: オンライン開催</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="〇〇〇〇を120%使いこなすためのポイント説明会"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-7_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: ○○○○カンファレンスホール</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-8_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: オンライン開催</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-9_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: ○○○○カンファレンスホール&オンライン開催</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="〇〇〇〇を120%使いこなすためのポイント説明会"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-10_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: ○○○○カンファレンスホール</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-11_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: オンライン開催</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-12_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: ○○○○カンファレンスホール&オンライン開催</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="〇〇〇〇を120%使いこなすためのポイント説明会"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-13_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: ○○○○カンファレンスホール</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-14_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: オンライン開催</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-15_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: ○○○○カンファレンスホール&オンライン開催</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="〇〇〇〇を120%使いこなすためのポイント説明会"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-16_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: ○○○○カンファレンスホール</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-17_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: オンライン開催</p>
+          </Card>
+        </div>
+
+<div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
+            date="2020年8月31日（木）14:00-16:00"
+            media={{
+              src: "/templates/events/images/index-image-18_sp.webp",
+              alt: "",
+              width: 327,
+              height: 200,
+            }}
+            link={{
+              href: "#",
+            }}
+          >
+            <Badge title="受付中" />
+            <p>場所: ○○○○カンファレンスホール&オンライン開催</p>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <NavigationPager
+        class="mt-8 md:mt-10"
+        baseUrl="/templates/events"
+        current={1}
+        total={5}
+      />
+
+
+      <LocalSns />
+
+
+    </Section>
+  </Content>
+</PageLayout>
