@@ -57,6 +57,20 @@ export const Link: Story = {
   },
 };
 
+export const Picture: Story = {
+  args: {
+    slots: {
+      default: `<figure>
+  <picture>
+    <source media="(min-width: 768px)" srcset="https://dummyimage.com/600x400/ddd/fff" type="image/webp" width="600" height="400" />
+    <img src="https://dummyimage.com/327x200/ddd/fff" width="327" height="200" loading="lazy" alt="" />
+  </picture>
+  <figcaption>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</figcaption>
+</figure>`,
+    },
+  },
+};
+
 export const AlignLeft: Story = {
   args: {
     slots: {
