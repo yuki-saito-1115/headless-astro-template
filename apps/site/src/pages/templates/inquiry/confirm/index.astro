@@ -31,7 +31,21 @@ const pageProps: PagePropType = {
 
 <PageLayout {...pageProps}>
   <MainVisual title="お問い合わせ">
-    <img slot="media" src="/templates/inquiry/images/confirm-mainVisual_sp.webp" alt="" />
+    <picture slot="media">
+      <source
+        media="(min-width: 768px)"
+        srcset="/templates/inquiry/images/confirm-mainVisual_pc.webp"
+        type="image/webp"
+        width="1440"
+        height="500"
+      />
+      <img
+        src="/templates/inquiry/images/confirm-mainVisual_sp.webp"
+        width="375"
+        height="130"
+        alt=""
+      />
+    </picture>
   </MainVisual>
 
   <Breadcrumb items={breadcrumb} />
@@ -51,27 +65,30 @@ const pageProps: PagePropType = {
         <dd>株式会社ミツエーリンクス</dd>
         <dt>お名前</dt>
         <dd>山田太郎</dd>
+        <dt>お名前（カタカナ）</dt>
+        <dd>ヤマダタロウ</dd>
+        <dt>生年月日</dt>
+        <dd>2001年1月1日</dd>
         <dt>メールアドレス</dt>
-        <dd>info@example.com</dd>
+        <dd>info@mitsue.co.jp</dd>
         <dt>電話番号</dt>
-        <dd>03-1234-5678</dd>
+        <dd>0312345678</dd>
+        <dt>郵便番号</dt>
+        <dd>160-6133</dd>
         <dt>都道府県</dt>
         <dd>東京都</dd>
+        <dt>市区町村</dt>
+        <dd>新宿区西新宿8丁目17番1号</dd>
+        <dt>番地・マンション名など</dt>
+        <dd>住友不動産新宿グランドタワー33階</dd>
+        <dt>当社を何で知りましたか?</dt>
+        <dd>新聞や雑誌、Webマガジンなどのメディア、検索エンジン</dd>
       </FormList>
 
       <div class="mt-8 md:mt-10">
-        <Button
-          as="button"
-          type="button"
-          title="修正する"
-        />
+        <Button as="button" type="button" title="修正する" />
 
-        <Button
-          as="button"
-          type="submit"
-          theme="conversion"
-          title="送信する"
-        />
+        <Button as="button" type="submit" theme="conversion" title="送信する" />
       </div>
     </Section>
   </Content>

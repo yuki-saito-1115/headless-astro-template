@@ -33,6 +33,10 @@ if (!Astro.slots.has('default')) {
 
 <style>
   .MediaEmbed {
+    &:has(> template) {
+      aspect-ratio: 16 / 9;
+    }
+
     :where(div:has(iframe)) {
       aspect-ratio: 16 / 9;
       height: 100% !important;
@@ -50,27 +54,27 @@ if (!Astro.slots.has('default')) {
 </style>
 
 <script is:inline>
-  /** 表示領域に入った埋め込みコンテンツを読み込む。 */
-  const setMediaEmbed = (root) => {
-    const template = root.querySelector('template');
+  (() => {
+    /** 表示領域に入った埋め込みコンテンツを読み込む。 */
+    const setMediaEmbed = (root) => {
+      const template = root.querySelector('template');
 
-    if (!template) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) {
+      if (!template) {
         return;
       }
 
-      root.replaceChildren(template.content);
-      observer.unobserve(root);
-    });
+      const observer = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
 
-    observer.observe(root);
-  };
+        root.replaceChildren(template.content);
+        observer.unobserve(root);
+      });
 
-  (() => {
+      observer.observe(root);
+    };
+
     const elements = document.querySelectorAll('.MediaEmbed');
 
     elements.forEach((element) => {

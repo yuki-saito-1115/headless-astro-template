@@ -23,8 +23,6 @@ export type Props<Tag extends 'div' | 'li' = 'div' | 'li'> = Polymorphic<{
   date?: string;
   /** カード全体をリンクにする場合の属性を指定します。 */
   link?: HTMLAttributes<'a'>;
-  /** 画像要素の属性を指定します。 */
-  media: HTMLAttributes<'img'>;
 };
 
 const {
@@ -37,61 +35,46 @@ const {
   title,
   date,
   link,
-  media,
   ...rest
 } = Astro.props;
 const attrs: Record<string, unknown> = { ...rest };
 const { class: linkClassName, ...linkRest } = link ?? {};
 const linkAttrs: Record<string, unknown> = { ...linkRest };
+const WrapElement = link ? 'a' : 'span';
 ---
 <Element
   class:list={[
     'Card',
     theme && `theme-${theme}`,
     outline && 'theme-outline',
-    `directSp-${directSp}`,
-    `directPc-${directPc}`,
     className,
   ]}
   {...attrs}
 >
-  {link ? (
-    <a
-      class:list={[
-        'Card__link',
-        `directSp-${directSp}`,
-        `directPc-${directPc}`,
-        linkClassName,
-      ]}
-      {...linkAttrs}
-    >
+  <WrapElement
+    class:list={[
+      'Card__wrap',
+      link && 'Card__link',
+      `directSp-${directSp}`,
+      `directPc-${directPc}`,
+      linkClassName,
+    ]}
+    {...linkAttrs}
+  >
+    {Astro.slots.has('media') && (
       <div class:list={['Card__media']}>
-        <img class:list={['Card__mediaItem']} {...media}>
+        <slot name="media" />
       </div>
+    )}
 
-      {title && <div class:list={['Card__title']}>{title}</div>}
+    {title && <div class:list={['Card__title']}>{title}</div>}
 
-      <div class:list={['Card__body']}>
-        <slot />
-      </div>
+    <div class:list={['Card__body']}>
+      <slot name="body" />
+    </div>
 
-      {date && <div class:list={['Card__date']}>{date}</div>}
-    </a>
-  ) : (
-    <Fragment>
-      <div class:list={['Card__media']}>
-        <img class:list={['Card__mediaItem']} {...media}>
-      </div>
-
-      {title && <div class:list={['Card__title']}>{title}</div>}
-
-      <div class:list={['Card__body']}>
-        <slot />
-      </div>
-
-      {date && <div class:list={['Card__date']}>{date}</div>}
-    </Fragment>
-  )}
+    {date && <div class:list={['Card__date']}>{date}</div>}
+  </WrapElement>
 </Element>
 
 
@@ -138,15 +121,18 @@ const linkAttrs: Record<string, unknown> = { ...linkRest };
     }
   }
 
-  .Card__link {
+  .Card__wrap {
     align-content: start;
-    color: var(--user-color-foreground-dark);
     display: grid;
     gap: var(--local-padding);
     grid-column: 1;
     grid-row: 1 / span 4;
     grid-template-rows: subgrid;
     height: 100%;
+  }
+
+  .Card__link {
+    color: var(--user-color-foreground-dark);
     text-decoration: none;
 
     :where(.Card__title) {
@@ -165,41 +151,7 @@ const linkAttrs: Record<string, unknown> = { ...linkRest };
   }
 
   @media (width < 768px) {
-    .Card {
-      &:where(.directSp-row) {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-
-        :where(.Card__media) {
-          grid-column: 1;
-          grid-row: 1 / span 4;
-        }
-
-        :where(.Card__title, .Card__body, .Card__date) {
-          grid-column: 2;
-        }
-      }
-
-      &:where(.directSp-row-reverse) {
-        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-
-        :where(.Card__media) {
-          grid-column: 2;
-          grid-row: 1 / span 4;
-        }
-
-        :where(.Card__title, .Card__body, .Card__date) {
-          grid-column: 1;
-        }
-      }
-
-      &:where(.directSp-column-reverse) {
-        :where(.Card__media) {
-          grid-row: 4;
-        }
-      }
-    }
-
-    .Card__link {
+    .Card__wrap {
       &:where(.directSp-row) {
         grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 
@@ -237,38 +189,6 @@ const linkAttrs: Record<string, unknown> = { ...linkRest };
   @media (width >= 768px) {
     .Card {
       --local-padding: calc(var(--user-spacing) * 6);
-
-      &:where(.directPc-row) {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-
-        :where(.Card__media) {
-          grid-column: 1;
-          grid-row: 1 / span 4;
-        }
-
-        :where(.Card__title, .Card__body, .Card__date) {
-          grid-column: 2;
-        }
-      }
-
-      &:where(.directPc-row-reverse) {
-        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-
-        :where(.Card__media) {
-          grid-column: 2;
-          grid-row: 1 / span 4;
-        }
-
-        :where(.Card__title, .Card__body, .Card__date) {
-          grid-column: 1;
-        }
-      }
-
-      &:where(.directPc-column-reverse) {
-        :where(.Card__media) {
-          grid-row: 4;
-        }
-      }
     }
 
     .Card__title {
@@ -279,7 +199,7 @@ const linkAttrs: Record<string, unknown> = { ...linkRest };
       font-size: var(--user-font-size-note);
     }
 
-    .Card__link {
+    .Card__wrap {
       &:where(.directPc-row) {
         grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 

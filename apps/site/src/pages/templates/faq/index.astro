@@ -1,14 +1,15 @@
 ---
+import Button from '@packages/ui/modules/Button/Button.astro';
 import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
 import ListQuestion from '@packages/ui/modules/ListQuestion/ListQuestion.astro';
 import NavigationInternal from '@packages/ui/modules/NavigationInternal/NavigationInternal.astro';
+import NavigationSns from '@packages/ui/modules/NavigationSns/NavigationSns.astro';
+import PanelInformation from '@packages/ui/modules/PanelInformation/PanelInformation.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
-import LocalInformation from '../../../components/modules/LocalInformation/LocalInformation.astro';
-import LocalSns from '../../../components/modules/LocalSns/LocalSns.astro';
 import type { Props as PagePropType } from '../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
 
@@ -30,25 +31,25 @@ const pageProps: PagePropType = {
   description: 'よくあるご質問の配置例です。',
   title: 'よくあるご質問',
 };
-const questions = [
-  {
-    question: '〇〇〇〇は〇〇〇〇ですか?',
-    answer: '条件や利用方法について詳しくご案内します。',
-  },
-  {
-    question: '申し込みには何が必要ですか?',
-    answer: '専用フォームから必要事項をご入力ください。',
-  },
-  {
-    question: '利用開始までどのくらいかかりますか?',
-    answer: '内容を確認したうえで担当者からご案内します。',
-  },
-];
 ---
 
 <PageLayout {...pageProps}>
   <MainVisual title="よくあるご質問">
-    <img slot="media" src="/templates/faq/images/index-mainVisual_sp.webp" alt="" />
+    <picture slot="media">
+      <source
+        media="(min-width: 768px)"
+        srcset="/templates/faq/images/index-mainVisual_pc.webp"
+        type="image/webp"
+        width="1440"
+        height="500"
+      />
+      <img
+        src="/templates/faq/images/index-mainVisual_sp.webp"
+        width="375"
+        height="130"
+        alt=""
+      />
+    </picture>
   </MainVisual>
 
   <Breadcrumb items={breadcrumb} />
@@ -57,7 +58,7 @@ const questions = [
     <Section>
       <Text>
         <p>
-          商品・サービスに関するよくある疑問・質問への回答をご用意しています。
+          商品・サービスに関するお客様からよくある疑問・質問への回答をご用意しております。（仮）
         </p>
       </Text>
 
@@ -86,7 +87,31 @@ const questions = [
 
         <ListQuestion
           class="mt-8 md:mt-10"
-          datas={questions}
+          datas={[
+            {
+              question: "〇〇〇〇は〇〇〇〇ですか?",
+              answer:
+                "そんなことはありません。私たちでは○○を用意して、○○しているから、○○のようなお客さまにも安心してお使いいただけます。そんなことはありません。私たちでは○○を用意して、○○しているから、○○のようなお客さまにも安心してお使いいただけます。",
+            },
+            {
+              question:
+                "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+              answer:
+                "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            },
+            {
+              question:
+                "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+              answer:
+                "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            },
+            {
+              question:
+                "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+              answer:
+                "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            },
+          ]}
         />
       </div>
 
@@ -97,7 +122,31 @@ const questions = [
 
         <ListQuestion
           class="mt-8 md:mt-10"
-          datas={questions}
+          datas={[
+            {
+              question: "〇〇〇〇は〇〇〇〇ですか?",
+              answer:
+                "そんなことはありません。私たちでは○○を用意して、○○しているから、○○のようなお客さまにも安心してお使いいただけます。そんなことはありません。私たちでは○○を用意して、○○しているから、○○のようなお客さまにも安心してお使いいただけます。",
+            },
+            {
+              question:
+                "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+              answer:
+                "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            },
+            {
+              question:
+                "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+              answer:
+                "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            },
+            {
+              question:
+                "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+              answer:
+                "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            },
+          ]}
         />
       </div>
 
@@ -108,15 +157,107 @@ const questions = [
 
         <ListQuestion
           class="mt-8 md:mt-10"
-          datas={questions}
+          datas={[
+            {
+              question: "〇〇〇〇は〇〇〇〇ですか?",
+              answer:
+                "そんなことはありません。私たちでは○○を用意して、○○しているから、○○のようなお客さまにも安心してお使いいただけます。そんなことはありません。私たちでは○○を用意して、○○しているから、○○のようなお客さまにも安心してお使いいただけます。",
+            },
+            {
+              question:
+                "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+              answer:
+                "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            },
+            {
+              question:
+                "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+              answer:
+                "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            },
+            {
+              question:
+                "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+              answer:
+                "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            },
+          ]}
         />
       </div>
 
-      <LocalSns />
+      <NavigationSns
+        class="mt-8 md:mt-10"
+        datas={{
+          share: "#",
+          good: "#",
+          facebook: "#",
+          x: "#",
+          instagram: "#",
+          line: "#",
+        }}
+      />
     </Section>
 
     <Section theme="dark">
-      <LocalInformation />
+      <PanelInformation>
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">Webからのお問い合わせ</div>
+
+          <Text class="mt-4">
+            <p>
+              Webからお問い合わせの際は下記フォームからお問い合わせください。
+            </p>
+          </Text>
+
+          <Text class="mt-4">
+            <p>
+              Webからお問い合わせの際は下記フォームからお問い合わせください。
+            </p>
+          </Text>
+
+          <Button
+            as="a"
+            class="mt-4 md:mt-6"
+            href="DUMMY_LINK"
+            size="full"
+            theme="conversion"
+            title="フォームから問い合わせる"
+          />
+        </div>
+
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">お電話からお問い合わせ</div>
+
+          <Text class="mt-4">
+            <p>
+              <b>XXXXカスタマーセンター</b>
+            </p>
+          </Text>
+
+          <div class="PanelInformation__number">
+            <b>0120-000-000</b>
+          </div>
+
+          <Text class="mt-4">
+            <p>受付時間 9:00～17:00（土・日・祝日は除く）</p>
+          </Text>
+        </div>
+
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">
+            製品紹介やお役立ち資料を無料でご活用いただけます
+          </div>
+
+          <Button
+            as="a"
+            class="mt-4 md:mt-6"
+            href="DUMMY_LINK"
+            size="full"
+            theme="emphasis"
+            title="サービス紹介資料ダウンロード"
+          />
+        </div>
+      </PanelInformation>
     </Section>
   </Content>
 </PageLayout>

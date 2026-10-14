@@ -50,8 +50,6 @@ if (!Astro.slots.has('content') || !Astro.slots.has('media')) {
 
 <style>
   .LayoutMedia {
-    container-type: inline-size;
-
     :where(.LayoutMedia__inner) {
       display: grid;
       gap: calc(var(--user-spacing) * 4);
@@ -63,7 +61,7 @@ if (!Astro.slots.has('content') || !Astro.slots.has('media')) {
     }
   }
 
-  @container (max-width: 767.98px) {
+  @media (width < 768px) {
     .LayoutMedia {
       :where(.LayoutMedia__inner) {
         gap: calc(var(--user-spacing) * 4);
@@ -87,7 +85,7 @@ if (!Astro.slots.has('content') || !Astro.slots.has('media')) {
     }
   }
 
-  @container (min-width: 768px) {
+  @media (width >= 768px) {
     .LayoutMedia {
       :where(.LayoutMedia__inner) {
         gap: calc(var(--user-spacing) * 6);

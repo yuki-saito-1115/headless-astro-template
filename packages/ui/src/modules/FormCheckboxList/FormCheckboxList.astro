@@ -1,24 +1,105 @@
 ---
 import type { Props as FormCheckboxProps } from '@packages/ui/modules/FormCheckbox/FormCheckbox.astro';
 import FormCheckbox from '@packages/ui/modules/FormCheckbox/FormCheckbox.astro';
-import type { Props as LayoutColumnProps } from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
-import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import type { HTMLAttributes } from 'astro/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export interface Props extends LayoutColumnProps {
+export interface Props extends HTMLAttributes<'div'> {
+  /** PCサイズでの列数を指定します。 */
+  columnPc?: '1' | '2' | '3' | '4' | 'auto';
+  /** SPサイズでの列数を指定します。 */
+  columnSp?: '1' | '2' | '3' | '4' | 'auto';
   /** 各要素は `FormCheckbox` コンポーネントが受け取るPropsと同じ形式で指定してください。 */
   datas: FormCheckboxProps[];
 }
 
-const { datas, ...rest } = Astro.props;
+const {
+  columnPc = '1',
+  columnSp = '1',
+  datas,
+  class: className,
+  ...rest
+} = Astro.props;
+const attrs: Record<string, unknown> = { ...rest };
 ---
 
-<LayoutColumn class="gap-2 md:gap-x-8 md:gap-x-4" {...rest}>
+<div
+  class:list={[
+    'FormCheckboxList',
+    `columnPc-${columnPc}`,
+    `columnSp-${columnSp}`,
+    className,
+  ]}
+  {...attrs}
+>
   {datas.map((data) => (
-    <div class="LayoutColumn__segment">
+    <div class="FormCheckboxList__item">
       <FormCheckbox {...data} />
     </div>
   ))}
-</LayoutColumn>
+</div>
+
+<style>
+  .FormCheckboxList {
+    display: grid;
+    gap: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 4);
+
+    :where(.FormCheckboxList__item) {
+      height: 100%;
+    }
+  }
+
+  @media (width < 768px) {
+    .FormCheckboxList {
+      &:where(.columnSp-2) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      &:where(.columnSp-3) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      &:where(.columnSp-4) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      &:where(.columnSp-auto) {
+        display: flex;
+        flex-wrap: wrap;
+
+        :where(.FormCheckboxList__item) {
+          flex: 0 0 auto;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .FormCheckboxList {
+      &:where(.columnPc-2) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      &:where(.columnPc-3) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      &:where(.columnPc-4) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      &:where(.columnPc-auto) {
+        display: flex;
+        flex-wrap: wrap;
+
+        :where(.FormCheckboxList__item) {
+          flex: 0 0 auto;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+</style>

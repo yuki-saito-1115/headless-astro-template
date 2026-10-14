@@ -35,7 +35,21 @@ const pageProps: PagePropType = {
 
 <PageLayout {...pageProps}>
   <MainVisual title="お問い合わせ">
-    <img slot="media" src="/templates/inquiry/images/error-mainVisual_sp.webp" alt="" />
+    <picture slot="media">
+      <source
+        media="(min-width: 768px)"
+        srcset="/templates/inquiry/images/error-mainVisual_pc.webp"
+        type="image/webp"
+        width="1440"
+        height="500"
+      />
+      <img
+        src="/templates/inquiry/images/error-mainVisual_sp.webp"
+        width="375"
+        height="130"
+        alt=""
+      />
+    </picture>
   </MainVisual>
 
   <Breadcrumb items={breadcrumb} />
@@ -43,24 +57,24 @@ const pageProps: PagePropType = {
   <Content>
     <Section>
       <Text>
-        <p>入力内容に誤りがあります。各項目をご確認ください。</p>
+        <p>
+          未入力部分がありますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
+        <p>
+          ご相談・お問い合わせは下記フォームをご利用ください。当社では必要に応じて、電話、メール、対面、さまざまな形式でのお打ち合わせを承っています。お気軽にお問い合わせください。（仮）
+        </p>
       </Text>
 
       <form class="mt-8 md:mt-10">
-        <FormList
-          directSp="column"
-          directPc="row"
-        >
+        <FormList directSp="column" directPc="row">
           <dt>
-            <label for="error-message" >お問い合わせ内容 <Badge
-                title="必須"
-                theme="warning"
-              /></label
-            >
+            <label for="error-message">
+              お問い合わせ内容 <Badge title="必須" theme="warning" />
+            </label>
           </dt>
           <dd>
             <TextWarning>
-              <p>お問い合わせ内容を入力してください。</p>
+              <p>[お問い合わせ内容]を入力してください。</p>
             </TextWarning>
 
             <FormTextarea
@@ -73,15 +87,13 @@ const pageProps: PagePropType = {
           </dd>
 
           <dt>
-            <label for="error-company" >会社名 <Badge
-                title="必須"
-                theme="warning"
-              /></label
-            >
+            <label for="error-company">
+              会社名 <Badge title="必須" theme="warning" />
+            </label>
           </dt>
           <dd>
             <TextWarning>
-              <p>会社名を入力してください。</p>
+              <p>[会社名]を入力してください。</p>
             </TextWarning>
 
             <FormText
@@ -94,15 +106,13 @@ const pageProps: PagePropType = {
           </dd>
 
           <dt>
-            <label for="error-email" >メールアドレス <Badge
-                title="必須"
-                theme="warning"
-              /></label
-            >
+            <label for="error-email">
+              メールアドレス <Badge title="必須" theme="warning" />
+            </label>
           </dt>
           <dd>
             <TextWarning>
-              <p>正しいメールアドレスを入力してください。</p>
+              <p>[メールアドレス]を入力してください。</p>
             </TextWarning>
 
             <FormText

@@ -1,4 +1,5 @@
 ---
+import Button from '@packages/ui/modules/Button/Button.astro';
 import Card from '@packages/ui/modules/Card/Card.astro';
 import FormFilter from '@packages/ui/modules/FormFilter/FormFilter.astro';
 import FormRadioList from '@packages/ui/modules/FormRadioList/FormRadioList.astro';
@@ -6,15 +7,15 @@ import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astr
 import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
 import LayoutMedia from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
 import Media from '@packages/ui/modules/Media/Media.astro';
+import NavigationSns from '@packages/ui/modules/NavigationSns/NavigationSns.astro';
 import PanelDownload from '@packages/ui/modules/PanelDownload/PanelDownload.astro';
+import PanelInformation from '@packages/ui/modules/PanelInformation/PanelInformation.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import TextLead from '@packages/ui/modules/TextLead/TextLead.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
-import LocalInformation from '../../../components/modules/LocalInformation/LocalInformation.astro';
-import LocalSns from '../../../components/modules/LocalSns/LocalSns.astro';
 import type { Props as PagePropType } from '../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
 
@@ -54,7 +55,7 @@ const pageProps: PagePropType = {
         description="ページ内の内容を簡単に解説する短いコピーページ内の内容を簡単に解説。"
         button={{
           as: "a",
-          href: "#",
+          href: "DUMMY_LINK",
           download: true,
           title: "サービス紹介資料ダウンロード",
         }}
@@ -76,7 +77,10 @@ const pageProps: PagePropType = {
 
         <Media slot="media">
           <figure>
-            <img src="/templates/products/images/index-image_sp.webp" width="600" height="400" alt="" />
+            <picture>
+              <source media="(min-width: 768px)" srcset="/templates/products/images/index-image_pc.webp" type="image/webp" width="578" height="300" />
+              <img src="/templates/products/images/index-image_sp.webp" width="327" height="200" loading="lazy" alt="" />
+            </picture>
           </figure>
         </Media>
       </LayoutMedia>
@@ -155,17 +159,24 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="〇〇〇〇システム導入支援"
-            media={{
-              src: "/templates/products/images/index-image-2_sp.webp",
-              alt: "",
-              width: 600,
-              height: 400,
-            }}
-
             link={{
-              href: "#",
-            }}>
-            <p>サービスの概要を紹介する説明テキストです。</p>
+              href: "DUMMY_LINK",
+            }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-2_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-2_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>サービスの概要を紹介する説明テキストです。</p>
+              </Text>
+            </div>
           </Card>
         </div>
 
@@ -173,17 +184,24 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="〇〇〇〇〇〇制作"
-            media={{
-              src: "/templates/products/images/index-image-3_sp.webp",
-              alt: "",
-              width: 600,
-              height: 400,
-            }}
-
             link={{
-              href: "#",
-            }}>
-            <p>サービスの概要を紹介する説明テキストです。</p>
+              href: "DUMMY_LINK",
+            }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-3_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-3_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>サービスの概要を紹介する説明テキストです。</p>
+              </Text>
+            </div>
           </Card>
         </div>
 
@@ -191,17 +209,24 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="〇〇〇〇〇〇コンサルティング"
-            media={{
-              src: "/templates/products/images/index-image-4_sp.webp",
-              alt: "",
-              width: 600,
-              height: 400,
-            }}
-
             link={{
-              href: "#",
-            }}>
-            <p>サービスの概要を紹介する説明テキストです。</p>
+              href: "DUMMY_LINK",
+            }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-4_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-4_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>サービスの概要を紹介する説明テキストです。</p>
+              </Text>
+            </div>
           </Card>
         </div>
 
@@ -209,17 +234,24 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="サービス名テキストテキスト"
-            media={{
-              src: "/templates/products/images/index-image-11_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-5_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-5_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
           </Card>
         </div>
 
@@ -227,17 +259,24 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="サービス名テキストテキスト"
-            media={{
-              src: "/templates/products/images/index-image-12_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-6_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-6_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
           </Card>
         </div>
 
@@ -245,17 +284,24 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="サービス名テキストテキスト"
-            media={{
-              src: "/templates/products/images/index-image-13_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-7_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-7_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
           </Card>
         </div>
       </LayoutColumn>
@@ -273,17 +319,24 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="サービス名テキストテキスト"
-            media={{
-              src: "/templates/products/images/index-image-13_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-8_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-8_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
           </Card>
         </div>
 
@@ -291,17 +344,24 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="サービス名テキストテキスト"
-            media={{
-              src: "/templates/products/images/index-image-13_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-9_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-9_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
           </Card>
         </div>
 
@@ -309,17 +369,24 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="サービス名テキストテキスト"
-            media={{
-              src: "/templates/products/images/index-image-13_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-10_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-10_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
           </Card>
         </div>
       </LayoutColumn>
@@ -337,17 +404,24 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="サービス名テキストテキスト"
-            media={{
-              src: "/templates/products/images/index-image-13_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-11_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-11_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
           </Card>
         </div>
 
@@ -355,17 +429,24 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="サービス名テキストテキスト"
-            media={{
-              src: "/templates/products/images/index-image-13_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-12_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-12_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
           </Card>
         </div>
 
@@ -373,26 +454,86 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="サービス名テキストテキスト"
-            media={{
-              src: "/templates/products/images/index-image-13_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/products/images/index-image-13_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/products/images/index-image-13_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              </Text>
+            </div>
           </Card>
         </div>
       </LayoutColumn>
 
-      <LocalSns />
+      <NavigationSns
+        class="mt-8 md:mt-10"
+        datas={{
+          share: "#",
+          good: "#",
+          facebook: "#",
+          x: "#",
+          instagram: "#",
+          line: "#",
+        }}
+      />
     </Section>
 
     <Section theme="dark">
-      <LocalInformation />
+      <PanelInformation>
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">Webからのお問い合わせ</div>
+          <Text class="mt-4">
+            <p>Webからお問い合わせの際は下記フォームからお問い合わせください。</p>
+          </Text>
+
+          <Text class="mt-4">
+            <p>Webからお問い合わせの際は下記フォームからお問い合わせください。</p>
+          </Text>
+
+          <Button
+            as="a"
+            class="mt-4 md:mt-6"
+            href="DUMMY_LINK"
+            size="full"
+            theme="conversion"
+            title="フォームから問い合わせる"
+          />
+        </div>
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">お電話からお問い合わせ</div>
+          <Text class="mt-4">
+            <p><b>XXXXカスタマーセンター</b></p>
+          </Text>
+
+          <div class="PanelInformation__number"><b>0120-000-000</b></div>
+
+          <Text class="mt-4">
+            <p>受付時間 9:00～17:00（土・日・祝日は除く）</p>
+          </Text>
+        </div>
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">製品紹介やお役立ち資料を無料でご活用いただけます</div>
+          <Button
+            as="a"
+            class="mt-4 md:mt-6"
+            href="DUMMY_LINK"
+            size="full"
+            theme="emphasis"
+            title="サービス紹介資料ダウンロード"
+          />
+        </div>
+      </PanelInformation>
     </Section>
   </Content>
 </PageLayout>

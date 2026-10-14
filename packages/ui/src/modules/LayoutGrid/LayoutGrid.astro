@@ -31,8 +31,6 @@ if (!Astro.slots.has('default')) {
 
 <style>
   .LayoutGrid {
-    container-type: inline-size;
-
     :where(.LayoutGrid__inner) {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -44,7 +42,7 @@ if (!Astro.slots.has('default')) {
     }
   }
 
-  @container (max-width: 767.99px) {
+  @media (width < 768px) {
     .LayoutGrid {
       :where(.LayoutGrid__inner) {
         gap: calc(var(--user-spacing) * 6);
@@ -102,7 +100,7 @@ if (!Astro.slots.has('default')) {
     }
   }
 
-  @container (min-width: 768px) {
+  @media (width >= 768px) {
     .LayoutGrid {
       :where(.LayoutGrid__inner) {
         gap: calc(var(--user-spacing) * 8);

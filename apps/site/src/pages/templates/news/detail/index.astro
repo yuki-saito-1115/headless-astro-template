@@ -1,13 +1,13 @@
 ---
 import Button from '@packages/ui/modules/Button/Button.astro';
 import Media from '@packages/ui/modules/Media/Media.astro';
+import NavigationSns from '@packages/ui/modules/NavigationSns/NavigationSns.astro';
+import PanelInformation from '@packages/ui/modules/PanelInformation/PanelInformation.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
-import LocalInformation from '../../../../components/modules/LocalInformation/LocalInformation.astro';
-import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
@@ -37,7 +37,21 @@ const pageProps: PagePropType = {
 
 <PageLayout {...pageProps}>
   <MainVisual title="「〇〇〇〇〇〇〇〇」を1月1日に発売">
-    <img slot="media" src="/templates/news/images/detail-mainVisual_sp.webp" alt="" />
+    <picture slot="media">
+      <source
+        media="(min-width: 768px)"
+        srcset="/templates/news/images/detail-mainVisual_pc.webp"
+        type="image/webp"
+        width="1440"
+        height="500"
+      />
+      <img
+        src="/templates/news/images/detail-mainVisual_sp.webp"
+        width="375"
+        height="130"
+        alt=""
+      />
+    </picture>
   </MainVisual>
 
   <Breadcrumb items={breadcrumb} />
@@ -45,33 +59,83 @@ const pageProps: PagePropType = {
   <Content>
     <Section>
       <Text class="text-right">
-        <p>2022.12.10</p><p>株式会社○○○○</p>
+        <p>2022.12.10</p>
+        <p>株式会社○○○○</p>
       </Text>
 
       <Text class="mt-8 md:mt-10">
-        <p>説明テキストが入ります。発表内容の背景やサービスの詳細について紹介します。</p><p>説明テキストが入ります。発表内容の背景やサービスの詳細について紹介します。</p><p>説明テキストが入ります。発表内容の背景やサービスの詳細について紹介します。</p>
+        <p>説明テキストが入りますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      </Text>
+
+      <Text class="mt-8 md:mt-10">
+        <p>説明テキストが入りますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+      </Text>
+
+      <Text class="mt-8 md:mt-10">
+        <p>説明テキストが入りますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
       </Text>
 
       <Media class="mt-8 md:mt-10">
         <figure>
-          <img src="/templates/news/images/detail-image_sp.webp" width="600" height="400" alt="" />
+          <picture>
+            <source
+              media="(min-width: 768px)"
+              srcset="/templates/news/images/detail-image_pc.webp"
+              type="image/webp"
+              width="1000"
+              height="500"
+            />
+            <img
+              src="/templates/news/images/detail-image_sp.webp"
+              width="327"
+              height="200"
+              alt=""
+            />
+          </picture>
         </figure>
       </Media>
     </Section>
 
     <Section theme="dark">
-      <LocalInformation />
+      <PanelInformation>
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">本リリースに関するお問い合わせ先</div>
+
+          <Text class="mt-4 md:mt-6 text-center">
+            <p>○○○○○○○○担当</p>
+          </Text>
+
+          <Button
+            as="a"
+            class="mt-4 md:mt-6"
+            href="DUMMY_LINK"
+            size="full"
+            theme="emphasis"
+            title="サービス紹介資料ダウンロード"
+          />
+        </div>
+      </PanelInformation>
     </Section>
 
     <Section>
       <div class="text-center">
         <Button
           as="a"
-          href="/templates/news/"
+          href="DUMMY_LINK"
           title="ニュースリリース一覧に戻る"
         />
       </div>
-      <LocalSns />
+      <NavigationSns
+        class="mt-8 md:mt-10"
+        datas={{
+          share: "#",
+          good: "#",
+          facebook: "#",
+          x: "#",
+          instagram: "#",
+          line: "#",
+        }}
+      />
     </Section>
   </Content>
 </PageLayout>

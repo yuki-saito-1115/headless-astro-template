@@ -1,18 +1,22 @@
 ---
 import Box from '@packages/ui/modules/Box/Box.astro';
+import Button from '@packages/ui/modules/Button/Button.astro';
+import Card from '@packages/ui/modules/Card/Card.astro';
+import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
 import HeadingLevel3 from '@packages/ui/modules/HeadingLevel3/HeadingLevel3.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
 import LayoutMedia from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
+import ListDescription from '@packages/ui/modules/ListDescription/ListDescription.astro';
 import Media from '@packages/ui/modules/Media/Media.astro';
 import NavigationInternal from '@packages/ui/modules/NavigationInternal/NavigationInternal.astro';
+import NavigationSns from '@packages/ui/modules/NavigationSns/NavigationSns.astro';
 import PanelDownload from '@packages/ui/modules/PanelDownload/PanelDownload.astro';
+import PanelInformation from '@packages/ui/modules/PanelInformation/PanelInformation.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
-import LocalDetails from '../../../../components/modules/LocalDetails/LocalDetails.astro';
-import LocalInformation from '../../../../components/modules/LocalInformation/LocalInformation.astro';
-import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
@@ -43,7 +47,10 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="〇〇〇〇管理">
     <picture slot="media">
-      <source media="(width >= 768px)" srcset="/templates/function/images/detail-mainVisual_pc.webp" />
+      <source
+        media="(width >= 768px)"
+        srcset="/templates/function/images/detail-mainVisual_pc.webp"
+      />
       <img src="/templates/function/images/detail-mainVisual_sp.webp" alt="" />
     </picture>
   </MainVisual>
@@ -53,34 +60,31 @@ const pageProps: PagePropType = {
   <Content>
     <Section>
       <PanelDownload
-        description="ページ内の内容をまとめた資料をダウンロードできます。"
+        description="ページ内の内容を簡単に解説する短いコピーページ内の内容を簡単に解説。"
         button={{
           as: "a",
-          href: "#",
+          href: "DUMMY_LINK",
           download: true,
           title: "機能紹介資料ダウンロード",
         }}
       />
 
-      <Box
-        class="mt-8 md:mt-10"
-        title="この機能で解決できること"
-      >
+      <Box class="mt-8 md:mt-10" title="この機能で解決できること">
         <NavigationInternal
           directSp="column"
           directPc="column"
           datas={[
             {
               href: "#function-1",
-              title: "工程がシンプルになる",
+              title: "〇〇〇〇が〇〇〇〇になることで工程がシンプルになる",
             },
             {
               href: "#function-2",
-              title: "作業時間が約半分になる",
+              title: "〇〇〇〇が〇〇〇〇だから作業時間が約半分になる",
             },
             {
               href: "#function-3",
-              title: "入力ミスを防止できる",
+              title: "〇〇〇〇が〇〇〇〇になるから〇〇〇〇なミスがなくなる",
             },
           ]}
         />
@@ -97,12 +101,29 @@ const pageProps: PagePropType = {
           directPc="row-reverse"
         >
           <Text slot="content">
-            <p>機能の詳細を説明するテキストです。機能の利用場面と導入効果を紹介します。</p>
+            <p>
+              説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            </p>
           </Text>
 
           <Media slot="media">
             <figure>
-              <img src="/templates/function/images/detail-image_sp.webp" width="600" height="400" alt="" />
+              <picture>
+                <source
+                  media="(min-width: 768px)"
+                  srcset="/templates/function/images/detail-image_pc.webp"
+                  type="image/webp"
+                  width="336"
+                  height="200"
+                />
+                <img
+                  src="/templates/function/images/detail-image_pc.webp"
+                  width="327"
+                  height="200"
+                  loading="lazy"
+                  alt=""
+                />
+              </picture>
             </figure>
           </Media>
         </LayoutMedia>
@@ -119,12 +140,29 @@ const pageProps: PagePropType = {
           directPc="row"
         >
           <Text slot="content">
-            <p>機能の詳細を説明するテキストです。機能の利用場面と導入効果を紹介します。</p>
+            <p>
+              説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            </p>
           </Text>
 
           <Media slot="media">
             <figure>
-              <img src="/templates/function/images/detail-image-2_sp.webp" width="600" height="400" alt="" />
+              <picture>
+                <source
+                  media="(min-width: 768px)"
+                  srcset="/templates/function/images/detail-image-2_pc.webp"
+                  type="image/webp"
+                  width="336"
+                  height="200"
+                />
+                <img
+                  src="/templates/function/images/detail-image-2_pc.webp"
+                  width="327"
+                  height="200"
+                  loading="lazy"
+                  alt=""
+                />
+              </picture>
             </figure>
           </Media>
         </LayoutMedia>
@@ -141,12 +179,29 @@ const pageProps: PagePropType = {
           directPc="row-reverse"
         >
           <Text slot="content">
-            <p>機能の詳細を説明するテキストです。機能の利用場面と導入効果を紹介します。</p>
+            <p>
+              説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            </p>
           </Text>
 
           <Media slot="media">
             <figure>
-              <img src="/templates/function/images/detail-image-3_sp.webp" width="600" height="400" alt="" />
+              <picture>
+                <source
+                  media="(min-width: 768px)"
+                  srcset="/templates/function/images/detail-image-3_pc.webp"
+                  type="image/webp"
+                  width="336"
+                  height="200"
+                />
+                <img
+                  src="/templates/function/images/detail-image-3_pc.webp"
+                  width="327"
+                  height="200"
+                  loading="lazy"
+                  alt=""
+                />
+              </picture>
             </figure>
           </Media>
         </LayoutMedia>
@@ -154,13 +209,376 @@ const pageProps: PagePropType = {
     </Section>
 
     <Section theme="dark">
-      <LocalInformation />
+      <PanelInformation>
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">Webからのお問い合わせ</div>
+          <Text class="mt-4">
+            <p>
+              Webからお問い合わせの際は下記フォームからお問い合わせください。
+            </p>
+          </Text>
+
+          <Text class="mt-4">
+            <p>
+              Webからお問い合わせの際は下記フォームからお問い合わせください。
+            </p>
+          </Text>
+
+          <Button
+            as="a"
+            class="mt-4 md:mt-6"
+            href="DUMMY_LINK"
+            size="full"
+            theme="conversion"
+            title="フォームから問い合わせる"
+          />
+        </div>
+
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">お電話からお問い合わせ</div>
+          <Text class="mt-4">
+            <p>
+              <b>XXXXカスタマーセンター</b>
+            </p>
+          </Text>
+
+          <div class="PanelInformation__number">
+            <b>0120-000-000</b>
+          </div>
+
+          <Text class="mt-4">
+            <p>受付時間 9:00～17:00（土・日・祝日は除く）</p>
+          </Text>
+        </div>
+
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">
+            製品紹介やお役立ち資料を無料でご活用いただけます
+          </div>
+          <Button
+            as="a"
+            class="mt-4 md:mt-6"
+            href="DUMMY_LINK"
+            size="full"
+            theme="emphasis"
+            title="サービス紹介資料ダウンロード"
+          />
+        </div>
+      </PanelInformation>
     </Section>
 
     <Section>
-      <LocalDetails />
+      <HeadingLevel2>
+        <h2>〇〇〇〇システム導入支援を活用した企業をご紹介します</h2>
+      </HeadingLevel2>
 
-      <LocalSns />
+      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
+            link={{ href: "DUMMY_LINK" }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/function/images/detail-image-4_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/function/images/detail-image-4_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>〇〇〇〇株式会社</p>
+              </Text>
+
+              <ListDescription
+                class="mt-4 md:mt-6"
+                directPc="row"
+                directSp="row"
+              >
+                <dl>
+                  <dt>業種</dt>
+                  <dd>テキストテキスト</dd>
+                  <dt>従業員数</dt>
+                  <dd>1～10人</dd>
+                  <dt>導入サービス</dt>
+                  <dd>サービス名テキストテキスト</dd>
+                </dl>
+              </ListDescription>
+            </div>
+          </Card>
+        </div>
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
+            link={{ href: "DUMMY_LINK" }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/function/images/detail-image-5_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/function/images/detail-image-5_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>〇〇〇〇株式会社</p>
+              </Text>
+
+              <ListDescription
+                class="mt-4 md:mt-6"
+                directPc="row"
+                directSp="row"
+              >
+                <dl>
+                  <dt>業種</dt>
+                  <dd>テキストテキスト</dd>
+                  <dt>従業員数</dt>
+                  <dd>1～10人</dd>
+                  <dt>導入サービス</dt>
+                  <dd>サービス名テキストテキスト</dd>
+                </dl>
+              </ListDescription>
+            </div>
+          </Card>
+        </div>
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
+            link={{ href: "DUMMY_LINK" }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/function/images/detail-image-6_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/function/images/detail-image-6_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>〇〇〇〇株式会社</p>
+              </Text>
+
+              <ListDescription
+                class="mt-4 md:mt-6"
+                directPc="row"
+                directSp="row"
+              >
+                <dl>
+                  <dt>業種</dt>
+                  <dd>テキストテキスト</dd>
+                  <dt>従業員数</dt>
+                  <dd>1～10人</dd>
+                  <dt>導入サービス</dt>
+                  <dd>サービス名テキストテキスト</dd>
+                </dl>
+              </ListDescription>
+            </div>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <LayoutColumn
+        class="mt-8 md:mt-10 md:justify-center"
+        columnPc="auto"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Button as="a" href="DUMMY_LINK" title="すべて見る" />
+        </div>
+      </LayoutColumn>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>
+          〇〇〇〇システム導入支援を詳しく知るセミナー・イベントがあります
+        </h2>
+      </HeadingLevel2>
+
+      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="〇〇〇〇を120%使いこなすためのポイント説明会"
+            link={{ href: "DUMMY_LINK" }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/function/images/detail-image-7_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/function/images/detail-image-7_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>2020年8月31日（木）14:00-16:00</p>
+              </Text>
+
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
+                <dl>
+                  <dt>場所</dt>
+                  <dd>○○○○カンファレンスホール</dd>
+                </dl>
+              </ListDescription>
+            </div>
+          </Card>
+        </div>
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
+            link={{ href: "DUMMY_LINK" }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/function/images/detail-image-8_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/function/images/detail-image-8_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>2020年8月31日（木）14:00-16:00</p>
+              </Text>
+
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
+                <dl>
+                  <dt>場所</dt>
+                  <dd>オンライン開催</dd>
+                </dl>
+              </ListDescription>
+            </div>
+          </Card>
+        </div>
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
+            link={{ href: "DUMMY_LINK" }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/function/images/detail-image-9_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/function/images/detail-image-9_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>2020年8月31日（木）14:00-16:00</p>
+              </Text>
+
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
+                <dl>
+                  <dt>場所</dt>
+                  <dd>○○○○カンファレンスホール&オンライン開催</dd>
+                </dl>
+              </ListDescription>
+            </div>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <LayoutColumn
+        class="mt-8 md:mt-10 md:justify-center"
+        columnPc="auto"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Button as="a" href="DUMMY_LINK" title="すべて見る" />
+        </div>
+      </LayoutColumn>
+
+      <NavigationSns
+        class="mt-8 md:mt-10"
+        datas={{
+          share: "#",
+          good: "#",
+          facebook: "#",
+          x: "#",
+          instagram: "#",
+          line: "#",
+        }}
+      />
     </Section>
   </Content>
 </PageLayout>

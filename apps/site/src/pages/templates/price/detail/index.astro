@@ -29,7 +29,21 @@ const pageProps: PagePropType = {
 
 <PageLayout {...pageProps}>
   <MainVisual title="価格">
-    <img slot="media" src="/templates/price/images/detail-mainVisual_sp.webp" alt="" />
+    <picture slot="media">
+      <source
+        media="(min-width: 768px)"
+        srcset="/templates/price/images/detail-mainVisual_pc.webp"
+        type="image/webp"
+        width="1440"
+        height="500"
+      />
+      <img
+        src="/templates/price/images/detail-mainVisual_sp.webp"
+        width="375"
+        height="130"
+        alt=""
+      />
+    </picture>
   </MainVisual>
 
   <Breadcrumb items={breadcrumb} />
@@ -37,7 +51,9 @@ const pageProps: PagePropType = {
   <Content>
     <Section>
       <Text>
-        <p>ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト</p>
+        <p>
+          ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
+        </p>
       </Text>
     </Section>
   </Content>

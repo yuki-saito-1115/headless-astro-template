@@ -45,8 +45,6 @@ if (!Astro.slots.has('default')) {
 
 <style>
   .LayoutColumn {
-    container-type: inline-size;
-
     :where(.LayoutColumn__inner) {
       display: grid;
 
@@ -57,7 +55,7 @@ if (!Astro.slots.has('default')) {
     }
   }
 
-  @container (max-width: 767.99px) {
+  @media (width < 768px) {
     .LayoutColumn {
       :where(.LayoutColumn__inner) {
         gap: calc(var(--user-spacing) * 6);
@@ -87,7 +85,7 @@ if (!Astro.slots.has('default')) {
     }
   }
 
-  @container (min-width: 768px) {
+  @media (width >= 768px) {
     .LayoutColumn {
       :where(.LayoutColumn__inner) {
         gap: calc(var(--user-spacing) * 8);

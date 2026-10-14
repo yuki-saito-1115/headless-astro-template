@@ -1,5 +1,4 @@
 ---
-import Badge from '@packages/ui/modules/Badge/Badge.astro';
 import Button from '@packages/ui/modules/Button/Button.astro';
 import Card from '@packages/ui/modules/Card/Card.astro';
 import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
@@ -11,13 +10,13 @@ import List from '@packages/ui/modules/List/List.astro';
 import ListDescription from '@packages/ui/modules/ListDescription/ListDescription.astro';
 import Media from '@packages/ui/modules/Media/Media.astro';
 import MediaEmbed from '@packages/ui/modules/MediaEmbed/MediaEmbed.astro';
+import NavigationSns from '@packages/ui/modules/NavigationSns/NavigationSns.astro';
 import Table from '@packages/ui/modules/Table/Table.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
-import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
@@ -65,7 +64,10 @@ const pageProps: PagePropType = {
     <Section>
       <Media>
         <figure>
-          <img src="/templates/events/images/detail-image_sp.webp" width="327" height="200" alt="" />
+          <picture>
+            <source media="(min-width: 768px)" srcset="/templates/events/images/detail-image_pc.webp" type="image/webp" width="1000" height="500" />
+            <img src="/templates/events/images/detail-image_sp.webp" width="327" height="200" alt="" />
+          </picture>
         </figure>
       </Media>
 
@@ -92,7 +94,7 @@ const pageProps: PagePropType = {
                 <ListDescription>
                   <dl>
                     <dt>株式会社〇〇〇〇〇</dt>
-                    <dd>〒000-0000 東京都〇〇区〇〇〇〇0-0-0 〇〇ビル 5階（<a href="#" target="_blank">Google map</a>）</dd>
+                    <dd>〒000-0000 東京都〇〇区〇〇〇〇0-0-0 〇〇ビル 5階（<a href="DUMMY_LINK" target="_blank">Google map</a>）</dd>
                   </dl>
                 </ListDescription>
               </td>
@@ -104,7 +106,7 @@ const pageProps: PagePropType = {
       <div class="mt-8 text-center md:mt-10">
         <Button
           as="a"
-          href="#"
+          href="DUMMY_LINK"
           theme="emphasis"
           title="お申込み"
         />
@@ -157,12 +159,12 @@ const pageProps: PagePropType = {
             class="mt-8 md:mt-10"
             datas={[
               {
-                href: '#',
+                href: 'DUMMY_LINK',
                 target: '_blank',
                 title: 'Twitter',
               },
               {
-                href: '#',
+                href: 'DUMMY_LINK',
                 target: '_blank',
                 title: 'Facebook',
               },
@@ -172,7 +174,10 @@ const pageProps: PagePropType = {
 
         <Media slot="media">
           <figure>
-            <img src="/templates/events/images/detail-image-2_sp.webp" width="327" height="200" alt="" />
+            <picture>
+              <source media="(min-width: 768px)" srcset="/templates/events/images/detail-image-2_pc.webp" type="image/webp" width="336" height="500" />
+              <img src="/templates/events/images/detail-image-2_sp.webp" width="327" height="200" loading="lazy" alt="" />
+            </picture>
           </figure>
         </Media>
       </LayoutMedia>
@@ -278,11 +283,7 @@ const pageProps: PagePropType = {
       </HeadingLevel2>
 
       <MediaEmbed class="mt-8 md:mt-10">
-        <div><iframe src="https://www.slideshare.net/slideshow/embed_code/key/DSKeGFhw7dGHaW" loading="lazy" title="DUMMY_TITLE"></iframe></div>
-      </MediaEmbed>
-
-      <MediaEmbed class="mt-8 md:mt-10">
-        <div><iframe src="https://www.youtube.com/embed/u8RiqNjVr9s?controls=0" loading="lazy" title="DUMMY_TITLE"></iframe></div>
+        <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe src="https://www.youtube.com/embed/B6_iQvaIjXw?si=qySgrpaeN8jW2Uts" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen="" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe></div>
       </MediaEmbed>
 
       <HeadingLevel2 class="mt-8 md:mt-10">
@@ -290,20 +291,20 @@ const pageProps: PagePropType = {
       </HeadingLevel2>
 
       <MediaEmbed class="mt-8 md:mt-10">
-        <div><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.834866011881!2d140.88024881610326!3d38.260135791857316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8a28180c510b87%3A0xb2a30b91be1ffdbc!2z5LuZ5Y-w6aeF!5e0!3m2!1sja!2sjp!4v1662516061808!5m2!1sja!2sjp" loading="lazy" title="DUMMY_TITLE"></iframe></div>
+        <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 75%;"><iframe src="https://www.google.com/maps/embed/v1/view?key=AIzaSyC5AabUmFCrVTvkne8HfUV-Qotqx6-MC3E&amp;center=38.2553991,140.888458&amp;zoom=15" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen=""></iframe></div>
       </MediaEmbed>
 
       <ListDescription class="mt-8 md:mt-10">
         <dl>
           <dt>株式会社〇〇〇〇〇</dt>
-          <dd>〒000-0000 東京都〇〇区〇〇〇〇0-0-0 〇〇ビル 5階（<a href="#" target="_blank">Google map</a>）</dd>
+          <dd>〒000-0000 東京都〇〇区〇〇〇〇0-0-0 〇〇ビル 5階（<a href="DUMMY_LINK" target="_blank">Google map</a>）</dd>
         </dl>
       </ListDescription>
 
       <div class="mt-8 text-center md:mt-10">
         <Button
           as="a"
-          href="#"
+          href="DUMMY_LINK"
           theme="emphasis"
           title="お申込み"
         />
@@ -322,19 +323,27 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="〇〇〇〇を120%使いこなすためのポイント説明会"
-            date="2020年8月31日（木）14:00-16:00"
-            media={{
-              src: '/templates/events/images/detail-image-3_sp.webp',
-              alt: '',
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: '#',
+              href: 'DUMMY_LINK',
             }}
           >
-            <Badge title="受付中" />
-            <p>場所: ○○○○カンファレンスホール</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/events/images/detail-image-3_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-3_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <ListDescription>
+                <dl>
+                  <dt>場所</dt>
+                  <dd>○○○○カンファレンスホール</dd>
+                </dl>
+              </ListDescription>
+            </div>
           </Card>
         </div>
 
@@ -342,22 +351,27 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
-            date="2020年8月31日（木）14:00-16:00"
-            media={{
-              src: '/templates/events/images/detail-image-4_sp.webp',
-              alt: '',
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: '#',
+              href: 'DUMMY_LINK',
             }}
           >
-            <Badge
-              title="残りわずか"
-              theme="caution"
-            />
-            <p>場所: オンライン開催</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/events/images/detail-image-4_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-4_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <ListDescription>
+                <dl>
+                  <dt>場所</dt>
+                  <dd>オンライン開催</dd>
+                </dl>
+              </ListDescription>
+            </div>
           </Card>
         </div>
 
@@ -365,22 +379,27 @@ const pageProps: PagePropType = {
           <Card
             outline
             title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
-            date="2020年8月31日（木）14:00-16:00"
-            media={{
-              src: '/templates/events/images/detail-image-5_sp.webp',
-              alt: '',
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: '#',
+              href: 'DUMMY_LINK',
             }}
           >
-            <Badge
-              title="受付終了"
-              theme="warning"
-            />
-            <p>場所: ○○○○カンファレンスホール&オンライン開催</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/events/images/detail-image-5_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-5_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <ListDescription>
+                <dl>
+                  <dt>場所</dt>
+                  <dd>○○○○カンファレンスホール&オンライン開催</dd>
+                </dl>
+              </ListDescription>
+            </div>
           </Card>
         </div>
       </LayoutColumn>
@@ -399,17 +418,22 @@ const pageProps: PagePropType = {
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
             date="YYYY年M月D日（月）"
-            media={{
-              src: '/templates/events/images/detail-image-6_sp.webp',
-              alt: '',
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: '#',
+              href: 'DUMMY_LINK',
             }}
           >
-            <span></span>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/events/images/detail-image-6_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-6_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <span></span>
+            </div>
           </Card>
         </div>
 
@@ -418,17 +442,22 @@ const pageProps: PagePropType = {
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
             date="YYYY年M月D日（月）"
-            media={{
-              src: '/templates/events/images/detail-image-7_sp.webp',
-              alt: '',
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: '#',
+              href: 'DUMMY_LINK',
             }}
           >
-            <span></span>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/events/images/detail-image-7_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-7_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <span></span>
+            </div>
           </Card>
         </div>
 
@@ -437,22 +466,37 @@ const pageProps: PagePropType = {
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
             date="YYYY年M月D日（月）"
-            media={{
-              src: '/templates/events/images/detail-image-8_sp.webp',
-              alt: '',
-              width: 327,
-              height: 200,
-            }}
             link={{
-              href: '#',
+              href: 'DUMMY_LINK',
             }}
           >
-            <span></span>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source media="(min-width: 768px)" srcset="/templates/events/images/detail-image-8_pc.webp" type="image/webp" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-8_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <span></span>
+            </div>
           </Card>
         </div>
       </LayoutColumn>
 
-      <LocalSns />
+      <NavigationSns
+        class="mt-8 md:mt-10"
+        datas={{
+          share: "#",
+          good: "#",
+          facebook: "#",
+          x: "#",
+          instagram: "#",
+          line: "#",
+        }}
+      />
     </Section>
   </Content>
 </PageLayout>

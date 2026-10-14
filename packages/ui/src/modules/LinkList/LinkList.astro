@@ -46,8 +46,6 @@ const attrs: Record<string, unknown> = { ...rest };
     --local-item-gap-x: calc(var(--user-spacing) * 6);
     --local-item-gap-y: calc(var(--user-spacing) * 2);
 
-    container-type: inline-size;
-
     > :where(ul) {
       display: grid;
       gap: var(--local-item-gap-y) var(--local-item-gap-x);
@@ -82,7 +80,7 @@ const attrs: Record<string, unknown> = { ...rest };
     }
   }
 
-  @container (max-width: 767.99px) {
+  @media (width < 768px) {
     .LinkList {
       &:where(.columnSp-2) {
         > :where(ul) {
@@ -116,7 +114,7 @@ const attrs: Record<string, unknown> = { ...rest };
     }
   }
 
-  @container (min-width: 768px) {
+  @media (width >= 768px) {
     .LinkList {
       --local-item-gap-x: calc(var(--user-spacing) * 8);
 

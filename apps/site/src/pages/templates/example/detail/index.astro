@@ -1,20 +1,22 @@
 ---
 import Box from '@packages/ui/modules/Box/Box.astro';
+import Button from '@packages/ui/modules/Button/Button.astro';
+import Card from '@packages/ui/modules/Card/Card.astro';
 import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
 import LayoutMedia from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
 import List from '@packages/ui/modules/List/List.astro';
 import ListDescription from '@packages/ui/modules/ListDescription/ListDescription.astro';
 import Media from '@packages/ui/modules/Media/Media.astro';
 import NavigationInternal from '@packages/ui/modules/NavigationInternal/NavigationInternal.astro';
+import NavigationSns from '@packages/ui/modules/NavigationSns/NavigationSns.astro';
+import PanelInformation from '@packages/ui/modules/PanelInformation/PanelInformation.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import TextLead from '@packages/ui/modules/TextLead/TextLead.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
-import LocalDetails from '../../../../components/modules/LocalDetails/LocalDetails.astro';
-import LocalInformation from '../../../../components/modules/LocalInformation/LocalInformation.astro';
-import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
@@ -44,7 +46,11 @@ const pageProps: PagePropType = {
 
 <PageLayout {...pageProps}>
   <MainVisual title="リーズナブルで多機能。利用開始後約1年で売り上げが150%増加。">
-    <img slot="media" src="/templates/example/images/detail-mainVisual_sp.webp" alt="" />
+    <img
+      slot="media"
+      src="/templates/example/images/detail-mainVisual_sp.webp"
+      alt=""
+    />
   </MainVisual>
 
   <Breadcrumb items={breadcrumb} />
@@ -54,14 +60,12 @@ const pageProps: PagePropType = {
       <LayoutMedia directSp="column-reverse" directPc="row-reverse">
         <div slot="content">
           <Text>
-            <p><b>〇〇〇〇株式会社</b></p>
+            <p>
+              <b>〇〇〇〇株式会社</b>
+            </p>
           </Text>
 
-          <ListDescription
-            class="mt-4"
-            directPc="inline"
-            directSp="column"
-          >
+          <ListDescription class="mt-4" directPc="inline" directSp="column">
             <dl>
               <dt>業種</dt>
               <dd>製造業</dd>
@@ -73,17 +77,35 @@ const pageProps: PagePropType = {
           </ListDescription>
 
           <Text class="mt-4">
-            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <p>
+              説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            </p>
           </Text>
 
           <Text class="mt-4">
-            <p>ご担当者様 〇〇部 <b>山田太郎 様</b></p>
+            <p>
+              ご担当者様 〇〇部 <b>山田太郎 様</b>
+            </p>
           </Text>
         </div>
 
         <Media slot="media">
           <figure>
-            <img src="/templates/example/images/detail-image_sp.webp" width="600" height="400" alt="" />
+            <picture>
+              <source
+                media="(min-width: 768px)"
+                srcset="/templates/example/images/detail-image_pc.webp"
+                type="image/webp"
+                width="336"
+                height="200"
+              />
+              <img
+                src="/templates/example/images/detail-image_sp.webp"
+                width="327"
+                height="200"
+                alt=""
+              />
+            </picture>
           </figure>
         </Media>
       </LayoutMedia>
@@ -112,42 +134,66 @@ const pageProps: PagePropType = {
             <dt>導入前の課題</dt>
             <dd>
               <Text>
-                <p><b>いつも〇〇〇〇が〇〇〇〇であることに課題感があった</b></p>
+                <p>
+                  <b>いつも〇〇〇〇が〇〇〇〇であることに課題感があった</b>
+                </p>
               </Text>
 
               <List class="mt-4">
                 <ul>
-                  <li>〇〇〇〇にも負担なく〇〇〇〇や〇〇〇〇ができる仕組みが欲しかった</li>
-                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
-                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+                  <li>
+                    〇〇〇〇にも負担なく〇〇〇〇や〇〇〇〇ができる仕組みが欲しかった
+                  </li>
+                  <li>
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                  </li>
+                  <li>
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                  </li>
                 </ul>
               </List>
             </dd>
             <dt>選んだ理由</dt>
             <dd>
               <Text>
-                <p><b>〇〇〇〇が無くなり〇〇〇〇の〇〇〇〇が減った</b></p>
+                <p>
+                  <b>〇〇〇〇が無くなり〇〇〇〇の〇〇〇〇が減った</b>
+                </p>
               </Text>
 
               <List class="mt-4">
                 <ul>
-                  <li>〇〇〇〇と〇〇〇〇がマッチし、〇〇〇〇がわかりやすかった</li>
-                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
-                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+                  <li>
+                    〇〇〇〇と〇〇〇〇がマッチし、〇〇〇〇がわかりやすかった
+                  </li>
+                  <li>
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                  </li>
+                  <li>
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                  </li>
                 </ul>
               </List>
             </dd>
             <dt>導入後の成果・効果</dt>
             <dd>
               <Text>
-                <p><b>〇〇〇〇をさらに高めて〇〇〇〇率を向上させたい</b></p>
+                <p>
+                  <b>〇〇〇〇をさらに高めて〇〇〇〇率を向上させたい</b>
+                </p>
               </Text>
 
               <List class="mt-4">
                 <ul>
-                  <li>〇〇〇〇と〇〇〇〇がマッチし、〇〇〇〇がわかりやすかった</li>
-                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
-                  <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+                  <li>
+                    〇〇〇〇と〇〇〇〇がマッチし、〇〇〇〇がわかりやすかった
+                  </li>
+                  <li>
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                  </li>
+                  <li>
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                  </li>
                 </ul>
               </List>
             </dd>
@@ -165,13 +211,32 @@ const pageProps: PagePropType = {
 
       <Media class="mt-8 md:mt-10">
         <figure>
-          <img src="/templates/example/images/detail-image_sp.webp" width="600" height="400" alt="" />
+          <picture>
+            <source
+              media="(min-width: 768px)"
+              srcset="/templates/example/images/detail-image-2_pc.webp"
+              type="image/webp"
+              width="1000"
+              height="500"
+            />
+            <img
+              src="/templates/example/images/detail-image-2_sp.webp"
+              width="327"
+              height="200"
+              loading="lazy"
+              alt=""
+            />
+          </picture>
         </figure>
       </Media>
 
       <Text class="mt-8 md:mt-10">
-        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>
+          説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
+        <p>
+          説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
       </Text>
 
       <HeadingLevel2 id="DUMMY_ANCHOR_2" class="mt-8 md:mt-10">
@@ -184,13 +249,32 @@ const pageProps: PagePropType = {
 
       <Media class="mt-8 md:mt-10">
         <figure>
-          <img src="/templates/example/images/detail-image_sp.webp" width="600" height="400" alt="" />
+          <picture>
+            <source
+              media="(min-width: 768px)"
+              srcset="/templates/example/images/detail-image-3_pc.webp"
+              type="image/webp"
+              width="1000"
+              height="500"
+            />
+            <img
+              src="/templates/example/images/detail-image-3_sp.webp"
+              width="327"
+              height="200"
+              loading="lazy"
+              alt=""
+            />
+          </picture>
         </figure>
       </Media>
 
       <Text class="mt-8 md:mt-10">
-        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>
+          説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
+        <p>
+          説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
       </Text>
 
       <HeadingLevel2 id="DUMMY_ANCHOR_3" class="mt-8 md:mt-10">
@@ -203,50 +287,424 @@ const pageProps: PagePropType = {
 
       <Media class="mt-8 md:mt-10">
         <figure>
-          <img src="/templates/example/images/detail-image_sp.webp" width="600" height="400" alt="" />
+          <picture>
+            <source
+              media="(min-width: 768px)"
+              srcset="/templates/example/images/detail-image-4_pc.webp"
+              type="image/webp"
+              width="1000"
+              height="500"
+            />
+            <img
+              src="/templates/example/images/detail-image-4_sp.webp"
+              width="327"
+              height="200"
+              loading="lazy"
+              alt=""
+            />
+          </picture>
         </figure>
       </Media>
 
       <Text class="mt-8 md:mt-10">
-        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-        <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>
+          説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
+        <p>
+          説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
       </Text>
 
       <HeadingLevel2 class="mt-8 md:mt-10">
         <h2>ご担当者様のコメント</h2>
       </HeadingLevel2>
 
-      <LayoutMedia class="mt-8 md:mt-10" directSp="column-reverse" directPc="row-reverse">
+      <LayoutMedia
+        class="mt-8 md:mt-10"
+        directSp="column-reverse"
+        directPc="row-reverse"
+      >
         <div slot="content">
           <TextLead>
             <p>〇〇〇〇によって社内の組織作りの基盤が固まりました。</p>
           </TextLead>
 
           <Text class="mt-4">
-            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+            <p>
+              説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            </p>
           </Text>
 
           <Text class="mt-4">
-            <p>ご担当者様 〇〇部 <b>山田太郎 様</b></p>
+            <p>
+              ご担当者様 〇〇部 <b>山田太郎 様</b>
+            </p>
           </Text>
         </div>
 
         <Media slot="media">
           <figure>
-            <img src="/templates/example/images/detail-image_sp.webp" width="600" height="400" alt="" />
+            <picture>
+              <source
+                media="(min-width: 768px)"
+                srcset="/templates/example/images/detail-image-5_pc.webp"
+                type="image/webp"
+                width="336"
+                height="200"
+              />
+              <img
+                src="/templates/example/images/detail-image-5_sp.webp"
+                width="327"
+                height="200"
+                loading="lazy"
+                alt=""
+              />
+            </picture>
           </figure>
         </Media>
       </LayoutMedia>
     </Section>
 
     <Section theme="dark">
-      <LocalInformation />
+      <PanelInformation>
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">Webからのお問い合わせ</div>
+          <Text class="mt-4">
+            <p>
+              Webからお問い合わせの際は下記フォームからお問い合わせください。
+            </p>
+          </Text>
+
+          <Text class="mt-4">
+            <p>
+              Webからお問い合わせの際は下記フォームからお問い合わせください。
+            </p>
+          </Text>
+
+          <Button
+            as="a"
+            class="mt-4 md:mt-6"
+            href="DUMMY_LINK"
+            size="full"
+            theme="conversion"
+            title="フォームから問い合わせる"
+          />
+        </div>
+
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">お電話からお問い合わせ</div>
+          <Text class="mt-4">
+            <p>
+              <b>XXXXカスタマーセンター</b>
+            </p>
+          </Text>
+
+          <div class="PanelInformation__number">
+            <b>0120-000-000</b>
+          </div>
+
+          <Text class="mt-4">
+            <p>受付時間 9:00～17:00（土・日・祝日は除く）</p>
+          </Text>
+        </div>
+
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">
+            製品紹介やお役立ち資料を無料でご活用いただけます
+          </div>
+          <Button
+            as="a"
+            class="mt-4 md:mt-6"
+            href="DUMMY_LINK"
+            size="full"
+            theme="emphasis"
+            title="サービス紹介資料ダウンロード"
+          />
+        </div>
+      </PanelInformation>
     </Section>
 
     <Section>
-      <LocalDetails />
+      <HeadingLevel2>
+        <h2>○○サービスの事例をご紹介します</h2>
+      </HeadingLevel2>
 
-      <LocalSns />
+      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
+            link={{ href: "DUMMY_LINK" }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/example/images/detail-image-6_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/example/images/detail-image-6_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>〇〇〇〇株式会社</p>
+              </Text>
+
+              <ListDescription
+                class="mt-4 md:mt-6"
+                directPc="row"
+                directSp="row"
+              >
+                <dl>
+                  <dt>業種</dt>
+                  <dd>テキストテキスト</dd>
+                  <dt>従業員数</dt>
+                  <dd>1～10人</dd>
+                  <dt>導入サービス</dt>
+                  <dd>サービス名テキストテキスト</dd>
+                </dl>
+              </ListDescription>
+            </div>
+          </Card>
+        </div>
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
+            link={{ href: "DUMMY_LINK" }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/example/images/detail-image-7_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/example/images/detail-image-7_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>〇〇〇〇株式会社</p>
+              </Text>
+
+              <ListDescription
+                class="mt-4 md:mt-6"
+                directPc="row"
+                directSp="row"
+              >
+                <dl>
+                  <dt>業種</dt>
+                  <dd>テキストテキスト</dd>
+                  <dt>従業員数</dt>
+                  <dd>1～10人</dd>
+                  <dt>導入サービス</dt>
+                  <dd>サービス名テキストテキスト</dd>
+                </dl>
+              </ListDescription>
+            </div>
+          </Card>
+        </div>
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
+            link={{ href: "DUMMY_LINK" }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/example/images/detail-image-8_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/example/images/detail-image-8_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>〇〇〇〇株式会社</p>
+              </Text>
+
+              <ListDescription
+                class="mt-4 md:mt-6"
+                directPc="row"
+                directSp="row"
+              >
+                <dl>
+                  <dt>業種</dt>
+                  <dd>テキストテキスト</dd>
+                  <dt>従業員数</dt>
+                  <dd>1～10人</dd>
+                  <dt>導入サービス</dt>
+                  <dd>サービス名テキストテキスト</dd>
+                </dl>
+              </ListDescription>
+            </div>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <LayoutColumn
+        class="mt-8 md:mt-10 md:justify-center"
+        columnPc="auto"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Button as="a" href="DUMMY_LINK" title="すべて見る" />
+        </div>
+      </LayoutColumn>
+
+      <HeadingLevel2 class="mt-8 md:mt-10">
+        <h2>導入サービスを詳しく知りたい方はこちら</h2>
+      </HeadingLevel2>
+
+      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
+        <div class="LayoutColumn__segment">
+          <Card outline title="〇〇〇〇システム導入支援" link={{ href: "DUMMY_LINK" }}>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/example/images/detail-image-9_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/example/images/detail-image-9_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>サービスの概要を紹介する説明テキストです。</p>
+              </Text>
+            </div>
+          </Card>
+        </div>
+        <div class="LayoutColumn__segment">
+          <Card outline title="〇〇〇〇〇〇制作" link={{ href: "DUMMY_LINK" }}>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/example/images/detail-image-10_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/example/images/detail-image-10_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>サービスの概要を紹介する説明テキストです。</p>
+              </Text>
+            </div>
+          </Card>
+        </div>
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="〇〇〇〇〇〇コンサルティング"
+            link={{ href: "DUMMY_LINK" }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/example/images/detail-image-11_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/example/images/detail-image-11_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+            <div slot="body">
+              <Text>
+                <p>サービスの概要を紹介する説明テキストです。</p>
+              </Text>
+            </div>
+          </Card>
+        </div>
+      </LayoutColumn>
+
+      <LayoutColumn
+        class="mt-8 md:mt-10 md:justify-center"
+        columnPc="auto"
+        columnSp="1"
+      >
+        <div class="LayoutColumn__segment">
+          <Button as="a" href="DUMMY_LINK" title="すべて見る" />
+        </div>
+      </LayoutColumn>
+
+      <NavigationSns
+        class="mt-8 md:mt-10"
+        datas={{
+          share: "#",
+          good: "#",
+          facebook: "#",
+          x: "#",
+          instagram: "#",
+          line: "#",
+        }}
+      />
     </Section>
   </Content>
 </PageLayout>

@@ -51,8 +51,6 @@ if (!Astro.slots.has('default')) {
     --local-item-gap-x: calc(var(--user-spacing) * 6);
     --local-item-gap-y: calc(var(--user-spacing) * 2);
 
-    container-type: inline-size;
-
     :global(:where(ol, ul)) {
       display: grid;
       gap: var(--local-item-gap-y) var(--local-item-gap-x);
@@ -137,7 +135,7 @@ if (!Astro.slots.has('default')) {
     }
   }
 
-  @container (max-width: 767.99px) {
+  @media (width < 768px) {
     .List {
       &:where(.columnSp-2) {
         > :global(:where(ol, ul)) {
@@ -177,7 +175,7 @@ if (!Astro.slots.has('default')) {
     }
   }
 
-  @container (min-width: 768px) {
+  @media (width >= 768px) {
     .List {
       --local-item-gap-x: calc(var(--user-spacing) * 8);
 

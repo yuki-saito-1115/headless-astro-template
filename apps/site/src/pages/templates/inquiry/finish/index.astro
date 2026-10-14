@@ -31,7 +31,21 @@ const pageProps: PagePropType = {
 
 <PageLayout {...pageProps}>
   <MainVisual title="お問い合わせありがとうございます">
-    <img slot="media" src="/templates/inquiry/images/finish-mainVisual_sp.webp" alt="" />
+    <picture slot="media">
+      <source
+        media="(min-width: 768px)"
+        srcset="/templates/inquiry/images/finish-mainVisual_pc.webp"
+        type="image/webp"
+        width="1440"
+        height="500"
+      />
+      <img
+        src="/templates/inquiry/images/finish-mainVisual_sp.webp"
+        width="375"
+        height="130"
+        alt=""
+      />
+    </picture>
   </MainVisual>
 
   <Breadcrumb items={breadcrumb} />
@@ -40,94 +54,45 @@ const pageProps: PagePropType = {
     <Section>
       <Text>
         <p>
-          お問い合わせいただきありがとうございます。2～3営業日以内に担当より返信します。
+          お問い合わせいただきありがとうございます。2～3営業日以内に、担当よりメールにて返信させていただきます。
         </p>
       </Text>
 
-      <LayoutColumn
-        class="mt-8 md:mt-10"
-        columnPc="3"
-        columnSp="1"
-      >
+      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
         <div class="LayoutColumn__segment">
-          <Button
-            as="a"
-            href="/"
-            size="full"
-            title="ホーム"
-          />
+          <Button as="a" href="DUMMY_LINK" size="full" title="ホーム" />
         </div>
 
         <div class="LayoutColumn__segment">
-          <Button
-            as="a"
-            href="#"
-            size="full"
-            title="リンクテキスト"
-          />
+          <Button as="a" href="DUMMY_LINK" size="full" title="リンクテキスト" />
         </div>
 
         <div class="LayoutColumn__segment">
-          <Button
-            as="a"
-            href="#"
-            size="full"
-            title="リンクテキスト"
-          />
+          <Button as="a" href="DUMMY_LINK" size="full" title="リンクテキスト" />
         </div>
 
         <div class="LayoutColumn__segment">
-          <Button
-            as="a"
-            href="#"
-            size="full"
-            title="リンクテキスト"
-          />
+          <Button as="a" href="DUMMY_LINK" size="full" title="リンクテキスト" />
         </div>
 
         <div class="LayoutColumn__segment">
-          <Button
-            as="a"
-            href="#"
-            size="full"
-            title="リンクテキスト"
-          />
+          <Button as="a" href="DUMMY_LINK" size="full" title="リンクテキスト" />
         </div>
 
         <div class="LayoutColumn__segment">
-          <Button
-            as="a"
-            href="#"
-            size="full"
-            title="リンクテキスト"
-          />
+          <Button as="a" href="DUMMY_LINK" size="full" title="リンクテキスト" />
         </div>
 
         <div class="LayoutColumn__segment">
-          <Button
-            as="a"
-            href="#"
-            size="full"
-            title="リンクテキスト"
-          />
+          <Button as="a" href="DUMMY_LINK" size="full" title="リンクテキスト" />
         </div>
 
         <div class="LayoutColumn__segment">
-          <Button
-            as="a"
-            href="#"
-            size="full"
-            title="リンクテキスト"
-          />
+          <Button as="a" href="DUMMY_LINK" size="full" title="リンクテキスト" />
         </div>
 
         <div class="LayoutColumn__segment">
-          <Button
-            as="a"
-            href="#"
-            size="full"
-            title="リンクテキスト"
-          />
+          <Button as="a" href="DUMMY_LINK" size="full" title="リンクテキスト" />
         </div>
       </LayoutColumn>
     </Section>

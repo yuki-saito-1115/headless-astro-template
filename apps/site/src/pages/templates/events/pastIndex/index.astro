@@ -1,13 +1,16 @@
 ---
+import Button from '@packages/ui/modules/Button/Button.astro';
 import Card from '@packages/ui/modules/Card/Card.astro';
 import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
 import LinkList from '@packages/ui/modules/LinkList/LinkList.astro';
+import Media from '@packages/ui/modules/Media/Media.astro';
+import NavigationSns from '@packages/ui/modules/NavigationSns/NavigationSns.astro';
+import PanelInformation from '@packages/ui/modules/PanelInformation/PanelInformation.astro';
+import Text from '@packages/ui/modules/Text/Text.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
-import LocalInformation from '../../../../components/modules/LocalInformation/LocalInformation.astro';
-import LocalSns from '../../../../components/modules/LocalSns/LocalSns.astro';
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
@@ -38,7 +41,10 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="過去のセミナー・イベントのレポート">
     <picture slot="media">
-      <source media="(width >= 768px)" srcset="/templates/events/images/pastIndex-mainVisual_pc.webp" />
+      <source
+        media="(width >= 768px)"
+        srcset="/templates/events/images/pastIndex-mainVisual_pc.webp"
+      />
       <img src="/templates/events/images/pastIndex-mainVisual_sp.webp" alt="" />
     </picture>
   </MainVisual>
@@ -50,194 +56,474 @@ const pageProps: PagePropType = {
       <LinkList
         datas={[
           {
-            href: "/templates/events/",
+            href: "DUMMY_LINK",
             title: "開催中のセミナー・イベント",
           },
         ]}
       />
 
-      <LayoutColumn
-        class="mt-8 md:mt-10"
-        columnPc="3"
-        columnSp="1"
-      >
+      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
         <div class="LayoutColumn__segment">
           <Card
             outline
-            title="セミナー・イベントレポート 1"
-            date="2020年8月31日レポート"
-            media={{
-              src: "/templates/events/images/pastIndex-image_sp.webp",
-              alt: "",
-              width: 600,
-              height: 400,
-            }}
-
+            title="〇〇〇〇を120%使いこなすためのポイント説明会"
             link={{
-              href: "#",
-            }}>
-            <p>開催内容と当日の様子を紹介します。</p>
-          </Card>
-        </div>
-
-        <div class="LayoutColumn__segment">
-          <Card
-            outline
-            title="セミナー・イベントレポート 2"
-            date="2020年9月1日レポート"
-            media={{
-              src: "/templates/events/images/pastIndex-image-2_sp.webp",
-              alt: "",
-              width: 600,
-              height: 400,
-            }}
-
-            link={{
-              href: "#",
-            }}>
-            <p>開催内容と当日の様子を紹介します。</p>
-          </Card>
-        </div>
-
-        <div class="LayoutColumn__segment">
-          <Card
-            outline
-            title="セミナー・イベントレポート 3"
-            date="2020年9月2日レポート"
-            media={{
-              src: "/templates/events/images/pastIndex-image-3_sp.webp",
-              alt: "",
-              width: 600,
-              height: 400,
-            }}
-
-            link={{
-              href: "#",
-            }}>
-            <p>開催内容と当日の様子を紹介します。</p>
-          </Card>
-        </div>
-
-        <div class="LayoutColumn__segment">
-          <Card
-            outline
-            title="セミナー・イベントレポート 4"
-            date="2020年9月3日レポート"
-            media={{
-              src: "/templates/events/images/pastIndex-image-4_sp.webp",
-              alt: "",
-              width: 600,
-              height: 400,
-            }}
-
-            link={{
-              href: "#",
-            }}>
-            <p>開催内容と当日の様子を紹介します。</p>
-          </Card>
-        </div>
-
-        <div class="LayoutColumn__segment">
-          <Card
-            outline
-            title="セミナー・イベントレポート 5"
-            date="2020年9月4日レポート"
-            media={{
-              src: "/templates/events/images/pastIndex-image-5_sp.webp",
-              alt: "",
-              width: 600,
-              height: 400,
-            }}
-
-            link={{
-              href: "#",
-            }}>
-            <p>開催内容と当日の様子を紹介します。</p>
-          </Card>
-        </div>
-
-        <div class="LayoutColumn__segment">
-          <Card
-            outline
-            title="セミナー・イベントレポート 6"
-            date="2020年9月5日レポート"
-            media={{
-              src: "/templates/events/images/pastIndex-image-6_sp.webp",
-              alt: "",
-              width: 600,
-              height: 400,
-            }}
-
-            link={{
-              href: "#",
-            }}>
-            <p>開催内容と当日の様子を紹介します。</p>
-          </Card>
-        </div>
-
-<div class="LayoutColumn__segment">
-          <Card
-            outline
-            title="過去のイベント・セミナー 7"
-            date="2020年8月31日（木）14:00-16:00"
-            media={{
-              src: "/templates/events/images/pastIndex-image-7_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
-            link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>開催内容と当日の様子を紹介します。</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/events/images/pastIndex-image_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/events/images/pastIndex-image_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>2020年8月31日レポート</p>
+              </Text>
+
+              <Text class="mt-4 md:mt-6">
+                <p>
+                  説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                </p>
+              </Text>
+            </div>
           </Card>
         </div>
 
-<div class="LayoutColumn__segment">
+        <div class="LayoutColumn__segment">
           <Card
             outline
-            title="過去のイベント・セミナー 8"
-            date="2020年8月31日（木）14:00-16:00"
-            media={{
-              src: "/templates/events/images/pastIndex-image-8_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
             link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>開催内容と当日の様子を紹介します。</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/events/images/pastIndex-image-2_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/events/images/pastIndex-image-2_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>YYYY年M月D日レポート</p>
+              </Text>
+
+              <Text class="mt-4 md:mt-6">
+                <p>
+                  説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                </p>
+              </Text>
+            </div>
           </Card>
         </div>
 
-<div class="LayoutColumn__segment">
+        <div class="LayoutColumn__segment">
           <Card
             outline
-            title="過去のイベント・セミナー 9"
-            date="2020年8月31日（木）14:00-16:00"
-            media={{
-              src: "/templates/events/images/pastIndex-image-9_sp.webp",
-              alt: "",
-              width: 327,
-              height: 200,
-            }}
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
             link={{
-              href: "#",
+              href: "DUMMY_LINK",
             }}
           >
-            <p>開催内容と当日の様子を紹介します。</p>
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/events/images/pastIndex-image-3_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/events/images/pastIndex-image-3_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>YYYY年M月D日レポート</p>
+              </Text>
+
+              <Text class="mt-4 md:mt-6">
+                <p>
+                  説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                </p>
+              </Text>
+            </div>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
+            link={{
+              href: "DUMMY_LINK",
+            }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/events/images/pastIndex-image-4_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/events/images/pastIndex-image-4_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>YYYY年M月D日レポート</p>
+              </Text>
+
+              <Text class="mt-4 md:mt-6">
+                <p>
+                  説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                </p>
+              </Text>
+            </div>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
+            link={{
+              href: "DUMMY_LINK",
+            }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/events/images/pastIndex-image-5_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/events/images/pastIndex-image-5_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>YYYY年M月D日レポート</p>
+              </Text>
+
+              <Text class="mt-4 md:mt-6">
+                <p>
+                  説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                </p>
+              </Text>
+            </div>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
+            link={{
+              href: "DUMMY_LINK",
+            }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/events/images/pastIndex-image-6_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/events/images/pastIndex-image-6_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>YYYY年M月D日レポート</p>
+              </Text>
+
+              <Text class="mt-4 md:mt-6">
+                <p>
+                  説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                </p>
+              </Text>
+            </div>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
+            link={{
+              href: "DUMMY_LINK",
+            }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/events/images/pastIndex-image-7_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/events/images/pastIndex-image-7_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>YYYY年M月D日レポート</p>
+              </Text>
+
+              <Text class="mt-4 md:mt-6">
+                <p>
+                  説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                </p>
+              </Text>
+            </div>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
+            link={{
+              href: "DUMMY_LINK",
+            }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/events/images/pastIndex-image-8_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/events/images/pastIndex-image-8_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>YYYY年M月D日レポート</p>
+              </Text>
+
+              <Text class="mt-4 md:mt-6">
+                <p>
+                  説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                </p>
+              </Text>
+            </div>
+          </Card>
+        </div>
+
+        <div class="LayoutColumn__segment">
+          <Card
+            outline
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
+            link={{
+              href: "DUMMY_LINK",
+            }}
+          >
+            <Media slot="media">
+              <figure>
+                <picture>
+                  <source
+                    media="(min-width: 768px)"
+                    srcset="/templates/events/images/pastIndex-image-9_pc.webp"
+                    type="image/webp"
+                    width="336"
+                    height="200"
+                  />
+                  <img
+                    src="/templates/events/images/pastIndex-image-9_sp.webp"
+                    width="327"
+                    height="200"
+                    loading="lazy"
+                    alt=""
+                  />
+                </picture>
+              </figure>
+            </Media>
+
+            <div slot="body">
+              <Text>
+                <p>YYYY年M月D日レポート</p>
+              </Text>
+
+              <Text class="mt-4 md:mt-6">
+                <p>
+                  説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                </p>
+              </Text>
+            </div>
           </Card>
         </div>
       </LayoutColumn>
 
-      <LocalSns />
+      <NavigationSns
+        class="mt-8 md:mt-10"
+        datas={{
+          share: "#",
+          good: "#",
+          facebook: "#",
+          x: "#",
+          instagram: "#",
+          line: "#",
+        }}
+      />
     </Section>
 
     <Section theme="dark">
-      <LocalInformation />
+      <PanelInformation>
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">Webからのお問い合わせ</div>
+
+          <Text class="mt-4">
+            <p>
+              Webからお問い合わせの際は下記フォームからお問い合わせください。
+            </p>
+          </Text>
+
+          <Text class="mt-4">
+            <p>
+              Webからお問い合わせの際は下記フォームからお問い合わせください。
+            </p>
+          </Text>
+
+          <Button
+            as="a"
+            class="mt-4 md:mt-6"
+            href="DUMMY_LINK"
+            size="full"
+            theme="conversion"
+            title="フォームから問い合わせる"
+          />
+        </div>
+
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">お電話からお問い合わせ</div>
+
+          <Text class="mt-4">
+            <p>
+              <b>XXXXカスタマーセンター</b>
+            </p>
+          </Text>
+
+          <div class="PanelInformation__number">
+            <b>0120-000-000</b>
+          </div>
+
+          <Text class="mt-4">
+            <p>受付時間 9:00～17:00（土・日・祝日は除く）</p>
+          </Text>
+        </div>
+
+        <div class="PanelInformation__segment">
+          <div class="PanelInformation__title">
+            製品紹介やお役立ち資料を無料でご活用いただけます
+          </div>
+
+          <Button
+            as="a"
+            class="mt-4 md:mt-6"
+            href="DUMMY_LINK"
+            size="full"
+            theme="emphasis"
+            title="サービス紹介資料ダウンロード"
+          />
+        </div>
+      </PanelInformation>
     </Section>
   </Content>
 </PageLayout>
