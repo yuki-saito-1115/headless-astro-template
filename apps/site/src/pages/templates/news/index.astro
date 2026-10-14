@@ -29,46 +29,6 @@ const pageProps: PagePropType = {
   description: 'DUMMY_DESCRIPTION',
   title: 'お知らせ・ニュース（一覧）',
 };
-const allNews = [
-  {
-    category: 'カテゴリ1' as const,
-    date: '2026-10-01T00:00:00.000Z',
-    id: 'news-1',
-    title: '「〇〇〇〇〇〇〇〇」を1月1日に発売',
-  },
-  {
-    category: 'カテゴリ2' as const,
-    date: '2026-09-01T00:00:00.000Z',
-    id: 'news-2',
-    title: 'お知らせの内容を表示します 2',
-  },
-  {
-    category: 'カテゴリ1' as const,
-    date: '2026-08-01T00:00:00.000Z',
-    id: 'news-3',
-    title: 'お知らせの内容を表示します 3',
-  },
-  {
-    category: 'カテゴリ2' as const,
-    date: '2026-07-01T00:00:00.000Z',
-    id: 'news-4',
-    title: 'お知らせの内容を表示します 4',
-  },
-  {
-    category: 'カテゴリ1' as const,
-    date: '2026-06-01T00:00:00.000Z',
-    id: 'news-5',
-    title: 'お知らせの内容を表示します 5',
-  },
-  {
-    category: 'カテゴリ2' as const,
-    date: '2026-05-01T00:00:00.000Z',
-    id: 'news-6',
-    title: 'お知らせの内容を表示します 6',
-  },
-];
-const category1News = [allNews[0], allNews[2], allNews[4]];
-const category2News = [allNews[1], allNews[3], allNews[5]];
 ---
 
 <PageLayout {...pageProps}>
@@ -93,43 +53,60 @@ const category2News = [allNews[1], allNews[3], allNews[5]];
         </p>
       </Text>
 
-      <div class="mt-8 md:mt-10">
-        <label for="news-year">年 を選ぶとページが自動的に更新されます。</label>
-
-        <FormSelect
-          id="news-year"
-          options={[
-            {
-              label: "選択してください",
-              value: "",
-            },
-            {
-              label: "2026年",
-              value: "2026",
-            },
-            {
-              label: "2025年",
-              value: "2025",
-            },
-            {
-              label: "2024年",
-              value: "2024",
-            },
-            {
-              label: "2023年",
-              value: "2023",
-            },
-            {
-              label: "2022年",
-              value: "2022",
-            },
-            {
-              label: "2021年",
-              value: "2021",
-            },
-          ]}
-        />
-      </div>
+      <dl class="mt-8 md:mt-10">
+        <dt><label for="news-year">年を選ぶとページが自動的に更新されます。</label></dt>
+        <dd>
+          <FormSelect
+            id="news-year"
+            options={[
+              {
+                label: "選択してください",
+                value: "",
+              },
+              {
+                label: "2026年",
+                value: "",
+              },
+              {
+                label: "2025年",
+                value: "",
+              },
+              {
+                label: "2024年",
+                value: "",
+              },
+              {
+                label: "2023年",
+                value: "",
+              },
+              {
+                label: "2022年",
+                value: "",
+              },
+              {
+                label: "2021年",
+                value: "",
+              },
+              {
+                label: "2020年",
+                value: "",
+              },
+              {
+                label: "2019年",
+                value: "",
+              },
+              {
+                label: "2018年",
+                value: "",
+              },
+              {
+                label: "2017年",
+                value: "",
+              },
+            ]}
+          />
+        </dd>
+      </dl>
 
       <WidgetTab
         class="mt-8 md:mt-10"
@@ -149,22 +126,202 @@ const category2News = [allNews[1], allNews[3], allNews[5]];
           },
         ]}
       >
-        <ListNews slot="all" datas={allNews} />
+        <ListNews
+          slot="all"
+          datas={[
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-1',
+              link: 'DUMMY_LINK',
+              title: '「〇〇〇〇〇〇〇〇」を1月1日に発売',
+            },
+            {
+              category: 'カテゴリ2',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-2',
+              link: 'DUMMY_LINK',
+              title: '「〇〇〇〇〇〇〇〇」をイベントを開催',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-3',
+              link: 'DUMMY_LINK',
+              title: '人事について',
+            },
+            {
+              category: 'カテゴリ2',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-4',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ2',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-5',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-6',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ2',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-7',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-8',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-9',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ2',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-10',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-11',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-12',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+          ]}
+        />
 
-        <ListNews slot="category1" datas={category1News} />
+        <ListNews
+          slot="category1"
+          datas={[
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-1',
+              link: 'DUMMY_LINK',
+              title: '「〇〇〇〇〇〇〇〇」を1月1日に発売',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-3',
+              link: 'DUMMY_LINK',
+              title: '人事について',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-6',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-8',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-9',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-11',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ1',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-12',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+          ]}
+        />
 
-        <ListNews slot="category2" datas={category2News} />
+        <ListNews
+          slot="category2"
+          datas={[
+            {
+              category: 'カテゴリ2',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-2',
+              link: 'DUMMY_LINK',
+              title: '「〇〇〇〇〇〇〇〇」をイベントを開催',
+            },
+            {
+              category: 'カテゴリ2',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-4',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ2',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-5',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ2',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-7',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: 'カテゴリ2',
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-10',
+              link: 'DUMMY_LINK',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+          ]}
+        />
       </WidgetTab>
 
       <NavigationSns
         class="mt-8 md:mt-10"
         datas={{
-          share: "#",
-          good: "#",
-          facebook: "#",
-          x: "#",
-          instagram: "#",
-          line: "#",
+          share: "DUMMY_LINK",
+          good: "DUMMY_LINK",
+          facebook: "DUMMY_LINK",
+          x: "DUMMY_LINK",
+          instagram: "DUMMY_LINK",
+          line: "DUMMY_LINK",
         }}
       />
     </Section>

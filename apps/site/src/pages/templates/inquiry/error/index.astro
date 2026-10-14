@@ -1,9 +1,15 @@
 ---
 import Badge from '@packages/ui/modules/Badge/Badge.astro';
+import Box from '@packages/ui/modules/Box/Box.astro';
 import Button from '@packages/ui/modules/Button/Button.astro';
+import FormCheckboxList from '@packages/ui/modules/FormCheckboxList/FormCheckboxList.astro';
+import FormComplex from '@packages/ui/modules/FormComplex/FormComplex.astro';
 import FormList from '@packages/ui/modules/FormList/FormList.astro';
+import FormSelect from '@packages/ui/modules/FormSelect/FormSelect.astro';
 import FormText from '@packages/ui/modules/FormText/FormText.astro';
 import FormTextarea from '@packages/ui/modules/FormTextarea/FormTextarea.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import Link from '@packages/ui/modules/Link/Link.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import TextWarning from '@packages/ui/modules/TextWarning/TextWarning.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
@@ -56,13 +62,18 @@ const pageProps: PagePropType = {
 
   <Content>
     <Section>
-      <Text>
-        <p>
-          未入力部分がありますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-        </p>
-        <p>
-          ご相談・お問い合わせは下記フォームをご利用ください。当社では必要に応じて、電話、メール、対面、さまざまな形式でのお打ち合わせを承っています。お気軽にお問い合わせください。（仮）
-        </p>
+      <Box theme="important">
+        <Text>
+          <p>未入力部分がありますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        </Text>
+      </Box>
+
+      <Text class="mt-8 md:mt-10">
+        <p>ご相談・お問い合わせは下記フォームをご利用ください。当社では必要に応じて、電話、メール、対面、さまざまな形式でのお打ち合わせを承っています。お気軽にお問い合わせください。（仮）</p>
+      </Text>
+
+      <Text class="mt-8 md:mt-10">
+        <p><b>03-1234-5678</b> 平日00:00～00:00のみ</p>
       </Text>
 
       <form class="mt-8 md:mt-10">
@@ -77,12 +88,17 @@ const pageProps: PagePropType = {
               <p>[お問い合わせ内容]を入力してください。</p>
             </TextWarning>
 
+            <Text class="mt-4">
+              <p>1000文字まで入力可能</p>
+            </Text>
+
             <FormTextarea
-              class="mt-8 md:mt-10"
+              class="mt-4"
               id="error-message"
               name="message"
               size="full"
               state="invalid"
+              placeholder="ご自由にご記入ください。"
             />
           </dd>
 
@@ -97,12 +113,96 @@ const pageProps: PagePropType = {
             </TextWarning>
 
             <FormText
-              class="mt-8 md:mt-10"
+              class="mt-4"
               id="error-company"
               name="company"
               size="full"
               state="invalid"
+              placeholder="例）株式会社ミツエーリンクス"
             />
+          </dd>
+
+          <dt>
+            <label for="error-name">
+              お名前 <Badge title="必須" theme="warning" />
+            </label>
+          </dt>
+          <dd>
+            <TextWarning>
+              <p>[お名前]を入力してください。</p>
+            </TextWarning>
+
+            <FormText
+              class="mt-4"
+              id="error-name"
+              name="name"
+              size="full"
+              state="invalid"
+              placeholder="例）山田太郎"
+            />
+          </dd>
+
+          <dt>
+            <label for="error-name-kana">
+              お名前（カタカナ） <Badge title="必須" theme="warning" />
+            </label>
+          </dt>
+          <dd>
+            <TextWarning>
+              <p>[お名前（カタカナ）]を入力してください。</p>
+            </TextWarning>
+
+            <FormText
+              class="mt-4"
+              id="error-name-kana"
+              name="name-kana"
+              size="full"
+              state="invalid"
+              placeholder="例）ヤマダタロウ"
+            />
+          </dd>
+
+          <dt>
+            <label for="error-birth-year">
+              生年月日 <Badge title="必須" theme="warning" />
+            </label>
+          </dt>
+          <dd>
+            <TextWarning>
+              <p>[生年月日]を入力してください。</p>
+            </TextWarning>
+
+            <FormComplex class="mt-4">
+              <div class="FormComplex__segment">
+                <FormSelect
+                  id="error-birth-year"
+                  name="birth-year"
+                  state="invalid"
+                  options={[{ label: "選択してください", value: "" }]}
+                />
+                <label for="error-birth-year">年</label>
+              </div>
+
+              <div class="FormComplex__segment">
+                <FormSelect
+                  id="error-birth-month"
+                  name="birth-month"
+                  state="invalid"
+                  options={[{ label: "選択してください", value: "" }]}
+                />
+                <label for="error-birth-month">月</label>
+              </div>
+
+              <div class="FormComplex__segment">
+                <FormSelect
+                  id="error-birth-day"
+                  name="birth-day"
+                  state="invalid"
+                  options={[{ label: "選択してください", value: "" }]}
+                />
+                <label for="error-birth-day">日</label>
+              </div>
+            </FormComplex>
           </dd>
 
           <dt>
@@ -116,24 +216,382 @@ const pageProps: PagePropType = {
             </TextWarning>
 
             <FormText
-              class="mt-8 md:mt-10"
+              class="mt-4"
               id="error-email"
               name="email"
               size="full"
               state="invalid"
               type="email"
+              placeholder="例）info@mitsue.co.jp"
+            />
+          </dd>
+
+          <dt>
+            <label for="error-tel">
+              電話番号 <Badge title="必須" theme="warning" />
+            </label>
+          </dt>
+          <dd>
+            <TextWarning>
+              <p>[電話番号]を入力してください。</p>
+            </TextWarning>
+
+            <Text class="mt-4">
+              <p>
+                メールアドレスの入力間違い、迷惑メール設定などにより、メールでのご連絡ができない場合がございますので、日中ご連絡が可能な電話番号をご記入ください。
+              </p>
+            </Text>
+
+            <FormText
+              class="mt-4"
+              id="error-tel"
+              name="tel"
+              size="full"
+              state="invalid"
+              type="tel"
+              placeholder="例）0312345678"
+            />
+          </dd>
+
+          <dt>
+            <label for="error-postal-code">
+              郵便番号 <Badge title="必須" theme="warning" />
+            </label>
+          </dt>
+          <dd>
+            <TextWarning>
+              <p>[郵便番号]を入力してください。</p>
+            </TextWarning>
+
+            <FormComplex class="mt-4">
+              <span class="FormComplex__segment">
+                <FormText
+                  id="error-postal-code"
+                  name="postal-code"
+                  state="invalid"
+                />
+
+                <Button
+                  as="button"
+                  theme="text"
+                  type="button"
+                  title="郵便番号から住所検索"
+                />
+              </span>
+            </FormComplex>
+          </dd>
+
+          <dt>
+            <label for="error-prefecture">
+              都道府県 <Badge title="必須" theme="warning" />
+            </label>
+          </dt>
+          <dd>
+            <TextWarning>
+              <p>[都道府県]を入力してください。</p>
+            </TextWarning>
+
+            <FormSelect
+              class="mt-4"
+              id="error-prefecture"
+              name="prefecture"
+              state="invalid"
+              options={[
+                {
+                  label: "選択してください",
+                  value: "",
+                },
+                {
+                  label: "北海道",
+                  value: "",
+                },
+                {
+                  label: "青森県",
+                  value: "",
+                },
+                {
+                  label: "岩手県",
+                  value: "",
+                },
+                {
+                  label: "宮城県",
+                  value: "",
+                },
+                {
+                  label: "秋田県",
+                  value: "",
+                },
+                {
+                  label: "山形県",
+                  value: "",
+                },
+                {
+                  label: "福島県",
+                  value: "",
+                },
+                {
+                  label: "茨城県",
+                  value: "",
+                },
+                {
+                  label: "栃木県",
+                  value: "",
+                },
+                {
+                  label: "群馬県",
+                  value: "",
+                },
+                {
+                  label: "埼玉県",
+                  value: "",
+                },
+                {
+                  label: "千葉県",
+                  value: "",
+                },
+                {
+                  label: "東京都",
+                  value: "",
+                },
+                {
+                  label: "神奈川県",
+                  value: "",
+                },
+                {
+                  label: "新潟県",
+                  value: "",
+                },
+                {
+                  label: "富山県",
+                  value: "",
+                },
+                {
+                  label: "石川県",
+                  value: "",
+                },
+                {
+                  label: "福井県",
+                  value: "",
+                },
+                {
+                  label: "山梨県",
+                  value: "",
+                },
+                {
+                  label: "長野県",
+                  value: "",
+                },
+                {
+                  label: "岐阜県",
+                  value: "",
+                },
+                {
+                  label: "静岡県",
+                  value: "",
+                },
+                {
+                  label: "愛知県",
+                  value: "",
+                },
+                {
+                  label: "三重県",
+                  value: "",
+                },
+                {
+                  label: "滋賀県",
+                  value: "",
+                },
+                {
+                  label: "京都府",
+                  value: "",
+                },
+                {
+                  label: "大阪府",
+                  value: "",
+                },
+                {
+                  label: "兵庫県",
+                  value: "",
+                },
+                {
+                  label: "奈良県",
+                  value: "",
+                },
+                {
+                  label: "和歌山県",
+                  value: "",
+                },
+                {
+                  label: "鳥取県",
+                  value: "",
+                },
+                {
+                  label: "島根県",
+                  value: "",
+                },
+                {
+                  label: "岡山県",
+                  value: "",
+                },
+                {
+                  label: "広島県",
+                  value: "",
+                },
+                {
+                  label: "山口県",
+                  value: "",
+                },
+                {
+                  label: "徳島県",
+                  value: "",
+                },
+                {
+                  label: "香川県",
+                  value: "",
+                },
+                {
+                  label: "愛媛県",
+                  value: "",
+                },
+                {
+                  label: "高知県",
+                  value: "",
+                },
+                {
+                  label: "福岡県",
+                  value: "",
+                },
+                {
+                  label: "佐賀県",
+                  value: "",
+                },
+                {
+                  label: "長崎県",
+                  value: "",
+                },
+                {
+                  label: "熊本県",
+                  value: "",
+                },
+                {
+                  label: "大分県",
+                  value: "",
+                },
+                {
+                  label: "宮崎県",
+                  value: "",
+                },
+                {
+                  label: "鹿児島県",
+                  value: "",
+                },
+                {
+                  label: "沖縄県",
+                  value: "",
+                },
+              ]}
+            />
+          </dd>
+
+          <dt>
+            <label for="error-city">
+              市区町村 <Badge title="必須" theme="warning" />
+            </label>
+          </dt>
+          <dd>
+            <TextWarning>
+              <p>[都道府県]を入力してください。</p>
+            </TextWarning>
+
+            <FormText
+              class="mt-4"
+              id="error-city"
+              name="city"
+              size="full"
+              state="invalid"
+              placeholder="ご記入ください"
+            />
+          </dd>
+
+          <dt>
+            <label for="error-address">
+              番地・マンション名など <Badge title="必須" theme="warning" />
+            </label>
+          </dt>
+          <dd>
+            <TextWarning>
+              <p>[番地・マンション名など]を入力してください。</p>
+            </TextWarning>
+
+            <FormText
+              class="mt-4"
+              id="error-address"
+              name="address"
+              size="full"
+              state="invalid"
+              placeholder="ご記入ください"
+            />
+          </dd>
+
+          <dt>当社を何で知りましたか?</dt>
+          <dd>
+            <FormCheckboxList
+              columnPc="1"
+              datas={[
+                {
+                  id: "error-source-media",
+                  name: "source",
+                  title: "新聞や雑誌、Webマガジンなどのメディア",
+                },
+                {
+                  id: "error-source-experience",
+                  name: "source",
+                  title: "取引経験あり",
+                },
+                {
+                  id: "error-source-referral",
+                  name: "source",
+                  title: "知人からの紹介",
+                },
+                {
+                  id: "error-source-search",
+                  name: "source",
+                  title: "検索エンジン",
+                },
+                {
+                  id: "error-source-other",
+                  name: "source",
+                  title: "その他",
+                },
+              ]}
             />
           </dd>
         </FormList>
 
-        <div class="mt-8 md:mt-10">
-          <Button
-            as="button"
-            type="submit"
-            theme="conversion"
-            title="同意して確認画面へ"
-          />
-        </div>
+        <Text class="mt-8 md:mt-10">
+          <p>
+            「
+            <Link>
+              <a href="DUMMY_LINK">プライバシーポリシー</a>
+            </Link>
+            」をお読みになり、同意いただける場合は「同意して確認画面へ」ボタンを押して、入力内容の確認画面へ進んでください。（案件に応じて必要な文章を入力する）
+          </p>
+        </Text>
+
+        <LayoutColumn
+          class="mt-8 md:mt-10 justify-center"
+          columnPc="auto"
+          columnSp="1"
+        >
+          <div class="LayoutColumn__segment">
+            <Button
+              as="button"
+              type="submit"
+              theme="conversion"
+              title="同意して確認画面へ"
+            />
+          </div>
+        </LayoutColumn>
       </form>
     </Section>
   </Content>

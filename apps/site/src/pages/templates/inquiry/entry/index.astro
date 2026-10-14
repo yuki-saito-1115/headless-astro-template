@@ -2,10 +2,13 @@
 import Badge from '@packages/ui/modules/Badge/Badge.astro';
 import Button from '@packages/ui/modules/Button/Button.astro';
 import FormCheckboxList from '@packages/ui/modules/FormCheckboxList/FormCheckboxList.astro';
+import FormComplex from '@packages/ui/modules/FormComplex/FormComplex.astro';
 import FormList from '@packages/ui/modules/FormList/FormList.astro';
 import FormSelect from '@packages/ui/modules/FormSelect/FormSelect.astro';
 import FormText from '@packages/ui/modules/FormText/FormText.astro';
 import FormTextarea from '@packages/ui/modules/FormTextarea/FormTextarea.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
+import Link from '@packages/ui/modules/Link/Link.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
@@ -58,9 +61,11 @@ const pageProps: PagePropType = {
   <Content>
     <Section>
       <Text>
-        <p>
-          ご相談・お問い合わせは下記フォームをご利用ください。当社では必要に応じて、電話、メール、対面、さまざまな形式でのお打ち合わせを承っています。お気軽にお問い合わせください。（仮）
-        </p>
+        <p>ご相談・お問い合わせは下記フォームをご利用ください。当社では必要に応じて、電話、メール、対面、さまざまな形式でのお打ち合わせを承っています。お気軽にお問い合わせください。（仮）</p>
+      </Text>
+
+      <Text class="mt-8 md:mt-10">
+        <p><b>03-1234-5678</b> 平日00:00～00:00のみ</p>
       </Text>
 
       <form class="mt-8 md:mt-10">
@@ -71,7 +76,12 @@ const pageProps: PagePropType = {
             </label>
           </dt>
           <dd>
+            <Text>
+              <p>1000文字まで入力可能</p>
+            </Text>
+
             <FormTextarea
+              class="mt-4"
               id="message"
               name="message"
               size="full"
@@ -122,25 +132,39 @@ const pageProps: PagePropType = {
           </dd>
 
           <dt>
-            生年月日 <Badge title="必須" theme="warning" />
+            <label for="birth-year">
+              生年月日 <Badge title="必須" theme="warning" />
+            </label>
           </dt>
           <dd>
-            <div class="grid grid-cols-3 gap-4">
-              <FormSelect
-                name="birth-year"
-                options={[{ label: "選択してください", value: "" }]}
-              />
+            <FormComplex>
+              <div class="FormComplex__segment">
+                <FormSelect
+                  id="birth-year"
+                  name="birth-year"
+                  options={[{ label: "選択してください", value: "" }]}
+                />
+                <label for="birth-year">年</label>
+              </div>
 
-              <FormSelect
-                name="birth-month"
-                options={[{ label: "選択してください", value: "" }]}
-              />
+              <div class="FormComplex__segment">
+                <FormSelect
+                  id="birth-month"
+                  name="birth-month"
+                  options={[{ label: "選択してください", value: "" }]}
+                />
+                <label for="birth-month">月</label>
+              </div>
 
-              <FormSelect
-                name="birth-day"
-                options={[{ label: "選択してください", value: "" }]}
-              />
-            </div>
+              <div class="FormComplex__segment">
+                <FormSelect
+                  id="birth-day"
+                  name="birth-day"
+                  options={[{ label: "選択してください", value: "" }]}
+                />
+                <label for="birth-day">日</label>
+              </div>
+            </FormComplex>
           </dd>
 
           <dt>
@@ -149,7 +173,13 @@ const pageProps: PagePropType = {
             </label>
           </dt>
           <dd>
-            <FormText id="email" name="email" size="full" type="email" />
+            <FormText
+              id="email"
+              name="email"
+              size="full"
+              type="email"
+              placeholder="例）info@mitsue.co.jp"
+            />
           </dd>
 
           <dt>
@@ -158,13 +188,18 @@ const pageProps: PagePropType = {
             </label>
           </dt>
           <dd>
-            <FormText id="tel" name="tel" size="full" type="tel" />
-
-            <Text class="mt-4">
-              <p>
-                メールアドレスの入力間違い、迷惑メール設定などにより、メールでのご連絡ができない場合がございますので、日中ご連絡が可能な電話番号をご記入ください。
-              </p>
+            <Text>
+              <p>メールアドレスの入力間違い、迷惑メール設定などにより、メールでのご連絡ができない場合がございますので、日中ご連絡が可能な電話番号をご記入ください。</p>
             </Text>
+
+            <FormText
+              class="mt-4"
+              id="tel"
+              name="tel"
+              size="full"
+              type="tel"
+              placeholder="例）0312345678"
+            />
           </dd>
 
           <dt>
@@ -173,14 +208,18 @@ const pageProps: PagePropType = {
             </label>
           </dt>
           <dd>
-            <FormText id="postal-code" name="postal-code" size="full" />
+            <FormComplex>
+              <span class="FormComplex__segment">
+                <FormText id="postal-code" name="postal-code" />
 
-            <Button
-              as="button"
-              class="mt-4"
-              type="button"
-              title="郵便番号から住所検索"
-            />
+                <Button
+                  as="button"
+                  theme="text"
+                  type="button"
+                  title="郵便番号から住所検索"
+                />
+              </span>
+            </FormComplex>
           </dd>
 
           <dt>
@@ -199,30 +238,193 @@ const pageProps: PagePropType = {
                 },
                 {
                   label: "北海道",
-                  value: "北海道",
+                  value: "",
+                },
+                {
+                  label: "青森県",
+                  value: "",
+                },
+                {
+                  label: "岩手県",
+                  value: "",
+                },
+                {
+                  label: "宮城県",
+                  value: "",
+                },
+                {
+                  label: "秋田県",
+                  value: "",
+                },
+                {
+                  label: "山形県",
+                  value: "",
+                },
+                {
+                  label: "福島県",
+                  value: "",
+                },
+                {
+                  label: "茨城県",
+                  value: "",
+                },
+                {
+                  label: "栃木県",
+                  value: "",
+                },
+                {
+                  label: "群馬県",
+                  value: "",
+                },
+                {
+                  label: "埼玉県",
+                  value: "",
+                },
+                {
+                  label: "千葉県",
+                  value: "",
                 },
                 {
                   label: "東京都",
-                  value: "東京都",
+                  value: "",
                 },
                 {
                   label: "神奈川県",
-                  value: "神奈川県",
+                  value: "",
+                },
+                {
+                  label: "新潟県",
+                  value: "",
+                },
+                {
+                  label: "富山県",
+                  value: "",
+                },
+                {
+                  label: "石川県",
+                  value: "",
+                },
+                {
+                  label: "福井県",
+                  value: "",
+                },
+                {
+                  label: "山梨県",
+                  value: "",
+                },
+                {
+                  label: "長野県",
+                  value: "",
+                },
+                {
+                  label: "岐阜県",
+                  value: "",
+                },
+                {
+                  label: "静岡県",
+                  value: "",
+                },
+                {
+                  label: "愛知県",
+                  value: "",
+                },
+                {
+                  label: "三重県",
+                  value: "",
+                },
+                {
+                  label: "滋賀県",
+                  value: "",
+                },
+                {
+                  label: "京都府",
+                  value: "",
                 },
                 {
                   label: "大阪府",
-                  value: "大阪府",
+                  value: "",
+                },
+                {
+                  label: "兵庫県",
+                  value: "",
+                },
+                {
+                  label: "奈良県",
+                  value: "",
+                },
+                {
+                  label: "和歌山県",
+                  value: "",
+                },
+                {
+                  label: "鳥取県",
+                  value: "",
+                },
+                {
+                  label: "島根県",
+                  value: "",
+                },
+                {
+                  label: "岡山県",
+                  value: "",
+                },
+                {
+                  label: "広島県",
+                  value: "",
+                },
+                {
+                  label: "山口県",
+                  value: "",
+                },
+                {
+                  label: "徳島県",
+                  value: "",
+                },
+                {
+                  label: "香川県",
+                  value: "",
+                },
+                {
+                  label: "愛媛県",
+                  value: "",
+                },
+                {
+                  label: "高知県",
+                  value: "",
                 },
                 {
                   label: "福岡県",
-                  value: "福岡県",
+                  value: "",
+                },
+                {
+                  label: "佐賀県",
+                  value: "",
+                },
+                {
+                  label: "長崎県",
+                  value: "",
+                },
+                {
+                  label: "熊本県",
+                  value: "",
+                },
+                {
+                  label: "大分県",
+                  value: "",
+                },
+                {
+                  label: "宮崎県",
+                  value: "",
+                },
+                {
+                  label: "鹿児島県",
+                  value: "",
                 },
                 {
                   label: "沖縄県",
-                  value: "沖縄県",
+                  value: "",
                 },
               ]}
-              size="full"
             />
           </dd>
 
@@ -232,7 +434,7 @@ const pageProps: PagePropType = {
             </label>
           </dt>
           <dd>
-            <FormText id="city" name="city" size="full" />
+            <FormText id="city" name="city" size="full" placeholder="ご記入ください" />
           </dd>
 
           <dt>
@@ -241,13 +443,13 @@ const pageProps: PagePropType = {
             </label>
           </dt>
           <dd>
-            <FormText id="address" name="address" size="full" />
+            <FormText id="address" name="address" size="full" placeholder="ご記入ください" />
           </dd>
 
           <dt>当社を何で知りましたか?</dt>
           <dd>
             <FormCheckboxList
-              columnPc="2"
+              columnPc="1"
               datas={[
                 {
                   id: "source-media",
@@ -281,19 +483,28 @@ const pageProps: PagePropType = {
 
         <Text class="mt-8 md:mt-10">
           <p>
-            「<a href="DUMMY_LINK">プライバシーポリシー</a>
+            「
+            <Link>
+              <a href="DUMMY_LINK">プライバシーポリシー</a>
+            </Link>
             」をお読みになり、同意いただける場合は「同意して確認画面へ」ボタンを押して、入力内容の確認画面へ進んでください。（案件に応じて必要な文章を入力する）
           </p>
         </Text>
 
-        <div class="mt-8 md:mt-10">
-          <Button
-            as="button"
-            type="submit"
-            theme="conversion"
-            title="同意して確認画面へ"
-          />
-        </div>
+        <LayoutColumn
+          class="mt-8 md:mt-10 justify-center"
+          columnPc="auto"
+          columnSp="1"
+        >
+          <div class="LayoutColumn__segment">
+            <Button
+              as="button"
+              type="submit"
+              theme="conversion"
+              title="同意して確認画面へ"
+            />
+          </div>
+        </LayoutColumn>
       </form>
     </Section>
   </Content>

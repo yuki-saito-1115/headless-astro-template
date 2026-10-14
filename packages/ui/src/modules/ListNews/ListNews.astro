@@ -79,13 +79,12 @@ const formatDate = (date: string) =>
     :where(.ListNews__badge) {
       margin-left: calc(var(--user-spacing) * 4);
     }
-
   }
 
   @media (width >= 768px) {
     .ListNews {
       :where(a) {
-        align-items: center;
+        align-items: baseline;
         display: inline-flex;
         flex-direction: row;
         gap: calc(var(--user-spacing) * 6);

@@ -1,6 +1,7 @@
 ---
 import Button from '@packages/ui/modules/Button/Button.astro';
 import FormList from '@packages/ui/modules/FormList/FormList.astro';
+import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
@@ -60,7 +61,7 @@ const pageProps: PagePropType = {
 
       <FormList class="mt-8 md:mt-10">
         <dt>お問い合わせ内容</dt>
-        <dd>お問い合わせ内容テキスト</dd>
+        <dd>お問い合わせ内容テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</dd>
         <dt>会社名</dt>
         <dd>株式会社ミツエーリンクス</dd>
         <dt>お名前</dt>
@@ -85,11 +86,24 @@ const pageProps: PagePropType = {
         <dd>新聞や雑誌、Webマガジンなどのメディア、検索エンジン</dd>
       </FormList>
 
-      <div class="mt-8 md:mt-10">
-        <Button as="button" type="button" title="修正する" />
+      <LayoutColumn class="mt-8 md:mt-10 justify-center" columnPc="auto" columnSp="1">
+        <div class="LayoutColumn__segment">
+          <Button
+            as="button"
+            type="button"
+            title="修正する"
+          />
+        </div>
 
-        <Button as="button" type="submit" theme="conversion" title="送信する" />
-      </div>
+        <div class="LayoutColumn__segment">
+          <Button
+            as="button"
+            type="submit"
+            theme="conversion"
+            title="送信する"
+          />
+        </div>
+      </LayoutColumn>
     </Section>
   </Content>
 </PageLayout>
