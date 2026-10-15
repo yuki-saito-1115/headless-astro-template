@@ -26,13 +26,13 @@ export const Default: Story = {
     datas: [
       {
         date: '2026-10-04T15:00:00.000Z',
-        category: 'カテゴリ1',
+        category: ['カテゴリ1'],
         id: 'news-1',
         title: 'お知らせの内容を表示します。',
       },
       {
         date: '2026-10-03T15:00:00.000Z',
-        category: 'カテゴリ2',
+        category: ['カテゴリ2'],
         id: 'news-2',
         link: 'https://example.com/news/',
         title: 'お知らせの内容を表示します。',

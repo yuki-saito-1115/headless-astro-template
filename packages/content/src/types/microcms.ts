@@ -4,6 +4,85 @@
  */
 
 export interface paths {
+  '/trial': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** おためしの一覧取得 */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description おためしの一覧 */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': {
+              contents?: components['schemas']['Trial'][];
+              totalCount?: number;
+              offset?: number;
+              limit?: number;
+            };
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/trial/{content_id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** おためしの詳細取得 */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          content_id: string;
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description おためしの詳細 */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': components['schemas']['Trial'];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/news': {
     parameters: {
       query?: never;
@@ -324,6 +403,49 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
+    /** @description おためし */
+    Trial: {
+      id?: string;
+      /** Format: date-time */
+      createdAt?: string;
+      /** Format: date-time */
+      updatedAt?: string;
+      /** Format: date-time */
+      publishedAt?: string | null;
+      /** Format: date-time */
+      revisedAt?: string | null;
+      /** @description なまえ */
+      name?: string;
+      /** @description 繰り返し */
+      kurikaeshi?: (
+        | {
+            /** @enum {string} */
+            fieldId: 'custom1';
+            /** @description テキスト */
+            text?: boolean;
+          }
+        | {
+            /** @enum {string} */
+            fieldId: 'custom2';
+            /** @description テキスト */
+            text?: string;
+          }
+      )[];
+      /** @description カスタム1単体 */
+      kasutam1?: {
+        /** @enum {string} */
+        fieldId: 'custom1';
+        /** @description テキスト */
+        text?: boolean;
+      };
+      /** @description カスタム2単体 */
+      kasutam2?: {
+        /** @enum {string} */
+        fieldId: 'custom2';
+        /** @description テキスト */
+        text?: string;
+      };
+    };
     /** @description お知らせ */
     News: {
       id?: string;
@@ -339,14 +461,11 @@ export interface components {
        * Format: date-time
        * @description 日付
        */
-      date?: string;
-      /**
-       * @description カテゴリ
-       * @enum {string}
-       */
-      category?: 'カテゴリ1' | 'カテゴリ2' | 'カテゴリ3' | 'カテゴリ4';
+      date: string;
+      /** @description カテゴリ */
+      category: ('カテゴリ1' | 'カテゴリ2' | 'カテゴリ3' | 'カテゴリ4')[];
       /** @description タイトル */
-      title?: string;
+      title: string;
       /** @description 本文 */
       content?: string;
       /** @description リンク */
@@ -368,9 +487,15 @@ export interface components {
       /** @description 内容 */
       content?: string;
       /** @description アイキャッチ */
-      eyecatch?: Record<string, never>;
+      eyecatch?: {
+        /** Format: uri */
+        url: string;
+        width?: number;
+        height?: number;
+        alt?: string;
+      };
       /** @description カテゴリ */
-      category?: Record<string, never>;
+      category?: components['schemas']['Categories'];
     };
     /** @description カテゴリ */
     Categories: {
@@ -397,16 +522,14 @@ export interface components {
       publishedAt?: string | null;
       /** Format: date-time */
       revisedAt?: string | null;
-      /**
-       * @description カテゴリ
-       * @enum {string}
-       */
-      category?:
+      /** @description カテゴリ */
+      category?: (
         | 'カテゴリ1'
         | 'カテゴリ2'
         | 'カテゴリ3'
         | 'カテゴリ4'
-        | 'カテゴリ5';
+        | 'カテゴリ5'
+      )[];
       /** @description タイトル */
       title?: string;
       /** @description 内容 */

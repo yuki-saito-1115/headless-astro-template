@@ -37,8 +37,8 @@ const formatDate = (date: string) =>
       <a href={data.link || data.id}>
         <div class="ListNews__head">
           <time datetime={data.date}>{formatDate(data.date)}</time>
-          {data.category && (
-            <Badge class="ListNews__badge" title={data.category} />
+          {data.category[0] && (
+            <Badge class="ListNews__badge" title={data.category[0]} />
           )}
         </div>
         <span class="ListNews__title">{data.title}</span>

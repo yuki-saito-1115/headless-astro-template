@@ -4,6 +4,43 @@ info:
   version: 1.0.0
   description: microCMSのマネジメントAPIから生成したコンテンツAPIの定義
 paths:
+  /trial:
+    get:
+      summary: おためしの一覧取得
+      responses:
+        '200':
+          description: おためしの一覧
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contents:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Trial'
+                  totalCount:
+                    type: integer
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+  /trial/{content_id}:
+    get:
+      summary: おためしの詳細取得
+      parameters:
+        - name: content_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: おためしの詳細
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trial'
   /news:
     get:
       summary: お知らせの一覧取得
@@ -154,9 +191,9 @@ paths:
                 $ref: '#/components/schemas/Sample'
 components:
   schemas:
-    News:
+    Trial:
       type: object
-      description: お知らせ
+      description: おためし
       properties:
         id: &ref_0
           type: string
@@ -174,18 +211,88 @@ components:
           type: string
           format: date-time
           nullable: true
+        name:
+          type: string
+          description: なまえ
+        kurikaeshi:
+          type: array
+          description: 繰り返し
+          items:
+            oneOf:
+              - type: object
+                description: カスタム1
+                properties:
+                  fieldId:
+                    type: string
+                    enum:
+                      - custom1
+                  text:
+                    type: boolean
+                    description: テキスト
+                required:
+                  - fieldId
+              - type: object
+                description: カスタム2
+                properties:
+                  fieldId:
+                    type: string
+                    enum:
+                      - custom2
+                  text:
+                    type: string
+                    description: テキスト
+                required:
+                  - fieldId
+        kasutam1:
+          type: object
+          description: カスタム1単体
+          properties:
+            fieldId:
+              type: string
+              enum:
+                - custom1
+            text:
+              type: boolean
+              description: テキスト
+          required:
+            - fieldId
+        kasutam2:
+          type: object
+          description: カスタム2単体
+          properties:
+            fieldId:
+              type: string
+              enum:
+                - custom2
+            text:
+              type: string
+              description: テキスト
+          required:
+            - fieldId
+    News:
+      type: object
+      description: お知らせ
+      properties:
+        id: *ref_0
+        createdAt: *ref_1
+        updatedAt: *ref_2
+        publishedAt: *ref_3
+        revisedAt: *ref_4
         date:
           type: string
           format: date-time
           description: 日付
         category:
-          type: string
+          type: array
           description: カテゴリ
-          enum:
-            - カテゴリ1
-            - カテゴリ2
-            - カテゴリ3
-            - カテゴリ4
+          items:
+            type: string
+            description: カテゴリ
+            enum:
+              - カテゴリ1
+              - カテゴリ2
+              - カテゴリ3
+              - カテゴリ4
         title:
           type: string
           description: タイトル
@@ -195,6 +302,10 @@ components:
         link:
           type: string
           description: リンク
+      required:
+        - date
+        - category
+        - title
     Blogs:
       type: object
       description: ブログ
@@ -213,9 +324,21 @@ components:
         eyecatch:
           type: object
           description: アイキャッチ
+          properties:
+            url:
+              type: string
+              format: uri
+            width:
+              type: integer
+            height:
+              type: integer
+            alt:
+              type: string
+          required:
+            - url
         category:
-          type: object
           description: カテゴリ
+          $ref: '#/components/schemas/Categories'
     Categories:
       type: object
       description: カテゴリ
@@ -238,14 +361,17 @@ components:
         publishedAt: *ref_3
         revisedAt: *ref_4
         category:
-          type: string
+          type: array
           description: カテゴリ
-          enum:
-            - カテゴリ1
-            - カテゴリ2
-            - カテゴリ3
-            - カテゴリ4
-            - カテゴリ5
+          items:
+            type: string
+            description: カテゴリ
+            enum:
+              - カテゴリ1
+              - カテゴリ2
+              - カテゴリ3
+              - カテゴリ4
+              - カテゴリ5
         title:
           type: string
           description: タイトル
