@@ -5,14 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: WidgetRichEditorViewer,
-  tags: ['autodocs'],
   title: 'Components/Widget/WidgetRichEditorViewer',
-  parameters: {
-    controls: { sort: 'requiredFirst' },
-  },
-  argTypes: {
-    class: { table: { disable: true } },
-  },
 } satisfies Meta<Props>;
 
 export default meta;

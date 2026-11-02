@@ -4,14 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: ListFeature,
-  tags: ['autodocs'],
   title: 'Components/List/ListFeature',
-  parameters: {
-    controls: { sort: 'requiredFirst' },
-  },
-  argTypes: {
-    class: { table: { disable: true } },
-  },
 } satisfies Meta<Props>;
 
 export default meta;

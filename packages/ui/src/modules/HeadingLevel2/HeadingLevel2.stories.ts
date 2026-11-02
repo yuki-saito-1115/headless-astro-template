@@ -6,13 +6,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   component: HeadingLevel2,
   title: 'Components/Heading/HeadingLevel2',
-  tags: ['autodocs'],
-  parameters: {
-    controls: { sort: 'requiredFirst' },
-  },
-  argTypes: {
-    class: { table: { disable: true } },
-  },
 } satisfies Meta<Props>;
 
 export default meta;

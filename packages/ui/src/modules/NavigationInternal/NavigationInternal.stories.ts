@@ -5,14 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: NavigationInternal,
-  tags: ['autodocs'],
   title: 'Components/Navigation/NavigationInternal',
-  parameters: {
-    controls: { sort: 'requiredFirst' },
-  },
-  argTypes: {
-    class: { table: { disable: true } },
-  },
 } satisfies Meta<Props>;
 
 export default meta;

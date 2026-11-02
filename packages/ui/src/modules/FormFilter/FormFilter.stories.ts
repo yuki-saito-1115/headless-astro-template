@@ -11,14 +11,7 @@ const storybookComponent = (component: unknown) =>
 
 const meta = {
   component: FormFilter,
-  tags: ['autodocs'],
   title: 'Components/Form/FormFilter',
-  parameters: {
-    controls: { sort: 'requiredFirst' },
-  },
-  argTypes: {
-    class: { table: { disable: true } },
-  },
 } satisfies Meta<Props>;
 
 export default meta;

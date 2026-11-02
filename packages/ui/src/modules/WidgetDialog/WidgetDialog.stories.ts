@@ -11,14 +11,7 @@ const storybookComponent = (component: unknown) =>
 
 const meta = {
   component: WidgetDialog,
-  tags: ['autodocs'],
   title: 'Components/Widget/WidgetDialog',
-  parameters: {
-    controls: { sort: 'requiredFirst' },
-  },
-  argTypes: {
-    class: { table: { disable: true } },
-  },
 } satisfies Meta<Props>;
 
 export default meta;

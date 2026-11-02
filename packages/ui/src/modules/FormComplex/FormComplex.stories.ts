@@ -35,14 +35,7 @@ const dayOptions = [
 
 const meta = {
   component: FormComplex,
-  tags: ['autodocs'],
   title: 'Components/Form/FormComplex',
-  parameters: {
-    controls: { sort: 'requiredFirst' },
-  },
-  argTypes: {
-    class: { table: { disable: true } },
-  },
 } satisfies Meta<Props>;
 
 export default meta;

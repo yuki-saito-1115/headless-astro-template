@@ -11,14 +11,7 @@ const storybookComponent = (component: unknown) =>
 
 const meta = {
   component: PanelInformation,
-  tags: ['autodocs'],
   title: 'Components/Panel/PanelInformation',
-  parameters: {
-    controls: { sort: 'requiredFirst' },
-  },
-  argTypes: {
-    class: { table: { disable: true } },
-  },
 } satisfies Meta<Props>;
 
 export default meta;

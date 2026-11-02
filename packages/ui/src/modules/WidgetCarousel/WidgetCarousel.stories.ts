@@ -11,14 +11,7 @@ const storybookComponent = (component: unknown) =>
 
 const meta = {
   component: WidgetCarousel,
-  tags: ['autodocs'],
   title: 'Components/Widget/WidgetCarousel',
-  parameters: {
-    controls: { sort: 'requiredFirst' },
-  },
-  argTypes: {
-    class: { table: { disable: true } },
-  },
 } satisfies Meta<Props>;
 
 export default meta;

@@ -6,14 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: LayoutMedia,
-  tags: ['autodocs'],
   title: 'Components/Layout/LayoutMedia',
-  parameters: {
-    controls: { sort: 'requiredFirst' },
-  },
-  argTypes: {
-    class: { table: { disable: true } },
-  },
 } satisfies Meta<Props>;
 
 export default meta;
