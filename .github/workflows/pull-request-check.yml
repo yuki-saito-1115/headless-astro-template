@@ -32,5 +32,9 @@ jobs:
       - name: 📦 依存パッケージのインストール
         run: npm ci
 
+      # 初回実行でも、並列の型チェックより先にAstroの型を生成する。
+      - name: 🧩 Astroの型を生成
+        run: npm exec --workspaces -- astro sync
+
       - name: ✅ ルートのチェックを実行
         run: npm run check
