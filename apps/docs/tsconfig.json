@@ -3,6 +3,5 @@
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "../../.cache/docs/typescript/tsconfig.tsbuildinfo"
-  },
-  "exclude": ["_worker"]
+  }
 }
