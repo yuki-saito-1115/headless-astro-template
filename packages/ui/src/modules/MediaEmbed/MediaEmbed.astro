@@ -24,7 +24,10 @@ if (!Astro.slots.has('default')) {
   {...attrs}
 >
   {lazyLoad ? (
-    <template><slot /></template>
+    <template>
+      {/* @slot 直下ではmicroCMSのリッチエディタの [埋め込み編集](https://document.microcms.io/manual/rich-editor-usage#h8924563329) の形式のみ許容します。 */}
+      <slot />
+    </template>
   ) : (
     <slot />
   )}

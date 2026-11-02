@@ -18,6 +18,7 @@ if (!Astro.slots.has('default')) {
   class:list={['Media', className]}
   {...attrs}
 >
+  {/* @slot 直下では `figure` 要素の使用のみを許容します。 */}
   <slot />
 </div>
 

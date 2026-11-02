@@ -18,6 +18,7 @@ if (!Astro.slots.has('default')) {
   class:list={['HeadingLevel2', className]}
   {...attrs}
 >
+  {/* @slot 直下では `h1` ～ `h6` までの見出し要素または `div` 要素の使用のみを許容します。 */}
   <slot />
 </div>
 

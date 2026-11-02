@@ -63,6 +63,7 @@ const WrapElement = link ? 'a' : 'span';
   >
     {Astro.slots.has('media') && (
       <div class:list={['Card__media']}>
+        {/* @slot Mediaコンポーネントの使用のみを許容します。 */}
         <slot name="media" />
       </div>
     )}
@@ -70,6 +71,7 @@ const WrapElement = link ? 'a' : 'span';
     {title && <div class:list={['Card__title']}>{title}</div>}
 
     <div class:list={['Card__content']}>
+      {/* @slot あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
       <slot name="content" />
     </div>
 
