@@ -4,11 +4,11 @@
 
 ```
 /
-├── apps                        # Cloudflare Worker格納用ディレクトリ
-│   ├── docs                   # https://sample-docs.headless-astro-template.workers.dev/      - microCMS API仕様書（Swagger UI）
+├── apps                        # アプリケーションworkspace格納用ディレクトリ
+│   ├── docs                   # ローカル利用 - microCMS API仕様書（Swagger UI）
 │   ├── preview                # https://sample-preview.headless-astro-template.workers.dev/   - microCMS プレビュー画面
 │   ├── site                   # https://sample-main.headless-astro-template.workers.dev/      - Webサイト本体
-│   └── storybook              # https://sample-storybook.headless-astro-template.workers.dev/ - コンポーネント一覧（Storybook）
+│   └── storybook              # ローカル利用 - コンポーネント一覧（Storybook）
 │
 └── packages                    # 共有リソース・コンポーネント格納用ディレクトリ
      ├── content                # 共有画像・スタイル・スクリプト
@@ -35,10 +35,15 @@ stagingWorkerはmainWorkerに反映するための準備用環境といえる。
 
 なお、アプリケーション固有のコンポーネントやリソースディレクトリに対しては従来通りViteエイリアスを使う。
 
-### docs、storybookをWorkerに別離
+### docs、storybookをローカル環境で利用
 
-docs（microCMS API仕様書）とstorybookは従来stagingWorkerに同梱されていたが、別Workerとして分けた。\
-これにより、stagingWorkerとmainWorkerともに、純粋に本番公開に必要なファイルだけを管理できる。
+docs（microCMS API仕様書）とstorybookは独立したアプリケーションworkspaceとして、ローカル環境で利用する。
+
+* docs: `npm run dev:docs`（`http://localhost:6324`）
+* storybook: `npm run dev:storybook`（`http://localhost:4323`）
+
+ルートの`npm run dev`でも両方を起動でき、ビルドと型チェックも引き続き利用できる。\
+Cloudflareへのデプロイ対象はsiteとpreviewのアプリケーションworkspaceである。
 
 ### previewをプレビューテンプレート専用に
 
