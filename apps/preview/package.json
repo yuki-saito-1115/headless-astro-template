@@ -1,6 +1,6 @@
 {
   "name": "@headless-astro-template/preview",
-  "version": "0.1.0",
+  "version": "2026.11.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,8 +15,8 @@
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.2",
     "@astrojs/mdx": "^8.0.1",
-    "@packages/content": "0.1.0",
-    "@packages/ui": "0.1.0",
+    "@packages/content": "2026.11.0",
+    "@packages/ui": "2026.11.0",
     "astro": "^7.3.3"
   },
   "devDependencies": {

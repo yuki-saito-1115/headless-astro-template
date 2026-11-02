@@ -1,6 +1,6 @@
 {
   "name": "@headless-astro-template/storybook",
-  "version": "0.1.0",
+  "version": "2026.11.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,8 +13,8 @@
     "versions": "wrangler versions upload"
   },
   "dependencies": {
-    "@packages/content": "0.1.0",
-    "@packages/ui": "0.1.0",
+    "@packages/content": "2026.11.0",
+    "@packages/ui": "2026.11.0",
     "astro": "^7.3.3"
   },
   "devDependencies": {
