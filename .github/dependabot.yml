@@ -1,0 +1,17 @@
+version: 2
+
+updates:
+  # 各workspaceはルートのpackage-lock.jsonを共有する。
+  - package-ecosystem: npm
+    directory: /
+    target-branch: develop
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Tokyo
+    # package.jsonの指定範囲を維持し、ロックファイルだけを更新する。
+    versioning-strategy: lockfile-only
+    open-pull-requests-limit: 5
+
+# miseはDependabotの正式対応待ち。関連する検討事項はIssue #2を参照。

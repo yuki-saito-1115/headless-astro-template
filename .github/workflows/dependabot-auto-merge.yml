@@ -1,0 +1,99 @@
+name: 🤖 Dependabotのパッチ更新を自動マージ
+
+on:
+  pull_request_target:
+    branches:
+      - develop
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions: {}
+
+concurrency:
+  group: dependabot-auto-merge-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  auto-merge:
+    if: >-
+      github.repository == 'yuki-saito-1115/headless-astro-template' &&
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      # このジョブはPRのコードをチェックアウト・実行しない。
+      - name: 🔎 Dependabotの更新情報を取得
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+
+      - name: 🔒 ロックファイルだけのパッチ更新か確認
+        id: eligible
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          UPDATED_DEPENDENCIES: ${{ steps.metadata.outputs.updated-dependencies-json }}
+        run: |
+          set -euo pipefail
+
+          # 複数の依存関係を更新する場合も、すべてがパッチ更新であることを確認する。
+          if ! jq -e '
+            length > 0 and all(.[];
+              .packageEcosystem == "npm_and_yarn" and
+              .updateType == "version-update:semver-patch"
+            )
+          ' <<< "$UPDATED_DEPENDENCIES" > /dev/null; then
+            echo "自動マージ対象のnpmパッチ更新ではありません。" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          FILES="$(gh api --paginate "repos/$REPOSITORY/pulls/$PR_NUMBER/files" --jq '.[] | [.filename, .status] | @tsv')"
+          if [[ "$FILES" != $'package-lock.json\tmodified' ]]; then
+            echo "ロックファイル以外の変更を含むため、手動確認が必要です。" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          echo "eligible=true" >> "$GITHUB_OUTPUT"
+
+      - name: 🤖 必須チェック成功後の自動マージを予約
+        if: steps.eligible.outputs.eligible == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+
+          # Issue #2：非公開リポジトリのGitHub Freeでは前提設定を利用できない。
+          SETTINGS="$(gh api graphql -f query='
+            query {
+              repository(owner: "yuki-saito-1115", name: "headless-astro-template") {
+                autoMergeAllowed
+                ref(qualifiedName: "refs/heads/develop") {
+                  branchProtectionRule {
+                    requiresStatusChecks
+                    requiredStatusCheckContexts
+                  }
+                }
+              }
+            }
+          ')"
+
+          if ! jq -e '.data.repository |
+            .autoMergeAllowed == true and
+            .ref.branchProtectionRule.requiresStatusChecks == true and
+            (.ref.branchProtectionRule.requiredStatusCheckContexts | index("npm run check") != null)
+          ' <<< "$SETTINGS" > /dev/null; then
+            echo "自動マージは保留中です。Allow auto-mergeとdevelopの必須チェック（npm run check）を設定してください。" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          gh pr merge --auto --merge --match-head-commit "$HEAD_SHA" "$PR_URL"

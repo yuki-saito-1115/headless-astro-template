@@ -1,0 +1,36 @@
+name: ✅ PRチェック
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-check-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    # ブランチ保護で、この名前のチェックを必須にする。
+    name: npm run check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: 📥 ソースコードのチェックアウト
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          lfs: true
+          persist-credentials: false
+
+      - name: 🧱 miseのセットアップ（Node.js・npm）
+        uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
+
+      - name: 📦 依存パッケージのインストール
+        run: npm ci
+
+      - name: ✅ ルートのチェックを実行
+        run: npm run check
