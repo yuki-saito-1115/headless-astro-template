@@ -69,8 +69,8 @@ const WrapElement = link ? 'a' : 'span';
 
     {title && <div class:list={['Card__title']}>{title}</div>}
 
-    <div class:list={['Card__body']}>
-      <slot name="body" />
+    <div class:list={['Card__content']}>
+      <slot name="content" />
     </div>
 
     {date && <div class:list={['Card__date']}>{date}</div>}
@@ -160,7 +160,7 @@ const WrapElement = link ? 'a' : 'span';
           grid-row: 1 / span 4;
         }
 
-        :where(.Card__title, .Card__body, .Card__date) {
+        :where(.Card__title, .Card__content, .Card__date) {
           grid-column: 2;
         }
       }
@@ -173,7 +173,7 @@ const WrapElement = link ? 'a' : 'span';
           grid-row: 1 / span 4;
         }
 
-        :where(.Card__title, .Card__body, .Card__date) {
+        :where(.Card__title, .Card__content, .Card__date) {
           grid-column: 1;
         }
       }
@@ -208,7 +208,7 @@ const WrapElement = link ? 'a' : 'span';
           grid-row: 1 / span 4;
         }
 
-        :where(.Card__title, .Card__body, .Card__date) {
+        :where(.Card__title, .Card__content, .Card__date) {
           grid-column: 2;
         }
       }
@@ -221,7 +221,7 @@ const WrapElement = link ? 'a' : 'span';
           grid-row: 1 / span 4;
         }
 
-        :where(.Card__title, .Card__body, .Card__date) {
+        :where(.Card__title, .Card__content, .Card__date) {
           grid-column: 1;
         }
       }
@@ -237,7 +237,7 @@ const WrapElement = link ? 'a' : 'span';
   @media (any-hover: hover) {
     .Card__link {
       &:hover {
-        > :where(.Card__media, .Card__title, .Card__body, .Card__date) {
+        > :where(.Card__media, .Card__title, .Card__content, .Card__date) {
           opacity: 0.5;
         }
       }

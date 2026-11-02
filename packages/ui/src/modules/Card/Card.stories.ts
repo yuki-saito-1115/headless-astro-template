@@ -25,7 +25,7 @@ export const Default: Story = {
     title: 'タイトルタイトルタイトル',
     date: '2026-09-25 08:30',
     slots: {
-      body: {
+      content: {
         component: Text,
         slots: {
           default:
@@ -48,7 +48,7 @@ export const Headless: Story = {
   args: {
     date: '2026-09-25 08:30',
     slots: {
-      body: {
+      content: {
         component: Text,
         slots: {
           default:
@@ -72,7 +72,7 @@ export const Outline: Story = {
     date: '2026-09-25 08:30',
     outline: true,
     slots: {
-      body: {
+      content: {
         component: Text,
         slots: {
           default:
@@ -100,7 +100,7 @@ export const Link: Story = {
       href: '#',
     },
     slots: {
-      body: {
+      content: {
         component: Text,
         slots: {
           default:
@@ -125,7 +125,7 @@ export const DirectColumnReverse: Story = {
     directSp: 'column-reverse',
     directPc: 'column-reverse',
     slots: {
-      body: {
+      content: {
         component: Text,
         slots: {
           default:
@@ -150,7 +150,7 @@ export const DirectRow: Story = {
     directSp: 'row',
     directPc: 'row',
     slots: {
-      body: {
+      content: {
         component: Text,
         slots: {
           default:
@@ -175,7 +175,7 @@ export const DirectRowReverse: Story = {
     directSp: 'row-reverse',
     directPc: 'row-reverse',
     slots: {
-      body: {
+      content: {
         component: Text,
         slots: {
           default:
@@ -199,7 +199,7 @@ export const ThemeCaution: Story = {
     date: '2026-09-25 08:30',
     theme: 'caution',
     slots: {
-      body: {
+      content: {
         component: Text,
         slots: {
           default:
@@ -223,7 +223,7 @@ export const ThemeWarning: Story = {
     date: '2026-09-25 08:30',
     theme: 'warning',
     slots: {
-      body: {
+      content: {
         component: Text,
         slots: {
           default:
