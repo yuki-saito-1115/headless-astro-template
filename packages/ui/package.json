@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@storybook-astro/renderer": "^1.12.0",
+    "@storybook-astro/renderer": "^1.15.0",
     "@storybook/react": "^10.6.0"
   }
 }
