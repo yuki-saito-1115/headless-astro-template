@@ -1,4 +1,9 @@
 {
+  "include": [
+    "worker-configuration.d.ts",
+    "_worker/**/*.ts",
+    "../../packages/content/src/scripts/runtime/basic-auth.ts"
+  ],
   "compilerOptions": {
     "lib": [
       "ES2024",
@@ -10,10 +15,5 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ES2024"
-  },
-  "include": [
-    "worker-configuration.d.ts",
-    "_worker/**/*.ts",
-    "../../packages/content/src/scripts/runtime/basic-auth.ts"
-  ]
+  }
 }

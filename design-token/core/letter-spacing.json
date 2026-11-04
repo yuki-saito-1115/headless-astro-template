@@ -1,14 +1,14 @@
 {
   "tracking": {
     "$type": "dimension",
-    "normal": {
-      "$value": "0em"
+    "tighter": {
+      "$value": "-0.05em"
     },
     "tight": {
       "$value": "-0.025em"
     },
-    "tighter": {
-      "$value": "-0.05em"
+    "normal": {
+      "$value": "0em"
     },
     "wide": {
       "$value": "0.025em"

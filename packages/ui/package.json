@@ -1,4 +1,11 @@
 {
+  "name": "@packages/ui",
+  "version": "2026.11.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "astro check"
+  },
   "dependencies": {
     "@packages/content": "2026.11.0",
     "astro": "^7.3.3"
@@ -12,12 +19,5 @@
     "./microCMS/*": "./src/microCMS/*",
     "./modules/*": "./src/modules/*",
     "./structures/*": "./src/structures/*"
-  },
-  "name": "@packages/ui",
-  "private": true,
-  "scripts": {
-    "check": "astro check"
-  },
-  "type": "module",
-  "version": "2026.11.0"
+  }
 }

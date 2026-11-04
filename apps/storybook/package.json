@@ -1,4 +1,14 @@
 {
+  "name": "@headless-astro-template/storybook",
+  "version": "2026.11.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "storybook build",
+    "check": "npm run check:type",
+    "check:type": "tsc --noEmit",
+    "dev": "storybook dev --port 4323"
+  },
   "dependencies": {
     "@packages/content": "2026.11.0",
     "@packages/ui": "2026.11.0",
@@ -13,15 +23,5 @@
     "storybook": "^10.6.0",
     "typescript": "^5.9.3",
     "vite": "^8.3.1"
-  },
-  "name": "@headless-astro-template/storybook",
-  "private": true,
-  "scripts": {
-    "build": "storybook build",
-    "check": "npm run check:type",
-    "check:type": "tsc --noEmit",
-    "dev": "storybook dev --port 4323"
-  },
-  "type": "module",
-  "version": "2026.11.0"
+  }
 }

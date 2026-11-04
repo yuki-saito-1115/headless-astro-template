@@ -2,36 +2,35 @@ import { fileURLToPath } from 'node:url';
 
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
+import { checkTailwindDirective } from '@packages/content/plugins/vite/check-tailwind-directive';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField } from 'astro/config';
-
-import { checkTailwindDirective } from '@packages/content/plugins/vite/check-tailwind-directive';
 
 // 設定ファイルを基準に相対パスを絶対ファイルパスへ変換する。
 const resolvePath = (path) => fileURLToPath(new URL(path, import.meta.url));
 
 export default defineConfig({
+  output: 'server',
   adapter: cloudflare(),
+  integrations: [
+    mdx(),
+  ],
+  publicDir: resolvePath('../../public'),
   devToolbar: {
     enabled: false,
   },
   env: {
     schema: {
-      MICROCMS_API_KEY: envField.string({
-        access: 'secret',
-        context: 'server',
-      }),
       MICROCMS_SERVICE_DOMAIN: envField.string({
-        access: 'secret',
         context: 'server',
+        access: 'secret',
+      }),
+      MICROCMS_API_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
       }),
     },
   },
-  integrations: [
-    mdx(),
-  ],
-  output: 'server',
-  publicDir: resolvePath('../../public'),
   vite: {
     cacheDir: resolvePath('../../.cache/preview/vite'),
     plugins: [
@@ -47,8 +46,8 @@ export default defineConfig({
       alias: {
         '@preview/components': resolvePath('./src/components'),
         '@preview/modules': resolvePath('./src/components/modules'),
-        '@preview/scripts': resolvePath('./src/scripts'),
         '@preview/structures': resolvePath('./src/components/structures'),
+        '@preview/scripts': resolvePath('./src/scripts'),
         '@preview/styles': resolvePath('./src/styles'),
       },
     },

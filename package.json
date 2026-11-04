@@ -1,23 +1,12 @@
 {
-  "allowScripts": {
-    "esbuild@0.28.2": true,
-    "workerd@1.20261101.1": true
-  },
-  "devDependencies": {
-    "@astrojs/ts-plugin": "^1.10.12",
-    "@biomejs/biome": "^2.6.4",
-    "@markuplint/astro-parser": "^5.0.0",
-    "chokidar-cli": "^3.0.0",
-    "js-yaml": "^5.4.2",
-    "lint-staged": "^17.5.1",
-    "markuplint": "^5.0.0",
-    "npm-run-all2": "^9.0.3",
-    "openapi-typescript": "^7.13.0",
-    "style-dictionary": "^5.5.4",
-    "typescript": "^5.9.3"
-  },
   "name": "headless-astro-template",
+  "version": "2026.11.0",
   "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "npm run build:design-token && npm run build:openapi && run-p -l -c build:site build:preview build:storybook build:docs",
     "build:design-token": "style-dictionary build --config design-token/config.js",
@@ -56,10 +45,21 @@
     "versions:preview": "npm run versions --workspace @headless-astro-template/preview",
     "versions:site": "npm run versions --workspace @headless-astro-template/site"
   },
-  "type": "module",
-  "version": "2026.11.0",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  "devDependencies": {
+    "@astrojs/ts-plugin": "^1.10.12",
+    "@biomejs/biome": "^2.6.4",
+    "@markuplint/astro-parser": "^5.0.0",
+    "chokidar-cli": "^3.0.0",
+    "js-yaml": "^5.4.2",
+    "lint-staged": "^17.5.1",
+    "markuplint": "^5.0.0",
+    "npm-run-all2": "^9.0.3",
+    "openapi-typescript": "^7.13.0",
+    "style-dictionary": "^5.5.4",
+    "typescript": "^5.9.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "workerd@1.20261101.1": true
+  }
 }

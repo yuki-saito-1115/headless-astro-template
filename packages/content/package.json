@@ -1,4 +1,11 @@
 {
+  "name": "@packages/content",
+  "version": "2026.11.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit"
+  },
   "dependencies": {
     "astro": "^7.3.3",
     "microcms-js-sdk": "^3.5.1",
@@ -19,12 +26,5 @@
     "./runtime/libraries/swiper/types": "./src/scripts/runtime/libraries/swiper/types/public.d.ts",
     "./styles/*": "./src/styles/*",
     "./types/*": "./src/types/*.ts"
-  },
-  "name": "@packages/content",
-  "private": true,
-  "scripts": {
-    "check": "tsc --noEmit"
-  },
-  "type": "module",
-  "version": "2026.11.0"
+  }
 }
