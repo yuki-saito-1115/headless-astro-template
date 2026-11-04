@@ -1,13 +1,13 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import Link from '@packages/ui/modules/Link/Link.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import type { Props } from '@packages/ui/modules/WidgetDialog/WidgetDialog.astro';
 import WidgetDialog from '@packages/ui/modules/WidgetDialog/WidgetDialog.astro';
-import type { Meta, StoryObj } from '@storybook/react';
-import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
 
-const storybookComponent = (component: unknown) =>
-  component as AstroComponentFactory;
+const storybookComponent = (component: unknown) => component as AstroComponentFactory;
 
 const meta = {
   component: WidgetDialog,
@@ -24,8 +24,8 @@ type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
-    id: 'widget-dialog-story',
     heading: 'ダイアログの見出し',
+    id: 'widget-dialog-story',
     slots: {
       default: [
         {

@@ -2,8 +2,7 @@ const focusableElement = `[href], input:not([type="hidden"]), select, textarea, 
 
 const mediaQueries = (() => {
   const root = getComputedStyle(document.documentElement);
-  const breakpoint = (name: string) =>
-    root.getPropertyValue(`--breakpoint-${name}`).trim();
+  const breakpoint = (name: string) => root.getPropertyValue(`--breakpoint-${name}`).trim();
 
   return {
     get major() {

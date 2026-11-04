@@ -5,22 +5,18 @@ import type { HTMLAttributes } from 'astro/types';
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
 export interface Props extends HTMLAttributes<'nav'> {
-  /** SP幅時のリンクの並び方向を設定します。 */
-  directSp?: 'row' | 'column';
-  /** PC幅時のリンクの並び方向を設定します。 */
-  directPc?: 'row' | 'column';
   /** 表示するリンクの属性を設定します。`title`はリンクテキストとして表示され、title属性には出力されません。 */
   datas: HTMLAttributes<'a'>[];
+  /** PC幅時のリンクの並び方向を設定します。 */
+  directPc?: 'row' | 'column';
+  /** SP幅時のリンクの並び方向を設定します。 */
+  directSp?: 'row' | 'column';
 }
 
-const {
-  directSp = 'row',
-  directPc = 'row',
-  datas,
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { directSp = 'row', directPc = 'row', datas, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <nav
@@ -32,11 +28,21 @@ const attrs: Record<string, unknown> = { ...rest };
   ]}
   {...attrs}
 >
-  <ul class:list={['NavigationInternal__list']}>
+  <ul
+    class:list={[
+      'NavigationInternal__list',
+    ]}
+  >
     {datas.map(({ title, ...linkAttrs }) => (
-      <li class:list={['NavigationInternal__item']}>
+      <li
+        class:list={[
+          'NavigationInternal__item',
+        ]}
+      >
         <a
-          class:list={['NavigationInternal__link']}
+          class:list={[
+            'NavigationInternal__link',
+          ]}
           {...linkAttrs}
         >
           {title}
@@ -45,7 +51,6 @@ const attrs: Record<string, unknown> = { ...rest };
     ))}
   </ul>
 </nav>
-
 
 <style>
   .NavigationInternal {
@@ -56,25 +61,25 @@ const attrs: Record<string, unknown> = { ...rest };
     }
 
     :where(.NavigationInternal__item) {
+      position: relative;
       flex: 0 0 auto;
-      line-height: var(--user-line-height);
-      list-style: none;
       max-width: 100%;
       padding-left: 1.25em;
-      position: relative;
+      line-height: var(--user-line-height);
+      list-style: none;
 
       &::before {
-        background-color: var(--user-color-primary);
-        content: '';
-        display: block;
-        height: 0.75em;
+        position: absolute;
+        top: 0.3em;
         left: 0;
+        display: block;
+        width: 0.75em;
+        height: 0.75em;
+        content: '';
+        background-color: var(--user-color-primary);
         mask-image: url('/assets/images/icons/angle-down.svg');
         mask-repeat: no-repeat;
         mask-size: cover;
-        position: absolute;
-        top: 0.3em;
-        width: 0.75em;
       }
     }
 

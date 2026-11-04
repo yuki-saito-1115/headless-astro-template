@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/LinkList/LinkList.astro';
 import LinkList from '@packages/ui/modules/LinkList/LinkList.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: LinkList,
@@ -22,20 +23,20 @@ export const Default: Story = {
     columnSp: '1',
     datas: [
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
     ],
   },
@@ -47,20 +48,20 @@ export const Column2: Story = {
     columnSp: '1',
     datas: [
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
     ],
   },
@@ -72,20 +73,20 @@ export const Column3: Story = {
     columnSp: '2',
     datas: [
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
     ],
   },
@@ -97,20 +98,20 @@ export const Column4: Story = {
     columnSp: '2',
     datas: [
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
       {
-        title: 'Lorem ipsum dolor sit amet',
         href: 'DUMMY_LINK',
+        title: 'Lorem ipsum dolor sit amet',
       },
     ],
   },
@@ -122,20 +123,20 @@ export const ColumnAuto: Story = {
     columnSp: 'auto',
     datas: [
       {
+        href: 'DUMMY_LINK',
         title: 'Lorem ipsum',
-        href: 'DUMMY_LINK',
       },
       {
+        href: 'DUMMY_LINK',
         title: 'Lorem ipsum dolor sit amet',
-        href: 'DUMMY_LINK',
       },
       {
+        href: 'DUMMY_LINK',
         title: 'Lorem ipsum dolor',
-        href: 'DUMMY_LINK',
       },
       {
-        title: 'Lorem',
         href: 'DUMMY_LINK',
+        title: 'Lorem',
       },
     ],
   },

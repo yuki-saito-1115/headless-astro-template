@@ -1,18 +1,4 @@
 {
-  "name": "@headless-astro-template/site",
-  "version": "2026.11.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "astro dev --port 4321 --open",
-    "build": "astro build",
-    "check": "run-p -l -c check:*",
-    "check:astro": "astro check",
-    "check:type": "tsc --noEmit",
-    "check:worker": "tsc --noEmit --project tsconfig.worker.json",
-    "deploy": "wrangler deploy",
-    "versions": "wrangler versions upload"
-  },
   "dependencies": {
     "@astrojs/mdx": "^8.0.1",
     "@astrojs/sitemap": "^3.7.4",
@@ -26,5 +12,19 @@
     "npm-run-all2": "^9.0.3",
     "typescript": "^5.9.3",
     "wrangler": "^4.133.0"
-  }
+  },
+  "name": "@headless-astro-template/site",
+  "private": true,
+  "scripts": {
+    "build": "astro build",
+    "check": "run-p -l -c check:*",
+    "check:astro": "astro check",
+    "check:type": "tsc --noEmit",
+    "check:worker": "tsc --noEmit --project tsconfig.worker.json",
+    "deploy": "wrangler deploy",
+    "dev": "astro dev --port 4321 --open",
+    "versions": "wrangler versions upload"
+  },
+  "type": "module",
+  "version": "2026.11.0"
 }

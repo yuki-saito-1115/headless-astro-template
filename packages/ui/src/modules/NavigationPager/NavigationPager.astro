@@ -5,19 +5,25 @@ import type { HTMLAttributes } from 'astro/types';
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
 export interface Props extends HTMLAttributes<'nav'> {
+  /** 1ページ目のURLを設定します。 */
+  baseUrl: string;
   /** 現在のページ番号を設定します。 */
   current: number;
   /** 総ページ数を設定します。 */
   total: number;
-  /** 1ページ目のURLを設定します。 */
-  baseUrl: string;
 }
 
 const { current, total, baseUrl, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
-const setHref = (page: number) =>
-  page === 1 ? baseUrl : `${baseUrl}/page/${page}.html`;
-const pages = Array.from({ length: total }, (_, index) => index + 1);
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
+const setHref = (page: number) => (page === 1 ? baseUrl : `${baseUrl}/page/${page}.html`);
+const pages = Array.from(
+  {
+    length: total,
+  },
+  (_, index) => index + 1,
+);
 const hasPrevPage = current > 1;
 const hasNextPage = current < total;
 ---
@@ -29,9 +35,17 @@ const hasNextPage = current < total;
   ]}
   {...attrs}
 >
-  <ul class:list={['NavigationPager__list']}>
+  <ul
+    class:list={[
+      'NavigationPager__list',
+    ]}
+  >
     {hasPrevPage && (
-      <li class:list={['NavigationPager__item']}>
+      <li
+        class:list={[
+          'NavigationPager__item',
+        ]}
+      >
         <a
           class:list={[
             'NavigationPager__link',
@@ -52,10 +66,18 @@ const hasNextPage = current < total;
         ]}
       >
         {page === current ? (
-          <span class:list={['NavigationPager__current']}>{page}</span>
+          <span
+            class:list={[
+              'NavigationPager__current',
+            ]}
+          >
+            {page}
+          </span>
         ) : (
           <a
-            class:list={['NavigationPager__link']}
+            class:list={[
+              'NavigationPager__link',
+            ]}
             href={setHref(page)}
           >
             {page}
@@ -65,7 +87,11 @@ const hasNextPage = current < total;
     ))}
 
     {hasNextPage && (
-      <li class:list={['NavigationPager__item']}>
+      <li
+        class:list={[
+          'NavigationPager__item',
+        ]}
+      >
         <a
           class:list={[
             'NavigationPager__link',
@@ -79,7 +105,6 @@ const hasNextPage = current < total;
     )}
   </ul>
 </nav>
-
 
 <style>
   .NavigationPager {
@@ -104,42 +129,42 @@ const hasNextPage = current < total;
     }
 
     :where(.NavigationPager__link, .NavigationPager__current) {
-      align-items: center;
-      background-color: var(--user-color-background-light);
-      border: 1px solid var(--user-color-primary);
-      color: var(--user-color-primary);
       display: flex;
-      height: 40px;
+      align-items: center;
       justify-content: center;
       min-width: 40px;
+      height: 40px;
       padding: calc(var(--user-spacing) * 2);
+      color: var(--user-color-primary);
       text-decoration: none;
+      background-color: var(--user-color-background-light);
+      border: 1px solid var(--user-color-primary);
     }
 
     :where(.NavigationPager__current) {
-      background-color: var(--user-color-primary);
       color: var(--user-color-foreground-light);
+      background-color: var(--user-color-primary);
     }
 
     :where(.NavigationPager__link--previous, .NavigationPager__link--next) {
-      overflow: hidden;
-      padding: 0;
       position: relative;
+      width: 40px;
+      padding: 0;
+      overflow: hidden;
       text-indent: 100%;
       white-space: nowrap;
-      width: 40px;
 
       &::before {
-        background-color: currentColor;
-        content: '';
-        height: 100%;
-        left: 0;
-        mask-position: center;
-        mask-repeat: no-repeat;
-        mask-size: 40%;
         position: absolute;
         top: 0;
+        left: 0;
         width: 100%;
+        height: 100%;
+        content: '';
+        background-color: currentColor;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: 40%;
       }
     }
 
@@ -168,8 +193,8 @@ const hasNextPage = current < total;
     .NavigationPager {
       :where(.NavigationPager__link) {
         &:hover {
-          background-color: var(--user-color-primary);
           color: var(--user-color-foreground-light);
+          background-color: var(--user-color-primary);
         }
       }
     }

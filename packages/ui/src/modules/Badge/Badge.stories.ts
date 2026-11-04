@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/Badge/Badge.astro';
 import Badge from '@packages/ui/modules/Badge/Badge.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: Badge,
@@ -36,42 +37,42 @@ export const LinkElement: Story<'a'> = {
 export const ButtonElement: Story<'button'> = {
   args: {
     as: 'button',
-    type: 'button',
     title: 'Lorem ipsum',
+    type: 'button',
   },
 };
 
 export const Outline: Story = {
   args: {
-    title: 'Lorem ipsum',
     outline: true,
+    title: 'Lorem ipsum',
   },
 };
 
 export const ThemeCaution: Story = {
   args: {
-    title: 'Lorem ipsum',
     theme: 'caution',
+    title: 'Lorem ipsum',
   },
 };
 
 export const ThemeWarning: Story = {
   args: {
-    title: 'Lorem ipsum',
     theme: 'warning',
+    title: 'Lorem ipsum',
   },
 };
 
 export const ShapeRounded: Story = {
   args: {
-    title: 'Lorem ipsum',
     shape: 'rounded',
+    title: 'Lorem ipsum',
   },
 };
 
 export const ShapePill: Story = {
   args: {
-    title: 'Lorem ipsum',
     shape: 'pill',
+    title: 'Lorem ipsum',
   },
 };

@@ -1,9 +1,14 @@
 {
-  "include": [".storybook/**/*.ts"],
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "../../.cache/storybook/typescript/tsconfig.tsbuildinfo",
-    "types": ["astro/client", "@storybook-astro/framework/shim"]
-  }
+    "types": [
+      "astro/client",
+      "@storybook-astro/framework/shim"
+    ]
+  },
+  "extends": "../../tsconfig.json",
+  "include": [
+    ".storybook/**/*.ts"
+  ]
 }

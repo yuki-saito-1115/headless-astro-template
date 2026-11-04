@@ -15,13 +15,15 @@ export interface Props extends HTMLAttributes<'dl'> {
 }
 
 const { datas, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <dl
   class:list={[
     'ListQuestion',
-    className
+    className,
   ]}
   {...attrs}
 >
@@ -39,7 +41,6 @@ const attrs: Record<string, unknown> = { ...rest };
   ))}
 </dl>
 
-
 <style>
   .ListQuestion {
     display: flex;
@@ -47,9 +48,9 @@ const attrs: Record<string, unknown> = { ...rest };
     gap: calc(var(--user-spacing) * 6);
 
     :where(dt, dd) {
-      align-items: baseline;
       display: flex;
       gap: calc(var(--user-spacing) * 2);
+      align-items: baseline;
     }
 
     :where(.ListQuestion__text) {
@@ -70,8 +71,8 @@ const attrs: Record<string, unknown> = { ...rest };
     }
 
     :where(dd) {
-      margin-top: calc(var(--user-spacing) * 4);
       padding-left: calc(var(--user-spacing) * 9);
+      margin-top: calc(var(--user-spacing) * 4);
 
       :where(.ListQuestion__mark) {
         background-color: var(--user-color-danger-dark);
@@ -84,17 +85,17 @@ const attrs: Record<string, unknown> = { ...rest };
 
     :where(.ListQuestion__mark) {
       flex: 0 0 calc(var(--user-spacing) * 8);
-      font-size: 0;
+      width: calc(var(--user-spacing) * 8);
       height: calc(var(--user-spacing) * 8);
       overflow: hidden;
+      font-size: 0;
       text-align: center;
-      width: calc(var(--user-spacing) * 8);
 
       &::first-letter {
-        color: var(--user-color-foreground-light);
         font-family: var(--user-font-family-en);
         font-size: var(--user-font-size-base);
         line-height: calc(var(--user-spacing) * 8);
+        color: var(--user-color-foreground-light);
       }
     }
   }
@@ -119,8 +120,8 @@ const attrs: Record<string, unknown> = { ...rest };
 
       :where(.ListQuestion__mark) {
         flex-basis: calc(var(--user-spacing) * 10);
-        height: calc(var(--user-spacing) * 10);
         width: calc(var(--user-spacing) * 10);
+        height: calc(var(--user-spacing) * 10);
 
         &::first-letter {
           font-size: var(--text-xl);

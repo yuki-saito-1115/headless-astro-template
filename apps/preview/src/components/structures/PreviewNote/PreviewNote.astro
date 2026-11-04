@@ -7,28 +7,30 @@ const { class: className, ...rest } = Astro.props as Props;
 ---
 
 <div
-  class:list={['PreviewNote', className]}
+  class:list={[
+    'PreviewNote',
+    className,
+  ]}
   {...rest}
 >
   <p><strong>このページはmicroCMSのプレビュー専用画面です</strong></p>
 </div>
 
-
 <style>
   .PreviewNote {
-    background-color: var(--color-rose-500);
-    display: grid;
-    gap: 0 var(--user-outside-gutter-sp);
-    grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
-    grid-area: previewNote;
-    padding: calc(var(--spacing) * 5) 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    display: grid;
+    grid-area: previewNote;
+    grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+    gap: 0 var(--user-outside-gutter-sp);
+    padding: calc(var(--spacing) * 5) 0;
+    background-color: var(--color-rose-500);
 
     :where(p) {
-      color: var(--color-white);
       grid-column: 2 / 3;
+      color: var(--color-white);
       text-align: center;
     }
   }

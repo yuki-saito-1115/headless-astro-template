@@ -11,10 +11,10 @@ declare global {
 
 const unauthorized = () =>
   new Response('認証が必要です。', {
-    status: 401,
     headers: {
       'WWW-Authenticate': 'Basic realm="Login Required", charset="UTF-8"',
     },
+    status: 401,
   });
 
 const malformedAuthorization = () =>
@@ -35,10 +35,7 @@ const stringsEqual = (first: string, second: string) => {
   return difference === 0;
 };
 
-export const verifyBasicAuth = (
-  request: Request,
-  env: BasicAuthEnv,
-): Response | undefined => {
+export const verifyBasicAuth = (request: Request, env: BasicAuthEnv): Response | undefined => {
   const authorization = request.headers.get('Authorization');
   if (!authorization) {
     return unauthorized();
@@ -58,12 +55,7 @@ export const verifyBasicAuth = (
 
     const user = decoded.slice(0, separator);
     const pass = decoded.slice(separator + 1);
-    if (
-      !user ||
-      !pass ||
-      !env.CLOUDFLARE_BASIC_USER ||
-      !env.CLOUDFLARE_BASIC_PASS
-    ) {
+    if (!user || !pass || !env.CLOUDFLARE_BASIC_USER || !env.CLOUDFLARE_BASIC_PASS) {
       return unauthorized();
     }
 

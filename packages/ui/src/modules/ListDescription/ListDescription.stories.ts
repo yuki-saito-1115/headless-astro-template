@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/ListDescription/ListDescription.astro';
 import ListDescription from '@packages/ui/modules/ListDescription/ListDescription.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: ListDescription,
@@ -31,8 +32,8 @@ export const Column: Story = {
 
 export const Row: Story = {
   args: {
-    directSp: 'row',
     directPc: 'row',
+    directSp: 'row',
     slots: {
       default: `<dl>
   <dt>項目</dt>
@@ -46,8 +47,8 @@ export const Row: Story = {
 
 export const Inline: Story = {
   args: {
-    directSp: 'inline',
     directPc: 'inline',
+    directSp: 'inline',
     slots: {
       default: `<dl>
   <dt>項目</dt>

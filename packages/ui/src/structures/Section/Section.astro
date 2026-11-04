@@ -6,13 +6,10 @@ export interface Props extends HTMLAttributes<'section'> {
   theme?: 'dark' | 'light';
 }
 
-const {
-  theme = 'light',
-  size = 'large',
-  class: className,
-  ...rest
-} = Astro.props as Props;
-const classList = ['Section'];
+const { theme = 'light', size = 'large', class: className, ...rest } = Astro.props as Props;
+const classList = [
+  'Section',
+];
 const slotHtml = await Astro.slots.render('default');
 let mergedClass = '';
 
@@ -28,17 +25,25 @@ mergedClass = classList.join(' ');
 ---
 
 <section
-  class:list={[mergedClass, className ]}
+  class:list={[
+    mergedClass,
+    className,
+  ]}
   {...rest}
 >
-  {slotHtml && <div class="Section__inner" set:html={slotHtml} />}
+  {slotHtml && (
+    <div
+      class="Section__inner"
+      set:html={slotHtml}
+    />
+  )}
 </section>
 
 <style>
   .Section {
     display: grid;
-    gap: 0 var(--user-outside-gutter-sp);
     grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+    gap: 0 var(--user-outside-gutter-sp);
 
     &:is(.theme-dark) {
       background-color: var(--color-gray-100);

@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/FormCalendar/FormCalendar.astro';
 import FormCalendar from '@packages/ui/modules/FormCalendar/FormCalendar.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: FormCalendar,

@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/List/List.astro';
 import List from '@packages/ui/modules/List/List.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: List,
@@ -58,7 +59,6 @@ export const ManualNumbered: Story = {
 
 export const Note: Story = {
   args: {
-    theme: 'note',
     slots: {
       default: `<ul>
 <li>Lorem ipsum dolor sit amet</li>
@@ -67,12 +67,12 @@ export const Note: Story = {
 <li>Lorem ipsum dolor sit amet</li>
 </ul>`,
     },
+    theme: 'note',
   },
 };
 
 export const NumberedNote: Story = {
   args: {
-    theme: 'note',
     slots: {
       default: `<ol>
 <li>Lorem ipsum dolor sit amet</li>
@@ -81,12 +81,12 @@ export const NumberedNote: Story = {
 <li>Lorem ipsum dolor sit amet</li>
 </ol>`,
     },
+    theme: 'note',
   },
 };
 
 export const ManualNumberdNote: Story = {
   args: {
-    theme: 'note',
     slots: {
       default: `<ol>
 <li>Lorem ipsum dolor sit amet</li>
@@ -94,6 +94,7 @@ export const ManualNumberdNote: Story = {
 <li value="88">Lorem ipsum dolor sit amet</li>
 </ol>`,
     },
+    theme: 'note',
   },
 };
 

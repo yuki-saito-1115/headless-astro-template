@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/HeadingLevel4/HeadingLevel4.astro';
 import HeadingLevel4 from '@packages/ui/modules/HeadingLevel4/HeadingLevel4.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: HeadingLevel4,

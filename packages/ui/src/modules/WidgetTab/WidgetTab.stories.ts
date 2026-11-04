@@ -1,12 +1,12 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import type { Props } from '@packages/ui/modules/WidgetTab/WidgetTab.astro';
 import WidgetTab from '@packages/ui/modules/WidgetTab/WidgetTab.astro';
-import type { Meta, StoryObj } from '@storybook/react';
-import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
 
-const storybookComponent = (component: unknown) =>
-  component as AstroComponentFactory;
+const storybookComponent = (component: unknown) => component as AstroComponentFactory;
 
 const meta = {
   component: WidgetTab,
@@ -23,12 +23,21 @@ type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
-    id: 'tab-sample',
     datas: [
-      { title: 'タブ1', slot: 'tab1' },
-      { title: 'タブ2', slot: 'tab2' },
-      { title: 'タブ3', slot: 'tab3' },
+      {
+        slot: 'tab1',
+        title: 'タブ1',
+      },
+      {
+        slot: 'tab2',
+        title: 'タブ2',
+      },
+      {
+        slot: 'tab3',
+        title: 'タブ3',
+      },
     ],
+    id: 'tab-sample',
     slots: {
       tab1: {
         component: storybookComponent(Text),

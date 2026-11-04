@@ -7,7 +7,9 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('TextLead: slotの中身が空です。');
@@ -17,22 +19,21 @@ if (!Astro.slots.has('default')) {
 <div
   class:list={[
     'TextLead',
-    className
+    className,
   ]}
   {...attrs}
 >
   <slot />
 </div>
 
-
 <style>
   .TextLead {
-    font-size: var(--text-lg);
-    font-weight: var(--user-font-weight-bold);
-    line-height: var(--user-line-height);
     display: flex;
     flex-direction: column;
     gap: calc(var(--user-spacing) * 4);
+    font-size: var(--text-lg);
+    font-weight: var(--user-font-weight-bold);
+    line-height: var(--user-line-height);
 
     :where(div, p) {
       flex: 0 0 auto;

@@ -1,7 +1,8 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
 import type { Props as FormRadioProps } from '@packages/ui/modules/FormRadio/FormRadio.astro';
 import FormRadio from '@packages/ui/modules/FormRadio/FormRadio.astro';
-import type { HTMLAttributes } from 'astro/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
@@ -15,14 +16,10 @@ export interface Props extends HTMLAttributes<'div'> {
   datas: FormRadioProps[];
 }
 
-const {
-  columnPc = '1',
-  columnSp = '1',
-  datas,
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { columnPc = '1', columnSp = '1', datas, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <div

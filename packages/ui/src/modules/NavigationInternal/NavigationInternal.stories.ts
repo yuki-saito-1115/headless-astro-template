@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/NavigationInternal/NavigationInternal.astro';
 import NavigationInternal from '@packages/ui/modules/NavigationInternal/NavigationInternal.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: NavigationInternal,
@@ -37,8 +38,6 @@ export const Default: Story = {
 
 export const Column: Story = {
   args: {
-    directSp: 'column',
-    directPc: 'column',
     datas: [
       {
         href: '#section-1',
@@ -53,5 +52,7 @@ export const Column: Story = {
         title: 'セクション3',
       },
     ],
+    directPc: 'column',
+    directSp: 'column',
   },
 };

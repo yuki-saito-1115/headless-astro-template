@@ -1,5 +1,4 @@
 {
-  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "ignoreDeprecations": "5.0",
     "plugins": [
@@ -7,5 +6,6 @@
         "name": "@astrojs/ts-plugin"
       }
     ]
-  }
+  },
+  "extends": "astro/tsconfigs/base"
 }

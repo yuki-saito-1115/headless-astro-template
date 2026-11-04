@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES2024",
-    "lib": ["ES2024", "WebWorker"],
+    "lib": [
+      "ES2024",
+      "WebWorker"
+    ],
     "module": "ES2022",
     "moduleResolution": "bundler",
-    "strict": true,
+    "noEmit": true,
     "skipLibCheck": true,
-    "noEmit": true
+    "strict": true,
+    "target": "ES2024"
   },
   "include": [
     "worker-configuration.d.ts",

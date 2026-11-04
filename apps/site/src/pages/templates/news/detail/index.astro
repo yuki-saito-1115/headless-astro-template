@@ -8,21 +8,22 @@ import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
 const breadcrumb = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
-    name: 'テンプレート一覧',
     item: '/templates/',
+    name: 'テンプレート一覧',
   },
   {
-    name: 'ニュースリリース',
     item: '/templates/news/',
+    name: 'ニュースリリース',
   },
   {
     name: 'お知らせ・ニュース（詳細）',
@@ -39,17 +40,17 @@ const pageProps: PagePropType = {
   <MainVisual title="「〇〇〇〇〇〇〇〇」を1月1日に発売">
     <picture slot="media">
       <source
+        height="500"
         media="(min-width: 768px)"
         srcset="/templates/news/images/detail-mainVisual_pc.webp"
         type="image/webp"
         width="1440"
-        height="500"
       />
       <img
+        alt=""
+        height="130"
         src="/templates/news/images/detail-mainVisual_sp.webp"
         width="375"
-        height="130"
-        alt=""
       />
     </picture>
   </MainVisual>
@@ -64,32 +65,38 @@ const pageProps: PagePropType = {
       </Text>
 
       <Text class="mt-8 md:mt-10">
-        <p>説明テキストが入りますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>
+          説明テキストが入りますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
       </Text>
 
       <Text class="mt-8 md:mt-10">
-        <p>説明テキストが入りますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>
+          説明テキストが入りますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
       </Text>
 
       <Text class="mt-8 md:mt-10">
-        <p>説明テキストが入りますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+        <p>
+          説明テキストが入りますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
       </Text>
 
       <Media class="mt-8 md:mt-10">
         <figure>
           <picture>
             <source
+              height="500"
               media="(min-width: 768px)"
               srcset="/templates/news/images/detail-image_pc.webp"
               type="image/webp"
               width="1000"
-              height="500"
             />
             <img
+              alt=""
+              height="200"
               src="/templates/news/images/detail-image_sp.webp"
               width="327"
-              height="200"
-              alt=""
             />
           </picture>
         </figure>
@@ -101,7 +108,7 @@ const pageProps: PagePropType = {
         <div class="PanelInformation__segment">
           <div class="PanelInformation__title">本リリースに関するお問い合わせ先</div>
 
-          <Text class="mt-4 md:mt-6 text-center">
+          <Text class="mt-4 text-center md:mt-6">
             <p>○○○○○○○○担当</p>
           </Text>
 
@@ -128,12 +135,12 @@ const pageProps: PagePropType = {
       <NavigationSns
         class="mt-8 md:mt-10"
         datas={{
-          share: "#",
-          good: "#",
-          facebook: "#",
-          x: "#",
-          instagram: "#",
-          line: "#",
+          facebook: '#',
+          good: '#',
+          instagram: '#',
+          line: '#',
+          share: '#',
+          x: '#',
         }}
       />
     </Section>

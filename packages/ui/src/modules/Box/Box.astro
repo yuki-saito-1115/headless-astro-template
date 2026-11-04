@@ -4,21 +4,20 @@ import type { Polymorphic } from 'astro/types';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export type Props<Tag extends 'div' | 'details' = 'div' | 'details'> =
-  Polymorphic<{
-    as: Tag;
-  }> & {
-    /** 出力する要素を設定します。要素を選択すると、その要素の属性を指定できます。省略すると `div` 要素になります。 */
-    as?: Tag;
-    /** コンテンツ部分をスクロールさせるかどうかを指定します。`true` の場合はコンテンツ部分の高さが `200px` に固定されます。 */
-    scroll?: boolean;
-    /** 配色を設定できます。セマンティクスに変化はありません。 */
-    theme?: 'related' | 'important' | 'alert' | undefined;
-    /** テキストノード以外の使用を禁止します。必要ない場合は省略可能ですが `as` が `"details"` の場合は省略することができません。 */
-    title?: string;
-    /** タイトル部分のHTML要素を指定します。`as` が `"details"` の場合は強制的に `"summary"` が設定されます。 */
-    titleElement?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div';
-  };
+export type Props<Tag extends 'div' | 'details' = 'div' | 'details'> = Polymorphic<{
+  as: Tag;
+}> & {
+  /** 出力する要素を設定します。要素を選択すると、その要素の属性を指定できます。省略すると `div` 要素になります。 */
+  as?: Tag;
+  /** コンテンツ部分をスクロールさせるかどうかを指定します。`true` の場合はコンテンツ部分の高さが `200px` に固定されます。 */
+  scroll?: boolean;
+  /** 配色を設定できます。セマンティクスに変化はありません。 */
+  theme?: 'related' | 'important' | 'alert' | undefined;
+  /** テキストノード以外の使用を禁止します。必要ない場合は省略可能ですが `as` が `"details"` の場合は省略することができません。 */
+  title?: string;
+  /** タイトル部分のHTML要素を指定します。`as` が `"details"` の場合は強制的に `"summary"` が設定されます。 */
+  titleElement?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div';
+};
 
 const {
   as: Element = 'div',
@@ -29,7 +28,9 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 const TitleElement = Element === 'details' ? 'summary' : titleElement;
 
 switch (Element) {
@@ -59,17 +60,30 @@ if (Element === 'details' && !title) {
   {...attrs}
 >
   {title && (
-    <TitleElement class:list={['Box__head']}>
-      <span class:list={['Box__title']}>{title}</span>
+    <TitleElement
+      class:list={[
+        'Box__head',
+      ]}
+    >
+      <span
+        class:list={[
+          'Box__title',
+        ]}
+      >
+        {title}
+      </span>
     </TitleElement>
   )}
 
-  <div class:list={['Box__body']}>
+  <div
+    class:list={[
+      'Box__body',
+    ]}
+  >
     {/* @slot あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
     <slot />
   </div>
 </Element>
-
 
 <style>
   .Box {
@@ -78,11 +92,11 @@ if (Element === 'details' && !title) {
     --local-outline: transparent;
     --local-padding-x: calc(var(--user-spacing) * 4);
     --local-padding-y: calc(var(--user-spacing) * 6);
+    padding-top: var(--local-padding-y);
+    padding-bottom: var(--local-padding-y);
 
     background-color: var(--local-background);
     border: 1px solid var(--local-outline);
-    padding-bottom: var(--local-padding-y);
-    padding-top: var(--local-padding-y);
 
     &:has(:where(.Box__head)) {
       padding-top: 0;
@@ -118,20 +132,20 @@ if (Element === 'details' && !title) {
 
     &:where(.theme-scroll) {
       > :where(.Box__body) {
+        position: relative;
         height: 200px;
         overflow: auto;
-        position: relative;
       }
     }
 
     :where(.Box__head) {
-      color: var(--local-foreground);
       padding: var(--local-padding-y) var(--local-padding-x);
+      color: var(--local-foreground);
     }
 
     :where(.Box__title) {
-      font-weight: var(--user-font-weight-bold);
       font-size: var(--text-lg);
+      font-weight: var(--user-font-weight-bold);
       line-height: var(--text-lg--line-height);
     }
 
@@ -143,25 +157,25 @@ if (Element === 'details' && !title) {
       padding-bottom: 0;
 
       > :where(.Box__head) {
-        list-style: none;
-        cursor: pointer;
         position: relative;
+        cursor: pointer;
+        list-style: none;
 
         /* icon */
         &::before {
-          background-color: currentColor;
-          content: '';
+          position: absolute;
+          top: 50%;
+          right: var(--local-padding-x);
           display: block;
+          width: 16px;
           height: 16px;
+          pointer-events: none;
+          content: '';
+          background-color: currentColor;
           mask-image: url('/assets/images/icons/plus.svg');
           mask-repeat: no-repeat;
           mask-size: cover;
-          pointer-events: none;
-          position: absolute;
-          right: var(--local-padding-x);
-          top: 50%;
           transform: translateY(-50%);
-          width: 16px;
         }
       }
 
@@ -176,7 +190,6 @@ if (Element === 'details' && !title) {
       }
     }
   }
-
 
   @media (width >= 768px) {
     .Box {

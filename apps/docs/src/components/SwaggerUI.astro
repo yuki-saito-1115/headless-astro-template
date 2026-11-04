@@ -1,6 +1,6 @@
 <link
-  rel="stylesheet"
   href="https://unpkg.com/swagger-ui-dist/swagger-ui.css"
+  rel="stylesheet"
 />
 
 <div id="swagger-ui"></div>
@@ -12,8 +12,8 @@
 <script is:inline>
   window.addEventListener('load', () => {
     SwaggerUIBundle({
-      url: '/openapi.yaml',
       dom_id: '#swagger-ui',
+      url: '/openapi.yaml',
     });
   });
 </script>

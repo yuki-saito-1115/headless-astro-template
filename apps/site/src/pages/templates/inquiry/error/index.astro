@@ -16,17 +16,18 @@ import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
 const breadcrumb = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
-    name: 'テンプレート一覧',
     item: '/templates/',
+    name: 'テンプレート一覧',
   },
   {
     name: '問い合わせフォーム（入力）※エラー時',
@@ -43,17 +44,17 @@ const pageProps: PagePropType = {
   <MainVisual title="お問い合わせ">
     <picture slot="media">
       <source
+        height="500"
         media="(min-width: 768px)"
         srcset="/templates/inquiry/images/error-mainVisual_pc.webp"
         type="image/webp"
         width="1440"
-        height="500"
       />
       <img
+        alt=""
+        height="130"
         src="/templates/inquiry/images/error-mainVisual_sp.webp"
         width="375"
-        height="130"
-        alt=""
       />
     </picture>
   </MainVisual>
@@ -64,12 +65,16 @@ const pageProps: PagePropType = {
     <Section>
       <Box theme="important">
         <Text>
-          <p>未入力部分がありますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+          <p>
+            未入力部分がありますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+          </p>
         </Text>
       </Box>
 
       <Text class="mt-8 md:mt-10">
-        <p>ご相談・お問い合わせは下記フォームをご利用ください。当社では必要に応じて、電話、メール、対面、さまざまな形式でのお打ち合わせを承っています。お気軽にお問い合わせください。（仮）</p>
+        <p>
+          ご相談・お問い合わせは下記フォームをご利用ください。当社では必要に応じて、電話、メール、対面、さまざまな形式でのお打ち合わせを承っています。お気軽にお問い合わせください。（仮）
+        </p>
       </Text>
 
       <Text class="mt-8 md:mt-10">
@@ -77,10 +82,17 @@ const pageProps: PagePropType = {
       </Text>
 
       <form class="mt-8 md:mt-10">
-        <FormList directSp="column" directPc="row">
+        <FormList
+          directPc="row"
+          directSp="column"
+        >
           <dt>
             <label for="error-message">
-              お問い合わせ内容 <Badge title="必須" theme="warning" />
+              お問い合わせ内容
+              <Badge
+                theme="warning"
+                title="必須"
+              />
             </label>
           </dt>
           <dd>
@@ -96,15 +108,19 @@ const pageProps: PagePropType = {
               class="mt-4"
               id="error-message"
               name="message"
+              placeholder="ご自由にご記入ください。"
               size="full"
               state="invalid"
-              placeholder="ご自由にご記入ください。"
             />
           </dd>
 
           <dt>
             <label for="error-company">
-              会社名 <Badge title="必須" theme="warning" />
+              会社名
+              <Badge
+                theme="warning"
+                title="必須"
+              />
             </label>
           </dt>
           <dd>
@@ -116,15 +132,19 @@ const pageProps: PagePropType = {
               class="mt-4"
               id="error-company"
               name="company"
+              placeholder="例）株式会社ミツエーリンクス"
               size="full"
               state="invalid"
-              placeholder="例）株式会社ミツエーリンクス"
             />
           </dd>
 
           <dt>
             <label for="error-name">
-              お名前 <Badge title="必須" theme="warning" />
+              お名前
+              <Badge
+                theme="warning"
+                title="必須"
+              />
             </label>
           </dt>
           <dd>
@@ -136,15 +156,19 @@ const pageProps: PagePropType = {
               class="mt-4"
               id="error-name"
               name="name"
+              placeholder="例）山田太郎"
               size="full"
               state="invalid"
-              placeholder="例）山田太郎"
             />
           </dd>
 
           <dt>
             <label for="error-name-kana">
-              お名前（カタカナ） <Badge title="必須" theme="warning" />
+              お名前（カタカナ）
+              <Badge
+                theme="warning"
+                title="必須"
+              />
             </label>
           </dt>
           <dd>
@@ -156,15 +180,19 @@ const pageProps: PagePropType = {
               class="mt-4"
               id="error-name-kana"
               name="name-kana"
+              placeholder="例）ヤマダタロウ"
               size="full"
               state="invalid"
-              placeholder="例）ヤマダタロウ"
             />
           </dd>
 
           <dt>
             <label for="error-birth-year">
-              生年月日 <Badge title="必須" theme="warning" />
+              生年月日
+              <Badge
+                theme="warning"
+                title="必須"
+              />
             </label>
           </dt>
           <dd>
@@ -177,8 +205,13 @@ const pageProps: PagePropType = {
                 <FormSelect
                   id="error-birth-year"
                   name="birth-year"
+                  options={[
+                    {
+                      label: '選択してください',
+                      value: '',
+                    },
+                  ]}
                   state="invalid"
-                  options={[{ label: "選択してください", value: "" }]}
                 />
                 <label for="error-birth-year">年</label>
               </div>
@@ -187,8 +220,13 @@ const pageProps: PagePropType = {
                 <FormSelect
                   id="error-birth-month"
                   name="birth-month"
+                  options={[
+                    {
+                      label: '選択してください',
+                      value: '',
+                    },
+                  ]}
                   state="invalid"
-                  options={[{ label: "選択してください", value: "" }]}
                 />
                 <label for="error-birth-month">月</label>
               </div>
@@ -197,8 +235,13 @@ const pageProps: PagePropType = {
                 <FormSelect
                   id="error-birth-day"
                   name="birth-day"
+                  options={[
+                    {
+                      label: '選択してください',
+                      value: '',
+                    },
+                  ]}
                   state="invalid"
-                  options={[{ label: "選択してください", value: "" }]}
                 />
                 <label for="error-birth-day">日</label>
               </div>
@@ -207,7 +250,11 @@ const pageProps: PagePropType = {
 
           <dt>
             <label for="error-email">
-              メールアドレス <Badge title="必須" theme="warning" />
+              メールアドレス
+              <Badge
+                theme="warning"
+                title="必須"
+              />
             </label>
           </dt>
           <dd>
@@ -219,16 +266,20 @@ const pageProps: PagePropType = {
               class="mt-4"
               id="error-email"
               name="email"
+              placeholder="例）info@mitsue.co.jp"
               size="full"
               state="invalid"
               type="email"
-              placeholder="例）info@mitsue.co.jp"
             />
           </dd>
 
           <dt>
             <label for="error-tel">
-              電話番号 <Badge title="必須" theme="warning" />
+              電話番号
+              <Badge
+                theme="warning"
+                title="必須"
+              />
             </label>
           </dt>
           <dd>
@@ -246,16 +297,20 @@ const pageProps: PagePropType = {
               class="mt-4"
               id="error-tel"
               name="tel"
+              placeholder="例）0312345678"
               size="full"
               state="invalid"
               type="tel"
-              placeholder="例）0312345678"
             />
           </dd>
 
           <dt>
             <label for="error-postal-code">
-              郵便番号 <Badge title="必須" theme="warning" />
+              郵便番号
+              <Badge
+                theme="warning"
+                title="必須"
+              />
             </label>
           </dt>
           <dd>
@@ -274,8 +329,8 @@ const pageProps: PagePropType = {
                 <Button
                   as="button"
                   theme="text"
-                  type="button"
                   title="郵便番号から住所検索"
+                  type="button"
                 />
               </span>
             </FormComplex>
@@ -283,7 +338,11 @@ const pageProps: PagePropType = {
 
           <dt>
             <label for="error-prefecture">
-              都道府県 <Badge title="必須" theme="warning" />
+              都道府県
+              <Badge
+                theme="warning"
+                title="必須"
+              />
             </label>
           </dt>
           <dd>
@@ -295,207 +354,211 @@ const pageProps: PagePropType = {
               class="mt-4"
               id="error-prefecture"
               name="prefecture"
-              state="invalid"
               options={[
                 {
-                  label: "選択してください",
-                  value: "",
+                  label: '選択してください',
+                  value: '',
                 },
                 {
-                  label: "北海道",
-                  value: "",
+                  label: '北海道',
+                  value: '',
                 },
                 {
-                  label: "青森県",
-                  value: "",
+                  label: '青森県',
+                  value: '',
                 },
                 {
-                  label: "岩手県",
-                  value: "",
+                  label: '岩手県',
+                  value: '',
                 },
                 {
-                  label: "宮城県",
-                  value: "",
+                  label: '宮城県',
+                  value: '',
                 },
                 {
-                  label: "秋田県",
-                  value: "",
+                  label: '秋田県',
+                  value: '',
                 },
                 {
-                  label: "山形県",
-                  value: "",
+                  label: '山形県',
+                  value: '',
                 },
                 {
-                  label: "福島県",
-                  value: "",
+                  label: '福島県',
+                  value: '',
                 },
                 {
-                  label: "茨城県",
-                  value: "",
+                  label: '茨城県',
+                  value: '',
                 },
                 {
-                  label: "栃木県",
-                  value: "",
+                  label: '栃木県',
+                  value: '',
                 },
                 {
-                  label: "群馬県",
-                  value: "",
+                  label: '群馬県',
+                  value: '',
                 },
                 {
-                  label: "埼玉県",
-                  value: "",
+                  label: '埼玉県',
+                  value: '',
                 },
                 {
-                  label: "千葉県",
-                  value: "",
+                  label: '千葉県',
+                  value: '',
                 },
                 {
-                  label: "東京都",
-                  value: "",
+                  label: '東京都',
+                  value: '',
                 },
                 {
-                  label: "神奈川県",
-                  value: "",
+                  label: '神奈川県',
+                  value: '',
                 },
                 {
-                  label: "新潟県",
-                  value: "",
+                  label: '新潟県',
+                  value: '',
                 },
                 {
-                  label: "富山県",
-                  value: "",
+                  label: '富山県',
+                  value: '',
                 },
                 {
-                  label: "石川県",
-                  value: "",
+                  label: '石川県',
+                  value: '',
                 },
                 {
-                  label: "福井県",
-                  value: "",
+                  label: '福井県',
+                  value: '',
                 },
                 {
-                  label: "山梨県",
-                  value: "",
+                  label: '山梨県',
+                  value: '',
                 },
                 {
-                  label: "長野県",
-                  value: "",
+                  label: '長野県',
+                  value: '',
                 },
                 {
-                  label: "岐阜県",
-                  value: "",
+                  label: '岐阜県',
+                  value: '',
                 },
                 {
-                  label: "静岡県",
-                  value: "",
+                  label: '静岡県',
+                  value: '',
                 },
                 {
-                  label: "愛知県",
-                  value: "",
+                  label: '愛知県',
+                  value: '',
                 },
                 {
-                  label: "三重県",
-                  value: "",
+                  label: '三重県',
+                  value: '',
                 },
                 {
-                  label: "滋賀県",
-                  value: "",
+                  label: '滋賀県',
+                  value: '',
                 },
                 {
-                  label: "京都府",
-                  value: "",
+                  label: '京都府',
+                  value: '',
                 },
                 {
-                  label: "大阪府",
-                  value: "",
+                  label: '大阪府',
+                  value: '',
                 },
                 {
-                  label: "兵庫県",
-                  value: "",
+                  label: '兵庫県',
+                  value: '',
                 },
                 {
-                  label: "奈良県",
-                  value: "",
+                  label: '奈良県',
+                  value: '',
                 },
                 {
-                  label: "和歌山県",
-                  value: "",
+                  label: '和歌山県',
+                  value: '',
                 },
                 {
-                  label: "鳥取県",
-                  value: "",
+                  label: '鳥取県',
+                  value: '',
                 },
                 {
-                  label: "島根県",
-                  value: "",
+                  label: '島根県',
+                  value: '',
                 },
                 {
-                  label: "岡山県",
-                  value: "",
+                  label: '岡山県',
+                  value: '',
                 },
                 {
-                  label: "広島県",
-                  value: "",
+                  label: '広島県',
+                  value: '',
                 },
                 {
-                  label: "山口県",
-                  value: "",
+                  label: '山口県',
+                  value: '',
                 },
                 {
-                  label: "徳島県",
-                  value: "",
+                  label: '徳島県',
+                  value: '',
                 },
                 {
-                  label: "香川県",
-                  value: "",
+                  label: '香川県',
+                  value: '',
                 },
                 {
-                  label: "愛媛県",
-                  value: "",
+                  label: '愛媛県',
+                  value: '',
                 },
                 {
-                  label: "高知県",
-                  value: "",
+                  label: '高知県',
+                  value: '',
                 },
                 {
-                  label: "福岡県",
-                  value: "",
+                  label: '福岡県',
+                  value: '',
                 },
                 {
-                  label: "佐賀県",
-                  value: "",
+                  label: '佐賀県',
+                  value: '',
                 },
                 {
-                  label: "長崎県",
-                  value: "",
+                  label: '長崎県',
+                  value: '',
                 },
                 {
-                  label: "熊本県",
-                  value: "",
+                  label: '熊本県',
+                  value: '',
                 },
                 {
-                  label: "大分県",
-                  value: "",
+                  label: '大分県',
+                  value: '',
                 },
                 {
-                  label: "宮崎県",
-                  value: "",
+                  label: '宮崎県',
+                  value: '',
                 },
                 {
-                  label: "鹿児島県",
-                  value: "",
+                  label: '鹿児島県',
+                  value: '',
                 },
                 {
-                  label: "沖縄県",
-                  value: "",
+                  label: '沖縄県',
+                  value: '',
                 },
               ]}
+              state="invalid"
             />
           </dd>
 
           <dt>
             <label for="error-city">
-              市区町村 <Badge title="必須" theme="warning" />
+              市区町村
+              <Badge
+                theme="warning"
+                title="必須"
+              />
             </label>
           </dt>
           <dd>
@@ -507,15 +570,19 @@ const pageProps: PagePropType = {
               class="mt-4"
               id="error-city"
               name="city"
+              placeholder="ご記入ください"
               size="full"
               state="invalid"
-              placeholder="ご記入ください"
             />
           </dd>
 
           <dt>
             <label for="error-address">
-              番地・マンション名など <Badge title="必須" theme="warning" />
+              番地・マンション名など
+              <Badge
+                theme="warning"
+                title="必須"
+              />
             </label>
           </dt>
           <dd>
@@ -527,9 +594,9 @@ const pageProps: PagePropType = {
               class="mt-4"
               id="error-address"
               name="address"
+              placeholder="ご記入ください"
               size="full"
               state="invalid"
-              placeholder="ご記入ください"
             />
           </dd>
 
@@ -539,29 +606,29 @@ const pageProps: PagePropType = {
               columnPc="1"
               datas={[
                 {
-                  id: "error-source-media",
-                  name: "source",
-                  title: "新聞や雑誌、Webマガジンなどのメディア",
+                  id: 'error-source-media',
+                  name: 'source',
+                  title: '新聞や雑誌、Webマガジンなどのメディア',
                 },
                 {
-                  id: "error-source-experience",
-                  name: "source",
-                  title: "取引経験あり",
+                  id: 'error-source-experience',
+                  name: 'source',
+                  title: '取引経験あり',
                 },
                 {
-                  id: "error-source-referral",
-                  name: "source",
-                  title: "知人からの紹介",
+                  id: 'error-source-referral',
+                  name: 'source',
+                  title: '知人からの紹介',
                 },
                 {
-                  id: "error-source-search",
-                  name: "source",
-                  title: "検索エンジン",
+                  id: 'error-source-search',
+                  name: 'source',
+                  title: '検索エンジン',
                 },
                 {
-                  id: "error-source-other",
-                  name: "source",
-                  title: "その他",
+                  id: 'error-source-other',
+                  name: 'source',
+                  title: 'その他',
                 },
               ]}
             />
@@ -579,16 +646,16 @@ const pageProps: PagePropType = {
         </Text>
 
         <LayoutColumn
-          class="mt-8 md:mt-10 justify-center"
+          class="mt-8 justify-center md:mt-10"
           columnPc="auto"
           columnSp="1"
         >
           <div class="LayoutColumn__segment">
             <Button
               as="button"
-              type="submit"
               theme="conversion"
               title="同意して確認画面へ"
+              type="submit"
             />
           </div>
         </LayoutColumn>

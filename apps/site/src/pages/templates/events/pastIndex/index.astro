@@ -11,21 +11,22 @@ import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
 const breadcrumb = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
-    name: 'テンプレート一覧',
     item: '/templates/',
+    name: 'テンプレート一覧',
   },
   {
-    name: 'セミナー・イベント',
     item: '/templates/events/',
+    name: 'セミナー・イベント',
   },
   {
     name: '過去のセミナー／イベントのレポート（一覧）',
@@ -45,7 +46,10 @@ const pageProps: PagePropType = {
         media="(width >= 768px)"
         srcset="/templates/events/images/pastIndex-mainVisual_pc.webp"
       />
-      <img src="/templates/events/images/pastIndex-mainVisual_sp.webp" alt="" />
+      <img
+        alt=""
+        src="/templates/events/images/pastIndex-mainVisual_sp.webp"
+      />
     </picture>
   </MainVisual>
 
@@ -56,37 +60,41 @@ const pageProps: PagePropType = {
       <LinkList
         datas={[
           {
-            href: "DUMMY_LINK",
-            title: "開催中のセミナー・イベント",
+            href: 'DUMMY_LINK',
+            title: '開催中のセミナー・イベント',
           },
         ]}
       />
 
-      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
         <div class="LayoutColumn__segment">
           <Card
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="〇〇〇〇を120%使いこなすためのポイント説明会"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastIndex-image_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastIndex-image_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastIndex-image_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -108,28 +116,28 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastIndex-image-2_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastIndex-image-2_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastIndex-image-2_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -151,28 +159,28 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastIndex-image-3_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastIndex-image-3_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastIndex-image-3_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -194,28 +202,28 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastIndex-image-4_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastIndex-image-4_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastIndex-image-4_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -237,28 +245,28 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastIndex-image-5_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastIndex-image-5_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastIndex-image-5_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -280,28 +288,28 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastIndex-image-6_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastIndex-image-6_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastIndex-image-6_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -323,28 +331,28 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastIndex-image-7_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastIndex-image-7_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastIndex-image-7_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -366,28 +374,28 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastIndex-image-8_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastIndex-image-8_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastIndex-image-8_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -409,28 +417,28 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastIndex-image-9_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastIndex-image-9_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastIndex-image-9_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -454,12 +462,12 @@ const pageProps: PagePropType = {
       <NavigationSns
         class="mt-8 md:mt-10"
         datas={{
-          share: "#",
-          good: "#",
-          facebook: "#",
-          x: "#",
-          instagram: "#",
-          line: "#",
+          facebook: '#',
+          good: '#',
+          instagram: '#',
+          line: '#',
+          share: '#',
+          x: '#',
         }}
       />
     </Section>
@@ -470,15 +478,11 @@ const pageProps: PagePropType = {
           <div class="PanelInformation__title">Webからのお問い合わせ</div>
 
           <Text class="mt-4">
-            <p>
-              Webからお問い合わせの際は下記フォームからお問い合わせください。
-            </p>
+            <p>Webからお問い合わせの際は下記フォームからお問い合わせください。</p>
           </Text>
 
           <Text class="mt-4">
-            <p>
-              Webからお問い合わせの際は下記フォームからお問い合わせください。
-            </p>
+            <p>Webからお問い合わせの際は下記フォームからお問い合わせください。</p>
           </Text>
 
           <Button

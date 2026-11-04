@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url';
+
 import mdx from '@astrojs/mdx';
 import { defineConfig } from 'astro/config';
 
@@ -6,20 +7,22 @@ import { defineConfig } from 'astro/config';
 const resolvePath = (path) => fileURLToPath(new URL(path, import.meta.url));
 
 export default defineConfig({
-  output: 'static',
-  publicDir: resolvePath('../../public'),
   devToolbar: {
     enabled: false,
   },
-  integrations: [mdx()],
+  integrations: [
+    mdx(),
+  ],
+  output: 'static',
+  publicDir: resolvePath('../../public'),
   vite: {
     cacheDir: resolvePath('../../.cache/docs/vite'),
     resolve: {
       alias: {
         '@docs/components': resolvePath('./src/components'),
         '@docs/modules': resolvePath('./src/components/modules'),
-        '@docs/structures': resolvePath('./src/components/structures'),
         '@docs/scripts': resolvePath('./src/scripts'),
+        '@docs/structures': resolvePath('./src/components/structures'),
         '@docs/styles': resolvePath('./src/styles'),
       },
     },

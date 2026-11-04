@@ -8,7 +8,10 @@ const slotHtml = await Astro.slots.render('default');
 ---
 
 <div
-  class:list={['Wrap', className]}
+  class:list={[
+    'Wrap',
+    className,
+  ]}
   {...rest}
 >
   {slotHtml && <Fragment set:html={slotHtml} />}
@@ -19,7 +22,7 @@ const slotHtml = await Astro.slots.render('default');
     display: grid;
     grid-template-areas: 'previewNote' 'header' 'breadcrumb' 'mainVisual' 'content' 'navigationTop' 'footer';
     grid-template-rows: auto auto auto auto 1fr auto auto;
-    min-height: 100vh;
     width: 100%;
+    min-height: 100vh;
   }
 </style>

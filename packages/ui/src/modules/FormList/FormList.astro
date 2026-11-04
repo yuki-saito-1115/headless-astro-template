@@ -5,19 +5,16 @@ import type { HTMLAttributes } from 'astro/types';
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
 export interface Props extends HTMLAttributes<'dl'> {
-  /** SP幅時のコンテンツと画像の並び方向を設定します。 */
-  directSp?: 'row' | 'column';
   /** PC幅時のコンテンツと画像の並び方向を設定します。 */
   directPc?: 'row' | 'column';
+  /** SP幅時のコンテンツと画像の並び方向を設定します。 */
+  directSp?: 'row' | 'column';
 }
 
-const {
-  directSp = 'column',
-  directPc = 'row',
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { directSp = 'column', directPc = 'row', class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('FormList: slotの中身が空です。');
@@ -29,7 +26,7 @@ if (!Astro.slots.has('default')) {
     'FormList',
     `directSp-${directSp}`,
     `directPc-${directPc}`,
-    className
+    className,
   ]}
   {...attrs}
 >
@@ -37,33 +34,32 @@ if (!Astro.slots.has('default')) {
   <slot />
 </dl>
 
-
 <style>
   .FormList {
     --local-background: var(--user-color-background-light);
     --local-title-background: var(--color-gray-100);
     --local-outline: var(--user-color-outline-light);
-
-    background-color: var(--local-background);
-    border: 1px solid var(--local-outline);
     display: grid;
     grid-template-columns: minmax(0, 1fr);
 
+    background-color: var(--local-background);
+    border: 1px solid var(--local-outline);
+
     > :global(dt),
     > :global(dd) {
-      border-bottom: 1px solid var(--local-outline);
-      margin: 0;
       padding: calc(var(--user-spacing) * 4);
+      margin: 0;
+      border-bottom: 1px solid var(--local-outline);
     }
 
     > :global(dt) {
-      background-color: var(--local-title-background);
       font-weight: var(--user-font-weight-bold);
+      background-color: var(--local-title-background);
 
       > :global(label) {
         display: flex;
-        align-items: baseline;
         gap: calc(var(--user-spacing) * 4);
+        align-items: baseline;
         justify-content: space-between;
         width: 100%;
       }

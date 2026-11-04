@@ -4,164 +4,6 @@
  */
 
 export interface paths {
-  '/trial': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** おためしの一覧取得 */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description おためしの一覧 */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': {
-              contents?: components['schemas']['Trial'][];
-              totalCount?: number;
-              offset?: number;
-              limit?: number;
-            };
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/trial/{content_id}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** おためしの詳細取得 */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          content_id: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description おためしの詳細 */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['Trial'];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/news': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** お知らせの一覧取得 */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description お知らせの一覧 */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': {
-              contents?: components['schemas']['News'][];
-              totalCount?: number;
-              offset?: number;
-              limit?: number;
-            };
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/news/{content_id}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** お知らせの詳細取得 */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          content_id: string;
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        /** @description お知らせの詳細 */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            'application/json': components['schemas']['News'];
-          };
-        };
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   '/blogs': {
     parameters: {
       query?: never;
@@ -320,6 +162,85 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/news': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** お知らせの一覧取得 */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description お知らせの一覧 */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': {
+              contents?: components['schemas']['News'][];
+              totalCount?: number;
+              offset?: number;
+              limit?: number;
+            };
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/news/{content_id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** お知らせの詳細取得 */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          content_id: string;
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description お知らせの詳細 */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': components['schemas']['News'];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/sample': {
     parameters: {
       query?: never;
@@ -399,9 +320,93 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/trial': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** おためしの一覧取得 */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description おためしの一覧 */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': {
+              contents?: components['schemas']['Trial'][];
+              totalCount?: number;
+              offset?: number;
+              limit?: number;
+            };
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/trial/{content_id}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** おためしの詳細取得 */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          content_id: string;
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description おためしの詳細 */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            'application/json': components['schemas']['Trial'];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
+  headers: never;
+  parameters: never;
+  pathItems: never;
+  requestBodies: never;
+  responses: never;
   schemas: {
     /** @description おためし */
     Trial: {
@@ -523,13 +528,7 @@ export interface components {
       /** Format: date-time */
       revisedAt?: string | null;
       /** @description カテゴリ */
-      category?: (
-        | 'カテゴリ1'
-        | 'カテゴリ2'
-        | 'カテゴリ3'
-        | 'カテゴリ4'
-        | 'カテゴリ5'
-      )[];
+      category?: ('カテゴリ1' | 'カテゴリ2' | 'カテゴリ3' | 'カテゴリ4' | 'カテゴリ5')[];
       /** @description タイトル */
       title?: string;
       /** @description 内容 */
@@ -538,11 +537,6 @@ export interface components {
       link?: string;
     };
   };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
 }
 export type $defs = Record<string, never>;
 export type operations = Record<string, never>;

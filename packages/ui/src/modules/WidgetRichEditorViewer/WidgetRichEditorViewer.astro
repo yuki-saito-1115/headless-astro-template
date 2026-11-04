@@ -10,43 +10,44 @@ export interface Props extends HTMLAttributes<'div'> {
 }
 
 const { datas, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <div
   class:list={[
     'WidgetRichEditorViewer',
-    className
+    className,
   ]}
   {...attrs}
   set:html={datas}
 />
 
-
 <style>
   .WidgetRichEditorViewer {
     /* .HeadingLevel2 */
     :where(h2) {
+      position: relative;
+      padding-bottom: calc(var(--user-spacing) * 6);
       margin-top: calc(var(--user-spacing) * 10);
+      font-size: var(--text-2xl);
       font-weight: var(--user-font-weight-bold);
+      line-height: var(--text-2xl--line-height);
       color: var(--user-color-foreground-dark);
       text-align: center;
-      padding-bottom: calc(var(--user-spacing) * 6);
-      position: relative;
-      line-height: var(--text-2xl--line-height);
-      font-size: var(--text-2xl);
 
       /* marker */
       &::before {
-        background-color: var(--user-color-primary);
-        bottom: 0;
-        content: '';
-        display: block;
-        height: 5px;
-        left: 50%;
         position: absolute;
-        transform: translateX(-50%);
+        bottom: 0;
+        left: 50%;
+        display: block;
         width: 64px;
+        height: 5px;
+        content: '';
+        background-color: var(--user-color-primary);
+        transform: translateX(-50%);
       }
 
       :where(a) {
@@ -57,24 +58,24 @@ const attrs: Record<string, unknown> = { ...rest };
 
     /* .HeadingLevel3 */
     :where(h3) {
-      margin-top: calc(var(--user-spacing) * 10);
-      font-weight: var(--user-font-weight-bold);
-      color: var(--user-color-foreground-dark);
-      padding-bottom: calc(var(--user-spacing) * 4);
       position: relative;
-      line-height: var(--text-xl--line-height);
+      padding-bottom: calc(var(--user-spacing) * 4);
+      margin-top: calc(var(--user-spacing) * 10);
       font-size: var(--text-xl);
+      font-weight: var(--user-font-weight-bold);
+      line-height: var(--text-xl--line-height);
+      color: var(--user-color-foreground-dark);
 
       /* border */
       &::before {
-        background-color: var(--user-color-primary);
-        bottom: 0;
-        content: '';
-        display: block;
-        height: 1px;
-        left: 0;
         position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
         width: 100%;
+        height: 1px;
+        content: '';
+        background-color: var(--user-color-primary);
       }
 
       :where(a) {
@@ -85,24 +86,24 @@ const attrs: Record<string, unknown> = { ...rest };
 
     /* .HeadingLevel4 */
     :where(h4) {
-      margin-top: calc(var(--user-spacing) * 10);
-      font-weight: var(--user-font-weight-bold);
-      color: var(--user-color-foreground-dark);
-      padding-left: calc(var(--user-spacing) * 6);
       position: relative;
-      line-height: var(--text-lg--line-height);
+      padding-left: calc(var(--user-spacing) * 6);
+      margin-top: calc(var(--user-spacing) * 10);
       font-size: var(--text-lg);
+      font-weight: var(--user-font-weight-bold);
+      line-height: var(--text-lg--line-height);
+      color: var(--user-color-foreground-dark);
 
       /* marker */
       &::before {
-        background-color: var(--user-color-primary);
-        content: '';
-        display: block;
-        height: 100%;
-        left: 0;
         position: absolute;
         top: 0;
+        left: 0;
+        display: block;
         width: 5px;
+        height: 100%;
+        content: '';
+        background-color: var(--user-color-primary);
       }
 
       :where(a) {
@@ -113,24 +114,24 @@ const attrs: Record<string, unknown> = { ...rest };
 
     /* .HeadingLevel5 */
     :where(h5) {
-      margin-top: calc(var(--user-spacing) * 10);
-      font-weight: var(--user-font-weight-bold);
-      color: var(--user-color-foreground-dark);
-      padding-left: calc(var(--user-spacing) * 6);
       position: relative;
-      line-height: var(--text-base--line-height);
+      padding-left: calc(var(--user-spacing) * 6);
+      margin-top: calc(var(--user-spacing) * 10);
       font-size: var(--text-base);
+      font-weight: var(--user-font-weight-bold);
+      line-height: var(--text-base--line-height);
+      color: var(--user-color-foreground-dark);
 
       /* marker */
       &::before {
-        background-color: var(--user-color-primary);
-        content: '';
-        display: block;
-        height: 1em;
-        left: 0;
         position: absolute;
         top: 0.4em;
+        left: 0;
+        display: block;
         width: 1em;
+        height: 1em;
+        content: '';
+        background-color: var(--user-color-primary);
       }
 
       :where(a) {
@@ -142,10 +143,10 @@ const attrs: Record<string, unknown> = { ...rest };
     /* .HeadingLevel6 */
     :where(h6) {
       margin-top: calc(var(--user-spacing) * 10);
-      font-weight: var(--user-font-weight-bold);
-      color: var(--user-color-foreground-dark);
-      line-height: var(--text-sm--line-height);
       font-size: var(--text-sm);
+      font-weight: var(--user-font-weight-bold);
+      line-height: var(--text-sm--line-height);
+      color: var(--user-color-foreground-dark);
 
       :where(a) {
         color: var(--user-color-primary);
@@ -175,64 +176,64 @@ const attrs: Record<string, unknown> = { ...rest };
     }
 
     :where(code) {
+      padding: 0.125em 0.5em;
+      margin: 0 0.5em;
       font-family: var(--font-mono);
       font-size: smaller;
-      padding: 0.125em 0.5em;
-      border-radius: var(--user-border-radius);
-      margin: 0 0.5em;
-      border: 1px solid var(--color-gray-300);
-      background-color: var(--color-gray-200);
+      line-height: 1;
       vertical-align: baseline;
       text-box-edge: cap alphabetic;
-      line-height: 1;
+      background-color: var(--color-gray-200);
+      border: 1px solid var(--color-gray-300);
+      border-radius: var(--user-border-radius);
     }
 
     /* .Horizon */
     :where(hr) {
       margin-top: calc(var(--user-spacing) * 10);
-      border-bottom: 0;
       border-top: 1px solid var(--user-color-outline-dark);
+      border-bottom: 0;
     }
 
     /* TODO: 「コードブロック」用コンポーネント未設計 */
 
     /* .Table */
     :where(table) {
-      margin-top: calc(var(--user-spacing) * 10);
-      background-color: var(--user-color-background-light);
-      border-collapse: collapse;
-      border-left: 1px solid var(--user-color-foreground-dark);
-      border-top: 1px solid var(--user-color-foreground-dark);
-      table-layout: fixed;
       width: 100%;
+      margin-top: calc(var(--user-spacing) * 10);
+      table-layout: fixed;
+      border-collapse: collapse;
+      background-color: var(--user-color-background-light);
+      border-top: 1px solid var(--user-color-foreground-dark);
+      border-left: 1px solid var(--user-color-foreground-dark);
     }
 
     :where(th, td) {
-      border-bottom: 1px solid var(--user-color-foreground-dark);
-      border-right: 1px solid var(--user-color-foreground-dark);
       padding: calc(var(--user-spacing) * 4);
+      border-right: 1px solid var(--user-color-foreground-dark);
+      border-bottom: 1px solid var(--user-color-foreground-dark);
     }
 
     :where(th) {
-      background-color: var(--color-gray-200);
       font-weight: var(--user-font-weight-bold);
       text-align: center;
+      background-color: var(--color-gray-200);
     }
 
     /* .List */
     :where(ol, ul) {
-      margin-top: calc(var(--user-spacing) * 10);
       display: grid;
       gap: var(--local-item-gap-y) var(--local-item-gap-x);
       padding-left: 1.7em;
+      margin-top: calc(var(--user-spacing) * 10);
 
       :where(ol, ul) {
         margin-top: var(--local-item-gap-y);
       }
 
       :where(li) {
-        height: 100%;
         position: relative;
+        height: 100%;
       }
     }
 
@@ -241,15 +242,15 @@ const attrs: Record<string, unknown> = { ...rest };
         list-style: none;
 
         &::before {
-          background-color: var(--user-color-primary);
-          border-radius: 50%;
-          content: '';
-          display: block;
-          height: 6px;
-          left: -1.7em;
           position: absolute;
           top: 0.7em;
+          left: -1.7em;
+          display: block;
           width: 6px;
+          height: 6px;
+          content: '';
+          background-color: var(--user-color-primary);
+          border-radius: 50%;
         }
       }
     }
@@ -269,57 +270,57 @@ const attrs: Record<string, unknown> = { ...rest };
 
     /* .Media */
     :where(figure) {
-      margin-top: calc(var(--user-spacing) * 10);
-      align-items: center;
       display: flex;
       flex-direction: column;
       gap: calc(var(--user-spacing) * 2);
-      margin-inline: auto;
-      max-width: 100%;
+      align-items: center;
       width: fit-content;
+      max-width: 100%;
+      margin-inline: auto;
+      margin-top: calc(var(--user-spacing) * 10);
 
       &[style*='text-align: left'] {
-        text-align: revert !important;
         margin-left: 0;
+        text-align: revert !important;
       }
 
       &[style*='text-align: right'] {
-        text-align: revert !important;
         margin-right: 0;
+        text-align: revert !important;
       }
 
       :where(a) {
-        align-items: center;
-        color: var(--user-color-primary);
         display: flex;
-        text-decoration: none;
-        fill: var(--user-color-primary);
         flex-direction: column;
         gap: calc(var(--user-spacing) * 2);
+        align-items: center;
+        color: var(--user-color-primary);
+        text-decoration: none;
+        fill: var(--user-color-primary);
       }
 
       :where(img) {
         display: block;
-        height: auto;
         max-width: 100%;
+        height: auto;
       }
 
       :where(figcaption) {
-        font-size: var(--user-font-size-note);
-        min-width: 100%;
-        text-align: center;
         width: 0;
+        min-width: 100%;
+        font-size: var(--user-font-size-note);
+        text-align: center;
       }
     }
 
     /* .MediaEmbed */
     :where(div:has(iframe)) {
-      margin-top: calc(var(--user-spacing) * 10);
-      aspect-ratio: 16 / 9;
-      height: 100% !important;
       left: revert !important;
-      padding: revert !important;
       width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: 16 / 9;
+      padding: revert !important;
+      margin-top: calc(var(--user-spacing) * 10);
 
       :where(iframe) {
         display: block;

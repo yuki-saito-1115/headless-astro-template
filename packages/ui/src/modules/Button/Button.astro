@@ -1,14 +1,16 @@
 ---
+import type { Polymorphic } from 'astro/types';
+
 import type { Props as MediaIconProps } from '@packages/ui/modules/MediaIcon/MediaIcon.astro';
 import MediaIcon from '@packages/ui/modules/MediaIcon/MediaIcon.astro';
-import type { Polymorphic } from 'astro/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export type Props<
-  Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button',
-> = Tag extends 'span' | 'a' | 'button'
+export type Props<Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button'> = Tag extends
+  | 'span'
+  | 'a'
+  | 'button'
   ? Polymorphic<{
       as: Tag;
     }> & {
@@ -37,7 +39,9 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 switch (Element) {
   case 'a':
@@ -66,13 +70,31 @@ switch (Element) {
   ]}
   {...attrs}
 >
-  {iconBefore && <MediaIcon class:list={['Button__icon']} {...iconBefore} />}
+  {iconBefore && (
+    <MediaIcon
+      class:list={[
+        'Button__icon',
+      ]}
+      {...iconBefore}
+    />
+  )}
 
-  <span class:list={['Button__content']}>{title}</span>
+  <span
+    class:list={[
+      'Button__content',
+    ]}
+    >{title}</span
+  >
 
-  {iconAfter && <MediaIcon class:list={['Button__icon']} {...iconAfter} />}
+  {iconAfter && (
+    <MediaIcon
+      class:list={[
+        'Button__icon',
+      ]}
+      {...iconAfter}
+    />
+  )}
 </Element>
-
 
 <style>
   .Button {
@@ -80,28 +102,28 @@ switch (Element) {
     --local-background: var(--user-color-background-light);
     --local-outline: var(--user-color-primary);
     --local-width: auto;
+    display: inline-flex;
+    gap: 0.5em;
 
     align-items: center;
-    background-color: var(--local-background);
-    border: 1px solid var(--local-outline);
-    color: var(--local-foreground);
-    cursor: pointer;
-    display: inline-flex;
-    fill: var(--local-foreground);
+    justify-content: center;
+    width: var(--local-width);
+    min-width: calc(var(--user-spacing) * 60);
+    padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 6);
     /* button要素はフォントを継承しないため */
     font: inherit;
     font-weight: normal;
-    gap: 0.5em;
-    justify-content: center;
+    line-height: 1.5;
+    vertical-align: middle;
+    color: var(--local-foreground);
+    text-align: center;
     /* button要素は文字間隔を継承しないため */
     letter-spacing: inherit;
-    line-height: 1.5;
-    min-width: calc(var(--user-spacing) * 60);
-    padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 6);
-    text-align: center;
     text-decoration: none;
-    vertical-align: middle;
-    width: var(--local-width);
+    cursor: pointer;
+    background-color: var(--local-background);
+    border: 1px solid var(--local-outline);
+    fill: var(--local-foreground);
 
     /* 強調 */
     &:where(.theme-emphasis) {
@@ -122,11 +144,11 @@ switch (Element) {
       --local-foreground: var(--user-color-foreground-dark);
       --local-background: transparent;
       --local-outline: transparent;
-
-      fill: var(--user-color-primary);
       min-width: unset;
       padding: unset;
       vertical-align: baseline;
+
+      fill: var(--user-color-primary);
     }
 
     &[hidden] {
@@ -167,12 +189,12 @@ switch (Element) {
     }
 
     > :where(.Button__icon) {
-      color: currentColor;
       display: inline-block;
       flex: 0 0 auto;
+      width: 1em;
       height: 1em;
       vertical-align: baseline;
-      width: 1em;
+      color: currentColor;
     }
   }
 

@@ -1,10 +1,20 @@
 {
   "perspective": {
     "$type": "dimension",
-    "dramatic": { "$value": "100px" },
-    "near": { "$value": "300px" },
-    "normal": { "$value": "500px" },
-    "midrange": { "$value": "800px" },
-    "distant": { "$value": "1200px" }
+    "distant": {
+      "$value": "1200px"
+    },
+    "dramatic": {
+      "$value": "100px"
+    },
+    "midrange": {
+      "$value": "800px"
+    },
+    "near": {
+      "$value": "300px"
+    },
+    "normal": {
+      "$value": "500px"
+    }
   }
 }

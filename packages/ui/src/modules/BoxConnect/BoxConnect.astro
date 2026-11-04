@@ -7,7 +7,9 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('BoxConnect: slotの中身が空です。');
@@ -25,7 +27,6 @@ if (!Astro.slots.has('default')) {
   <slot />
 </div>
 
-
 <style>
   .BoxConnect {
     --local-arrow-width: 24px;
@@ -34,19 +35,22 @@ if (!Astro.slots.has('default')) {
 
     :where(.BoxConnect__segment + .BoxConnect__segment) {
       position: relative;
-      margin-top: calc(var(--local-arrow-height) + (var(--local-gutter) * 2)); /* アローの高さと上下余白 */
+      margin-top: calc(
+        var(--local-arrow-height) +
+        (var(--local-gutter) * 2)
+      ); /* アローの高さと上下余白 */
 
       /* arrow */
       &::before {
+        position: absolute;
+        bottom: calc(100% + var(--local-gutter)); /* ボックスの高さ + モジュールの余白 */
+        left: 50%;
+        display: block;
+        content: '';
+        border-top: var(--local-arrow-height) solid var(--color-gray-200);
+        border-right: var(--local-arrow-width) solid transparent;
         border-bottom: 0;
         border-left: var(--local-arrow-width) solid transparent;
-        border-right: var(--local-arrow-width) solid transparent;
-        border-top: var(--local-arrow-height) solid var(--color-gray-200);
-        bottom: calc(100% + var(--local-gutter)); /* ボックスの高さ + モジュールの余白 */
-        content: '';
-        display: block;
-        left: 50%;
-        position: absolute;
         transform: translateX(-50%);
       }
     }

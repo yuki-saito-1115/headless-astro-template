@@ -1,3 +1,1 @@
-export function checkTailwindDirective(options: {
-  targetDirectories: string[];
-}): object;
+export function checkTailwindDirective(options: { targetDirectories: string[] }): object;

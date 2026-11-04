@@ -1,12 +1,12 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import Text from '@packages/ui/modules/Text/Text.astro';
 import type { Props } from '@packages/ui/modules/WidgetShowMore/WidgetShowMore.astro';
 import WidgetShowMore from '@packages/ui/modules/WidgetShowMore/WidgetShowMore.astro';
-import type { Meta, StoryObj } from '@storybook/react';
-import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
 
-const storybookComponent = (component: unknown) =>
-  component as AstroComponentFactory;
+const storybookComponent = (component: unknown) => component as AstroComponentFactory;
 
 const meta = {
   component: WidgetShowMore,

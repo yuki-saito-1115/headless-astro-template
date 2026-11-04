@@ -6,10 +6,15 @@
 const PLUGIN_NAME = 'check-tailwind-directive';
 
 /** スキャン対象拡張子 */
-const SCAN_TARGET_EXTENSIONS = ['.astro'];
+const SCAN_TARGET_EXTENSIONS = [
+  '.astro',
+];
 
 /** 使用禁止のディレクティブ */
-const DISALLOWED_DIRECTIVES = ['@apply', '@reference'];
+const DISALLOWED_DIRECTIVES = [
+  '@apply',
+  '@reference',
+];
 
 /** エラー時に以降のタスクを強制終了 */
 const BREAK_ON_ERROR = false;
@@ -35,8 +40,6 @@ const BREAK_ON_ERROR = false;
 /** @returns {import('vite').Plugin} */
 export function checkTailwindDirective({ targetDirectories }) {
   return {
-    name: PLUGIN_NAME,
-
     /**
      * Vite ビルド開始時に実行されるフック
      * ファイルシステムを再帰的に走査して禁止ディレクティブをチェック
@@ -117,5 +120,6 @@ export function checkTailwindDirective({ targetDirectories }) {
         walkDir(directory);
       }
     },
+    name: PLUGIN_NAME,
   };
 }

@@ -5,9 +5,10 @@ import type { Polymorphic } from 'astro/types';
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  * - このコンポーネントは原則として単品での利用を想定していません。`BadgeList` コンポーネントを使用してください。
  */
-export type Props<
-  Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button',
-> = Tag extends 'span' | 'a' | 'button'
+export type Props<Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button'> = Tag extends
+  | 'span'
+  | 'a'
+  | 'button'
   ? Polymorphic<{
       as: Tag;
     }> & {
@@ -33,7 +34,9 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 switch (Element) {
   case 'a':
@@ -66,27 +69,26 @@ switch (Element) {
   {title}
 </Element>
 
-
 <style>
   .Badge {
     --local-foreground: var(--user-color-foreground-light);
     --local-background: var(--user-color-secondary2);
     --local-outline: transparent;
+    display: inline-flex;
 
     align-items: center;
-    background-color: var(--local-background);
-    border: 1px solid var(--local-outline);
-    color: var(--local-foreground);
-    display: inline-flex;
+    justify-content: center;
+    padding: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 4);
     /* button要素はフォントを継承しないため */
     font: inherit;
     font-size: var(--text-xs);
+    line-height: var(--user-line-height);
+    color: var(--local-foreground);
     /* button要素は文字間隔を継承しないため */
     letter-spacing: inherit;
-    justify-content: center;
-    line-height: var(--user-line-height);
     outline: none;
-    padding: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 4);
+    background-color: var(--local-background);
+    border: 1px solid var(--local-outline);
 
     /* 角丸 */
     &:where(.shape-rounded) {

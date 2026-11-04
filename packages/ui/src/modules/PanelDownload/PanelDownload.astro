@@ -1,20 +1,23 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
 import type { Props as ButtonProps } from '@packages/ui/modules/Button/Button.astro';
 import Button from '@packages/ui/modules/Button/Button.astro';
-import type { HTMLAttributes } from 'astro/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
 export interface Props extends HTMLAttributes<'div'> {
-  /** ダウンロードに関する説明を設定します。テキストノード以外は使用できません。 */
-  description: string;
   /** ダウンロードリンクに使用する`Button`のPropsを設定します。 */
   button: ButtonProps;
+  /** ダウンロードに関する説明を設定します。テキストノード以外は使用できません。 */
+  description: string;
 }
 
 const { description, button, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <div
@@ -24,13 +27,22 @@ const attrs: Record<string, unknown> = { ...rest };
   ]}
   {...attrs}
 >
-  <p class:list={['PanelDownload__description']}>{description}</p>
+  <p
+    class:list={[
+      'PanelDownload__description',
+    ]}
+  >
+    {description}
+  </p>
 
-  <div class:list={['PanelDownload__button']}>
+  <div
+    class:list={[
+      'PanelDownload__button',
+    ]}
+  >
     <Button {...button} />
   </div>
 </div>
-
 
 <style>
   .PanelDownload {
@@ -46,9 +58,9 @@ const attrs: Record<string, unknown> = { ...rest };
 
   @media (width >= 768px) {
     .PanelDownload {
-      align-items: center;
       flex-direction: row;
       gap: calc(var(--user-spacing) * 10);
+      align-items: center;
       justify-content: space-between;
 
       :where(.PanelDownload__description) {

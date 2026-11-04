@@ -7,14 +7,15 @@ import type { BreadcrumbItem } from '@packages/ui/structures/Breadcrumb/Breadcru
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../layouts/PageLayout/PageLayout.astro';
 
 const samples = await getSampleList();
 const breadcrumb: BreadcrumbItem[] = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
     name: '羅生門',
@@ -33,11 +34,12 @@ const pageProps: PagePropType = {
     <Section>
       <HeadingLevel2><h2>記事詳細Sample</h2></HeadingLevel2>
 
-      <Text class="mt-6">
-        このページはシステムテンプレートのサンプルページです。
-      </Text>
+      <Text class="mt-6"> このページはシステムテンプレートのサンプルページです。 </Text>
 
-      <SampleList class="mt-6" samples={samples} />
+      <SampleList
+        class="mt-6"
+        samples={samples}
+      />
     </Section>
   </Content>
 </PageLayout>

@@ -7,7 +7,9 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 {Astro.slots.has('default') && (
@@ -22,7 +24,6 @@ const attrs: Record<string, unknown> = { ...rest };
   </div>
 )}
 
-
 <style>
   .PanelInformation {
     display: flex;
@@ -30,44 +31,44 @@ const attrs: Record<string, unknown> = { ...rest };
     gap: calc(var(--user-spacing) * 6);
 
     :where(.PanelInformation__segment) {
-      background-color: var(--user-color-background-light);
       padding: calc(var(--user-spacing) * 6);
+      background-color: var(--user-color-background-light);
 
       &:last-child:nth-child(odd) {
-        background-color: transparent;
         padding: 0;
+        background-color: transparent;
       }
     }
 
     :where(.PanelInformation__title) {
-      align-items: center;
       display: flex;
+      gap: calc(var(--user-spacing) * 6);
+      align-items: center;
+      justify-content: center;
       font-size: var(--text-lg);
       font-weight: var(--user-font-weight-bold);
-      gap: calc(var(--user-spacing) * 6);
-      justify-content: center;
       line-height: var(--user-line-height);
       text-align: center;
     }
 
     :where(.PanelInformation__number) {
-      align-items: center;
       display: flex;
       gap: calc(var(--user-spacing) * 2);
+      align-items: center;
       margin-top: calc(var(--user-spacing) * 2);
       font-size: var(--text-2xl);
       font-weight: var(--user-font-weight-bold);
       line-height: 1;
 
       &::before {
-        background-color: #00c61a;
-        content: '';
         flex: 0 0 auto;
+        width: 1.2em;
         height: 1.2em;
+        content: '';
+        background-color: #00c61a;
         mask-image: url('/assets/images/icons/free-dial.svg');
         mask-repeat: no-repeat;
         mask-size: contain;
-        width: 1.2em;
       }
     }
   }
@@ -75,9 +76,9 @@ const attrs: Record<string, unknown> = { ...rest };
   @media (width >= 768px) {
     .PanelInformation {
       display: grid;
-      gap: calc(var(--user-spacing) * 10) clamp(1.5rem, 0.611rem + 1.85vw, 2rem);
-      grid-template-columns: 50% auto;
       grid-template-rows: min-content min-content;
+      grid-template-columns: 50% auto;
+      gap: calc(var(--user-spacing) * 10) clamp(1.5rem, 0.611rem + 1.85vw, 2rem);
 
       :where(.PanelInformation__segment) {
         &:last-child:nth-child(odd) {
@@ -93,8 +94,8 @@ const attrs: Record<string, unknown> = { ...rest };
         font-size: var(--text-3xl);
 
         &::before {
-          height: 1.5em;
           width: 1.5em;
+          height: 1.5em;
         }
       }
     }

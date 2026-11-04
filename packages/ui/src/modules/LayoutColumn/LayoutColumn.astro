@@ -11,13 +11,10 @@ export interface Props extends HTMLAttributes<'div'> {
   columnSp?: '1' | '2' | '3' | '4' | 'auto';
 }
 
-const {
-  columnPc = '1',
-  columnSp = '1',
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { columnPc = '1', columnSp = '1', class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('LayoutColumn: slotの中身が空です。');
@@ -35,7 +32,7 @@ if (!Astro.slots.has('default')) {
       'LayoutColumn__inner',
       columnPc && `columnPc-${columnPc}`,
       columnSp && `columnSp-${columnSp}`,
-      className
+      className,
     ]}
   >
     {/* @slot 直下では `div.LayoutColumn__segment` の使用のみを許容します。 */}
@@ -43,15 +40,14 @@ if (!Astro.slots.has('default')) {
   </div>
 </div>
 
-
 <style>
   .LayoutColumn {
     :where(.LayoutColumn__inner) {
       display: grid;
 
       > :global(:where(.LayoutColumn__segment)) {
-        list-style: none;
         height: 100%;
+        list-style: none;
       }
     }
   }

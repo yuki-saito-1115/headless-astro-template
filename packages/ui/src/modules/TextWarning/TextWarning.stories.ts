@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/TextWarning/TextWarning.astro';
 import TextWarning from '@packages/ui/modules/TextWarning/TextWarning.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: TextWarning,

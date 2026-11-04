@@ -1,14 +1,12 @@
 ---
-import {
-  getSampleDetail,
-  getSampleList,
-} from '@packages/content/build/getSample';
+import { getSampleDetail, getSampleList } from '@packages/content/build/getSample';
 import SampleDetail from '@packages/ui/microCMS/sample/SampleDetail.astro';
 import HeadingLevel2 from '@packages/ui/modules/HeadingLevel2/HeadingLevel2.astro';
 import type { BreadcrumbItem } from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
 
@@ -18,19 +16,21 @@ export async function getStaticPaths() {
   return samples
     .filter((sample) => !!sample.id)
     .map((sample) => ({
-      params: { slug: sample.id },
+      params: {
+        slug: sample.id,
+      },
     }));
 }
 
 const sample = await getSampleDetail(Astro.params.slug);
 const breadcrumb: BreadcrumbItem[] = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
-    name: 'システムテンプレートサンプルページ',
     item: '/sample',
+    name: 'システムテンプレートサンプルページ',
   },
   {
     name: sample.title,

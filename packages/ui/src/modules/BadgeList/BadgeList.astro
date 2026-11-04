@@ -1,7 +1,8 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
 import type { Props as BadgeProps } from '@packages/ui/modules/Badge/Badge.astro';
 import Badge from '@packages/ui/modules/Badge/Badge.astro';
-import type { HTMLAttributes } from 'astro/types';
 
 type BadgeListItemsProps = BadgeProps<'a'> | BadgeProps<'button'>;
 
@@ -14,7 +15,9 @@ export interface Props extends HTMLAttributes<'ul'> {
 }
 
 const { datas, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <div
@@ -33,7 +36,6 @@ const attrs: Record<string, unknown> = { ...rest };
   </ul>
 </div>
 
-
 <style>
   .BadgeList {
     :where(ul) {
@@ -43,9 +45,9 @@ const attrs: Record<string, unknown> = { ...rest };
     }
 
     :where(li) {
-      list-style: none;
       flex: 0 0 auto;
       max-width: 100%;
+      list-style: none;
     }
   }
 

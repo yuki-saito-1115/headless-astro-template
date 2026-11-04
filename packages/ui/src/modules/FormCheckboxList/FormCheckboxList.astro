@@ -1,7 +1,8 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
 import type { Props as FormCheckboxProps } from '@packages/ui/modules/FormCheckbox/FormCheckbox.astro';
 import FormCheckbox from '@packages/ui/modules/FormCheckbox/FormCheckbox.astro';
-import type { HTMLAttributes } from 'astro/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
@@ -15,14 +16,10 @@ export interface Props extends HTMLAttributes<'div'> {
   datas: FormCheckboxProps[];
 }
 
-const {
-  columnPc = '1',
-  columnSp = '1',
-  datas,
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { columnPc = '1', columnSp = '1', datas, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <div

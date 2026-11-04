@@ -8,12 +8,14 @@ const slotHtml = await Astro.slots.render('default');
 ---
 
 <main
-  class:list={['Content', className]}
+  class:list={[
+    'Content',
+    className,
+  ]}
   {..._rest}
 >
   {slotHtml && <Fragment set:html={slotHtml} />}
 </main>
-
 
 <style>
   .Content {

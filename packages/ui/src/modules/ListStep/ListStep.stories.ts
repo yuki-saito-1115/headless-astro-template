@@ -1,6 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { Props } from '@packages/ui/modules/ListStep/ListStep.astro';
 import ListStep from '@packages/ui/modules/ListStep/ListStep.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: ListStep,
@@ -18,12 +19,12 @@ export const Default: Story = {
   args: {
     datas: [
       {
-        title: '手順のタイトル',
         text: '手順の説明テキスト',
+        title: '手順のタイトル',
       },
       {
-        title: '手順のタイトル',
         text: '手順の説明テキスト',
+        title: '手順のタイトル',
       },
     ],
   },

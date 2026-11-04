@@ -1,17 +1,4 @@
 {
-  "name": "@headless-astro-template/preview",
-  "version": "2026.11.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "astro dev --port 4322 --open",
-    "build": "astro build",
-    "check": "run-p -l -c check:*",
-    "check:astro": "astro check",
-    "check:type": "tsc --noEmit",
-    "deploy": "wrangler deploy",
-    "versions": "wrangler versions upload"
-  },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.2",
     "@astrojs/mdx": "^8.0.1",
@@ -25,5 +12,18 @@
     "npm-run-all2": "^9.0.3",
     "typescript": "^5.9.3",
     "wrangler": "^4.133.0"
-  }
+  },
+  "name": "@headless-astro-template/preview",
+  "private": true,
+  "scripts": {
+    "build": "astro build",
+    "check": "run-p -l -c check:*",
+    "check:astro": "astro check",
+    "check:type": "tsc --noEmit",
+    "deploy": "wrangler deploy",
+    "dev": "astro dev --port 4322 --open",
+    "versions": "wrangler versions upload"
+  },
+  "type": "module",
+  "version": "2026.11.0"
 }

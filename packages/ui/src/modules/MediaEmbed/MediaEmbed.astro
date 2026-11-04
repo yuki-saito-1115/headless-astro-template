@@ -10,12 +10,15 @@ export interface Props extends HTMLAttributes<'div'> {
 }
 
 const { lazyLoad = true, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('MediaEmbed: slotの中身が空です。');
 }
 ---
+
 <div
   class:list={[
     'MediaEmbed',
@@ -33,7 +36,6 @@ if (!Astro.slots.has('default')) {
   )}
 </div>
 
-
 <style>
   .MediaEmbed {
     &:has(> template) {
@@ -41,11 +43,11 @@ if (!Astro.slots.has('default')) {
     }
 
     :where(div:has(iframe)) {
-      aspect-ratio: 16 / 9;
-      height: 100% !important;
       left: revert !important;
-      padding: revert !important;
       width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: 16 / 9;
+      padding: revert !important;
 
       :where(iframe) {
         display: block;

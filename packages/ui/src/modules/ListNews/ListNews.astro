@@ -1,7 +1,8 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
 import type { components } from '@packages/content/types/microcms';
 import Badge from '@packages/ui/modules/Badge/Badge.astro';
-import type { HTMLAttributes } from 'astro/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
@@ -12,7 +13,9 @@ export interface Props extends HTMLAttributes<'ol'> {
 }
 
 const { datas, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 const formatDate = (date: string) =>
   new Intl.DateTimeFormat('ja-JP', {
@@ -28,7 +31,7 @@ const formatDate = (date: string) =>
 <ol
   class:list={[
     'ListNews',
-    className
+    className,
   ]}
   {...attrs}
 >
@@ -38,7 +41,10 @@ const formatDate = (date: string) =>
         <div class="ListNews__head">
           <time datetime={data.date}>{formatDate(data.date)}</time>
           {data.category[0] && (
-            <Badge class="ListNews__badge" title={data.category[0]} />
+            <Badge
+              class="ListNews__badge"
+              title={data.category[0]}
+            />
           )}
         </div>
         <span class="ListNews__title">{data.title}</span>
@@ -47,7 +53,6 @@ const formatDate = (date: string) =>
   ))}
 </ol>
 
-
 <style>
   .ListNews {
     display: flex;
@@ -55,15 +60,15 @@ const formatDate = (date: string) =>
     gap: calc(var(--user-spacing) * 4);
 
     :where(li) {
-      list-style: none;
       width: 100%;
+      list-style: none;
     }
 
     :where(a) {
-      color: var(--user-color-primary);
       display: inline-flex;
       flex-direction: column;
       gap: calc(var(--user-spacing) * 2);
+      color: var(--user-color-primary);
       text-decoration: none;
     }
 
@@ -72,8 +77,8 @@ const formatDate = (date: string) =>
     }
 
     :where(.ListNews__head) {
-      align-items: center;
       display: flex;
+      align-items: center;
     }
 
     :where(.ListNews__badge) {
@@ -84,10 +89,10 @@ const formatDate = (date: string) =>
   @media (width >= 768px) {
     .ListNews {
       :where(a) {
-        align-items: baseline;
         display: inline-flex;
         flex-direction: row;
         gap: calc(var(--user-spacing) * 6);
+        align-items: baseline;
       }
 
       :where(.ListNews__head) {
@@ -97,8 +102,8 @@ const formatDate = (date: string) =>
 
       :where(.ListNews__title) {
         flex: 1 1 auto;
-        margin: 0;
         width: auto;
+        margin: 0;
       }
     }
   }

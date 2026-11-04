@@ -14,10 +14,21 @@ export interface Props extends HTMLAttributes<'nav'> {
 }
 
 const { back, next, top, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
-const backAttrs = { ...back, title: undefined };
-const nextAttrs = { ...next, title: undefined };
-const topAttrs = { ...top, title: undefined };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
+const backAttrs = {
+  ...back,
+  title: undefined,
+};
+const nextAttrs = {
+  ...next,
+  title: undefined,
+};
+const topAttrs = {
+  ...top,
+  title: undefined,
+};
 ---
 
 <nav
@@ -27,9 +38,17 @@ const topAttrs = { ...top, title: undefined };
   ]}
   {...attrs}
 >
-  <ul class:list={['Navigation__list']}>
+  <ul
+    class:list={[
+      'Navigation__list',
+    ]}
+  >
     {back && (
-      <li class:list={['Navigation__item']}>
+      <li
+        class:list={[
+          'Navigation__item',
+        ]}
+      >
         <a
           class:list={[
             'Navigation__link',
@@ -43,7 +62,11 @@ const topAttrs = { ...top, title: undefined };
     )}
 
     {next && (
-      <li class:list={['Navigation__item']}>
+      <li
+        class:list={[
+          'Navigation__item',
+        ]}
+      >
         <a
           class:list={[
             'Navigation__link',
@@ -57,7 +80,11 @@ const topAttrs = { ...top, title: undefined };
     )}
 
     {top && (
-      <li class:list={['Navigation__item']}>
+      <li
+        class:list={[
+          'Navigation__item',
+        ]}
+      >
         <a
           class:list={[
             'Navigation__link',
@@ -72,30 +99,29 @@ const topAttrs = { ...top, title: undefined };
   </ul>
 </nav>
 
-
 <style>
   .Navigation {
     :where(.Navigation__list) {
       display: grid;
-      gap: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 6);
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 6);
     }
 
     :where(.Navigation__item) {
+      position: relative;
       line-height: var(--user-line-height);
       list-style: none;
-      position: relative;
 
       &::before {
-        background-color: var(--user-color-primary);
-        content: '';
-        display: block;
-        height: 0.75em;
-        mask-repeat: no-repeat;
-        mask-size: cover;
         position: absolute;
         top: 0.4em;
+        display: block;
         width: 0.75em;
+        height: 0.75em;
+        content: '';
+        background-color: var(--user-color-primary);
+        mask-repeat: no-repeat;
+        mask-size: cover;
       }
 
       &:has(.Navigation__link--back, .Navigation__link--top) {
@@ -119,8 +145,8 @@ const topAttrs = { ...top, title: undefined };
         text-align: right;
 
         &::before {
-          mask-image: url('/assets/images/icons/angle-right.svg');
           right: 0;
+          mask-image: url('/assets/images/icons/angle-right.svg');
         }
       }
 

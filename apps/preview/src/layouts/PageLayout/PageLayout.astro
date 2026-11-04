@@ -5,6 +5,7 @@ import Footer from '@packages/ui/structures/Footer/Footer.astro';
 import Header from '@packages/ui/structures/Header/Header.astro';
 import NavigationTop from '@packages/ui/structures/NavigationTop/NavigationTop.astro';
 import Wrap from '@packages/ui/structures/Wrap/Wrap.astro';
+
 import PreviewNote from '../../components/structures/PreviewNote/PreviewNote.astro';
 
 /* ページごとに設定が必要な値 */
@@ -52,28 +53,69 @@ const jsonLd = breadcrumb.length
 // JSON-LD内の文字列でscript要素が意図せず閉じられないようにする
 const jsonLdText = jsonLd && JSON.stringify(jsonLd).replace(/</g, '\\u003c');
 ---
-<!doctype html>
 
+<!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      content="width=device-width, initial-scale=1"
+      name="viewport"
+    />
 
     <title>{pageTitle}</title>
 
-    <meta property="og:site_name" content={siteName} />
-    <meta property="og:type" content={ogType} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={`${siteUrl}${currentUrl.pathname}`} />
-    <meta property="og:locale" content={ogLocale} />
-    <meta property="og:image" content={ogImage} />
-    <meta name="description" content={description} />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:image" content={ogImage} />
+    <meta
+      content={siteName}
+      property="og:site_name"
+    />
+    <meta
+      content={ogType}
+      property="og:type"
+    />
+    <meta
+      content={pageTitle}
+      property="og:title"
+    />
+    <meta
+      content={description}
+      property="og:description"
+    />
+    <meta
+      content={`${siteUrl}${currentUrl.pathname}`}
+      property="og:url"
+    />
+    <meta
+      content={ogLocale}
+      property="og:locale"
+    />
+    <meta
+      content={ogImage}
+      property="og:image"
+    />
+    <meta
+      content={description}
+      name="description"
+    />
+    <meta
+      content="telephone=no"
+      name="format-detection"
+    />
+    <meta
+      content="summary"
+      name="twitter:card"
+    />
+    <meta
+      content={ogImage}
+      name="twitter:image"
+    />
 
-    {jsonLdText && <script type="application/ld+json" set:html={jsonLdText}></script>}
+    {jsonLdText && (
+      <script
+        set:html={jsonLdText}
+        type="application/ld+json"
+      ></script>
+    )}
   </head>
 
   <body>

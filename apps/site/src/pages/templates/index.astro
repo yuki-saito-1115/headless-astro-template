@@ -8,13 +8,14 @@ import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../layouts/PageLayout/PageLayout.astro';
 
 const breadcrumb = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
     name: 'テンプレート一覧',
@@ -29,8 +30,14 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="テンプレート一覧">
     <picture slot="media">
-      <source media="(width >= 768px)" srcset="/templates/images/index-mainVisual_pc.webp" />
-      <img src="/templates/images/index-mainVisual_sp.webp" alt="" />
+      <source
+        media="(width >= 768px)"
+        srcset="/templates/images/index-mainVisual_pc.webp"
+      />
+      <img
+        alt=""
+        src="/templates/images/index-mainVisual_sp.webp"
+      />
     </picture>
   </MainVisual>
 
@@ -56,20 +63,20 @@ const pageProps: PagePropType = {
               class="mt-8 md:mt-10"
               datas={[
                 {
-                  href: "/templates/mainVisual/",
-                  title: "タイプ1（デフォルト）",
+                  href: '/templates/mainVisual/',
+                  title: 'タイプ1（デフォルト）',
                 },
                 {
-                  href: "/templates/mainVisual-2/",
-                  title: "タイプ2",
+                  href: '/templates/mainVisual-2/',
+                  title: 'タイプ2',
                 },
                 {
-                  href: "/templates/mainVisual-3/",
-                  title: "タイプ3",
+                  href: '/templates/mainVisual-3/',
+                  title: 'タイプ3',
                 },
                 {
-                  href: "/templates/mainVisual-4/",
-                  title: "タイプ4",
+                  href: '/templates/mainVisual-4/',
+                  title: 'タイプ4',
                 },
               ]}
             />
@@ -84,16 +91,16 @@ const pageProps: PagePropType = {
               class="mt-8 md:mt-10"
               datas={[
                 {
-                  href: "/templates/products/",
-                  title: "一覧",
+                  href: '/templates/products/',
+                  title: '一覧',
                 },
                 {
-                  href: "/templates/products/detail/",
-                  title: "詳細",
+                  href: '/templates/products/detail/',
+                  title: '詳細',
                 },
                 {
-                  href: "/templates/products/tab/",
-                  title: "詳細（タブ）",
+                  href: '/templates/products/tab/',
+                  title: '詳細（タブ）',
                 },
               ]}
             />
@@ -108,12 +115,12 @@ const pageProps: PagePropType = {
               class="mt-8 md:mt-10"
               datas={[
                 {
-                  href: "/templates/example/",
-                  title: "一覧",
+                  href: '/templates/example/',
+                  title: '一覧',
                 },
                 {
-                  href: "/templates/example/detail/",
-                  title: "詳細",
+                  href: '/templates/example/detail/',
+                  title: '詳細',
                 },
               ]}
             />
@@ -128,8 +135,8 @@ const pageProps: PagePropType = {
               class="mt-8 md:mt-10"
               datas={[
                 {
-                  href: "/templates/features/detail/",
-                  title: "特長",
+                  href: '/templates/features/detail/',
+                  title: '特長',
                 },
               ]}
             />
@@ -144,20 +151,20 @@ const pageProps: PagePropType = {
               class="mt-8 md:mt-10"
               datas={[
                 {
-                  href: "/templates/events/",
-                  title: "一覧",
+                  href: '/templates/events/',
+                  title: '一覧',
                 },
                 {
-                  href: "/templates/events/detail/",
-                  title: "詳細",
+                  href: '/templates/events/detail/',
+                  title: '詳細',
                 },
                 {
-                  href: "/templates/events/pastIndex/",
-                  title: "過去のセミナー／イベントのレポート一覧",
+                  href: '/templates/events/pastIndex/',
+                  title: '過去のセミナー／イベントのレポート一覧',
                 },
                 {
-                  href: "/templates/events/pastDetail/",
-                  title: "過去のセミナー／イベントのレポート詳細",
+                  href: '/templates/events/pastDetail/',
+                  title: '過去のセミナー／イベントのレポート詳細',
                 },
               ]}
             />
@@ -172,12 +179,12 @@ const pageProps: PagePropType = {
               class="mt-8 md:mt-10"
               datas={[
                 {
-                  href: "/templates/function/",
-                  title: "一覧",
+                  href: '/templates/function/',
+                  title: '一覧',
                 },
                 {
-                  href: "/templates/function/detail/",
-                  title: "詳細",
+                  href: '/templates/function/detail/',
+                  title: '詳細',
                 },
               ]}
             />
@@ -192,13 +199,13 @@ const pageProps: PagePropType = {
               class="mt-8 md:mt-10"
               datas={[
                 {
-                  href: "/templates/news/",
-                  title: "一覧",
+                  href: '/templates/news/',
+                  title: '一覧',
                 },
                 {
-                  href: "/templates/news/detail/",
-                  title: "詳細",
-                }
+                  href: '/templates/news/detail/',
+                  title: '詳細',
+                },
               ]}
             />
           </div>
@@ -212,8 +219,8 @@ const pageProps: PagePropType = {
               class="mt-8 md:mt-10"
               datas={[
                 {
-                  href: "/templates/price/detail/",
-                  title: "価格",
+                  href: '/templates/price/detail/',
+                  title: '価格',
                 },
               ]}
             />
@@ -228,8 +235,8 @@ const pageProps: PagePropType = {
               class="mt-8 md:mt-10"
               datas={[
                 {
-                  href: "/templates/faq/",
-                  title: "よくあるご質問",
+                  href: '/templates/faq/',
+                  title: 'よくあるご質問',
                 },
               ]}
             />
@@ -244,20 +251,20 @@ const pageProps: PagePropType = {
               class="mt-8 md:mt-10"
               datas={[
                 {
-                  href: "/templates/inquiry/entry/",
-                  title: "入力",
+                  href: '/templates/inquiry/entry/',
+                  title: '入力',
                 },
                 {
-                  href: "/templates/inquiry/error/",
-                  title: "入力（エラー時）",
+                  href: '/templates/inquiry/error/',
+                  title: '入力（エラー時）',
                 },
                 {
-                  href: "/templates/inquiry/confirm/",
-                  title: "確認",
+                  href: '/templates/inquiry/confirm/',
+                  title: '確認',
                 },
                 {
-                  href: "/templates/inquiry/finish/",
-                  title: "完了",
+                  href: '/templates/inquiry/finish/',
+                  title: '完了',
                 },
               ]}
             />

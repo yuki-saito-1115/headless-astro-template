@@ -10,21 +10,22 @@ import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
 const breadcrumb = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
-    name: 'テンプレート一覧',
     item: '/templates/',
+    name: 'テンプレート一覧',
   },
   {
-    name: '過去のセミナー・イベントのレポート',
     item: '/templates/events/pastIndex/',
+    name: '過去のセミナー・イベントのレポート',
   },
   {
     name: '過去のセミナー／イベントのレポート（詳細）',
@@ -39,23 +40,23 @@ const pageProps: PagePropType = {
 
 <PageLayout {...pageProps}>
   <MainVisual
-    title="〇〇〇〇を使いこなすためのポイント説明会"
-    taglineTop="イベントレポート"
     taglineBottom="2020年8月31日（木）"
+    taglineTop="イベントレポート"
+    title="〇〇〇〇を使いこなすためのポイント説明会"
   >
     <picture slot="media">
       <source
+        height="500"
         media="(min-width: 768px)"
         srcset="/templates/events/images/pastDetail-mainVisual_pc.webp"
         type="image/webp"
         width="1440"
-        height="500"
       />
       <img
+        alt=""
+        height="130"
         src="/templates/events/images/pastDetail-mainVisual_sp.webp"
         width="375"
-        height="130"
-        alt=""
       />
     </picture>
   </MainVisual>
@@ -68,17 +69,17 @@ const pageProps: PagePropType = {
         <figure>
           <picture>
             <source
+              height="500"
               media="(min-width: 768px)"
               srcset="/templates/events/images/pastDetail-image_pc.webp"
               type="image/webp"
               width="1000"
-              height="500"
             />
             <img
+              alt=""
+              height="200"
               src="/templates/events/images/pastDetail-image_sp.webp"
               width="327"
-              height="200"
-              alt=""
             />
           </picture>
         </figure>
@@ -90,7 +91,11 @@ const pageProps: PagePropType = {
         </p>
       </Text>
 
-      <ListDescription class="mt-8 md:mt-10" directPc="row" directSp="column">
+      <ListDescription
+        class="mt-8 md:mt-10"
+        directPc="row"
+        directSp="column"
+      >
         <dl>
           <dt>モデレーター</dt>
           <dd>〇〇〇〇（株式会社〇〇〇〇 代表取締役）</dd>
@@ -119,18 +124,18 @@ const pageProps: PagePropType = {
         <figure>
           <picture>
             <source
+              height="500"
               media="(min-width: 768px)"
               srcset="/templates/events/images/pastDetail-image-2_pc.webp"
               type="image/webp"
               width="1000"
-              height="500"
             />
             <img
-              src="/templates/events/images/pastDetail-image-2_sp.webp"
-              width="327"
+              alt=""
               height="200"
               loading="lazy"
-              alt=""
+              src="/templates/events/images/pastDetail-image-2_sp.webp"
+              width="327"
             />
           </picture>
         </figure>
@@ -156,18 +161,18 @@ const pageProps: PagePropType = {
         <figure>
           <picture>
             <source
+              height="500"
               media="(min-width: 768px)"
               srcset="/templates/events/images/pastDetail-image-3_pc.webp"
               type="image/webp"
               width="1000"
-              height="500"
             />
             <img
-              src="/templates/events/images/pastDetail-image-3_sp.webp"
-              width="327"
+              alt=""
               height="200"
               loading="lazy"
-              alt=""
+              src="/templates/events/images/pastDetail-image-3_sp.webp"
+              width="327"
             />
           </picture>
         </figure>
@@ -177,30 +182,36 @@ const pageProps: PagePropType = {
         <h2>その他のイベント / セミナーレポート</h2>
       </HeadingLevel2>
 
-      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
         <div class="LayoutColumn__segment">
           <Card
+            date="YYYY年M月D日（月）"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            date="YYYY年M月D日（月）"
-            link={{ href: "DUMMY_LINK" }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastDetail-image-4_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastDetail-image-4_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastDetail-image-4_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -217,27 +228,29 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            date="YYYY年M月D日（月）"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            date="YYYY年M月D日（月）"
-            link={{ href: "DUMMY_LINK" }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastDetail-image-5_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastDetail-image-5_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastDetail-image-5_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -254,27 +267,29 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            date="YYYY年M月D日（月）"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            date="YYYY年M月D日（月）"
-            link={{ href: "DUMMY_LINK" }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastDetail-image-6_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastDetail-image-6_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastDetail-image-6_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -294,30 +309,36 @@ const pageProps: PagePropType = {
         <h2>関連記事</h2>
       </HeadingLevel2>
 
-      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
         <div class="LayoutColumn__segment">
           <Card
+            date="YYYY年M月D日（月）"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            date="YYYY年M月D日（月）"
-            link={{ href: "DUMMY_LINK" }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastDetail-image-7_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastDetail-image-7_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastDetail-image-7_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -334,27 +355,29 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            date="YYYY年M月D日（月）"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            date="YYYY年M月D日（月）"
-            link={{ href: "DUMMY_LINK" }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastDetail-image-8_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastDetail-image-8_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastDetail-image-8_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -371,27 +394,29 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            date="YYYY年M月D日（月）"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルテキストテキストテキストテキストテキストテキスト"
-            date="YYYY年M月D日（月）"
-            link={{ href: "DUMMY_LINK" }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="200"
                     media="(min-width: 768px)"
                     srcset="/templates/events/images/pastDetail-image-9_pc.webp"
                     type="image/webp"
                     width="336"
-                    height="200"
                   />
                   <img
-                    src="/templates/events/images/pastDetail-image-9_sp.webp"
-                    width="327"
+                    alt=""
                     height="200"
                     loading="lazy"
-                    alt=""
+                    src="/templates/events/images/pastDetail-image-9_sp.webp"
+                    width="327"
                   />
                 </picture>
               </figure>
@@ -410,12 +435,12 @@ const pageProps: PagePropType = {
       <NavigationSns
         class="mt-8 md:mt-10"
         datas={{
-          share: "DUMMY_LINK",
-          good: "DUMMY_LINK",
-          facebook: "DUMMY_LINK",
-          x: "DUMMY_LINK",
-          instagram: "DUMMY_LINK",
-          line: "DUMMY_LINK",
+          facebook: 'DUMMY_LINK',
+          good: 'DUMMY_LINK',
+          instagram: 'DUMMY_LINK',
+          line: 'DUMMY_LINK',
+          share: 'DUMMY_LINK',
+          x: 'DUMMY_LINK',
         }}
       />
     </Section>

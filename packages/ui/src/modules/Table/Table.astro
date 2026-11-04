@@ -7,10 +7,10 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'div'> {
   /** SP幅時のテーブルの並び方向を設定します。ただしこのPropsはリッチエディタでは利用できません。 */
   directSp?: 'row' | 'column';
-  /** SP幅時にテーブルを横スクロールで表示します。ただしこのPropsはリッチエディタでは利用できません。 */
-  scrollSp?: boolean;
   /** PC幅時にテーブルを横スクロールで表示します。ただしこのPropsはリッチエディタでは利用できません。 */
   scrollPc?: boolean;
+  /** SP幅時にテーブルを横スクロールで表示します。ただしこのPropsはリッチエディタでは利用できません。 */
+  scrollSp?: boolean;
 }
 
 const {
@@ -20,7 +20,9 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('Table: slotの中身が空です。');
@@ -40,28 +42,27 @@ if (!Astro.slots.has('default')) {
   <slot />
 </div>
 
-
 <style>
   .Table {
     :where(table) {
-      background-color: var(--user-color-background-light);
-      border-collapse: collapse;
-      border-left: 1px solid var(--user-color-foreground-dark);
-      border-top: 1px solid var(--user-color-foreground-dark);
-      table-layout: fixed;
       width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+      background-color: var(--user-color-background-light);
+      border-top: 1px solid var(--user-color-foreground-dark);
+      border-left: 1px solid var(--user-color-foreground-dark);
     }
 
     :where(th, td) {
-      border-bottom: 1px solid var(--user-color-foreground-dark);
-      border-right: 1px solid var(--user-color-foreground-dark);
       padding: calc(var(--user-spacing) * 4);
+      border-right: 1px solid var(--user-color-foreground-dark);
+      border-bottom: 1px solid var(--user-color-foreground-dark);
     }
 
     :where(th) {
-      background-color: var(--color-gray-200);
       font-weight: var(--user-font-weight-bold);
       text-align: center;
+      background-color: var(--color-gray-200);
     }
   }
 
@@ -75,21 +76,21 @@ if (!Astro.slots.has('default')) {
       }
 
       &:where(.scrollSp) {
-        overflow: auto;
         position: relative;
+        overflow: auto;
 
         &:where(.is-scrollGuide) {
           &::before,
           &::after {
-            aspect-ratio: 1;
-            content: '';
-            height: min(calc(100% - (var(--user-spacing) * 2)), calc(var(--user-spacing) * 18));
-            left: 50%;
             position: absolute;
-            pointer-events: none;
             top: min(50%, calc(var(--user-spacing) * 28));
-            transform: translate(-50%, -50%);
+            left: 50%;
             width: auto;
+            height: min(calc(100% - (var(--user-spacing) * 2)), calc(var(--user-spacing) * 18));
+            aspect-ratio: 1;
+            pointer-events: none;
+            content: '';
+            transform: translate(-50%, -50%);
           }
 
           &::before {
@@ -101,8 +102,8 @@ if (!Astro.slots.has('default')) {
           &::after {
             background-color: var(--user-color-foreground-light);
             mask-image: url('/assets/images/icons/arrow-right.svg');
-            mask-position: center;
             mask-repeat: no-repeat;
+            mask-position: center;
             mask-size: 60%;
           }
         }
@@ -140,11 +141,9 @@ if (!Astro.slots.has('default')) {
 
     /** 最初のスクロールでガイドを消す。 */
     const bindEvent = () => {
-      root.addEventListener(
-        'scroll',
-        () => root.classList.remove('is-scrollGuide'),
-        { once: true },
-      );
+      root.addEventListener('scroll', () => root.classList.remove('is-scrollGuide'), {
+        once: true,
+      });
     };
 
     /** スクロール前のガイドを表示する。 */

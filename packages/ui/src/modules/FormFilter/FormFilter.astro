@@ -7,7 +7,9 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'dl'> {}
 
 const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('FormFilter: slotの中身が空です。');
@@ -17,7 +19,7 @@ if (!Astro.slots.has('default')) {
 <dl
   class:list={[
     'FormFilter',
-    className
+    className,
   ]}
   {...attrs}
 >
@@ -25,14 +27,13 @@ if (!Astro.slots.has('default')) {
   <slot />
 </dl>
 
-
 <style>
   .FormFilter {
     --local-outline: var(--user-color-outline-dark);
-
-    border-top: 1px solid var(--local-outline);
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+
+    border-top: 1px solid var(--local-outline);
 
     > :global(dt),
     > :global(dd) {
@@ -44,8 +45,8 @@ if (!Astro.slots.has('default')) {
     }
 
     > :global(dd) {
-      border-bottom: 1px solid var(--local-outline);
       padding-top: 0;
+      border-bottom: 1px solid var(--local-outline);
     }
   }
 

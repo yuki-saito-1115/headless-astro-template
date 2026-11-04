@@ -1,9 +1,10 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props as CardPropType } from '@packages/ui/modules/Card/Card.astro';
 import Card from '@packages/ui/modules/Card/Card.astro';
 import Media from '@packages/ui/modules/Media/Media.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: Card,
@@ -15,7 +16,6 @@ type Story = StoryObj<StoryArgs<CardPropType>>;
 
 export const Default: Story = {
   args: {
-    title: 'タイトルタイトルタイトル',
     date: '2026-09-25 08:30',
     slots: {
       content: {
@@ -34,6 +34,7 @@ export const Default: Story = {
         },
       },
     },
+    title: 'タイトルタイトルタイトル',
   },
 };
 
@@ -86,12 +87,11 @@ export const Outline: Story = {
 
 export const Link: Story = {
   args: {
-    title: 'タイトルタイトルタイトル',
     date: '2026-09-25 08:30',
-    outline: true,
     link: {
       href: '#',
     },
+    outline: true,
     slots: {
       content: {
         component: Text,
@@ -109,14 +109,15 @@ export const Link: Story = {
         },
       },
     },
+    title: 'タイトルタイトルタイトル',
   },
 };
 
 export const DirectColumnReverse: Story = {
   args: {
     date: '2026-09-25 08:30',
-    directSp: 'column-reverse',
     directPc: 'column-reverse',
+    directSp: 'column-reverse',
     slots: {
       content: {
         component: Text,
@@ -140,8 +141,8 @@ export const DirectColumnReverse: Story = {
 export const DirectRow: Story = {
   args: {
     date: '2026-09-25 08:30',
-    directSp: 'row',
     directPc: 'row',
+    directSp: 'row',
     slots: {
       content: {
         component: Text,
@@ -165,8 +166,8 @@ export const DirectRow: Story = {
 export const DirectRowReverse: Story = {
   args: {
     date: '2026-09-25 08:30',
-    directSp: 'row-reverse',
     directPc: 'row-reverse',
+    directSp: 'row-reverse',
     slots: {
       content: {
         component: Text,
@@ -190,7 +191,6 @@ export const DirectRowReverse: Story = {
 export const ThemeCaution: Story = {
   args: {
     date: '2026-09-25 08:30',
-    theme: 'caution',
     slots: {
       content: {
         component: Text,
@@ -208,13 +208,13 @@ export const ThemeCaution: Story = {
         },
       },
     },
+    theme: 'caution',
   },
 };
 
 export const ThemeWarning: Story = {
   args: {
     date: '2026-09-25 08:30',
-    theme: 'warning',
     slots: {
       content: {
         component: Text,
@@ -232,5 +232,6 @@ export const ThemeWarning: Story = {
         },
       },
     },
+    theme: 'warning',
   },
 };

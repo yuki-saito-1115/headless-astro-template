@@ -5,19 +5,16 @@ import type { HTMLAttributes } from 'astro/types';
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
 export interface Props extends HTMLAttributes<'div'> {
-  /** SP幅時の並び方向を設定します。 */
-  directSp?: 'row' | 'column' | 'wrap';
   /** PC幅時の並び方向を設定します。 */
   directPc?: 'row' | 'column' | 'wrap';
+  /** SP幅時の並び方向を設定します。 */
+  directSp?: 'row' | 'column' | 'wrap';
 }
 
-const {
-  directSp = 'row',
-  directPc = 'row',
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { directSp = 'row', directPc = 'row', class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('FormComplex: slotの中身が空です。');
@@ -29,7 +26,7 @@ if (!Astro.slots.has('default')) {
     'FormComplex',
     `directSp-${directSp}`,
     `directPc-${directPc}`,
-    className
+    className,
   ]}
   {...attrs}
 >
@@ -37,25 +34,24 @@ if (!Astro.slots.has('default')) {
   <slot />
 </div>
 
-
 <style>
   .FormComplex {
-    align-items: center;
     display: flex;
     gap: calc(var(--user-spacing) * 2);
+    align-items: center;
 
     :global(.FormComplex__segment) {
       display: flex;
-      align-items: center;
       gap: calc(var(--user-spacing) * 2);
+      align-items: center;
     }
   }
 
   @media (width < 768px) {
     .FormComplex {
       &:where(.directSp-column) {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: flex-start;
       }
 
       &:where(.directSp-wrap) {
@@ -67,8 +63,8 @@ if (!Astro.slots.has('default')) {
   @media (width >= 768px) {
     .FormComplex {
       &:where(.directPc-column) {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: flex-start;
       }
 
       &:where(.directPc-wrap) {

@@ -8,63 +8,68 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('Media: slotの中身が空です。');
 }
 ---
+
 <div
-  class:list={['Media', className]}
+  class:list={[
+    'Media',
+    className,
+  ]}
   {...attrs}
 >
   {/* @slot 直下では `figure` 要素の使用のみを許容します。 */}
   <slot />
 </div>
 
-
 <style>
   .Media {
     :where(figure) {
-      align-items: center;
       display: flex;
       flex-direction: column;
       gap: calc(var(--user-spacing) * 2);
-      margin-inline: auto;
-      max-width: 100%;
+      align-items: center;
       width: fit-content;
+      max-width: 100%;
+      margin-inline: auto;
 
       &[style*='text-align: left'] {
-        text-align: revert !important;
         margin-left: 0;
+        text-align: revert !important;
       }
 
       &[style*='text-align: right'] {
-        text-align: revert !important;
         margin-right: 0;
+        text-align: revert !important;
       }
 
       :where(a) {
-        align-items: center;
-        color: var(--user-color-primary);
         display: flex;
-        text-decoration: none;
-        fill: var(--user-color-primary);
         flex-direction: column;
         gap: calc(var(--user-spacing) * 2);
+        align-items: center;
+        color: var(--user-color-primary);
+        text-decoration: none;
+        fill: var(--user-color-primary);
       }
 
       :where(img) {
         display: block;
-        height: auto;
         max-width: 100%;
+        height: auto;
       }
 
       :where(figcaption) {
-        font-size: var(--user-font-size-note);
-        min-width: 100%;
-        text-align: center;
         width: 0;
+        min-width: 100%;
+        font-size: var(--user-font-size-note);
+        text-align: center;
       }
     }
   }
@@ -75,8 +80,8 @@ if (!Astro.slots.has('default')) {
         :where(a) {
           &:any-link {
             &:hover {
-              opacity: 0.5;
               text-decoration: underline;
+              opacity: 0.5;
             }
           }
         }

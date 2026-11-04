@@ -1,5 +1,18 @@
 {
   "font": {
+    "mono": {
+      "$type": "fontFamily",
+      "$value": [
+        "ui-monospace",
+        "SFMono-Regular",
+        "Menlo",
+        "Monaco",
+        "Consolas",
+        "Liberation Mono",
+        "Courier New",
+        "monospace"
+      ]
+    },
     "sans": {
       "$type": "fontFamily",
       "$value": [
@@ -21,19 +34,6 @@
         "Times New Roman",
         "Times",
         "serif"
-      ]
-    },
-    "mono": {
-      "$type": "fontFamily",
-      "$value": [
-        "ui-monospace",
-        "SFMono-Regular",
-        "Menlo",
-        "Monaco",
-        "Consolas",
-        "Liberation Mono",
-        "Courier New",
-        "monospace"
       ]
     }
   }

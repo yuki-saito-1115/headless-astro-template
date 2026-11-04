@@ -13,14 +13,10 @@ export interface Props extends HTMLAttributes<'input'> {
   state?: 'valid' | 'invalid';
 }
 
-const {
-  disabled = false,
-  size,
-  state,
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { disabled = false, size, state, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <span
@@ -32,13 +28,14 @@ const attrs: Record<string, unknown> = { ...rest };
   ]}
 >
   <input
-    class:list={['FormCalendar__item']}
-    type="date"
     disabled={disabled}
+    type="date"
+    class:list={[
+      'FormCalendar__item',
+    ]}
     {...attrs}
   />
 </span>
-
 
 <style>
   .FormCalendar {
@@ -48,6 +45,13 @@ const attrs: Record<string, unknown> = { ...rest };
     --local-width: auto;
     --local-iconSize: 1em;
     --local-padding: calc(var(--user-spacing) * 3);
+    position: relative;
+    display: inline-flex;
+    width: var(--local-width);
+    max-width: 100%;
+    overflow: hidden;
+
+    border: 1px solid var(--local-outline);
 
     /* Preflight */
     :where([type='date']) {
@@ -56,15 +60,15 @@ const attrs: Record<string, unknown> = { ...rest };
       /* デフォルトスタイルリセットするため */
       font: unset;
 
-      /* ブラウザごとの差異を統一するため */
-      color: currentColor;
-      appearance: none;
-
       /* SPでフォーカス時にズームしないために16pxに固定 */
       font-size: var(--text-base); /* 2 */
 
       /* 要素の中のテキストの高さを限定するため */
       line-height: 1;
+
+      /* ブラウザごとの差異を統一するため */
+      color: currentColor;
+      appearance: none;
       border-radius: 0;
 
       /* ブラウザごとの差異を統一しデフォルトスタイルリセットするため */
@@ -92,29 +96,22 @@ const attrs: Record<string, unknown> = { ...rest };
       }
     }
 
-    border: 1px solid var(--local-outline);
-    display: inline-flex;
-    max-width: 100%;
-    overflow: hidden;
-    position: relative;
-    width: var(--local-width);
-
     /* icon */
     &::before {
-      background-color: currentColor;
-      content: '';
-      height: var(--local-iconSize);
-      mask-image: url('/assets/images/icons/calendar-days.svg');
-      mask-position: center;
-      mask-repeat: no-repeat;
-      mask-size: 70%;
-      pointer-events: none;
       position: absolute;
-      right: var(--local-padding);
       top: 50%;
-      transform: translateY(-50%);
-      width: var(--local-iconSize);
+      right: var(--local-padding);
       z-index: 10;
+      width: var(--local-iconSize);
+      height: var(--local-iconSize);
+      pointer-events: none;
+      content: '';
+      background-color: currentColor;
+      mask-image: url('/assets/images/icons/calendar-days.svg');
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: 70%;
+      transform: translateY(-50%);
     }
 
     &:focus-within {
@@ -122,18 +119,15 @@ const attrs: Record<string, unknown> = { ...rest };
     }
 
     :where(.FormCalendar__item) {
+      display: block;
+      width: 100%;
+      padding: var(--local-padding) calc(var(--local-iconSize) + (var(--local-padding) * 2))
+        var(--local-padding) var(--local-padding);
+      color: var(--local-foreground);
       appearance: none;
+      outline: none;
       background-color: var(--local-background);
       border: 0;
-      color: var(--local-foreground);
-      display: block;
-      outline: none;
-      padding:
-        var(--local-padding)
-        calc(var(--local-iconSize) + (var(--local-padding) * 2))
-        var(--local-padding)
-        var(--local-padding);
-      width: 100%;
     }
 
     &.is-valid,

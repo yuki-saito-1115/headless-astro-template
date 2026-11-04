@@ -39,8 +39,8 @@ stagingWorkerはmainWorkerに反映するための準備用環境といえる。
 
 docs（microCMS API仕様書）とstorybookは独立したアプリケーションworkspaceとして、ローカル環境で利用する。
 
-* docs: `npm run dev:docs`（`http://localhost:6324`）
-* storybook: `npm run dev:storybook`（`http://localhost:4323`）
+- docs: `npm run dev:docs`（`http://localhost:6324`）
+- storybook: `npm run dev:storybook`（`http://localhost:4323`）
 
 ルートの`npm run dev`でも両方を起動でき、ビルドと型チェックも引き続き利用できる。\
 Cloudflareへのデプロイ対象はsiteとpreviewのアプリケーションworkspaceである。

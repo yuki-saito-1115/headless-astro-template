@@ -1,6 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { Props } from '@packages/ui/modules/ListNews/ListNews.astro';
 import ListNews from '@packages/ui/modules/ListNews/ListNews.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: ListNews,
@@ -18,14 +19,18 @@ export const Default: Story = {
   args: {
     datas: [
       {
+        category: [
+          'カテゴリ1',
+        ],
         date: '2026-10-04T15:00:00.000Z',
-        category: ['カテゴリ1'],
         id: 'news-1',
         title: 'お知らせの内容を表示します。',
       },
       {
+        category: [
+          'カテゴリ2',
+        ],
         date: '2026-10-03T15:00:00.000Z',
-        category: ['カテゴリ2'],
         id: 'news-2',
         link: 'https://example.com/news/',
         title: 'お知らせの内容を表示します。',

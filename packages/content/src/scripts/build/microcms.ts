@@ -1,4 +1,5 @@
 import { getSecret } from 'astro:env/server';
+
 import type { components } from '../../types/microcms';
 
 type MicroCMSEndpoint = 'sample';
@@ -10,18 +11,16 @@ const MICROCMS_SERVICE_DOMAIN = getSecret('MICROCMS_SERVICE_DOMAIN');
 const MICROCMS_API_KEY = getSecret('MICROCMS_API_KEY');
 
 if (!MICROCMS_SERVICE_DOMAIN || !MICROCMS_API_KEY) {
-  throw new Error(
-    'MICROCMS_SERVICE_DOMAIN と MICROCMS_API_KEY の環境変数を設定してください。',
-  );
+  throw new Error('MICROCMS_SERVICE_DOMAIN と MICROCMS_API_KEY の環境変数を設定してください。');
 }
 
 /*
  * client
  */
 export const client = createClient({
-  serviceDomain: MICROCMS_SERVICE_DOMAIN,
   apiKey: MICROCMS_API_KEY,
   retry: true,
+  serviceDomain: MICROCMS_SERVICE_DOMAIN,
 });
 
 /*
@@ -51,8 +50,8 @@ export const getDetail = async <T>(
   queries?: MicroCMSQueries,
 ): Promise<T> => {
   return client.getListDetail<T>({
-    endpoint,
     contentId,
+    endpoint,
     queries,
   });
 };

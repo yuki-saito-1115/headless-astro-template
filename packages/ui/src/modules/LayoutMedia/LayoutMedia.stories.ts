@@ -1,8 +1,9 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
 import LayoutMedia from '@packages/ui/modules/LayoutMedia/LayoutMedia.astro';
 import Media from '@packages/ui/modules/Media/Media.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: LayoutMedia,
@@ -37,6 +38,8 @@ export const Row: Story = {
 
 export const RowReversed: Story = {
   args: {
+    directPc: 'row-reverse',
+    directSp: 'row-reverse',
     slots: {
       content:
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.',
@@ -50,13 +53,13 @@ export const RowReversed: Story = {
         },
       },
     },
-    directPc: 'row-reverse',
-    directSp: 'row-reverse',
   },
 };
 
 export const Column: Story = {
   args: {
+    directPc: 'column',
+    directSp: 'column',
     slots: {
       content:
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.',
@@ -70,13 +73,13 @@ export const Column: Story = {
         },
       },
     },
-    directPc: 'column',
-    directSp: 'column',
   },
 };
 
 export const ColumnReversed: Story = {
   args: {
+    directPc: 'column-reverse',
+    directSp: 'column-reverse',
     slots: {
       content:
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.',
@@ -90,7 +93,5 @@ export const ColumnReversed: Story = {
         },
       },
     },
-    directPc: 'column-reverse',
-    directSp: 'column-reverse',
   },
 };

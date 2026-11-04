@@ -7,17 +7,18 @@ import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
 const breadcrumb = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
-    name: 'テンプレート一覧',
     item: '/templates/',
+    name: 'テンプレート一覧',
   },
   {
     name: '問い合わせフォーム（確認）',
@@ -34,17 +35,17 @@ const pageProps: PagePropType = {
   <MainVisual title="お問い合わせ">
     <picture slot="media">
       <source
+        height="500"
         media="(min-width: 768px)"
         srcset="/templates/inquiry/images/confirm-mainVisual_pc.webp"
         type="image/webp"
         width="1440"
-        height="500"
       />
       <img
+        alt=""
+        height="130"
         src="/templates/inquiry/images/confirm-mainVisual_sp.webp"
         width="375"
-        height="130"
-        alt=""
       />
     </picture>
   </MainVisual>
@@ -54,14 +55,14 @@ const pageProps: PagePropType = {
   <Content>
     <Section>
       <Text>
-        <p>
-          内容をご確認の上、よろしければ「送信する」ボタンを押してください。
-        </p>
+        <p>内容をご確認の上、よろしければ「送信する」ボタンを押してください。</p>
       </Text>
 
       <FormList class="mt-8 md:mt-10">
         <dt>お問い合わせ内容</dt>
-        <dd>お問い合わせ内容テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</dd>
+        <dd>
+          お問い合わせ内容テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </dd>
         <dt>会社名</dt>
         <dd>株式会社ミツエーリンクス</dd>
         <dt>お名前</dt>
@@ -86,21 +87,25 @@ const pageProps: PagePropType = {
         <dd>新聞や雑誌、Webマガジンなどのメディア、検索エンジン</dd>
       </FormList>
 
-      <LayoutColumn class="mt-8 md:mt-10 justify-center" columnPc="auto" columnSp="1">
+      <LayoutColumn
+        class="mt-8 justify-center md:mt-10"
+        columnPc="auto"
+        columnSp="1"
+      >
         <div class="LayoutColumn__segment">
           <Button
             as="button"
-            type="button"
             title="修正する"
+            type="button"
           />
         </div>
 
         <div class="LayoutColumn__segment">
           <Button
             as="button"
-            type="submit"
             theme="conversion"
             title="送信する"
+            type="submit"
           />
         </div>
       </LayoutColumn>

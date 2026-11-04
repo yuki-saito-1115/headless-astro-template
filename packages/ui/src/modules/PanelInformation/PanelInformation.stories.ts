@@ -1,13 +1,13 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import Button from '@packages/ui/modules/Button/Button.astro';
 import type { Props } from '@packages/ui/modules/PanelInformation/PanelInformation.astro';
 import PanelInformation from '@packages/ui/modules/PanelInformation/PanelInformation.astro';
 import Text from '@packages/ui/modules/Text/Text.astro';
-import type { Meta, StoryObj } from '@storybook/react';
-import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
 
-const storybookComponent = (component: unknown) =>
-  component as AstroComponentFactory;
+const storybookComponent = (component: unknown) => component as AstroComponentFactory;
 
 const meta = {
   component: PanelInformation,
@@ -42,8 +42,8 @@ export const Default: Story = {
           props: {
             as: 'a',
             class: 'mt-4',
-            size: 'full',
             href: '/contact/',
+            size: 'full',
             theme: 'conversion',
             title: 'フォームから問い合わせる',
           },
@@ -78,8 +78,8 @@ export const Default: Story = {
           props: {
             as: 'a',
             class: 'mt-4',
-            size: 'full',
             href: '/service.pdf',
+            size: 'full',
             theme: 'emphasis',
             title: 'サービス紹介資料ダウンロード',
           },
@@ -161,8 +161,8 @@ export const Inquiry: Story = {
           props: {
             as: 'a',
             class: 'mt-4',
-            size: 'full',
             href: '/contact/',
+            size: 'full',
             theme: 'conversion',
             title: 'フォームから問い合わせる',
           },
@@ -245,8 +245,8 @@ export const Download: Story = {
           props: {
             as: 'a',
             class: 'mt-4',
-            size: 'full',
             href: '/service.pdf',
+            size: 'full',
             theme: 'emphasis',
             title: 'サービス紹介資料ダウンロード',
           },

@@ -1,15 +1,17 @@
 import { fileURLToPath } from 'node:url';
-import { checkTailwindDirective } from '@packages/content/plugins/vite/check-tailwind-directive';
+
 import tailwindcss from '@tailwindcss/vite';
 import type { InlineConfig } from 'vite';
 
-const resolvePath = (path: string) =>
-  fileURLToPath(new URL(path, import.meta.url));
+import { checkTailwindDirective } from '@packages/content/plugins/vite/check-tailwind-directive';
+
+const resolvePath = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 const config = {
-  stories: ['../../../packages/ui/src/**/*.stories.@(js|ts)'],
-  addons: ['@storybook/addon-a11y', '@storybook/addon-docs'],
-  staticDirs: ['../../../public'],
+  addons: [
+    '@storybook/addon-a11y',
+    '@storybook/addon-docs',
+  ],
   framework: {
     name: '@storybook-astro/framework',
     options: {
@@ -18,6 +20,12 @@ const config = {
       },
     },
   },
+  staticDirs: [
+    '../../../public',
+  ],
+  stories: [
+    '../../../packages/ui/src/**/*.stories.@(js|ts)',
+  ],
   async viteFinal(config: InlineConfig) {
     return {
       ...config,
@@ -25,7 +33,9 @@ const config = {
       plugins: [
         ...(config.plugins ?? []),
         checkTailwindDirective({
-          targetDirectories: [resolvePath('../../../packages/ui/src')],
+          targetDirectories: [
+            resolvePath('../../../packages/ui/src'),
+          ],
         }),
         tailwindcss(),
       ],

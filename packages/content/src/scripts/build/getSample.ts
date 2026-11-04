@@ -1,4 +1,5 @@
 import type { MicroCMSQueries } from 'microcms-js-sdk';
+
 import { getAllContents, getDetail, type SampleType } from './microcms';
 
 const ENDPOINT = 'sample';
@@ -9,9 +10,7 @@ const ENDPOINT = 'sample';
  * @returns サンプル一覧
  * @throws 取得に失敗した場合
  */
-const getSampleList = async (
-  queries?: MicroCMSQueries,
-): Promise<SampleType[]> => {
+const getSampleList = async (queries?: MicroCMSQueries): Promise<SampleType[]> => {
   const mergedQueries: MicroCMSQueries = {
     fields: 'id,title',
     ...queries,

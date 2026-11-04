@@ -1,6 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { Props } from '@packages/ui/modules/ListQuestion/ListQuestion.astro';
 import ListQuestion from '@packages/ui/modules/ListQuestion/ListQuestion.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: ListQuestion,
@@ -18,12 +19,12 @@ export const Default: Story = {
   args: {
     datas: [
       {
-        question: '質問テキスト',
         answer: '回答テキスト',
+        question: '質問テキスト',
       },
       {
-        question: '質問テキスト',
         answer: '回答テキスト',
+        question: '質問テキスト',
       },
     ],
   },

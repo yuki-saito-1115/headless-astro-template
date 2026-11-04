@@ -15,13 +15,15 @@ export interface Props extends HTMLAttributes<'ol'> {
 }
 
 const { datas, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <ol
   class:list={[
     'ListStep',
-    className
+    className,
   ]}
   {...attrs}
 >
@@ -33,60 +35,58 @@ const attrs: Record<string, unknown> = { ...rest };
   ))}
 </ol>
 
-
 <style>
   .ListStep {
     --local-arrow-height: calc(var(--user-spacing) * 3);
-
-    counter-reset: step;
     display: flex;
     flex-direction: column;
     gap: calc(var(--user-spacing) * 5);
 
+    counter-reset: step;
+
     :where(li) {
-      background-color: var(--color-gray-200);
-      counter-increment: step;
+      position: relative;
       display: flex;
       flex-direction: column;
       gap: calc(var(--user-spacing) * 4);
-      list-style: none;
       padding: calc(var(--user-spacing) * 4);
-
-      position: relative;
+      list-style: none;
+      counter-increment: step;
+      background-color: var(--color-gray-200);
 
       &:not(:last-child) {
         &::before {
-          border-left: calc(var(--user-spacing) * 3) solid transparent;
-          border-right: calc(var(--user-spacing) * 3) solid transparent;
-          border-top: var(--local-arrow-height) solid var(--color-gray-200);
-          top: 100%;
-          content: '';
-          left: 50%;
           position: absolute;
+          top: 100%;
+          left: 50%;
+          content: '';
+          border-top: var(--local-arrow-height) solid var(--color-gray-200);
+          border-right: calc(var(--user-spacing) * 3) solid transparent;
+          border-left: calc(var(--user-spacing) * 3) solid transparent;
           transform: translateX(-50%);
         }
       }
     }
 
     :where(.ListStep__title) {
-      font-weight: var(--user-font-weight-bold);
-      padding-left: calc(var(--user-spacing) * 10);
       position: relative;
+      padding-left: calc(var(--user-spacing) * 10);
+      font-weight: var(--user-font-weight-bold);
 
       &::before {
-        align-items: center;
-        background-color: var(--user-color-secondary2);
-        color: var(--user-color-foreground-light);
-        content: counter(step);
-        display: flex;
-        height: calc(var(--user-spacing) * 8);
-        justify-content: center;
-        left: 0;
-        line-height: 1;
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: calc(var(--user-spacing) * 8);
+        height: calc(var(--user-spacing) * 8);
+        line-height: 1;
+        color: var(--user-color-foreground-light);
+        content: counter(step);
+        background-color: var(--user-color-secondary2);
+        transform: translateY(-50%);
       }
     }
   }
@@ -96,9 +96,9 @@ const attrs: Record<string, unknown> = { ...rest };
       gap: calc(var(--user-spacing) * 8);
 
       :where(li) {
-        align-items: center;
         flex-direction: row;
         gap: calc(var(--user-spacing) * 6);
+        align-items: center;
       }
 
       :where(.ListStep__title, .ListStep__text) {
@@ -110,8 +110,8 @@ const attrs: Record<string, unknown> = { ...rest };
         padding-left: calc(var(--user-spacing) * 14);
 
         &::before {
-          height: calc(var(--user-spacing) * 10);
           width: calc(var(--user-spacing) * 10);
+          height: calc(var(--user-spacing) * 10);
         }
       }
     }

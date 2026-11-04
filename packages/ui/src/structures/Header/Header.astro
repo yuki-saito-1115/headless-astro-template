@@ -5,31 +5,42 @@ export interface Props extends HTMLAttributes<'header'> {}
 
 const { class: className, ..._rest } = Astro.props as Props;
 ---
+
 <header
-  class:list={['Header', className]}
+  class:list={[
+    'Header',
+    className,
+  ]}
   {..._rest}
 >
-  <div class:list={['Header__outer']}>
-    <div class:list={['Header__inner']}>
+  <div
+    class:list={[
+      'Header__outer',
+    ]}
+  >
+    <div
+      class:list={[
+        'Header__inner',
+      ]}
+    >
       header
     </div>
   </div>
 </header>
 
-
 <style>
   .Header {
-    border-bottom: 1px solid var(--user-color-outline-dark);
     display: grid;
-    gap: 0 var(--user-outside-gutter-sp);
     grid-area: header;
     grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+    gap: 0 var(--user-outside-gutter-sp);
+    border-bottom: 1px solid var(--user-color-outline-dark);
 
     :where(.Header__outer) {
       display: grid;
-      gap: 0 var(--user-outside-gutter-sp);
-      grid-column: 1 / 4;
       grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+      grid-column: 1 / 4;
+      gap: 0 var(--user-outside-gutter-sp);
     }
 
     :where(.Header__inner) {

@@ -1,36 +1,64 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import Button from '@packages/ui/modules/Button/Button.astro';
 import type { Props } from '@packages/ui/modules/FormComplex/FormComplex.astro';
 import FormComplex from '@packages/ui/modules/FormComplex/FormComplex.astro';
 import FormSelect from '@packages/ui/modules/FormSelect/FormSelect.astro';
 import FormText from '@packages/ui/modules/FormText/FormText.astro';
-import type { Meta, StoryObj } from '@storybook/react';
-import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
 
-const storybookComponent = (component: unknown) =>
-  component as AstroComponentFactory;
+const storybookComponent = (component: unknown) => component as AstroComponentFactory;
 
 const yearOptions = [
-  { label: '', value: '' },
-  { label: '2026', value: '2026' },
-  { label: '2025', value: '2025' },
-  { label: '2024', value: '2024' },
+  {
+    label: '',
+    value: '',
+  },
+  {
+    label: '2026',
+    value: '2026',
+  },
+  {
+    label: '2025',
+    value: '2025',
+  },
+  {
+    label: '2024',
+    value: '2024',
+  },
 ];
 
 const monthOptions = [
-  { label: '', value: '' },
-  ...Array.from({ length: 12 }, (_, index) => ({
-    label: `${index + 1}`,
-    value: String(index + 1),
-  })),
+  {
+    label: '',
+    value: '',
+  },
+  ...Array.from(
+    {
+      length: 12,
+    },
+    (_, index) => ({
+      label: `${index + 1}`,
+      value: String(index + 1),
+    }),
+  ),
 ];
 
 const dayOptions = [
-  { label: '', value: '' },
-  ...Array.from({ length: 31 }, (_, index) => ({
-    label: `${index + 1}`,
-    value: String(index + 1),
-  })),
+  {
+    label: '',
+    value: '',
+  },
+  ...Array.from(
+    {
+      length: 31,
+    },
+    (_, index) => ({
+      label: `${index + 1}`,
+      value: String(index + 1),
+    }),
+  ),
 ];
 
 const meta = {
@@ -182,8 +210,8 @@ export const Address: Story = {
           component: storybookComponent(Button),
           props: {
             as: 'button',
-            title: '郵便番号から住所検索',
             theme: 'text',
+            title: '郵便番号から住所検索',
           },
         },
         '</span>',

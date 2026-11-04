@@ -1,6 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { Props } from '@packages/ui/modules/FormRadioList/FormRadioList.astro';
 import FormRadioList from '@packages/ui/modules/FormRadioList/FormRadioList.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: FormRadioList,

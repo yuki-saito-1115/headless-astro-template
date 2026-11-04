@@ -7,7 +7,9 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('HeadingLevel3: slotの中身が空です。');
@@ -15,34 +17,36 @@ if (!Astro.slots.has('default')) {
 ---
 
 <div
-  class:list={['HeadingLevel3', className]}
+  class:list={[
+    'HeadingLevel3',
+    className,
+  ]}
   {...attrs}
 >
   {/* @slot 直下では `h1` ～ `h6` までの見出し要素または `div` 要素の使用のみを許容します。 */}
   <slot />
 </div>
 
-
 <style>
   .HeadingLevel3 {
     :where(h1, h2, h3, h4, h5, h6) {
-      font-weight: var(--user-font-weight-bold);
-      color: var(--user-color-foreground-dark);
-      padding-bottom: calc(var(--user-spacing) * 4);
       position: relative;
-      line-height: var(--user-line-height);
+      padding-bottom: calc(var(--user-spacing) * 4);
       font-size: var(--text-xl);
+      font-weight: var(--user-font-weight-bold);
+      line-height: var(--user-line-height);
+      color: var(--user-color-foreground-dark);
 
       /* border */
       &::before {
-        background-color: var(--user-color-primary);
-        bottom: 0;
-        content: '';
-        display: block;
-        height: 1px;
-        left: 0;
         position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
         width: 100%;
+        height: 1px;
+        content: '';
+        background-color: var(--user-color-primary);
       }
 
       :where(a) {
@@ -55,8 +59,8 @@ if (!Astro.slots.has('default')) {
   @media (width >= 768px) {
     .HeadingLevel3 {
       :where(h1, h2, h3, h4, h5, h6) {
-        line-height: var(--user-line-height);
         font-size: var(--text-2xl);
+        line-height: var(--user-line-height);
       }
     }
   }

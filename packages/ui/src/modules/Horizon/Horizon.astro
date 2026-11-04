@@ -10,7 +10,9 @@ export interface Props extends HTMLAttributes<'hr'> {
 }
 
 const { theme = undefined, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('Horizon: slotの中身が空です。');
@@ -21,7 +23,7 @@ if (!Astro.slots.has('default')) {
   class:list={[
     'Horizon',
     theme && `theme-${theme}`,
-    className
+    className,
   ]}
   {...attrs}
 >
@@ -29,12 +31,11 @@ if (!Astro.slots.has('default')) {
   <slot />
 </div>
 
-
 <style>
   .Horizon {
     :where(hr) {
-      border-bottom: 0;
       border-top: 1px solid var(--user-color-outline-dark);
+      border-bottom: 0;
     }
 
     /* 注意 */

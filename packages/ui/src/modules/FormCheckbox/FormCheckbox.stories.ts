@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/FormCheckbox/FormCheckbox.astro';
 import FormCheckbox from '@packages/ui/modules/FormCheckbox/FormCheckbox.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: FormCheckbox,
@@ -25,42 +26,42 @@ export const Default: Story = {
 
 export const Checked: Story = {
   args: {
+    checked: true,
     id: 'checkbox-checked',
     title: 'Lorem ipsum dolor sit amet',
-    checked: true,
   },
 };
 
 export const Disabled: Story = {
   args: {
+    disabled: true,
     id: 'checkbox-disabled',
     title: 'Lorem ipsum dolor sit amet',
-    disabled: true,
   },
 };
 
 export const Reversed: Story = {
   args: {
     id: 'checkbox-reversed',
-    title: 'Lorem ipsum dolor sit amet',
     reversed: true,
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const StateInvalid: Story = {
   args: {
-    id: 'checkbox-invalid',
-    title: 'Lorem ipsum dolor sit amet',
-    state: 'invalid',
     checked: true,
+    id: 'checkbox-invalid',
+    state: 'invalid',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const StateValid: Story = {
   args: {
-    id: 'checkbox-valid',
-    title: 'Lorem ipsum dolor sit amet',
-    state: 'valid',
     checked: true,
+    id: 'checkbox-valid',
+    state: 'valid',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };

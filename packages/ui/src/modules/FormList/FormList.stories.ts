@@ -1,3 +1,6 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import Badge from '@packages/ui/modules/Badge/Badge.astro';
 import type { Props } from '@packages/ui/modules/FormList/FormList.astro';
@@ -7,11 +10,8 @@ import FormText from '@packages/ui/modules/FormText/FormText.astro';
 import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
 import List from '@packages/ui/modules/List/List.astro';
 import TextWarning from '@packages/ui/modules/TextWarning/TextWarning.astro';
-import type { Meta, StoryObj } from '@storybook/react';
-import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
 
-const storybookComponent = (component: unknown) =>
-  component as AstroComponentFactory;
+const storybookComponent = (component: unknown) => component as AstroComponentFactory;
 
 const meta = {
   component: FormList,

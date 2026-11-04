@@ -7,7 +7,9 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('LayoutGrid: slotの中身が空です。');
@@ -17,18 +19,19 @@ if (!Astro.slots.has('default')) {
 <div
   class:list={[
     'LayoutGrid',
-    className
+    className,
   ]}
   {...attrs}
 >
   <div
-    class:list={['LayoutGrid__inner']}
+    class:list={[
+      'LayoutGrid__inner',
+    ]}
   >
     {/* @slot 直下では `div.LayoutGrid__segment` の使用のみを許容します。 */}
     <slot />
   </div>
 </div>
-
 
 <style>
   .LayoutGrid {
@@ -38,8 +41,8 @@ if (!Astro.slots.has('default')) {
     }
 
     :global(:where(.LayoutGrid__segment)) {
-      list-style: none;
       height: 100%;
+      list-style: none;
     }
   }
 

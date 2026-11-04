@@ -9,9 +9,10 @@ import { fileURLToPath } from 'node:url';
 const rootDirectory = fileURLToPath(new URL('../', import.meta.url));
 const envSamplePath = path.join(rootDirectory, '.env.example');
 const envPath = path.join(rootDirectory, '.env');
-const appDirectories = ['apps/site', 'apps/preview'].map((appDirectory) =>
-  path.join(rootDirectory, appDirectory),
-);
+const appDirectories = [
+  'apps/site',
+  'apps/preview',
+].map((appDirectory) => path.join(rootDirectory, appDirectory));
 const previewDevVarsPath = path.join(rootDirectory, 'apps/preview/.dev.vars');
 
 const exists = async (filePath) => {
@@ -44,12 +45,8 @@ try {
 
   for (const appDirectory of appDirectories) {
     const appEnvPath = path.join(appDirectory, '.env');
-    const appEnvRelativePath = path
-      .relative(rootDirectory, appEnvPath)
-      .replaceAll(path.sep, '/');
-    const appEnvSymlinkTarget = path
-      .relative(appDirectory, envPath)
-      .replaceAll(path.sep, '/');
+    const appEnvRelativePath = path.relative(rootDirectory, appEnvPath).replaceAll(path.sep, '/');
+    const appEnvSymlinkTarget = path.relative(appDirectory, envPath).replaceAll(path.sep, '/');
 
     // Astroが各アプリケーションworkspaceのビルド時に読めるように .env を配置する。
     if (await exists(appEnvPath)) {
@@ -68,21 +65,15 @@ try {
 
   // Wranglerがpreviewアプリケーションworkspaceから読めるように .dev.vars を配置する。
   if (await exists(previewDevVarsPath)) {
-    console.log(
-      `${previewDevVarsRelativePath} は既に存在するため変更しません。`,
-    );
+    console.log(`${previewDevVarsRelativePath} は既に存在するため変更しません。`);
   } else {
     await symlink('.env', previewDevVarsPath, 'file');
-    console.log(
-      `${previewDevVarsRelativePath} を .env へのシンボリックリンクとして作成しました。`,
-    );
+    console.log(`${previewDevVarsRelativePath} を .env へのシンボリックリンクとして作成しました。`);
   }
 } catch (error) {
   if (error.code === 'EPERM' || error.code === 'EACCES') {
     console.error('環境変数ファイルのシンボリックリンク作成権限がありません。');
-    console.error(
-      'Windowsでは開発者モードを有効にするか、権限のあるシェルで再実行してください。',
-    );
+    console.error('Windowsでは開発者モードを有効にするか、権限のあるシェルで再実行してください。');
   } else {
     console.error(error.message);
   }

@@ -18,17 +18,18 @@ import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
 const breadcrumb = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
-    name: 'テンプレート一覧',
     item: '/templates/',
+    name: 'テンプレート一覧',
   },
   {
     name: '特長',
@@ -44,8 +45,19 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="特長">
     <picture slot="media">
-      <source media="(min-width: 768px)" srcset="/templates/features/images/detail-mainVisual_pc.webp" type="image/webp" width="1440" height="500" />
-      <img src="/templates/features/images/detail-mainVisual_sp.webp" width="375" height="130" alt="" />
+      <source
+        height="500"
+        media="(min-width: 768px)"
+        srcset="/templates/features/images/detail-mainVisual_pc.webp"
+        type="image/webp"
+        width="1440"
+      />
+      <img
+        alt=""
+        height="130"
+        src="/templates/features/images/detail-mainVisual_sp.webp"
+        width="375"
+      />
     </picture>
   </MainVisual>
 
@@ -54,13 +66,13 @@ const pageProps: PagePropType = {
   <Content>
     <Section>
       <PanelDownload
-        description="ページ内の内容を簡単に解説する短いコピーページ内の内容を簡単に解説。"
         button={{
-          as: "a",
-          href: "DUMMY_LINK",
+          as: 'a',
           download: true,
-          title: "サービス紹介資料ダウンロード",
+          href: 'DUMMY_LINK',
+          title: 'サービス紹介資料ダウンロード',
         }}
+        description="ページ内の内容を簡単に解説する短いコピーページ内の内容を簡単に解説。"
       />
 
       <TextLead class="mt-8 text-center md:mt-10">
@@ -77,33 +89,36 @@ const pageProps: PagePropType = {
         class="mt-8 md:mt-10"
         datas={[
           {
-            href: "#DUMMY_ANCHOR",
-            title: "よくあるお悩み",
+            href: '#DUMMY_ANCHOR',
+            title: 'よくあるお悩み',
           },
           {
-            href: "#DUMMY_ANCHOR_2",
-            title: "成功のための3つのポイント",
+            href: '#DUMMY_ANCHOR_2',
+            title: '成功のための3つのポイント',
           },
           {
-            href: "#DUMMY_ANCHOR_3",
-            title: "信頼の理由",
+            href: '#DUMMY_ANCHOR_3',
+            title: '信頼の理由',
           },
           {
-            href: "#DUMMY_ANCHOR_4",
-            title: "お客様の声",
+            href: '#DUMMY_ANCHOR_4',
+            title: 'お客様の声',
           },
           {
-            href: "#DUMMY_ANCHOR_5",
-            title: "受賞歴",
+            href: '#DUMMY_ANCHOR_5',
+            title: '受賞歴',
           },
           {
-            href: "#DUMMY_ANCHOR_6",
-            title: "よくあるご質問",
+            href: '#DUMMY_ANCHOR_6',
+            title: 'よくあるご質問',
           },
         ]}
       />
 
-      <HeadingLevel2 id="DUMMY_ANCHOR" class="mt-8 md:mt-10">
+      <HeadingLevel2
+        class="mt-8 md:mt-10"
+        id="DUMMY_ANCHOR"
+      >
         <h2>よくあるお悩み</h2>
       </HeadingLevel2>
 
@@ -124,15 +139,22 @@ const pageProps: PagePropType = {
         </ul>
       </List>
 
-      <HeadingLevel2 id="DUMMY_ANCHOR_2" class="mt-8 md:mt-10">
+      <HeadingLevel2
+        class="mt-8 md:mt-10"
+        id="DUMMY_ANCHOR_2"
+      >
         <h2>成功のための3つのポイント</h2>
       </HeadingLevel2>
 
-      <TextLead class="mt-8 md:mt-10 text-center">
+      <TextLead class="mt-8 text-center md:mt-10">
         <p>〇〇〇〇の改善は〇〇〇〇を〇〇〇〇する〇〇〇〇の検討が不可欠です</p>
       </TextLead>
 
-      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
         <div class="LayoutColumn__segment">
           <Card
             directPc="column"
@@ -143,8 +165,20 @@ const pageProps: PagePropType = {
             <Media slot="media">
               <figure>
                 <picture>
-                  <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image_pc.webp" type="image/webp" width="336" height="200" />
-                  <img src="/templates/features/images/detail-image_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                  <source
+                    height="200"
+                    media="(min-width: 768px)"
+                    srcset="/templates/features/images/detail-image_pc.webp"
+                    type="image/webp"
+                    width="336"
+                  />
+                  <img
+                    alt=""
+                    height="200"
+                    loading="lazy"
+                    src="/templates/features/images/detail-image_sp.webp"
+                    width="327"
+                  />
                 </picture>
               </figure>
             </Media>
@@ -167,8 +201,20 @@ const pageProps: PagePropType = {
             <Media slot="media">
               <figure>
                 <picture>
-                  <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-2_pc.webp" type="image/webp" width="336" height="200" />
-                  <img src="/templates/features/images/detail-image-2_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                  <source
+                    height="200"
+                    media="(min-width: 768px)"
+                    srcset="/templates/features/images/detail-image-2_pc.webp"
+                    type="image/webp"
+                    width="336"
+                  />
+                  <img
+                    alt=""
+                    height="200"
+                    loading="lazy"
+                    src="/templates/features/images/detail-image-2_sp.webp"
+                    width="327"
+                  />
                 </picture>
               </figure>
             </Media>
@@ -191,8 +237,20 @@ const pageProps: PagePropType = {
             <Media slot="media">
               <figure>
                 <picture>
-                  <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-3_pc.webp" type="image/webp" width="336" height="200" />
-                  <img src="/templates/features/images/detail-image-3_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                  <source
+                    height="200"
+                    media="(min-width: 768px)"
+                    srcset="/templates/features/images/detail-image-3_pc.webp"
+                    type="image/webp"
+                    width="336"
+                  />
+                  <img
+                    alt=""
+                    height="200"
+                    loading="lazy"
+                    src="/templates/features/images/detail-image-3_sp.webp"
+                    width="327"
+                  />
                 </picture>
               </figure>
             </Media>
@@ -222,14 +280,28 @@ const pageProps: PagePropType = {
         <Media slot="media">
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-4_pc.webp" type="image/webp" width="336" height="200" />
-              <img src="/templates/features/images/detail-image-4_sp.webp" width="327" height="200" alt="" />
+              <source
+                height="200"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-image-4_pc.webp"
+                type="image/webp"
+                width="336"
+              />
+              <img
+                alt=""
+                height="200"
+                src="/templates/features/images/detail-image-4_sp.webp"
+                width="327"
+              />
             </picture>
           </figure>
         </Media>
       </LayoutMedia>
 
-      <LayoutMedia class="mt-8 md:mt-10" directPc="row-reverse">
+      <LayoutMedia
+        class="mt-8 md:mt-10"
+        directPc="row-reverse"
+      >
         <div slot="content">
           <HeadingLevel3>
             <h3>ポイント2: 〇〇〇〇で〇〇〇〇を〇〇〇〇にして業務効率を改善</h3>
@@ -245,8 +317,19 @@ const pageProps: PagePropType = {
         <Media slot="media">
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-5_pc.webp" type="image/webp" width="336" height="200" />
-              <img src="/templates/features/images/detail-image-5_sp.webp" width="327" height="200" alt="" />
+              <source
+                height="200"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-image-5_pc.webp"
+                type="image/webp"
+                width="336"
+              />
+              <img
+                alt=""
+                height="200"
+                src="/templates/features/images/detail-image-5_sp.webp"
+                width="327"
+              />
             </picture>
           </figure>
         </Media>
@@ -268,14 +351,28 @@ const pageProps: PagePropType = {
         <Media slot="media">
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-6_pc.webp" type="image/webp" width="336" height="200" />
-              <img src="/templates/features/images/detail-image-6_sp.webp" width="327" height="200" alt="" />
+              <source
+                height="200"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-image-6_pc.webp"
+                type="image/webp"
+                width="336"
+              />
+              <img
+                alt=""
+                height="200"
+                src="/templates/features/images/detail-image-6_sp.webp"
+                width="327"
+              />
             </picture>
           </figure>
         </Media>
       </LayoutMedia>
 
-      <HeadingLevel2 id="DUMMY_ANCHOR_3" class="mt-8 md:mt-10">
+      <HeadingLevel2
+        class="mt-8 md:mt-10"
+        id="DUMMY_ANCHOR_3"
+      >
         <h2>信頼の理由</h2>
       </HeadingLevel2>
 
@@ -288,8 +385,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -297,8 +406,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-2_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-2_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-2_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-2_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -306,8 +427,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-3_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-3_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-3_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-3_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -315,8 +448,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-4_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-4_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-4_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-4_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -324,8 +469,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-5_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-5_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-5_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-5_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -333,8 +490,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-6_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-6_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-6_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-6_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -342,8 +511,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-7_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-7_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-7_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-7_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -351,8 +532,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-8_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-8_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-8_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-8_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -360,8 +553,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-9_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-9_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-9_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-9_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -369,8 +574,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-10_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-10_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-10_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-10_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -378,8 +595,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-11_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-11_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-11_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-11_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -387,8 +616,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-12_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-12_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-12_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-12_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -396,8 +637,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-13_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-13_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-13_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-13_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -405,8 +658,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-14_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-14_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-14_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-14_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -414,8 +679,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-15_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-15_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-15_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-15_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -423,8 +700,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-16_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-16_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-16_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-16_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -432,8 +721,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-17_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-17_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-17_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-17_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -441,8 +742,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-18_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-18_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-18_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-18_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -450,8 +763,20 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-19_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-19_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-19_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-19_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
@@ -459,14 +784,30 @@ const pageProps: PagePropType = {
         <Media>
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-banner-20_pc.webp" type="image/webp" width="219" height="73" />
-              <img src="/templates/features/images/detail-banner-20_sp.webp" width="93" height="31" loading="lazy" alt="" />
+              <source
+                height="73"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-banner-20_pc.webp"
+                type="image/webp"
+                width="219"
+              />
+              <img
+                alt=""
+                height="31"
+                loading="lazy"
+                src="/templates/features/images/detail-banner-20_sp.webp"
+                width="93"
+              />
             </picture>
           </figure>
         </Media>
       </div>
 
-      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
         <div class="LayoutColumn__segment">
           <Card
             directPc="column"
@@ -477,8 +818,20 @@ const pageProps: PagePropType = {
             <Media slot="media">
               <figure>
                 <picture>
-                  <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-7_pc.webp" type="image/webp" width="336" height="200" />
-                  <img src="/templates/features/images/detail-image-7_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                  <source
+                    height="200"
+                    media="(min-width: 768px)"
+                    srcset="/templates/features/images/detail-image-7_pc.webp"
+                    type="image/webp"
+                    width="336"
+                  />
+                  <img
+                    alt=""
+                    height="200"
+                    loading="lazy"
+                    src="/templates/features/images/detail-image-7_sp.webp"
+                    width="327"
+                  />
                 </picture>
               </figure>
             </Media>
@@ -503,8 +856,20 @@ const pageProps: PagePropType = {
             <Media slot="media">
               <figure>
                 <picture>
-                  <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-8_pc.webp" type="image/webp" width="336" height="200" />
-                  <img src="/templates/features/images/detail-image-8_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                  <source
+                    height="200"
+                    media="(min-width: 768px)"
+                    srcset="/templates/features/images/detail-image-8_pc.webp"
+                    type="image/webp"
+                    width="336"
+                  />
+                  <img
+                    alt=""
+                    height="200"
+                    loading="lazy"
+                    src="/templates/features/images/detail-image-8_sp.webp"
+                    width="327"
+                  />
                 </picture>
               </figure>
             </Media>
@@ -529,8 +894,20 @@ const pageProps: PagePropType = {
             <Media slot="media">
               <figure>
                 <picture>
-                  <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-9_pc.webp" type="image/webp" width="336" height="200" />
-                  <img src="/templates/features/images/detail-image-9_sp.webp" width="327" height="200" loading="lazy" alt="" />
+                  <source
+                    height="200"
+                    media="(min-width: 768px)"
+                    srcset="/templates/features/images/detail-image-9_pc.webp"
+                    type="image/webp"
+                    width="336"
+                  />
+                  <img
+                    alt=""
+                    height="200"
+                    loading="lazy"
+                    src="/templates/features/images/detail-image-9_sp.webp"
+                    width="327"
+                  />
                 </picture>
               </figure>
             </Media>
@@ -546,7 +923,10 @@ const pageProps: PagePropType = {
         </div>
       </LayoutColumn>
 
-      <HeadingLevel2 id="DUMMY_ANCHOR_4" class="mt-8 md:mt-10">
+      <HeadingLevel2
+        class="mt-8 md:mt-10"
+        id="DUMMY_ANCHOR_4"
+      >
         <h2>お客様の声</h2>
       </HeadingLevel2>
 
@@ -554,7 +934,10 @@ const pageProps: PagePropType = {
         <p>「効率が上がった」「楽になった」等の声が寄せられています</p>
       </TextLead>
 
-      <LayoutMedia class="mt-8 md:mt-10" directPc="row-reverse">
+      <LayoutMedia
+        class="mt-8 md:mt-10"
+        directPc="row-reverse"
+      >
         <div slot="content">
           <TextLead>
             <p>これまで大変だった〇〇〇〇が〇〇〇〇になりました!</p>
@@ -569,16 +952,25 @@ const pageProps: PagePropType = {
         </div>
 
         <Media
-          slot="media"
           class="[&_figure]:flex-col-reverse"
+          slot="media"
         >
           <figure>
-            <figcaption>
-              キャプションキャプションキャプションキャプション
-            </figcaption>
+            <figcaption>キャプションキャプションキャプションキャプション</figcaption>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-10_pc.webp" type="image/webp" width="336" height="200" />
-              <img src="/templates/features/images/detail-image-10_sp.webp" width="327" height="200" alt="" />
+              <source
+                height="200"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-image-10_pc.webp"
+                type="image/webp"
+                width="336"
+              />
+              <img
+                alt=""
+                height="200"
+                src="/templates/features/images/detail-image-10_sp.webp"
+                width="327"
+              />
             </picture>
           </figure>
         </Media>
@@ -601,14 +993,28 @@ const pageProps: PagePropType = {
         <Media slot="media">
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-11_pc.webp" type="image/webp" width="336" height="200" />
-              <img src="/templates/features/images/detail-image-11_sp.webp" width="327" height="200" alt="" />
+              <source
+                height="200"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-image-11_pc.webp"
+                type="image/webp"
+                width="336"
+              />
+              <img
+                alt=""
+                height="200"
+                src="/templates/features/images/detail-image-11_sp.webp"
+                width="327"
+              />
             </picture>
           </figure>
         </Media>
       </LayoutMedia>
 
-      <LayoutMedia class="mt-8 md:mt-10" directPc="row-reverse">
+      <LayoutMedia
+        class="mt-8 md:mt-10"
+        directPc="row-reverse"
+      >
         <div slot="content">
           <TextLead>
             <p>これまで大変だった〇〇〇〇が〇〇〇〇になりました!</p>
@@ -625,14 +1031,28 @@ const pageProps: PagePropType = {
         <Media slot="media">
           <figure>
             <picture>
-              <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-12_pc.webp" type="image/webp" width="336" height="200" />
-              <img src="/templates/features/images/detail-image-12_sp.webp" width="327" height="200" alt="" />
+              <source
+                height="200"
+                media="(min-width: 768px)"
+                srcset="/templates/features/images/detail-image-12_pc.webp"
+                type="image/webp"
+                width="336"
+              />
+              <img
+                alt=""
+                height="200"
+                src="/templates/features/images/detail-image-12_sp.webp"
+                width="327"
+              />
             </picture>
           </figure>
         </Media>
       </LayoutMedia>
 
-      <HeadingLevel2 id="DUMMY_ANCHOR_5" class="mt-8 md:mt-10">
+      <HeadingLevel2
+        class="mt-8 md:mt-10"
+        id="DUMMY_ANCHOR_5"
+      >
         <h2>受賞歴</h2>
       </HeadingLevel2>
 
@@ -640,7 +1060,11 @@ const pageProps: PagePropType = {
         <p>〇〇〇〇において〇〇年連続No.1獲得をはじめ多くの受賞歴があります</p>
       </TextLead>
 
-      <LayoutColumn class="mt-8 md:mt-10" columnPc="4" columnSp="1">
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="4"
+        columnSp="1"
+      >
         <div class="LayoutColumn__segment">
           <Card
             directPc="column"
@@ -651,8 +1075,19 @@ const pageProps: PagePropType = {
             <Media slot="media">
               <figure>
                 <picture>
-                  <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-13_pc.webp" type="image/webp" width="232" height="97" />
-                  <img src="/templates/features/images/detail-image-13_sp.webp" width="293" height="123" alt="" />
+                  <source
+                    height="97"
+                    media="(min-width: 768px)"
+                    srcset="/templates/features/images/detail-image-13_pc.webp"
+                    type="image/webp"
+                    width="232"
+                  />
+                  <img
+                    alt=""
+                    height="123"
+                    src="/templates/features/images/detail-image-13_sp.webp"
+                    width="293"
+                  />
                 </picture>
               </figure>
             </Media>
@@ -673,8 +1108,19 @@ const pageProps: PagePropType = {
             <Media slot="media">
               <figure>
                 <picture>
-                  <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-14_pc.webp" type="image/webp" width="232" height="97" />
-                  <img src="/templates/features/images/detail-image-14_sp.webp" width="293" height="123" alt="" />
+                  <source
+                    height="97"
+                    media="(min-width: 768px)"
+                    srcset="/templates/features/images/detail-image-14_pc.webp"
+                    type="image/webp"
+                    width="232"
+                  />
+                  <img
+                    alt=""
+                    height="123"
+                    src="/templates/features/images/detail-image-14_sp.webp"
+                    width="293"
+                  />
                 </picture>
               </figure>
             </Media>
@@ -695,8 +1141,19 @@ const pageProps: PagePropType = {
             <Media slot="media">
               <figure>
                 <picture>
-                  <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-15_pc.webp" type="image/webp" width="232" height="97" />
-                  <img src="/templates/features/images/detail-image-15_sp.webp" width="293" height="123" alt="" />
+                  <source
+                    height="97"
+                    media="(min-width: 768px)"
+                    srcset="/templates/features/images/detail-image-15_pc.webp"
+                    type="image/webp"
+                    width="232"
+                  />
+                  <img
+                    alt=""
+                    height="123"
+                    src="/templates/features/images/detail-image-15_sp.webp"
+                    width="293"
+                  />
                 </picture>
               </figure>
             </Media>
@@ -717,8 +1174,19 @@ const pageProps: PagePropType = {
             <Media slot="media">
               <figure>
                 <picture>
-                  <source media="(min-width: 768px)" srcset="/templates/features/images/detail-image-16_pc.webp" type="image/webp" width="232" height="97" />
-                  <img src="/templates/features/images/detail-image-16_sp.webp" width="293" height="123" alt="" />
+                  <source
+                    height="97"
+                    media="(min-width: 768px)"
+                    srcset="/templates/features/images/detail-image-16_pc.webp"
+                    type="image/webp"
+                    width="232"
+                  />
+                  <img
+                    alt=""
+                    height="123"
+                    src="/templates/features/images/detail-image-16_sp.webp"
+                    width="293"
+                  />
                 </picture>
               </figure>
             </Media>
@@ -731,7 +1199,10 @@ const pageProps: PagePropType = {
         </div>
       </LayoutColumn>
 
-      <HeadingLevel2 id="DUMMY_ANCHOR_6" class="mt-8 md:mt-10">
+      <HeadingLevel2
+        class="mt-8 md:mt-10"
+        id="DUMMY_ANCHOR_6"
+      >
         <h2>よくあるご質問</h2>
       </HeadingLevel2>
 
@@ -739,20 +1210,27 @@ const pageProps: PagePropType = {
         class="mt-8 md:mt-10"
         datas={[
           {
-            question: "〇〇〇〇は〇〇〇〇ですか?",
-            answer: "そんなことはありません。私たちでは○○を用意して、○○しているから、○○のようなお客さまにも安心してお使いいただけます。そんなことはありません。私たちでは○○を用意して、○○しているから、○○のようなお客さまにも安心してお使いいただけます。",
+            answer:
+              'そんなことはありません。私たちでは○○を用意して、○○しているから、○○のようなお客さまにも安心してお使いいただけます。そんなことはありません。私たちでは○○を用意して、○○しているから、○○のようなお客さまにも安心してお使いいただけます。',
+            question: '〇〇〇〇は〇〇〇〇ですか?',
           },
           {
-            question: "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
-            answer: "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            answer:
+              '回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            question:
+              '質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
           },
           {
-            question: "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
-            answer: "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            answer:
+              '回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            question:
+              '質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
           },
           {
-            question: "質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
-            answer: "回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+            answer:
+              '回答テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            question:
+              '質問テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
           },
         ]}
       />
@@ -760,12 +1238,12 @@ const pageProps: PagePropType = {
       <NavigationSns
         class="mt-8 md:mt-10"
         datas={{
-          share: "DUMMY_LINK",
-          good: "DUMMY_LINK",
-          facebook: "DUMMY_LINK",
-          x: "DUMMY_LINK",
-          instagram: "DUMMY_LINK",
-          line: "DUMMY_LINK",
+          facebook: 'DUMMY_LINK',
+          good: 'DUMMY_LINK',
+          instagram: 'DUMMY_LINK',
+          line: 'DUMMY_LINK',
+          share: 'DUMMY_LINK',
+          x: 'DUMMY_LINK',
         }}
       />
     </Section>

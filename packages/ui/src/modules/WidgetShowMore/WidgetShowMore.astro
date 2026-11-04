@@ -1,19 +1,20 @@
 ---
-import Button from '@packages/ui/modules/Button/Button.astro';
 import type { HTMLAttributes } from 'astro/types';
+
+import Button from '@packages/ui/modules/Button/Button.astro';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
 export interface Props extends HTMLAttributes<'div'> {
-  /** 折りたたむコンテンツの高さの閾値をピクセル単位で設定します。 */
-  threshold?: number;
+  /** コンテンツを隠すボタンのテキストを設定します。 */
+  hideLabel?: string;
   /** 展開後はコンテンツを閉じる操作を表示しません。 */
   oneway?: boolean;
   /** コンテンツを表示するボタンのテキストを設定します。 */
   showLabel?: string;
-  /** コンテンツを隠すボタンのテキストを設定します。 */
-  hideLabel?: string;
+  /** 折りたたむコンテンツの高さの閾値をピクセル単位で設定します。 */
+  threshold?: number;
 }
 
 const {
@@ -24,7 +25,9 @@ const {
   class: className,
   ...rest
 } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('WidgetShowMore: slotの中身が空です。');
@@ -32,14 +35,14 @@ if (!Astro.slots.has('default')) {
 ---
 
 <div
+  data-hide-label={hideLabel}
+  data-oneway={oneway}
+  data-show-label={showLabel}
+  data-threshold={threshold}
   class:list={[
     'WidgetShowMore',
     className,
   ]}
-  data-oneway={oneway}
-  data-threshold={threshold}
-  data-show-label={showLabel}
-  data-hide-label={hideLabel}
   {...attrs}
 >
   <div class="WidgetShowMore__content">
@@ -81,23 +84,23 @@ if (!Astro.slots.has('default')) {
     }
 
     :where(.WidgetShowMore__button) {
-      margin-top: calc(var(--user-spacing) * 10);
-      padding-left: calc(var(--user-spacing) * 10);
       position: relative;
+      padding-left: calc(var(--user-spacing) * 10);
+      margin-top: calc(var(--user-spacing) * 10);
 
       &::before {
-        background-color: var(--user-color-primary);
-        content: '';
-        height: calc(var(--user-spacing) * 4);
+        position: absolute;
+        top: 50%;
         left: calc(var(--user-spacing) * 4);
+        width: calc(var(--user-spacing) * 4);
+        height: calc(var(--user-spacing) * 4);
+        pointer-events: none;
+        content: '';
+        background-color: var(--user-color-primary);
         mask-image: url('/assets/images/icons/minus.svg');
         mask-repeat: no-repeat;
         mask-size: cover;
-        pointer-events: none;
-        position: absolute;
-        top: 50%;
         transform: translateY(-50%);
-        width: calc(var(--user-spacing) * 4);
       }
     }
 
@@ -222,13 +225,13 @@ if (!Astro.slots.has('default')) {
             return;
           }
 
-          const offset = event.target.getBoundingClientRect().top - inner.getBoundingClientRect().top;
+          const offset =
+            event.target.getBoundingClientRect().top - inner.getBoundingClientRect().top;
 
           if (offset >= threshold) {
             showPanel();
           }
         });
-
       };
 
       const initialize = () => {

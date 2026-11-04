@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/PanelDownload/PanelDownload.astro';
 import PanelDownload from '@packages/ui/modules/PanelDownload/PanelDownload.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: PanelDownload,
@@ -18,7 +19,6 @@ type Story = StoryObj<StoryArgs<Props>>;
 
 export const Default: Story = {
   args: {
-    description: 'サービス紹介資料をダウンロードできます。',
     button: {
       as: 'a',
       download: true,
@@ -28,5 +28,6 @@ export const Default: Story = {
       },
       title: 'ダウンロード',
     },
+    description: 'サービス紹介資料をダウンロードできます。',
   },
 };

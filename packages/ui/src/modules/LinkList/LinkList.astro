@@ -13,14 +13,10 @@ export interface Props extends HTMLAttributes<'div'> {
   datas: HTMLAttributes<'a'>[];
 }
 
-const {
-  columnPc = '1',
-  columnSp = '1',
-  datas,
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { columnPc = '1', columnSp = '1', datas, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <div
@@ -51,30 +47,30 @@ const attrs: Record<string, unknown> = { ...rest };
       gap: var(--local-item-gap-y) var(--local-item-gap-x);
 
       > :where(li) {
-        height: 100%;
-        list-style: none;
-        padding-left: 1.25em;
         position: relative;
+        height: 100%;
+        padding-left: 1.25em;
+        list-style: none;
 
         /* arrow */
         &::before {
-          background-color: var(--user-color-primary);
-          content: '';
-          display: block;
-          height: 0.75em;
+          position: absolute;
+          top: 0.4em;
           left: 0;
+          display: block;
+          width: 0.75em;
+          height: 0.75em;
+          content: '';
+          background-color: var(--user-color-primary);
           mask-image: url('/assets/images/icons/angle-right.svg');
           mask-repeat: no-repeat;
           mask-size: cover;
-          position: absolute;
-          top: 0.4em;
-          width: 0.75em;
         }
 
         > :where(a) {
           color: var(--user-color-primary);
-          fill: var(--user-color-primary);
           text-decoration: none;
+          fill: var(--user-color-primary);
         }
       }
     }

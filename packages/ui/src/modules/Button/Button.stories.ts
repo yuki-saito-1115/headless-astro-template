@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/Button/Button.astro';
 import Button from '@packages/ui/modules/Button/Button.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: Button,
@@ -21,88 +22,88 @@ type Story<T extends Tag = Tag> = StoryObj<StoryArgs<Props<T>>>;
 
 export const LinkElement: Story<'a'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
     as: 'a',
     href: 'DUMMY_LINK',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const ButtonElement: Story<'button'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
     as: 'button',
+    title: 'Lorem ipsum dolor sit amet',
     type: 'button',
   },
 };
 
 export const ThemeEmphasis: Story<'a'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
-    theme: 'emphasis',
     as: 'a',
     href: 'DUMMY_LINK',
+    theme: 'emphasis',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const ThemeConversion: Story<'a'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
-    theme: 'conversion',
     as: 'a',
     href: 'DUMMY_LINK',
+    theme: 'conversion',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const ThemeText: Story<'a'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
-    theme: 'text',
     as: 'a',
     href: 'DUMMY_LINK',
+    theme: 'text',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const SizeSmall: Story<'a'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
-    size: 'small',
     as: 'a',
     href: 'DUMMY_LINK',
+    size: 'small',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const SizeMedium: Story<'a'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
-    size: 'medium',
     as: 'a',
     href: 'DUMMY_LINK',
+    size: 'medium',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const SizeLarge: Story<'a'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
-    size: 'large',
     as: 'a',
     href: 'DUMMY_LINK',
+    size: 'large',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const SizeFull: Story<'a'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
-    size: 'full',
     as: 'a',
     href: 'DUMMY_LINK',
+    size: 'full',
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const DisabledButton: Story<'button'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
     as: 'button',
     disabled: true,
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
@@ -114,22 +115,22 @@ export const DisabledLink: Story = {
 
 export const IconBefore: Story<'a'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
     as: 'a',
     href: 'DUMMY_LINK',
     iconBefore: {
       name: 'download',
     },
+    title: 'Lorem ipsum dolor sit amet',
   },
 };
 
 export const IconAfter: Story<'a'> = {
   args: {
-    title: 'Lorem ipsum dolor sit amet',
     as: 'a',
     href: 'DUMMY_LINK',
     iconAfter: {
       name: 'download',
     },
+    title: 'Lorem ipsum dolor sit amet',
   },
 };

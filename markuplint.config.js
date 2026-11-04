@@ -1,8 +1,5 @@
 export default {
   extends: 'markuplint:recommended',
-  parser: {
-    '.astro$': '@markuplint/astro-parser',
-  },
   overrides: {
     '**/*.astro': {
       rules: {
@@ -12,6 +9,9 @@ export default {
         'html-standard/permitted-contents': false,
       },
     },
+  },
+  parser: {
+    '.astro$': '@markuplint/astro-parser',
   },
 
   rules: {
@@ -26,7 +26,11 @@ export default {
           'meta[http-equiv]',
           'meta[name="viewport"]',
           'title',
-          { selector: 'meta', order: 'alphabetical', attr: 'name' },
+          {
+            attr: 'name',
+            order: 'alphabetical',
+            selector: 'meta',
+          },
           'link[rel="preconnect"]',
           'link[rel="stylesheet"]',
           'link',

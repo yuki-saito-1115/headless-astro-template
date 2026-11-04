@@ -1,6 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { Props } from '@packages/ui/modules/ListFeature/ListFeature.astro';
 import ListFeature from '@packages/ui/modules/ListFeature/ListFeature.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: ListFeature,
@@ -19,13 +20,13 @@ export const Default: Story = {
     datas: [
       {
         badge: '特長1',
-        title: '特長のタイトル',
         text: '特長の説明テキスト',
+        title: '特長のタイトル',
       },
       {
         badge: '特長2',
-        title: '特長のタイトル',
         text: '特長の説明テキスト',
+        title: '特長のタイトル',
       },
     ],
   },

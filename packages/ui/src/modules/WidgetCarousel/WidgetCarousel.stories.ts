@@ -1,13 +1,13 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import Card from '@packages/ui/modules/Card/Card.astro';
 import Media from '@packages/ui/modules/Media/Media.astro';
 import type { Props } from '@packages/ui/modules/WidgetCarousel/WidgetCarousel.astro';
 import WidgetCarousel from '@packages/ui/modules/WidgetCarousel/WidgetCarousel.astro';
-import type { Meta, StoryObj } from '@storybook/react';
-import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
 
-const storybookComponent = (component: unknown) =>
-  component as AstroComponentFactory;
+const storybookComponent = (component: unknown) => component as AstroComponentFactory;
 
 const meta = {
   component: WidgetCarousel,
@@ -22,7 +22,13 @@ export default meta;
  */
 type Story = StoryObj<StoryArgs<Props>>;
 
-const colors = ['1d4ed8', '7e22ce', '047857', 'b45309', 'be123c'];
+const colors = [
+  '1d4ed8',
+  '7e22ce',
+  '047857',
+  'b45309',
+  'be123c',
+];
 
 const options = {
   a11y: {

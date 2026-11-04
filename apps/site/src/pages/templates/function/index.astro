@@ -12,17 +12,18 @@ import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
 
 const breadcrumb = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
-    name: 'テンプレート一覧',
     item: '/templates/',
+    name: 'テンプレート一覧',
   },
   {
     name: '機能紹介（一覧）',
@@ -42,7 +43,10 @@ const pageProps: PagePropType = {
         media="(width >= 768px)"
         srcset="/templates/function/images/index-mainVisual_pc.webp"
       />
-      <img src="/templates/function/images/index-mainVisual_sp.webp" alt="" />
+      <img
+        alt=""
+        src="/templates/function/images/index-mainVisual_sp.webp"
+      />
     </picture>
   </MainVisual>
 
@@ -51,42 +55,46 @@ const pageProps: PagePropType = {
   <Content>
     <Section>
       <PanelDownload
-        description="ページ内の内容を簡単に解説する短いコピーページ内の内容を簡単に解説。"
         button={{
-          as: "a",
-          href: "DUMMY_LINK",
+          as: 'a',
           download: true,
-          title: "機能紹介資料ダウンロード",
+          href: 'DUMMY_LINK',
+          title: '機能紹介資料ダウンロード',
         }}
+        description="ページ内の内容を簡単に解説する短いコピーページ内の内容を簡単に解説。"
       />
 
-      <LayoutColumn class="mt-8 md:mt-10" columnPc="2" columnSp="1">
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="2"
+        columnSp="1"
+      >
         <div class="LayoutColumn__segment">
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="164"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image_pc.webp"
                     type="image/webp"
                     width="164"
-                    height="164"
                   />
                   <img
-                    src="/templates/function/images/index-image_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -101,12 +109,8 @@ const pageProps: PagePropType = {
 
               <List class="mt-4 md:mt-6">
                 <ul>
-                  <li>
-                    テキストテキストテキストテキストテキストテキストテキスト
-                  </li>
-                  <li>
-                    テキストテキストテキストテキストテキストテキストテキスト
-                  </li>
+                  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+                  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
                 </ul>
               </List>
             </div>
@@ -117,28 +121,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="164"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-2_pc.webp"
                     type="image/webp"
                     width="164"
-                    height="164"
                   />
                   <img
-                    src="/templates/function/images/index-image-2_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-2_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -153,48 +157,46 @@ const pageProps: PagePropType = {
 
               <List class="mt-4 md:mt-6">
                 <ul>
-                  <li>
-                    テキストテキストテキストテキストテキストテキストテキスト
-                  </li>
-                  <li>
-                    テキストテキストテキストテキストテキストテキストテキスト
-                  </li>
+                  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
+                  <li>テキストテキストテキストテキストテキストテキストテキスト</li>
                 </ul>
               </List>
             </div>
           </Card>
         </div>
-
       </LayoutColumn>
 
-      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
-
+      <LayoutColumn
+        class="mt-8 md:mt-10"
+        columnPc="3"
+        columnSp="1"
+      >
         <div class="LayoutColumn__segment">
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-3_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-3_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-3_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -214,28 +216,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-4_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-4_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-4_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -255,28 +257,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-5_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-5_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-5_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -296,28 +298,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-6_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-6_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-6_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -337,28 +339,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-7_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-7_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-7_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -378,28 +380,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-8_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-8_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-8_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -419,28 +421,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-9_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-9_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-9_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -460,28 +462,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-10_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-10_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-10_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -501,28 +503,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-11_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-11_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-11_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -542,28 +544,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-12_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-12_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-12_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -583,28 +585,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-13_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-13_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-13_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -624,28 +626,28 @@ const pageProps: PagePropType = {
           <Card
             directPc="row"
             directSp="row"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
             outline
             title="タイトルタイトルタイトル"
-            link={{
-              href: "DUMMY_LINK",
-            }}
           >
             <Media slot="media">
               <figure>
                 <picture>
                   <source
+                    height="101"
                     media="(min-width: 768px)"
                     srcset="/templates/function/images/index-image-14_pc.webp"
                     type="image/webp"
                     width="101"
-                    height="101"
                   />
                   <img
-                    src="/templates/function/images/index-image-14_sp.webp"
-                    width="88"
+                    alt=""
                     height="88"
                     loading="lazy"
-                    alt=""
+                    src="/templates/function/images/index-image-14_sp.webp"
+                    width="88"
                   />
                 </picture>
               </figure>
@@ -665,12 +667,12 @@ const pageProps: PagePropType = {
       <NavigationSns
         class="mt-8 md:mt-10"
         datas={{
-          share: "#",
-          good: "#",
-          facebook: "#",
-          x: "#",
-          instagram: "#",
-          line: "#",
+          facebook: '#',
+          good: '#',
+          instagram: '#',
+          line: '#',
+          share: '#',
+          x: '#',
         }}
       />
     </Section>
@@ -680,15 +682,11 @@ const pageProps: PagePropType = {
         <div class="PanelInformation__segment">
           <div class="PanelInformation__title">Webからのお問い合わせ</div>
           <Text class="mt-4">
-            <p>
-              Webからお問い合わせの際は下記フォームからお問い合わせください。
-            </p>
+            <p>Webからお問い合わせの際は下記フォームからお問い合わせください。</p>
           </Text>
 
           <Text class="mt-4">
-            <p>
-              Webからお問い合わせの際は下記フォームからお問い合わせください。
-            </p>
+            <p>Webからお問い合わせの際は下記フォームからお問い合わせください。</p>
           </Text>
 
           <Button

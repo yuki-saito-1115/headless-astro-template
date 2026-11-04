@@ -7,7 +7,9 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'div'> {}
 
 const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('TextCaution: slotの中身が空です。');
@@ -17,38 +19,37 @@ if (!Astro.slots.has('default')) {
 <div
   class:list={[
     'TextCaution',
-    className
+    className,
   ]}
   {...attrs}
 >
   <slot />
 </div>
 
-
 <style>
   .TextCaution {
-    color: var(--user-color-warning-dark);
-    font-weight: var(--user-font-weight-bold);
-    line-height: var(--user-line-height);
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: calc(var(--user-spacing) * 4);
     padding-left: 1.5em;
-    position: relative;
+    font-weight: var(--user-font-weight-bold);
+    line-height: var(--user-line-height);
+    color: var(--user-color-warning-dark);
 
     /* icon */
     &::before {
-      background-color: currentColor;
-      content: '';
-      display: block;
-      height: 1em;
+      position: absolute;
+      top: 0.3em;
       left: 0;
+      display: block;
+      width: 1em;
+      height: 1em;
+      content: '';
+      background-color: currentColor;
       mask-image: url('/assets/images/icons/circle-exclamation.svg');
       mask-repeat: no-repeat;
       mask-size: cover;
-      position: absolute;
-      top: 0.3em;
-      width: 1em;
     }
 
     :where(div, p) {

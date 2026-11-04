@@ -1,8 +1,10 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "../../.cache/site/typescript/tsconfig.tsbuildinfo"
   },
-  "exclude": ["_worker"]
+  "exclude": [
+    "_worker"
+  ],
+  "extends": "../../tsconfig.json"
 }

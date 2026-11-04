@@ -4,17 +4,18 @@ import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../../layouts/PageLayout/PageLayout.astro';
 
 const breadcrumb = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
-    name: 'テンプレート一覧',
     item: '/templates/',
+    name: 'テンプレート一覧',
   },
   {
     name: '価格',
@@ -31,17 +32,17 @@ const pageProps: PagePropType = {
   <MainVisual title="価格">
     <picture slot="media">
       <source
+        height="500"
         media="(min-width: 768px)"
         srcset="/templates/price/images/detail-mainVisual_pc.webp"
         type="image/webp"
         width="1440"
-        height="500"
       />
       <img
+        alt=""
+        height="130"
         src="/templates/price/images/detail-mainVisual_sp.webp"
         width="375"
-        height="130"
-        alt=""
       />
     </picture>
   </MainVisual>
@@ -51,9 +52,7 @@ const pageProps: PagePropType = {
   <Content>
     <Section>
       <Text>
-        <p>
-          ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
-        </p>
+        <p>ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト</p>
       </Text>
     </Section>
   </Content>

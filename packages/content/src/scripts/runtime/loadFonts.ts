@@ -14,63 +14,63 @@ interface FontDefinition {
 const FONT_DEFINITIONS: FontDefinition[] = [
   {
     family: 'Noto Sans Japanese',
-    weight: '400',
     style: 'normal',
     url: '/assets/fonts/NotoSansJP-VariableFont_wght.woff2',
+    weight: '400',
   },
   {
     family: 'Noto Sans Japanese',
-    weight: '700',
     style: 'normal',
     url: '/assets/fonts/NotoSansJP-VariableFont_wght.woff2',
+    weight: '700',
   },
   {
     family: 'Noto Serif Japanese',
-    weight: '400',
     style: 'normal',
     url: '/assets/fonts/NotoSerifJP-VariableFont_wght.woff2',
+    weight: '400',
   },
   {
     family: 'Noto Serif Japanese',
-    weight: '700',
     style: 'normal',
     url: '/assets/fonts/NotoSerifJP-VariableFont_wght.woff2',
+    weight: '700',
   },
   {
     family: 'Roboto',
-    weight: '400',
     style: 'normal',
     url: '/assets/fonts/Roboto-VariableFont_wdth,wght.woff2',
+    weight: '400',
   },
   {
     family: 'Roboto',
-    weight: '700',
     style: 'normal',
     url: '/assets/fonts/Roboto-VariableFont_wdth,wght.woff2',
-  },
-  {
-    family: 'Roboto',
-    weight: '400',
-    style: 'italic',
-    url: '/assets/fonts/Roboto-Italic-VariableFont_wdth,wght.woff2',
-  },
-  {
-    family: 'Roboto',
     weight: '700',
+  },
+  {
+    family: 'Roboto',
     style: 'italic',
     url: '/assets/fonts/Roboto-Italic-VariableFont_wdth,wght.woff2',
+    weight: '400',
+  },
+  {
+    family: 'Roboto',
+    style: 'italic',
+    url: '/assets/fonts/Roboto-Italic-VariableFont_wdth,wght.woff2',
+    weight: '700',
   },
   {
     family: 'Roboto Mono',
-    weight: '400',
     style: 'normal',
     url: '/assets/fonts/RobotoMono-VariableFont_wght.woff2',
+    weight: '400',
   },
   {
     family: 'Roboto Mono',
-    weight: '400',
     style: 'italic',
     url: '/assets/fonts/RobotoMono-Italic-VariableFont_wght.woff2',
+    weight: '400',
   },
 ];
 
@@ -78,9 +78,9 @@ function createFontFaces(): FontFace[] {
   return FONT_DEFINITIONS.map(
     (f) =>
       new FontFace(f.family, `url(${f.url}) format("woff2")`, {
-        weight: f.weight,
-        style: f.style,
         display: 'swap',
+        style: f.style,
+        weight: f.weight,
       }),
   );
 }

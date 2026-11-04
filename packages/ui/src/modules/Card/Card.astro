@@ -37,11 +37,16 @@ const {
   link,
   ...rest
 } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 const { class: linkClassName, ...linkRest } = link ?? {};
-const linkAttrs: Record<string, unknown> = { ...linkRest };
+const linkAttrs: Record<string, unknown> = {
+  ...linkRest,
+};
 const WrapElement = link ? 'a' : 'span';
 ---
+
 <Element
   class:list={[
     'Card',
@@ -62,34 +67,57 @@ const WrapElement = link ? 'a' : 'span';
     {...linkAttrs}
   >
     {Astro.slots.has('media') && (
-      <div class:list={['Card__media']}>
+      <div
+        class:list={[
+          'Card__media',
+        ]}
+      >
         {/* @slot Mediaコンポーネントの使用のみを許容します。 */}
         <slot name="media" />
       </div>
     )}
 
-    {title && <div class:list={['Card__title']}>{title}</div>}
+    {title && (
+      <div
+        class:list={[
+          'Card__title',
+        ]}
+      >
+        {title}
+      </div>
+    )}
 
-    <div class:list={['Card__content']}>
+    <div
+      class:list={[
+        'Card__content',
+      ]}
+    >
       {/* @slot あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
       <slot name="content" />
     </div>
 
-    {date && <div class:list={['Card__date']}>{date}</div>}
+    {date && (
+      <div
+        class:list={[
+          'Card__date',
+        ]}
+      >
+        {date}
+      </div>
+    )}
   </WrapElement>
 </Element>
-
 
 <style>
   .Card {
     --local-padding: calc(var(--user-spacing) * 4);
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 4;
+    gap: var(--local-padding);
 
     align-content: start;
     height: 100%;
-    gap: var(--local-padding);
-    display: grid;
-    grid-row: span 4;
-    grid-template-rows: subgrid;
 
     &:where(.theme-caution, .theme-warning, .theme-outline) {
       padding: var(--local-padding);
@@ -112,24 +140,24 @@ const WrapElement = link ? 'a' : 'span';
   }
 
   .Card__media {
-    width: 100%;
     position: relative;
+    width: 100%;
 
     :where(img) {
       display: block;
-      max-width: none;
       width: 100%;
+      max-width: none;
       height: auto;
     }
   }
 
   .Card__wrap {
-    align-content: start;
     display: grid;
-    gap: var(--local-padding);
-    grid-column: 1;
-    grid-row: 1 / span 4;
     grid-template-rows: subgrid;
+    grid-row: 1 / span 4;
+    grid-column: 1;
+    gap: var(--local-padding);
+    align-content: start;
     height: 100%;
   }
 
@@ -143,9 +171,9 @@ const WrapElement = link ? 'a' : 'span';
   }
 
   .Card__title {
+    font-size: var(--user-font-size-base);
     font-weight: var(--user-font-weight-bold);
     line-height: var(--user-line-height);
-    font-size: var(--user-font-size-base);
   }
 
   .Card__date {
@@ -158,8 +186,8 @@ const WrapElement = link ? 'a' : 'span';
         grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 
         :where(.Card__media) {
-          grid-column: 1;
           grid-row: 1 / span 4;
+          grid-column: 1;
         }
 
         :where(.Card__title, .Card__content, .Card__date) {
@@ -171,8 +199,8 @@ const WrapElement = link ? 'a' : 'span';
         grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
 
         :where(.Card__media) {
-          grid-column: 2;
           grid-row: 1 / span 4;
+          grid-column: 2;
         }
 
         :where(.Card__title, .Card__content, .Card__date) {
@@ -206,8 +234,8 @@ const WrapElement = link ? 'a' : 'span';
         grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 
         :where(.Card__media) {
-          grid-column: 1;
           grid-row: 1 / span 4;
+          grid-column: 1;
         }
 
         :where(.Card__title, .Card__content, .Card__date) {
@@ -219,8 +247,8 @@ const WrapElement = link ? 'a' : 'span';
         grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
 
         :where(.Card__media) {
-          grid-column: 2;
           grid-row: 1 / span 4;
+          grid-column: 2;
         }
 
         :where(.Card__title, .Card__content, .Card__date) {

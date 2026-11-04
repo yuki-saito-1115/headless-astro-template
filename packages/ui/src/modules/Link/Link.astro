@@ -7,7 +7,9 @@ import type { HTMLAttributes } from 'astro/types';
 export interface Props extends HTMLAttributes<'span'> {}
 
 const { class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('Link: slotの中身が空です。');
@@ -17,14 +19,13 @@ if (!Astro.slots.has('default')) {
 <span
   class:list={[
     'Link',
-    className
+    className,
   ]}
   {...attrs}
 >
   {/* @slot 直下では `a` 要素の使用のみを許容します。 */}
   <slot />
 </span>
-
 
 <style>
   .Link {

@@ -1,13 +1,13 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/FormFilter/FormFilter.astro';
 import FormFilter from '@packages/ui/modules/FormFilter/FormFilter.astro';
 import FormRadio from '@packages/ui/modules/FormRadio/FormRadio.astro';
 import LayoutColumn from '@packages/ui/modules/LayoutColumn/LayoutColumn.astro';
-import type { Meta, StoryObj } from '@storybook/react';
-import type { AstroComponentFactory } from '@storybook-astro/renderer/types';
 
-const storybookComponent = (component: unknown) =>
-  component as AstroComponentFactory;
+const storybookComponent = (component: unknown) => component as AstroComponentFactory;
 
 const meta = {
   component: FormFilter,

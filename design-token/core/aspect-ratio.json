@@ -1,6 +1,8 @@
 {
   "aspect": {
     "$type": "ratio",
-    "video": { "$value": "16 / 9" }
+    "video": {
+      "$value": "16 / 9"
+    }
   }
 }

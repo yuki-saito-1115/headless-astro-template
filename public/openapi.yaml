@@ -8,7 +8,7 @@ paths:
     get:
       summary: おためしの一覧取得
       responses:
-        '200':
+        "200":
           description: おためしの一覧
           content:
             application/json:
@@ -18,7 +18,7 @@ paths:
                   contents:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Trial'
+                      $ref: "#/components/schemas/Trial"
                   totalCount:
                     type: integer
                   offset:
@@ -35,17 +35,17 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: おためしの詳細
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Trial'
+                $ref: "#/components/schemas/Trial"
   /news:
     get:
       summary: お知らせの一覧取得
       responses:
-        '200':
+        "200":
           description: お知らせの一覧
           content:
             application/json:
@@ -55,7 +55,7 @@ paths:
                   contents:
                     type: array
                     items:
-                      $ref: '#/components/schemas/News'
+                      $ref: "#/components/schemas/News"
                   totalCount:
                     type: integer
                   offset:
@@ -72,17 +72,17 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: お知らせの詳細
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/News'
+                $ref: "#/components/schemas/News"
   /blogs:
     get:
       summary: ブログの一覧取得
       responses:
-        '200':
+        "200":
           description: ブログの一覧
           content:
             application/json:
@@ -92,7 +92,7 @@ paths:
                   contents:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Blogs'
+                      $ref: "#/components/schemas/Blogs"
                   totalCount:
                     type: integer
                   offset:
@@ -109,17 +109,17 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: ブログの詳細
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Blogs'
+                $ref: "#/components/schemas/Blogs"
   /categories:
     get:
       summary: カテゴリの一覧取得
       responses:
-        '200':
+        "200":
           description: カテゴリの一覧
           content:
             application/json:
@@ -129,7 +129,7 @@ paths:
                   contents:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Categories'
+                      $ref: "#/components/schemas/Categories"
                   totalCount:
                     type: integer
                   offset:
@@ -146,17 +146,17 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: カテゴリの詳細
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Categories'
+                $ref: "#/components/schemas/Categories"
   /sample:
     get:
       summary: サンプルの一覧取得
       responses:
-        '200':
+        "200":
           description: サンプルの一覧
           content:
             application/json:
@@ -166,7 +166,7 @@ paths:
                   contents:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Sample'
+                      $ref: "#/components/schemas/Sample"
                   totalCount:
                     type: integer
                   offset:
@@ -183,12 +183,12 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: サンプルの詳細
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Sample'
+                $ref: "#/components/schemas/Sample"
 components:
   schemas:
     Trial:
@@ -338,7 +338,7 @@ components:
             - url
         category:
           description: カテゴリ
-          $ref: '#/components/schemas/Categories'
+          $ref: "#/components/schemas/Categories"
     Categories:
       type: object
       description: カテゴリ

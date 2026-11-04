@@ -1,29 +1,48 @@
 ---
-import type { SampleType } from '@packages/content/build/microcms';
 import type { HTMLAttributes } from 'astro/types';
+
+import type { SampleType } from '@packages/content/build/microcms';
+
 import HeadingLevel3 from '../../modules/HeadingLevel3/HeadingLevel3.astro';
 
 export interface Props extends HTMLAttributes<'div'> {
-  sample: SampleType | null;
   contentId?: string | null;
   draftKey?: string | null;
+  sample: SampleType | null;
 }
 
 const { sample, contentId, draftKey, class: className, ...rest } = Astro.props;
-const classList = ['SampleDetail'];
+const classList = [
+  'SampleDetail',
+];
 ---
 
 <div
-  class:list={[classList, className]}
+  class:list={[
+    classList,
+    className,
+  ]}
   {...rest}
 >
   <HeadingLevel3 class="mt-10 md:mt-20">{sample?.title}</HeadingLevel3>
 
   <div class="mt-5 md:mt-10">{sample?.category}</div>
 
-  <div class="mt-5 md:mt-10" set:html={sample?.content} />
+  <div
+    class="mt-5 md:mt-10"
+    set:html={sample?.content}
+  />
 
-  <div class="mt-5 md:mt-10"><a href={sample?.link} target="_blank">詳細はこちら</a></div>
+  <div class="mt-5 md:mt-10">
+    <a
+      href={sample?.link}
+      target="_blank"
+      >詳細はこちら</a
+    >
+  </div>
 
-  <a href={ contentId && draftKey ? `/sample?contentId=${contentId}&draftKey=${draftKey}` : `/sample` }>一覧に戻る</a>
+  <a
+    href={contentId && draftKey ? `/sample?contentId=${contentId}&draftKey=${draftKey}` : `/sample`}
+    >一覧に戻る</a
+  >
 </div>

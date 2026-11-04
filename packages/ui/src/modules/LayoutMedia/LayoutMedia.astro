@@ -5,24 +5,22 @@ import type { HTMLAttributes } from 'astro/types';
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
 export interface Props extends HTMLAttributes<'div'> {
-  /** SP幅時のコンテンツと画像の並び方向を設定します。 */
-  directSp?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
   /** PC幅時のコンテンツと画像の並び方向を設定します。 */
   directPc?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  /** SP幅時のコンテンツと画像の並び方向を設定します。 */
+  directSp?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
 }
 
-const {
-  directSp = 'column-reverse',
-  directPc = 'row',
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { directSp = 'column-reverse', directPc = 'row', class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('content') || !Astro.slots.has('media')) {
   throw new Error('LayoutMedia: content slotまたはmedia slotが空です。');
 }
 ---
+
 <div
   class:list={[
     'LayoutMedia',
@@ -49,13 +47,12 @@ if (!Astro.slots.has('content') || !Astro.slots.has('media')) {
   </div>
 </div>
 
-
 <style>
   .LayoutMedia {
     :where(.LayoutMedia__inner) {
       display: grid;
-      gap: calc(var(--user-spacing) * 4);
       grid-template-columns: minmax(0, 1fr) fit-content(50%);
+      gap: calc(var(--user-spacing) * 4);
     }
 
     :where(.LayoutMedia__segment) {

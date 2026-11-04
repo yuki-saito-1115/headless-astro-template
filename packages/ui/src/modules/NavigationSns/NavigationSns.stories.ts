@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
 import type { StoryArgs } from '@packages/content/types/Storybook';
 import type { Props } from '@packages/ui/modules/NavigationSns/NavigationSns.astro';
 import NavigationSns from '@packages/ui/modules/NavigationSns/NavigationSns.astro';
-import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   component: NavigationSns,
@@ -19,12 +20,12 @@ type Story = StoryObj<StoryArgs<Props>>;
 export const Default: Story = {
   args: {
     datas: {
-      share: '#share',
-      good: '#good',
       facebook: '#facebook',
-      x: '#x',
+      good: '#good',
       instagram: '#instagram',
       line: '#line',
+      share: '#share',
+      x: '#x',
     },
   },
 };
