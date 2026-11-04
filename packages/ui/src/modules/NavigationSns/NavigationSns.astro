@@ -20,17 +20,24 @@ const snsNames: SnsName[] = [
 ];
 
 const { datas, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 const labels: Record<SnsName, string> = {
-  share: 'シェアする',
-  good: 'Facebookで「いいね」する',
   facebook: 'Facebookでシェア',
-  x: 'Xでポスト',
+  good: 'Facebookで「いいね」する',
   instagram: 'Instagramでシェア',
   line: 'LINEで送る',
+  share: 'シェアする',
+  x: 'Xでポスト',
 };
 const entries = Object.entries(datas).filter(
-  (entry): entry is [SnsName, string] => snsNames.includes(entry[0] as SnsName),
+  (
+    entry,
+  ): entry is [
+    SnsName,
+    string,
+  ] => snsNames.includes(entry[0] as SnsName),
 );
 ---
 
@@ -41,26 +48,32 @@ const entries = Object.entries(datas).filter(
   ]}
   {...attrs}
 >
-  <ul class:list={['NavigationSns__list']}>
-    {
-      entries.map(([name, href]) => (
-        <li class:list={['NavigationSns__item']}>
-          <a
-            class:list={[
-              'NavigationSns__link',
-              `NavigationSns__link--${name}`,
-            ]}
-            href={href}
-            target="_blank"
-          >
-            {labels[name]}
-          </a>
-        </li>
-      ))
-    }
+  <ul
+    class:list={[
+      'NavigationSns__list',
+    ]}
+  >
+    {entries.map(([name, href]) => (
+      <li
+        class:list={[
+          'NavigationSns__item',
+        ]}
+      >
+        <a
+          class:list={[
+            'NavigationSns__link',
+            `NavigationSns__link--${name}`,
+          ]}
+          href={href}
+          rel="noopener"
+          target="_blank"
+        >
+          {labels[name]}
+        </a>
+      </li>
+    ))}
   </ul>
 </nav>
-
 
 <style>
   .NavigationSns {
@@ -80,23 +93,23 @@ const entries = Object.entries(datas).filter(
       --local-icon: url('/assets/images/icons/share.svg');
       --local-icon-position: center 45%;
       --local-icon-size: 50%;
+      position: relative;
 
       display: block;
-      height: 32px;
-      overflow: hidden;
-      padding: calc(var(--user-spacing) * 8) 0 0 calc(var(--user-spacing) * 8);
-      position: relative;
-      text-decoration: none;
       width: 32px;
+      height: 32px;
+      padding: calc(var(--user-spacing) * 8) 0 0 calc(var(--user-spacing) * 8);
+      overflow: hidden;
+      text-decoration: none;
 
       &::before,
       &::after {
-        content: '';
-        height: 100%;
-        left: 0;
         position: absolute;
         top: 0;
+        left: 0;
         width: 100%;
+        height: 100%;
+        content: '';
       }
 
       &::before {
@@ -107,8 +120,8 @@ const entries = Object.entries(datas).filter(
       &::after {
         background-color: var(--user-color-foreground-light);
         mask-image: var(--local-icon);
-        mask-position: var(--local-icon-position);
         mask-repeat: no-repeat;
+        mask-position: var(--local-icon-position);
         mask-size: var(--local-icon-size);
       }
 
@@ -152,9 +165,9 @@ const entries = Object.entries(datas).filter(
       }
 
       :where(.NavigationSns__link) {
+        width: 40px;
         height: 40px;
         padding: calc(var(--user-spacing) * 10) 0 0 calc(var(--user-spacing) * 10);
-        width: 40px;
       }
     }
   }

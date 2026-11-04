@@ -3,8 +3,8 @@ import type { HTMLAttributes } from 'astro/types';
 
 // パンくずリスト項目の型
 export interface BreadcrumbItem {
-  name: string;
   item?: string;
+  name: string;
 }
 
 export interface Props extends HTMLAttributes<'nav'> {
@@ -15,18 +15,29 @@ const { items = [], class: className, ...rest } = Astro.props as Props;
 ---
 
 <nav
-  class:list={['Breadcrumb', className]}
+  class:list={[
+    'Breadcrumb',
+    className,
+  ]}
   {...rest}
 >
-  <div class:list={['Breadcrumb__outer']}>
-    <div class:list={['Breadcrumb__inner']}>
+  <div
+    class:list={[
+      'Breadcrumb__outer',
+    ]}
+  >
+    <div
+      class:list={[
+        'Breadcrumb__inner',
+      ]}
+    >
       <ul>
         {items.map((item) => (
           <li>
             {item.item ? (
               <a href={item.item}>{item.name}</a>
             ) : (
-              <a aria-current="page"><em>{item.name}</em></a>
+              <em aria-current="page">{item.name}</em>
             )}
           </li>
         ))}
@@ -35,19 +46,18 @@ const { items = [], class: className, ...rest } = Astro.props as Props;
   </div>
 </nav>
 
-
 <style>
   .Breadcrumb {
     display: grid;
-    gap: 0 var(--user-outside-gutter-sp);
     grid-area: breadcrumb;
     grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+    gap: 0 var(--user-outside-gutter-sp);
 
     :where(.Breadcrumb__outer) {
       display: grid;
-      gap: 0 var(--user-outside-gutter-sp);
-      grid-column: 1 / 4;
       grid-template-columns: 1fr minmax(var(--user-content-width-sp), var(--user-content-width-pc)) 1fr;
+      grid-column: 1 / 4;
+      gap: 0 var(--user-outside-gutter-sp);
     }
 
     :where(.Breadcrumb__inner) {
@@ -57,9 +67,9 @@ const { items = [], class: className, ...rest } = Astro.props as Props;
       :where(ul) {
         display: flex;
         gap: 0.5rem;
-        list-style: none;
-        margin: 0;
         padding: 0;
+        margin: 0;
+        list-style: none;
       }
 
       :where(li) {

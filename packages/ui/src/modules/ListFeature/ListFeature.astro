@@ -17,13 +17,15 @@ export interface Props extends HTMLAttributes<'ul'> {
 }
 
 const { datas, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <ul
   class:list={[
     'ListFeature',
-    className
+    className,
   ]}
   {...attrs}
 >
@@ -36,7 +38,6 @@ const attrs: Record<string, unknown> = { ...rest };
   ))}
 </ul>
 
-
 <style>
   .ListFeature {
     display: grid;
@@ -44,22 +45,22 @@ const attrs: Record<string, unknown> = { ...rest };
 
     > :global(li) {
       display: grid;
-      list-style: none;
       row-gap: calc(var(--user-spacing) * 2);
+      list-style: none;
 
       > :where(.ListFeature__badge) {
-        align-items: center;
-        background-color: var(--user-color-secondary2);
-        color: var(--user-color-foreground-light);
         display: inline-flex;
-        font-size: var(--user-font-size-base);
-        font-weight: var(--user-font-weight-bold);
+        align-items: center;
         justify-content: center;
-        line-height: 1.5;
-        margin-bottom: calc(var(--user-spacing) * 1);
         min-width: calc(var(--user-spacing) * 29);
         padding: calc(var(--user-spacing) * 2) calc(var(--user-spacing) * 3);
+        margin-bottom: calc(var(--user-spacing) * 1);
+        font-size: var(--user-font-size-base);
+        font-weight: var(--user-font-weight-bold);
+        line-height: 1.5;
+        color: var(--user-color-foreground-light);
         text-align: center;
+        background-color: var(--user-color-secondary2);
       }
 
       > :where(.ListFeature__title) {
@@ -78,23 +79,23 @@ const attrs: Record<string, unknown> = { ...rest };
       grid-template-columns: auto minmax(0, 1fr);
 
       > :global(li) {
-        align-items: baseline;
-        column-gap: calc(var(--user-spacing) * 6);
-        grid-column: span 2;
         grid-template-columns: subgrid;
+        grid-column: span 2;
         row-gap: calc(var(--user-spacing) * 2);
+        column-gap: calc(var(--user-spacing) * 6);
+        align-items: baseline;
+
+        > :where(.ListFeature__badge) {
+          width: 100%;
+          min-width: calc(var(--user-spacing) * 37);
+          margin-bottom: 0;
+          font-size: var(--text-lg);
+        }
 
         &:has(.ListFeature__text) {
           > :where(.ListFeature__badge) {
             grid-row: span 2;
           }
-        }
-
-        > :where(.ListFeature__badge) {
-          font-size: var(--text-lg);
-          margin-bottom: 0;
-          min-width: calc(var(--user-spacing) * 37);
-          width: 100%;
         }
 
         > :where(.ListFeature__title) {

@@ -13,14 +13,10 @@ export interface Props extends HTMLAttributes<'div'> {
   theme?: 'note';
 }
 
-const {
-  columnPc = '1',
-  columnSp = '1',
-  theme,
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { columnPc = '1', columnSp = '1', theme, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('List: slotの中身が空です。');
@@ -33,14 +29,13 @@ if (!Astro.slots.has('default')) {
     theme && `theme-${theme}`,
     columnPc && `columnPc-${columnPc}`,
     columnSp && `columnSp-${columnSp}`,
-    className
+    className,
   ]}
   {...attrs}
 >
   {/* @slot 直下では `ul` 要素または `ol` 要素の使用のみを許容します。 */}
   <slot />
 </div>
-
 
 <style>
   @counter-style list-number-default {
@@ -57,13 +52,9 @@ if (!Astro.slots.has('default')) {
       gap: var(--local-item-gap-y) var(--local-item-gap-x);
       padding-left: 1.7em;
 
-      :global(:where(ol, ul)) {
-        margin-top: var(--local-item-gap-y);
-      }
-
       :global(:where(li)) {
-        height: 100%;
         position: relative;
+        height: 100%;
       }
     }
 
@@ -72,15 +63,15 @@ if (!Astro.slots.has('default')) {
         list-style: none;
 
         &::before {
-          background-color: var(--user-color-secondary2);
-          border-radius: 50%;
-          content: '';
-          display: block;
-          height: 6px;
-          left: -1.7em;
           position: absolute;
           top: 0.7em;
+          left: -1.7em;
+          display: block;
           width: 6px;
+          height: 6px;
+          content: '';
+          background-color: var(--user-color-secondary2);
+          border-radius: 50%;
         }
       }
     }
@@ -93,9 +84,9 @@ if (!Astro.slots.has('default')) {
 
     &:where(.theme-note) {
       :global(:where(ol, ul)) {
+        padding-left: 3em;
         font-size: var(--text-sm);
         font-weight: var(--user-font-weight-normal);
-        padding-left: 3em;
       }
 
       :global(:where(ul)) {
@@ -103,13 +94,13 @@ if (!Astro.slots.has('default')) {
 
         > :global(:where(li)) {
           &::before {
+            top: 0;
+            left: -1.5em;
+            width: auto;
+            height: auto;
+            content: '※';
             background-color: transparent;
             border-radius: 0;
-            content: '※';
-            height: auto;
-            left: -1.5em;
-            top: 0;
-            width: auto;
           }
         }
       }
@@ -118,20 +109,26 @@ if (!Astro.slots.has('default')) {
         counter-reset: list-item;
 
         > :global(:where(li)) {
-          counter-increment: list-item;
           list-style: none;
+          counter-increment: list-item;
 
           &[value] {
             counter-set: list-item attr(value type(<integer>));
           }
 
           &::before {
-            content: '※' counter(list-item);
-            left: -3em;
             position: absolute;
             top: 0;
+            left: -3em;
+            content: '※' counter(list-item);
           }
         }
+      }
+    }
+
+    :global(:where(ol, ul)) {
+      :global(:where(ol, ul)) {
+        margin-top: var(--local-item-gap-y);
       }
     }
   }

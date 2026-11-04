@@ -1,28 +1,25 @@
 ---
-import Button from '@packages/ui/modules/Button/Button.astro';
 import type { HTMLAttributes } from 'astro/types';
+
+import Button from '@packages/ui/modules/Button/Button.astro';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  * - 開くボタンには `commandfor` にこのコンポーネントの `id` を、`command` に `"show-modal"` を指定してください。
  */
 export interface Props extends HTMLAttributes<'dialog'> {
-  /** Invoker Commands APIで参照するダイアログのIDを設定します。 */
-  id: string;
-  /** ダイアログの見出しを設定します。 */
-  heading: string;
   /** 閉じるボタンのテキストを設定します。 */
   closeLabel?: string;
+  /** ダイアログの見出しを設定します。 */
+  heading: string;
+  /** Invoker Commands APIで参照するダイアログのIDを設定します。 */
+  id: string;
 }
 
-const {
-  id,
-  heading,
-  closeLabel = '閉じる',
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { id, heading, closeLabel = '閉じる', class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (!Astro.slots.has('default')) {
   throw new Error('WidgetDialog: slotの中身が空です。');
@@ -51,16 +48,23 @@ if (!Astro.slots.has('default')) {
         <h2>{heading}</h2>
       </header>
 
-      <div class="WidgetDialog__body" tabindex="0">
+      <!-- biome-ignore-start lint/a11y/noNoninteractiveTabindex: スクロール領域をキーボードで操作可能にする -->
+      <div
+        class="WidgetDialog__body"
+        tabindex="0"
+      >
         <slot />
       </div>
+      <!-- biome-ignore-end lint/a11y/noNoninteractiveTabindex: キーボード操作用のスクロール領域ここまで -->
 
       <footer class="WidgetDialog__foot">
         <Button
           as="button"
           command="close"
           commandfor={id}
-          iconBefore={{ name: 'xmark' }}
+          iconBefore={{
+            name: 'xmark',
+          }}
           theme="text"
           title={closeLabel}
         />
@@ -69,144 +73,132 @@ if (!Astro.slots.has('default')) {
   </div>
 </dialog>
 
-
 <style>
   .WidgetDialog {
-    background-color: transparent;
-    border: 0;
+    width: 100%;
+    max-width: 100%;
     height: 100%;
     max-height: 100%;
-    max-width: 100%;
-    overscroll-behavior: none;
     padding: 0;
+    overscroll-behavior: none;
     scrollbar-width: none;
-    width: 100%;
+    background-color: transparent;
+    border: 0;
 
     &::backdrop {
       background-color: color-mix(in srgb, var(--user-color-background-dark), transparent 40%);
     }
 
     .WidgetDialog__outer {
-      align-items: center;
       display: flex;
-      height: calc(100% + 1px);
+      align-items: center;
       justify-content: center;
+      height: calc(100% + 1px);
       padding: clamp(
         calc(var(--user-spacing) * 6),
-        -13.611rem + 31.48vw,
+        -13.611rem +
+        31.48vw,
         calc(var(--user-spacing) * 40)
       );
     }
 
     .WidgetDialog__inner {
-      background-color: var(--user-color-background-light);
       display: flex;
       flex-direction: column;
-      max-height: 100%;
-      max-width: var(--user-minor-breakpoint);
       width: 100%;
+      max-width: var(--user-minor-breakpoint);
+      max-height: 100%;
+      background-color: var(--user-color-background-light);
     }
 
     .WidgetDialog__head {
-      padding:
-        clamp(
+      position: relative;
+      padding: clamp(
           calc(var(--user-spacing) * 6),
-          0.611rem + 1.85vw,
+          0.611rem +
+          1.85vw,
           calc(var(--user-spacing) * 8)
         )
-        clamp(
-          calc(var(--user-spacing) * 6),
-          -2.944rem + 9.26vw,
-          calc(var(--user-spacing) * 16)
-        );
-      position: relative;
+        clamp(calc(var(--user-spacing) * 6), -2.944rem + 9.26vw, calc(var(--user-spacing) * 16));
 
       :where(button) {
-        background-color: transparent;
-        border: 0;
-        display: block;
-        height: clamp(
-          calc(var(--user-spacing) * 8),
-          1.111rem + 1.85vw,
-          calc(var(--user-spacing) * 10)
-        );
-        overflow: hidden;
-        padding:
-          clamp(
-            calc(var(--user-spacing) * 8),
-            1.111rem + 1.85vw,
-            calc(var(--user-spacing) * 10)
-          )
-          0
-          0
-          clamp(
-            calc(var(--user-spacing) * 8),
-            1.111rem + 1.85vw,
-            calc(var(--user-spacing) * 10)
-          );
         position: absolute;
-        right: clamp(
-          calc(var(--user-spacing) * 2),
-          -0.389rem + 1.85vw,
-          calc(var(--user-spacing) * 4)
-        );
         top: clamp(
           calc(var(--user-spacing) * 2),
-          -0.389rem + 1.85vw,
+          -0.389rem +
+          1.85vw,
           calc(var(--user-spacing) * 4)
         );
+        right: clamp(
+          calc(var(--user-spacing) * 2),
+          -0.389rem +
+          1.85vw,
+          calc(var(--user-spacing) * 4)
+        );
+        display: block;
         width: clamp(
           calc(var(--user-spacing) * 8),
-          1.111rem + 1.85vw,
+          1.111rem +
+          1.85vw,
           calc(var(--user-spacing) * 10)
         );
+        height: clamp(
+          calc(var(--user-spacing) * 8),
+          1.111rem +
+          1.85vw,
+          calc(var(--user-spacing) * 10)
+        );
+        padding: clamp(
+            calc(var(--user-spacing) * 8),
+            1.111rem +
+            1.85vw,
+            calc(var(--user-spacing) * 10)
+          )
+          0 0
+          clamp(calc(var(--user-spacing) * 8), 1.111rem + 1.85vw, calc(var(--user-spacing) * 10));
+        overflow: hidden;
+        background-color: transparent;
+        border: 0;
 
         &::before {
-          background-color: currentColor;
-          content: '';
-          height: 100%;
-          left: 0;
-          mask-image: url('/assets/images/icons/xmark.svg');
-          mask-position: center;
-          mask-repeat: no-repeat;
-          mask-size: 40%;
           position: absolute;
           top: 0;
+          left: 0;
           width: 100%;
+          height: 100%;
+          content: '';
+          background-color: currentColor;
+          mask-image: url('/assets/images/icons/xmark.svg');
+          mask-repeat: no-repeat;
+          mask-position: center;
+          mask-size: 40%;
         }
       }
     }
 
     :where(h2) {
+      padding-right: calc(var(--user-spacing) * 10);
+      margin: 0;
       font-size: var(--text-2xl);
       line-height: var(--user-line-height);
-      margin: 0;
-      padding-right: calc(var(--user-spacing) * 10);
     }
 
     .WidgetDialog__body {
-      margin: 0 clamp(
-        calc(var(--user-spacing) * 6),
-        -2.944rem + 9.26vw,
-        calc(var(--user-spacing) * 16)
-      );
+      margin: 0
+        clamp(calc(var(--user-spacing) * 6), -2.944rem + 9.26vw, calc(var(--user-spacing) * 16));
       overflow: auto;
     }
 
     .WidgetDialog__foot {
       display: flex;
       justify-content: center;
-      padding:
-        clamp(
+      padding: clamp(
           calc(var(--user-spacing) * 10),
-          0.722rem + 3.7vw,
+          0.722rem +
+          3.7vw,
           calc(var(--user-spacing) * 14)
         )
-        clamp(
-          calc(var(--user-spacing) * 6),
-          -2.944rem + 9.26vw,
-          calc(var(--user-spacing) * 16)
-        );
+        clamp(calc(var(--user-spacing) * 6), -2.944rem + 9.26vw, calc(var(--user-spacing) * 16));
     }
   }
 
@@ -222,8 +214,8 @@ if (!Astro.slots.has('default')) {
     .WidgetDialog__head {
       :where(button) {
         &:hover {
-          background-color: var(--user-color-primary);
           color: var(--user-color-foreground-light);
+          background-color: var(--user-color-primary);
 
           &::before {
             background-color: currentColor;
@@ -232,5 +224,4 @@ if (!Astro.slots.has('default')) {
       }
     }
   }
-
 </style>

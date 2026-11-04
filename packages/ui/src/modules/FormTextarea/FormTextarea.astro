@@ -13,14 +13,10 @@ export interface Props extends HTMLAttributes<'textarea'> {
   state?: 'valid' | 'invalid';
 }
 
-const {
-  disabled = false,
-  size,
-  state,
-  class: className,
-  ...rest
-} = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const { disabled = false, size, state, class: className, ...rest } = Astro.props;
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 ---
 
 <span
@@ -32,12 +28,13 @@ const attrs: Record<string, unknown> = { ...rest };
   ]}
 >
   <textarea
-    class:list={['FormTextarea__item']}
     disabled={disabled}
+    class:list={[
+      'FormTextarea__item',
+    ]}
     {...attrs}
   />
 </span>
-
 
 <style>
   .FormTextarea {
@@ -47,19 +44,25 @@ const attrs: Record<string, unknown> = { ...rest };
     --local-placeholder: var(--color-gray-500);
     --local-width: auto;
     --local-padding: calc(var(--user-spacing) * 3);
+    display: inline-flex;
+    width: var(--local-width);
+    max-width: 100%;
+    overflow: hidden;
+
+    border: 1px solid var(--local-outline);
 
     /* Preflight */
     :where(.FormTextarea__item) {
       /* デフォルトスタイルリセットするため */
       font: unset;
 
-      /* ブラウザごとの差異を統一するため */
-      color: currentColor;
-      appearance: none;
-
       /* SPでフォーカス時にズームしないために16pxに固定 */
       font-size: var(--text-base);
       line-height: var(--user-text-normal-lineHeight);
+
+      /* ブラウザごとの差異を統一するため */
+      color: currentColor;
+      appearance: none;
       border-radius: 0;
 
       /* ブラウザごとの差異を統一しデフォルトスタイルリセットするため */
@@ -70,26 +73,20 @@ const attrs: Record<string, unknown> = { ...rest };
       }
     }
 
-    border: 1px solid var(--local-outline);
-    display: inline-flex;
-    max-width: 100%;
-    overflow: hidden;
-    width: var(--local-width);
-
     &:focus-within {
       outline: medium solid currentColor;
     }
 
     :where(.FormTextarea__item) {
+      display: block;
+      width: 100%;
+      min-height: 200px;
+      padding: var(--local-padding);
+      color: var(--local-foreground);
       appearance: none;
+      outline: none;
       background-color: var(--local-background);
       border: 0;
-      color: var(--local-foreground);
-      display: block;
-      min-height: 200px;
-      outline: none;
-      padding: var(--local-padding);
-      width: 100%;
 
       &::placeholder {
         color: var(--local-placeholder);
@@ -102,10 +99,7 @@ const attrs: Record<string, unknown> = { ...rest };
       --local-foreground: var(--user-color-success-dark);
       --local-background: var(--user-color-success-light);
       --local-outline: var(--user-color-success-dark);
-
-      ::placeholder {
-        color: var(--local-foreground);
-      }
+      --local-placeholder: var(--local-foreground);
     }
 
     &.is-invalid,
@@ -113,20 +107,14 @@ const attrs: Record<string, unknown> = { ...rest };
       --local-foreground: var(--user-color-danger-dark);
       --local-background: var(--user-color-danger-light);
       --local-outline: var(--user-color-danger-dark);
-
-      ::placeholder {
-        color: var(--local-foreground);
-      }
+      --local-placeholder: var(--local-foreground);
     }
 
     &:has(:disabled) {
       --local-foreground: var(--user-color-disabled-dark);
       --local-background: var(--user-color-disabled-light);
       --local-outline: var(--user-color-disabled-light);
-
-      ::placeholder {
-        color: var(--local-foreground);
-      }
+      --local-placeholder: var(--local-foreground);
 
       :is(.FormTextarea__item) {
         cursor: not-allowed;

@@ -5,8 +5,6 @@ import type { HTMLAttributes } from 'astro/types';
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
 export interface Props extends HTMLAttributes<'div'> {
-  /** タブとパネルのIDに使用する識別子を設定します。 */
-  id: string;
   /** タブに表示するテキストと、対応するパネルのslot名を設定します。 */
   datas: {
     /** タブに表示するテキストを設定します。 */
@@ -14,10 +12,14 @@ export interface Props extends HTMLAttributes<'div'> {
     /** 対応するパネルのslot名を設定します。 */
     slot: string;
   }[];
+  /** タブとパネルのIDに使用する識別子を設定します。 */
+  id: string;
 }
 
 const { id, datas, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 
 if (datas.length === 0) {
   throw new Error('WidgetTab: datasが空です。');
@@ -39,21 +41,22 @@ for (const data of datas) {
   {...attrs}
 >
   <div class="WidgetTab__control">
-    <ul class="WidgetTab__list" role="tablist">
+    <div
+      class="WidgetTab__list"
+      role="tablist"
+    >
       {datas.map((data, index) => (
-        <li role="presentation">
-          <a
-            aria-controls={`${id}-${data.slot}`}
-            aria-selected={index === 0 ? 'true' : 'false'}
-            href={`#${id}-${data.slot}`}
-            id={`${id}-tab-${index}`}
-            role="tab"
-          >
-            {data.title}
-          </a>
-        </li>
+        <a
+          aria-controls={`${id}-${data.slot}`}
+          aria-selected={index === 0 ? 'true' : 'false'}
+          href={`#${id}-${data.slot}`}
+          id={`${id}-tab-${index}`}
+          role="tab"
+        >
+          {data.title}
+        </a>
       ))}
-    </ul>
+    </div>
   </div>
 
   <div class="WidgetTab__container">
@@ -77,15 +80,11 @@ for (const data of datas) {
     --local-outline: var(--user-color-outline-dark);
 
     :where(.WidgetTab__list) {
-      :where(li) {
-        list-style: none;
-      }
-
       :where(a) {
         line-height: var(--user-line-height);
+        vertical-align: top;
         text-align: center;
         text-decoration: none;
-        vertical-align: top;
 
         &[aria-selected='true'] {
           --local-background: var(--user-color-secondary2);
@@ -94,7 +93,6 @@ for (const data of datas) {
         }
       }
     }
-
 
     .WidgetTab__container {
       margin-top: calc(var(--user-spacing) * 6);
@@ -105,17 +103,17 @@ for (const data of datas) {
     .WidgetTab {
       :where(.WidgetTab__list) {
         display: grid;
-        gap: calc(var(--user-spacing) * 4);
         grid-template-columns: repeat(2, 1fr);
+        gap: calc(var(--user-spacing) * 4);
 
         :where(a) {
-          align-items: center;
-          background-color: var(--local-background);
-          border: 1px solid var(--local-outline);
-          color: var(--local-foreground);
           display: flex;
+          align-items: center;
           justify-content: center;
           padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 6);
+          color: var(--local-foreground);
+          background-color: var(--local-background);
+          border: 1px solid var(--local-outline);
         }
       }
     }
@@ -132,13 +130,13 @@ for (const data of datas) {
         gap: calc(var(--user-spacing) * 4);
 
         :where(a) {
-          background-color: var(--local-background);
-          border-left: 1px solid var(--local-outline);
-          border-right: 1px solid var(--local-outline);
-          border-top: 1px solid var(--local-outline);
-          color: var(--local-foreground);
           display: block;
           padding: calc(var(--user-spacing) * 4) calc(var(--user-spacing) * 8);
+          color: var(--local-foreground);
+          background-color: var(--local-background);
+          border-top: 1px solid var(--local-outline);
+          border-right: 1px solid var(--local-outline);
+          border-left: 1px solid var(--local-outline);
         }
       }
     }
@@ -164,52 +162,53 @@ for (const data of datas) {
       const contents = root.querySelectorAll('[role="tabpanel"]');
       let recentNumber = 0;
 
-    if (links.length === 0 || links.length !== contents.length) {
-      return;
-    }
+      if (links.length === 0 || links.length !== contents.length) {
+        return;
+      }
 
-    /** すべてのパネルをキーボード操作の対象外にして非表示にする。 */
-    const hidePanel = () => {
+      /** すべてのパネルをキーボード操作の対象外にして非表示にする。 */
+      const hidePanel = () => {
         links.forEach((link, index) => {
           link.setAttribute('aria-selected', 'false');
           contents[index].setAttribute('hidden', 'hidden');
           contents[index].inert = true;
         });
-    };
+      };
 
-    /** 指定したパネルだけを表示して操作可能にする。 */
-    const showPanel = (current) => {
+      /** 指定したパネルだけを表示して操作可能にする。 */
+      const showPanel = (current) => {
         hidePanel();
 
         links[current].setAttribute('aria-selected', 'true');
         contents[current].removeAttribute('hidden');
         contents[current].inert = false;
-    };
+      };
 
-    /** URLハッシュが指すタブ、パネル、またはパネル内の要素を初期表示する。 */
-    const setInitialPanel = () => {
+      /** URLハッシュが指すタブ、パネル、またはパネル内の要素を初期表示する。 */
+      const setInitialPanel = () => {
         const hash = window.location.hash.slice(1);
         const target = document.getElementById(hash);
         const hashIndex = Array.from(contents).findIndex(
-          (content, index) => content.id === hash || links[index].id === hash || content.contains(target),
+          (content, index) =>
+            content.id === hash || links[index].id === hash || content.contains(target),
         );
 
         if (hashIndex >= 0) {
           recentNumber = hashIndex;
         }
-    };
+      };
 
-    /** URLハッシュを反映した初期表示状態を設定する。 */
-    const build = () => {
+      /** URLハッシュを反映した初期表示状態を設定する。 */
+      const build = () => {
         setInitialPanel();
         showPanel(recentNumber);
-    };
+      };
 
-    /** タブを選択したときにパネルを切り替え、パネルへフォーカスを移す。 */
-    const bindEvent = () => {
-      links.forEach((link, index) => {
-        // クリック時だけ対応するパネルへフォーカスを移す。
-        link.addEventListener('click', (event) => {
+      /** タブを選択したときにパネルを切り替え、パネルへフォーカスを移す。 */
+      const bindEvent = () => {
+        links.forEach((link, index) => {
+          // クリック時だけ対応するパネルへフォーカスを移す。
+          link.addEventListener('click', (event) => {
             event.preventDefault();
             event.stopPropagation();
 
