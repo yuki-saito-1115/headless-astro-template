@@ -1,7 +1,8 @@
 ---
-import swiperBundleUrl from '@packages/content/runtime/swiper/swiper-bundle.min.js?url';
-import type { SwiperOptions } from '@packages/content/runtime/swiper/types';
 import type { HTMLAttributes } from 'astro/types';
+
+import swiperBundleUrl from '@packages/content/runtime/libraries/swiper/swiper-bundle.min.js?url';
+import type { SwiperOptions } from '@packages/content/runtime/libraries/swiper/types';
 
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
@@ -13,16 +14,16 @@ export interface Props extends HTMLAttributes<'div'> {
 }
 
 const { options = {}, class: className, ...rest } = Astro.props;
-const attrs: Record<string, unknown> = { ...rest };
+const attrs: Record<string, unknown> = {
+  ...rest,
+};
 const hasAutoplay = Boolean(options.autoplay);
 const hasNavigation =
   options.navigation !== false &&
-  (typeof options.navigation !== 'object' ||
-    options.navigation.enabled !== false);
+  (typeof options.navigation !== 'object' || options.navigation.enabled !== false);
 const hasPagination =
   options.pagination !== false &&
-  (typeof options.pagination !== 'object' ||
-    options.pagination.enabled !== false);
+  (typeof options.pagination !== 'object' || options.pagination.enabled !== false);
 
 if (!Astro.slots.has('default')) {
   throw new Error('WidgetCarousel: slotの中身が空です。');
@@ -30,26 +31,35 @@ if (!Astro.slots.has('default')) {
 ---
 
 <div
+  data-options={JSON.stringify(options)}
   class:list={[
     'WidgetCarousel',
     className,
   ]}
-  data-options={JSON.stringify(options)}
   {...attrs}
 >
   <div class="WidgetCarousel__track">
     <slot />
   </div>
 
-  <div class="WidgetCarousel__control" hidden>
+  <div
+    class="WidgetCarousel__control"
+    hidden
+  >
     {hasAutoplay && (
-      <button class="WidgetCarousel__toggle" type="button">
+      <button
+        class="WidgetCarousel__toggle"
+        type="button"
+      >
         <span class="WidgetCarousel__label">一時停止</span>
       </button>
     )}
 
     {hasNavigation && (
-      <button class="WidgetCarousel__arrow WidgetCarousel__arrow--prev" type="button">
+      <button
+        class="WidgetCarousel__arrow WidgetCarousel__arrow--prev"
+        type="button"
+      >
         <span class="WidgetCarousel__label">前のスライドへ</span>
       </button>
     )}
@@ -57,7 +67,10 @@ if (!Astro.slots.has('default')) {
     {hasPagination && <div class="WidgetCarousel__pagination"></div>}
 
     {hasNavigation && (
-      <button class="WidgetCarousel__arrow WidgetCarousel__arrow--next" type="button">
+      <button
+        class="WidgetCarousel__arrow WidgetCarousel__arrow--next"
+        type="button"
+      >
         <span class="WidgetCarousel__label">次のスライドへ</span>
       </button>
     )}
@@ -68,33 +81,25 @@ if (!Astro.slots.has('default')) {
   .WidgetCarousel {
     position: relative;
 
-    &.WidgetCarousel--initialized {
-      overflow: hidden;
-
-      .WidgetCarousel__track {
-        display: flex;
-      }
-    }
-
     .WidgetCarousel__track {
-      box-sizing: content-box;
       position: relative;
-      transition-property: transform;
-      width: 100%;
       z-index: 1;
+      box-sizing: content-box;
+      width: 100%;
+      transition-property: transform;
     }
 
     .WidgetCarousel__slide {
-      flex-shrink: 0;
-      list-style: none;
       position: relative;
+      flex-shrink: 0;
       width: 100%;
+      list-style: none;
     }
 
     .WidgetCarousel__control {
-      align-items: center;
       display: flex;
       gap: calc(var(--user-spacing) * 6);
+      align-items: center;
       justify-content: center;
       margin-top: calc(var(--user-spacing) * 6);
     }
@@ -102,25 +107,28 @@ if (!Astro.slots.has('default')) {
     .WidgetCarousel__toggle,
     .WidgetCarousel__arrow,
     :global(.WidgetCarousel__paginationItem) {
-      background-color: transparent;
-      border: 0;
-      color: var(--user-color-primary);
-      cursor: pointer;
+      position: relative;
       display: block;
       flex: 0 0 auto;
+      width: calc(var(--user-spacing) * 10);
       height: calc(var(--user-spacing) * 10);
       padding: 0;
-      position: relative;
-      width: calc(var(--user-spacing) * 10);
+      color: var(--user-color-primary);
+      cursor: pointer;
+      background-color: transparent;
+      border: 0;
+    }
 
+    .WidgetCarousel__toggle,
+    .WidgetCarousel__arrow {
       &::before {
-        background-color: currentColor;
-        content: '';
-        inset: 50% auto auto 50%;
-        mask-position: center;
-        mask-repeat: no-repeat;
-        mask-size: contain;
         position: absolute;
+        inset: 50% auto auto 50%;
+        content: '';
+        background-color: currentColor;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
         transform: translate(-50%, -50%);
       }
     }
@@ -129,15 +137,9 @@ if (!Astro.slots.has('default')) {
       order: 1;
 
       &::before {
+        width: calc(var(--user-spacing) * 3);
         height: calc(var(--user-spacing) * 3);
         mask-image: url('/assets/images/icons/pause.svg');
-        width: calc(var(--user-spacing) * 3);
-      }
-
-      &.WidgetCarousel__toggle--paused {
-        &::before {
-          mask-image: url('/assets/images/icons/play.svg');
-        }
       }
     }
 
@@ -147,14 +149,8 @@ if (!Astro.slots.has('default')) {
       border-radius: 50%;
 
       &::before {
-        height: calc(var(--user-spacing) * 3);
         width: calc(var(--user-spacing) * 3);
-      }
-
-      &:disabled,
-      &.WidgetCarousel__arrow--locked {
-        color: var(--user-color-disabled-dark);
-        cursor: default;
+        height: calc(var(--user-spacing) * 3);
       }
     }
 
@@ -181,10 +177,23 @@ if (!Astro.slots.has('default')) {
 
     :global(.WidgetCarousel__paginationItem) {
       &::before {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        content: '';
+        background-color: currentColor;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    :global(.WidgetCarousel__paginationItem) {
+      &::before {
+        width: calc(var(--user-spacing) * 2);
+        height: calc(var(--user-spacing) * 2);
         background-color: var(--user-color-disabled-light);
         border-radius: 50%;
-        height: calc(var(--user-spacing) * 2);
-        width: calc(var(--user-spacing) * 2);
       }
     }
 
@@ -196,12 +205,36 @@ if (!Astro.slots.has('default')) {
 
     .WidgetCarousel__label,
     :global(.WidgetCarousel__notification) {
-      clip-path: inset(50%);
+      position: absolute;
+      width: 1px;
       height: 1px;
       overflow: hidden;
-      position: absolute;
       white-space: nowrap;
-      width: 1px;
+      clip-path: inset(50%);
+    }
+
+    &.WidgetCarousel--initialized {
+      overflow: hidden;
+
+      .WidgetCarousel__track {
+        display: flex;
+      }
+    }
+
+    .WidgetCarousel__arrow {
+      &:disabled,
+      &.WidgetCarousel__arrow--locked {
+        color: var(--user-color-disabled-dark);
+        cursor: default;
+      }
+    }
+
+    .WidgetCarousel__toggle {
+      &.WidgetCarousel__toggle--paused {
+        &::before {
+          mask-image: url('/assets/images/icons/play.svg');
+        }
+      }
     }
   }
 
@@ -209,8 +242,8 @@ if (!Astro.slots.has('default')) {
     .WidgetCarousel {
       .WidgetCarousel__arrow {
         &:not(:disabled, .WidgetCarousel__arrow--locked):hover {
-          background-color: var(--user-color-primary);
           color: var(--user-color-foreground-light);
+          background-color: var(--user-color-primary);
         }
       }
     }
@@ -233,7 +266,11 @@ if (!Astro.slots.has('default')) {
   }
 </style>
 
-<script is:inline src={swiperBundleUrl} data-widget-carousel-swiper></script>
+<script
+  data-widget-carousel-swiper
+  src={swiperBundleUrl}
+  is:inline
+></script>
 
 <script is:inline>
   (() => {
@@ -267,12 +304,17 @@ if (!Astro.slots.has('default')) {
       watchOverflow: true,
     };
 
-    const isPlainObject = (value) =>
-      Object.prototype.toString.call(value) === '[object Object]';
+    const isPlainObject = (value) => Object.prototype.toString.call(value) === '[object Object]';
 
     const mergeOptions = (target, source) => {
       for (const [key, value] of Object.entries(source)) {
-        if (['__proto__', 'constructor', 'prototype'].includes(key)) {
+        if (
+          [
+            '__proto__',
+            'constructor',
+            'prototype',
+          ].includes(key)
+        ) {
           continue;
         }
 
@@ -322,22 +364,24 @@ if (!Astro.slots.has('default')) {
 
       const swiperOptions = mergeOptions(options, {
         containerModifierClass: 'WidgetCarousel--',
-        navigation: options.navigation === false
-          ? false
-          : {
-              disabledClass: 'WidgetCarousel__arrow--disabled',
-              lockClass: 'WidgetCarousel__arrow--locked',
-              nextEl: next,
-              prevEl: prev,
-            },
-        pagination: options.pagination === false
-          ? false
-          : {
-              bulletActiveClass: 'WidgetCarousel__paginationItem--current',
-              bulletClass: 'WidgetCarousel__paginationItem',
-              el: pagination,
-              lockClass: 'WidgetCarousel__pagination--locked',
-            },
+        navigation:
+          options.navigation === false
+            ? false
+            : {
+                disabledClass: 'WidgetCarousel__arrow--disabled',
+                lockClass: 'WidgetCarousel__arrow--locked',
+                nextEl: next,
+                prevEl: prev,
+              },
+        pagination:
+          options.pagination === false
+            ? false
+            : {
+                bulletActiveClass: 'WidgetCarousel__paginationItem--current',
+                bulletClass: 'WidgetCarousel__paginationItem',
+                el: pagination,
+                lockClass: 'WidgetCarousel__pagination--locked',
+              },
         slideActiveClass: 'WidgetCarousel__slide--current',
         slideBlankClass: 'WidgetCarousel__slide--blank',
         slideClass: 'WidgetCarousel__slide',
@@ -386,6 +430,8 @@ if (!Astro.slots.has('default')) {
 
     document
       .querySelector('script[data-widget-carousel-swiper]')
-      ?.addEventListener('load', initialize, { once: true });
+      ?.addEventListener('load', initialize, {
+        once: true,
+      });
   })();
 </script>
