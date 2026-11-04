@@ -1,0 +1,167 @@
+{
+  // Astroは公式拡張機能で整形し、保存時の自動修正を個別に指定する
+  "[astro]": {
+    // Astroを明示的に保存したときに実行する自動修正を指定する
+    "editor.codeActionsOnSave": {
+      // Astroの保存時にはBiomeによるクラスの重複除去を実行しない
+      "source.biome.noDuplicateClasses": "never",
+      // Astroの保存時にはBiomeによる属性の並べ替えを実行しない
+      "source.biome.useSortedAttributes": "never",
+      // Astroの保存時にはBiomeによるinterfaceメンバーの並べ替えを実行しない
+      "source.biome.useSortedInterfaceMembers": "never",
+      // Astroの保存時にはBiomeによるJSONキーの並べ替えを実行しない
+      "source.biome.useSortedKeys": "never",
+      // Astroの保存時にstyle内のCSSプロパティを並べ替える
+      "source.biome.useSortedProperties": "explicit",
+      // FrontmatterとHTMLの破損を避けるため、Biomeの一括自動修正を実行しない
+      "source.fixAll.biome": "never",
+      // Astroの保存時にはBiomeによるimport整理を実行しない
+      "source.organizeImports.biome": "never",
+      // Astro公式拡張機能のTypeScript機能でimportを整理する
+      "source.organizeImports.ts": "explicit"
+    },
+    // AstroのフォーマッターにAstro公式拡張機能を使用する
+    "editor.defaultFormatter": "astro-build.astro-vscode",
+    // Astroを保存したときに整形する
+    "editor.formatOnSave": true,
+    // Astroの保存時整形でもアロー関数の引数を括弧で囲む
+    "prettier.arrowParens": "always",
+    // AstroのHTML要素・コンポーネントの複数行の開始タグの閉じ括弧は独立した行に置く
+    "prettier.bracketSameLine": false,
+    // Astro内のJS・TSの波括弧の内側にスペースを入れる
+    "prettier.bracketSpacing": true,
+    // Astro内のJSXの属性値はダブルクォートにする
+    "prettier.jsxSingleQuote": false,
+    // Astroの保存時整形もBiomeと同じ100文字を目安に折り返す
+    "prettier.printWidth": 100,
+    // Astro内のJS・TSのキー名は必要な場合だけ引用符を付ける
+    "prettier.quoteProps": "as-needed",
+    // Astroの保存時整形でもJS・TSの文末にセミコロンを付ける
+    "prettier.semi": true,
+    // AstroのHTML要素・コンポーネントの複数属性を1行ずつ記述する
+    "prettier.singleAttributePerLine": true,
+    // Astro内のJS・TS・CSSの文字列はシングルクォートにする
+    "prettier.singleQuote": true,
+    // Astroの保存時整形でも複数行の末尾にカンマを付ける
+    "prettier.trailingComma": "all"
+  },
+  // CSSの保存時整形設定
+  "[css]": {
+    // CSSのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // CSSを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // HTMLの保存時整形設定
+  "[html]": {
+    // HTMLのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // HTMLを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // JSXの保存時整形設定（自動修正は共通の保存時設定を使用する）
+  "[javascriptreact]": {
+    // JSXのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // JSXを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // JSONの保存時整形設定
+  "[json]": {
+    // JSONのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // JSONを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // JSONCの保存時整形設定
+  "[jsonc]": {
+    // JSONCのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // JSONCを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // Markdownの保存時整形設定
+  "[markdown]": {
+    // MarkdownのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // Markdownを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // SCSSの保存時整形設定
+  "[scss]": {
+    // SCSSのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // SCSSを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // TypeScriptの保存時整形設定
+  "[typescript]": {
+    // TypeScriptのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // TypeScriptを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // TSXの保存時整形設定（自動修正は共通の保存時設定を使用する）
+  "[typescriptreact]": {
+    // TSXのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // TSXを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // Vueの保存時整形設定（template・script・CSSのstyleを各言語の設定で処理する）
+  "[vue]": {
+    // VueのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // Vueを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // SVGが使用するXML言語モードの保存時整形設定
+  "[xml]": {
+    // XML言語モードのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // XML言語モードのファイルを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // YAMLの保存時整形設定
+  "[yaml]": {
+    // YAMLのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
+    // YAMLを保存したときに整形する
+    "editor.formatOnSave": true
+  },
+  // プロジェクトルートのBiome設定ファイルを使用する
+  "biome.configurationPath": "./biome.jsonc",
+  // Biome拡張機能を有効にする
+  "biome.enabled": true,
+  // Biome設定ファイルがある場合だけ拡張機能の処理を有効にする
+  "biome.requireConfiguration": true,
+  // Biomeの実行ファイルを一時フォルダーへコピーせずに起動する
+  "biome.runFromTemporaryLocation": false,
+  // 明示的な保存時に実行するBiomeの自動修正を指定する
+  "editor.codeActionsOnSave": {
+    // class属性内の同じクラス名の重複を取り除く
+    "source.biome.noDuplicateClasses": "explicit",
+    // HTML・JSXなどの属性を並べ替える
+    "source.biome.useSortedAttributes": "explicit",
+    // TypeScriptのinterface内のメンバーを並べ替える
+    "source.biome.useSortedInterfaceMembers": "explicit",
+    // JSON・JSONCのオブジェクトのキーを並べ替える
+    "source.biome.useSortedKeys": "explicit",
+    // CSS・SCSSなどのプロパティを用途別の順序に並べ替える
+    "source.biome.useSortedProperties": "explicit",
+    // Biomeで有効になっている安全な自動修正を一括で適用する
+    "source.fixAll.biome": "explicit",
+    // JS・TS・JSX・TSX・Vue内のimportをBiomeのグループ設定で整理する
+    "source.organizeImports.biome": "explicit"
+  },
+
+  // 標準のフォーマッターにBiomeを使用する
+  "editor.defaultFormatter": "biomejs.biome",
+  // ファイルを保存したときに整形する
+  "editor.formatOnSave": true,
+  // エクスプローラーで表示するファイルを制御する
+  "files.exclude": {
+    // 環境変数ファイルをエクスプローラーに表示しない
+    ".env": true
+  }
+}

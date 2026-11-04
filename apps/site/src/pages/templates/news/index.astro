@@ -8,17 +8,18 @@ import Breadcrumb from '@packages/ui/structures/Breadcrumb/Breadcrumb.astro';
 import Content from '@packages/ui/structures/Content/Content.astro';
 import MainVisual from '@packages/ui/structures/MainVisual/MainVisual.astro';
 import Section from '@packages/ui/structures/Section/Section.astro';
+
 import type { Props as PagePropType } from '../../../layouts/PageLayout/PageLayout.astro';
 import PageLayout from '../../../layouts/PageLayout/PageLayout.astro';
 
 const breadcrumb = [
   {
-    name: 'ホーム',
     item: '/',
+    name: 'ホーム',
   },
   {
-    name: 'テンプレート一覧',
     item: '/templates/',
+    name: 'テンプレート一覧',
   },
   {
     name: 'お知らせ・ニュース（一覧）',
@@ -38,7 +39,10 @@ const pageProps: PagePropType = {
         media="(width >= 768px)"
         srcset="/templates/news/images/index-mainVisual_pc.webp"
       />
-      <img src="/templates/news/images/index-mainVisual_sp.webp" alt="" />
+      <img
+        alt=""
+        src="/templates/news/images/index-mainVisual_sp.webp"
+      />
     </picture>
   </MainVisual>
 
@@ -54,54 +58,56 @@ const pageProps: PagePropType = {
       </Text>
 
       <dl class="mt-8 md:mt-10">
-        <dt><label for="news-year">年を選ぶとページが自動的に更新されます。</label></dt>
+        <dt>
+          <label for="news-year">年を選ぶとページが自動的に更新されます。</label>
+        </dt>
         <dd>
           <FormSelect
             id="news-year"
             options={[
               {
-                label: "選択してください",
-                value: "",
+                label: '選択してください',
+                value: '',
               },
               {
-                label: "2026年",
-                value: "",
+                label: '2026年',
+                value: '',
               },
               {
-                label: "2025年",
-                value: "",
+                label: '2025年',
+                value: '',
               },
               {
-                label: "2024年",
-                value: "",
+                label: '2024年',
+                value: '',
               },
               {
-                label: "2023年",
-                value: "",
+                label: '2023年',
+                value: '',
               },
               {
-                label: "2022年",
-                value: "",
+                label: '2022年',
+                value: '',
               },
               {
-                label: "2021年",
-                value: "",
+                label: '2021年',
+                value: '',
               },
               {
-                label: "2020年",
-                value: "",
+                label: '2020年',
+                value: '',
               },
               {
-                label: "2019年",
-                value: "",
+                label: '2019年',
+                value: '',
               },
               {
-                label: "2018年",
-                value: "",
+                label: '2018年',
+                value: '',
               },
               {
-                label: "2017年",
-                value: "",
+                label: '2017年',
+                value: '',
               },
             ]}
           />
@@ -110,218 +116,284 @@ const pageProps: PagePropType = {
 
       <WidgetTab
         class="mt-8 md:mt-10"
-        id="news-tabs"
         datas={[
           {
-            title: "すべて",
-            slot: "all",
+            slot: 'all',
+            title: 'すべて',
           },
           {
-            title: "カテゴリ1",
-            slot: "category1",
+            slot: 'category1',
+            title: 'カテゴリ1',
           },
           {
-            title: "カテゴリ2",
-            slot: "category2",
+            slot: 'category2',
+            title: 'カテゴリ2',
           },
         ]}
+        id="news-tabs"
       >
         <ListNews
+          datas={[
+            {
+              category: [
+                'カテゴリ1',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-1',
+              link: 'DUMMY_LINK',
+              title: '「〇〇〇〇〇〇〇〇」を1月1日に発売',
+            },
+            {
+              category: [
+                'カテゴリ2',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-2',
+              link: 'DUMMY_LINK',
+              title: '「〇〇〇〇〇〇〇〇」をイベントを開催',
+            },
+            {
+              category: [
+                'カテゴリ1',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-3',
+              link: 'DUMMY_LINK',
+              title: '人事について',
+            },
+            {
+              category: [
+                'カテゴリ2',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-4',
+              link: 'DUMMY_LINK',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: [
+                'カテゴリ2',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-5',
+              link: 'DUMMY_LINK',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: [
+                'カテゴリ1',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-6',
+              link: 'DUMMY_LINK',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: [
+                'カテゴリ2',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-7',
+              link: 'DUMMY_LINK',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: [
+                'カテゴリ1',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-8',
+              link: 'DUMMY_LINK',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: [
+                'カテゴリ1',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-9',
+              link: 'DUMMY_LINK',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: [
+                'カテゴリ2',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-10',
+              link: 'DUMMY_LINK',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: [
+                'カテゴリ1',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-11',
+              link: 'DUMMY_LINK',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+            {
+              category: [
+                'カテゴリ1',
+              ],
+              date: '2022-12-10T00:00:00.000Z',
+              id: 'news-12',
+              link: 'DUMMY_LINK',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+            },
+          ]}
           slot="all"
+        />
+
+        <ListNews
           datas={[
             {
-              category: ['カテゴリ1'],
+              category: [
+                'カテゴリ1',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-1',
               link: 'DUMMY_LINK',
               title: '「〇〇〇〇〇〇〇〇」を1月1日に発売',
             },
             {
-              category: ['カテゴリ2'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-2',
-              link: 'DUMMY_LINK',
-              title: '「〇〇〇〇〇〇〇〇」をイベントを開催',
-            },
-            {
-              category: ['カテゴリ1'],
+              category: [
+                'カテゴリ1',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-3',
               link: 'DUMMY_LINK',
               title: '人事について',
             },
             {
-              category: ['カテゴリ2'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-4',
-              link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-            },
-            {
-              category: ['カテゴリ2'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-5',
-              link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-            },
-            {
-              category: ['カテゴリ1'],
+              category: [
+                'カテゴリ1',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-6',
               link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
-              category: ['カテゴリ2'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-7',
-              link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-            },
-            {
-              category: ['カテゴリ1'],
+              category: [
+                'カテゴリ1',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-8',
               link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
-              category: ['カテゴリ1'],
+              category: [
+                'カテゴリ1',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-9',
               link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
-              category: ['カテゴリ2'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-10',
-              link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-            },
-            {
-              category: ['カテゴリ1'],
+              category: [
+                'カテゴリ1',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-11',
               link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
-              category: ['カテゴリ1'],
+              category: [
+                'カテゴリ1',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-12',
               link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
           ]}
-        />
-
-        <ListNews
           slot="category1"
-          datas={[
-            {
-              category: ['カテゴリ1'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-1',
-              link: 'DUMMY_LINK',
-              title: '「〇〇〇〇〇〇〇〇」を1月1日に発売',
-            },
-            {
-              category: ['カテゴリ1'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-3',
-              link: 'DUMMY_LINK',
-              title: '人事について',
-            },
-            {
-              category: ['カテゴリ1'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-6',
-              link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-            },
-            {
-              category: ['カテゴリ1'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-8',
-              link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-            },
-            {
-              category: ['カテゴリ1'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-9',
-              link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-            },
-            {
-              category: ['カテゴリ1'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-11',
-              link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-            },
-            {
-              category: ['カテゴリ1'],
-              date: '2022-12-10T00:00:00.000Z',
-              id: 'news-12',
-              link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-            },
-          ]}
         />
 
         <ListNews
-          slot="category2"
           datas={[
             {
-              category: ['カテゴリ2'],
+              category: [
+                'カテゴリ2',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-2',
               link: 'DUMMY_LINK',
               title: '「〇〇〇〇〇〇〇〇」をイベントを開催',
             },
             {
-              category: ['カテゴリ2'],
+              category: [
+                'カテゴリ2',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-4',
               link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
-              category: ['カテゴリ2'],
+              category: [
+                'カテゴリ2',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-5',
               link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
-              category: ['カテゴリ2'],
+              category: [
+                'カテゴリ2',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-7',
               link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
-              category: ['カテゴリ2'],
+              category: [
+                'カテゴリ2',
+              ],
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-10',
               link: 'DUMMY_LINK',
-              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title:
+                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
           ]}
+          slot="category2"
         />
       </WidgetTab>
 
       <NavigationSns
         class="mt-8 md:mt-10"
         datas={{
-          share: "DUMMY_LINK",
-          good: "DUMMY_LINK",
-          facebook: "DUMMY_LINK",
-          x: "DUMMY_LINK",
-          instagram: "DUMMY_LINK",
-          line: "DUMMY_LINK",
+          facebook: 'DUMMY_LINK',
+          good: 'DUMMY_LINK',
+          instagram: 'DUMMY_LINK',
+          line: 'DUMMY_LINK',
+          share: 'DUMMY_LINK',
+          x: 'DUMMY_LINK',
         }}
       />
     </Section>

@@ -24,7 +24,7 @@ pnpm-debug.log*
 *.swp
 *.bak
 *~
-.vscode/settings.json
+.vscode/project.code-workspace
 Thumbs.db
 desktop.ini
 
