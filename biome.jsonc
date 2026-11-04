@@ -1,130 +1,28 @@
 {
   // インストール済みBiomeのスキーマを使い、外部URLの信頼警告を避ける
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "assist": {
-    "actions": {
-      "source": {
-        // class属性内の同じクラス名の重複を取り除く
-        "noDuplicateClasses": "on",
-        // importをNode.js標準・外部パッケージ・エイリアス・相対パスに分ける
-        "organizeImports": {
-          "level": "on",
-          "options": {
-            // 各グループ内は並べ替え、グループ間には空行を入れる
-            "groups": [
-              ":NODE:",
-              ":BLANK_LINE:",
-              [
-                ":PACKAGE:",
-                ":PACKAGE_WITH_PROTOCOL:",
-                "!:ALIAS:",
-                "!@packages/**"
-              ],
-              ":BLANK_LINE:",
-              [
-                ":ALIAS:",
-                "@packages/**"
-              ],
-              ":BLANK_LINE:",
-              ":PATH:"
-            ]
-          }
-        },
-        // HTML・Astro・JSX・TSX・Vueの属性を並べ替える（属性展開の位置は維持する）
-        "useSortedAttributes": "on",
-        // TypeScriptのinterface内のメンバーを名前順に並べ替える
-        "useSortedInterfaceMembers": {
-          "level": "on",
-          "options": {
-            // 空行で分けたグループを維持し、グループ内だけ並べ替える
-            "partitionByNewLine": true
-          }
-        },
-        // JSON・JSONCのオブジェクトのキーを名前順に並べ替える
-        "useSortedKeys": "on",
-        // CSS・SCSS・Astro・Vue内CSSのプロパティを用途別の順序に並べ替える
-        "useSortedProperties": "on"
-      }
-    }
-  },
-  "css": {
-    "formatter": {
-      // CSS・SCSSの文字列はシングルクォートにする（Astro内も同様）
-      "quoteStyle": "single"
-    },
-    "parser": {
-      // Tailwind CSS v4の@theme・@utility・@sourceなどを解析する
-      "tailwindDirectives": true
-    }
-  },
+
   "files": {
     // 生成ファイル・依存パッケージ・外部ライブラリは処理対象から除外する
     "includes": [
       "**",
       "!**/.astro",
+      "!**/.storybook-static",
       "!**/dist",
+      "!**/public",
       "!**/node_modules",
-      "!packages/content/src/styles/theme.css",
       "!packages/content/src/scripts/*/libraries",
+      "!packages/content/src/styles/theme.css",
       "!apps/**/worker-configuration.d.ts"
     ]
   },
-  "formatter": {
-    // HTML・Astro・JSX・TSX・Vueの属性が複数ある場合は、属性を1行ずつ記述する
-    "attributePosition": "multiline",
-    // HTML・Astro・JSX・TSX・Vueの複数行の開始タグの閉じ括弧は独立した行に置く
-    "bracketSameLine": false,
+
+  "vcs": {
+    "clientKind": "git",
     "enabled": true,
-    // 1行の長さは100文字を目安に折り返す
-    "lineWidth": 100,
-    // インデント・改行コードなどは.editorconfigに従う
-    "useEditorconfig": true
+    "useIgnoreFile": true
   },
-  "html": {
-    // HTML・SVG・Astro・Vueなどのマークアップと埋め込み言語を処理する
-    "experimentalFullSupportEnabled": true,
-    "formatter": {
-      "enabled": true,
-      // HTML・Astro・Vueのscript・style内を1段インデントする
-      "indentScriptAndStyle": true,
-      // HTML・Astro・Vueのimg・input・brなどの空要素を/>で閉じる
-      "selfCloseVoidElements": "always"
-    }
-  },
-  "javascript": {
-    "formatter": {
-      // アロー関数の引数は1つでも括弧で囲む（Astro内も同様）
-      "arrowParentheses": "always",
-      // JS・TSの波括弧の内側にスペースを入れる（空の波括弧を除く）
-      "bracketSpacing": true,
-      "enabled": true,
-      // JS・TS・JSX・TSX・Astro・Vue内JSのオブジェクト・配列は短くても複数行にする
-      "expand": "always",
-      // JSX・TSXの属性値はHTMLと同じダブルクォートにする
-      "jsxQuoteStyle": "double",
-      // JS・TSのキー名は必要な場合だけ引用符を付ける（Astro内も同様）
-      "quoteProperties": "asNeeded",
-      // JS・TSの文字列はシングルクォートにする（Astro内も同様）
-      "quoteStyle": "single",
-      // JS・TSの文末にはセミコロンを付ける（Astro内も同様）
-      "semicolons": "always",
-      // JS・TSの複数行の末尾には、構文上許される箇所でカンマを付ける
-      "trailingCommas": "all"
-    },
-    "linter": {
-      "enabled": true
-    }
-  },
-  "json": {
-    "formatter": {
-      "enabled": true,
-      // JSON・JSONCのオブジェクト・配列は短くても複数行にする
-      "expand": "always"
-    },
-    "linter": {
-      "enabled": true
-    }
-  },
+
   "linter": {
     "enabled": true,
     "rules": {
@@ -168,6 +66,94 @@
       }
     }
   },
+
+  "formatter": {
+    // HTML・Astro・JSX・TSX・Vueの属性が複数ある場合は、属性を1行ずつ記述する
+    "attributePosition": "multiline",
+    // HTML・Astro・JSX・TSX・Vueの複数行の開始タグの閉じ括弧は独立した行に置く
+    "bracketSameLine": false,
+    "enabled": true,
+    // 1行の長さは100文字を目安に折り返す
+    "lineWidth": 100,
+    // インデント・改行コードなどは.editorconfigに従う
+    "useEditorconfig": true
+  },
+
+  "html": {
+    // HTML・SVG・Astro・Vueなどのマークアップと埋め込み言語を処理する
+    "experimentalFullSupportEnabled": true,
+    "formatter": {
+      "enabled": true,
+      // HTML・Astro・Vueのscript・style内を1段インデントする
+      "indentScriptAndStyle": true,
+      // HTML・Astro・Vueのimg・input・brなどの空要素を/>で閉じる
+      "selfCloseVoidElements": "always"
+    }
+  },
+
+  "css": {
+    "formatter": {
+      // CSS・SCSSの文字列はシングルクォートにする（Astro内も同様）
+      "quoteStyle": "single"
+    },
+    "parser": {
+      // Tailwind CSS v4の@theme・@utility・@sourceなどを解析する
+      "tailwindDirectives": true
+    }
+  },
+
+  "javascript": {
+    "formatter": {
+      // アロー関数の引数は1つでも括弧で囲む（Astro内も同様）
+      "arrowParentheses": "always",
+      // JS・TSの波括弧の内側にスペースを入れる（空の波括弧を除く）
+      "bracketSpacing": true,
+      "enabled": true,
+      // JS・TS・JSX・TSX・Astro・Vue内JSのオブジェクト・配列は短くても複数行にする
+      "expand": "always",
+      // JSX・TSXの属性値はHTMLと同じダブルクォートにする
+      "jsxQuoteStyle": "double",
+      // JS・TSのキー名は必要な場合だけ引用符を付ける（Astro内も同様）
+      "quoteProperties": "asNeeded",
+      // JS・TSの文字列はシングルクォートにする（Astro内も同様）
+      "quoteStyle": "single",
+      // JS・TSの文末にはセミコロンを付ける（Astro内も同様）
+      "semicolons": "always",
+      // JS・TSの複数行の末尾には、構文上許される箇所でカンマを付ける
+      "trailingCommas": "all"
+    },
+    "linter": {
+      "enabled": true
+    }
+  },
+
+  "tailwind": {
+    // このCSSとその参照先から、テーマ・ユーティリティ・バリアントを読み込む
+    "stylesheet": "./packages/content/src/styles/tailwind.css"
+  },
+
+  "json": {
+    "formatter": {
+      "enabled": true,
+      // JSON・JSONCのオブジェクト・配列は短くても複数行にする
+      "expand": "always"
+    },
+    "linter": {
+      "enabled": true
+    }
+  },
+
+  "yaml": {
+    "formatter": {
+      "enabled": true,
+      // YAMLで引用符が付いている文字列はダブルクォートに統一する
+      "quoteStyle": "double"
+    },
+    "linter": {
+      "enabled": true
+    }
+  },
+
   "markdown": {
     "formatter": {
       "enabled": true,
@@ -182,7 +168,75 @@
       "frontmatter": true
     }
   },
+
+  "assist": {
+    "actions": {
+      "source": {
+        // class属性内の同じクラス名の重複を取り除く
+        "noDuplicateClasses": "on",
+        // importをNode.js標準・外部パッケージ・エイリアス・相対パスに分ける
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            // 各グループ内は並べ替え、グループ間には空行を入れる
+            "groups": [
+              ":NODE:",
+              ":BLANK_LINE:",
+              [
+                ":PACKAGE:",
+                ":PACKAGE_WITH_PROTOCOL:",
+                "!:ALIAS:",
+                "!@packages/**"
+              ],
+              ":BLANK_LINE:",
+              [
+                ":ALIAS:",
+                "@packages/**"
+              ],
+              ":BLANK_LINE:",
+              ":PATH:"
+            ]
+          }
+        },
+        // HTML・Astro・JSX・TSX・Vueの属性を並べ替える（属性展開の位置は維持する）
+        "useSortedAttributes": "on",
+        // TypeScriptのinterface内のメンバーを名前順に並べ替える
+        "useSortedInterfaceMembers": {
+          "level": "on",
+          "options": {
+            // 空行で分けたグループを維持し、グループ内だけ並べ替える
+            "partitionByNewLine": true
+          }
+        },
+        // オブジェクトのキーは記述した順序を維持し、自動で並べ替えない
+        "useSortedKeys": "off",
+        // CSS・SCSS・Astro・Vue内CSSのプロパティを用途別の順序に並べ替える
+        "useSortedProperties": "on"
+      }
+    }
+  },
+
   "overrides": [
+    {
+      "includes": [
+        "**/*.json",
+        "**/*.jsonc",
+        "**/*.toml",
+        "**/*.yaml",
+        "**/*.yml",
+        "apps/**/astro.config.js",
+        "lint-staged.config.js",
+        "markuplint.config.js"
+      ],
+      // 設定ファイルは記述した書式を維持し、リントだけ実行する
+      "formatter": {
+        "enabled": false
+      },
+      // importやプロパティなどの並べ替えも行わない
+      "assist": {
+        "enabled": false
+      }
+    },
     {
       "includes": [
         "**/*.astro"
@@ -213,24 +267,5 @@
         }
       }
     }
-  ],
-  "tailwind": {
-    // このCSSとその参照先から、テーマ・ユーティリティ・バリアントを読み込む
-    "stylesheet": "./packages/content/src/styles/tailwind.css"
-  },
-  "vcs": {
-    "clientKind": "git",
-    "enabled": true,
-    "useIgnoreFile": true
-  },
-  "yaml": {
-    "formatter": {
-      "enabled": true,
-      // YAMLで引用符が付いている文字列はダブルクォートに統一する
-      "quoteStyle": "double"
-    },
-    "linter": {
-      "enabled": true
-    }
-  }
+  ]
 }
