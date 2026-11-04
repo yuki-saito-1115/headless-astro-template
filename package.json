@@ -50,16 +50,17 @@
     "@biomejs/biome": "^2.6.4",
     "@markuplint/astro-parser": "^5.0.0",
     "chokidar-cli": "^3.0.0",
-    "js-yaml": "^5.4.2",
+    "js-yaml": "^5.5.0",
     "lint-staged": "^17.5.1",
     "markuplint": "^5.0.0",
-    "npm-run-all2": "^9.0.3",
+    "npm-run-all2": "^9.0.4",
     "openapi-typescript": "^7.13.0",
-    "style-dictionary": "^5.5.4",
+    "style-dictionary": "^5.8.0",
     "typescript": "^5.9.3"
   },
   "allowScripts": {
     "esbuild@0.28.2": true,
-    "workerd@1.20261101.1": true
+    "workerd@1.20261101.1": true,
+    "workerd@1.20261103.1": true
   }
 }

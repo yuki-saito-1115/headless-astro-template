@@ -7,9 +7,9 @@
     "check": "tsc --noEmit"
   },
   "dependencies": {
-    "astro": "^7.3.3",
-    "microcms-js-sdk": "^3.5.1",
-    "tailwindcss": "^4.3.3"
+    "astro": "^7.4.5",
+    "microcms-js-sdk": "^3.6.0",
+    "tailwindcss": "^4.3.4"
   },
   "devDependencies": {
     "@storybook-astro/renderer": "^1.15.0",

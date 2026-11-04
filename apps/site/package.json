@@ -14,17 +14,17 @@
     "versions": "wrangler versions upload"
   },
   "dependencies": {
-    "@astrojs/mdx": "^8.0.1",
+    "@astrojs/mdx": "^8.1.2",
     "@astrojs/sitemap": "^3.7.4",
     "@packages/content": "2026.11.0",
     "@packages/ui": "2026.11.0",
-    "astro": "^7.3.3"
+    "astro": "^7.4.5"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
-    "@tailwindcss/vite": "^4.3.3",
-    "npm-run-all2": "^9.0.3",
+    "@astrojs/check": "^0.9.12",
+    "@tailwindcss/vite": "^4.3.4",
+    "npm-run-all2": "^9.0.4",
     "typescript": "^5.9.3",
-    "wrangler": "^4.133.0"
+    "wrangler": "^4.157.0"
   }
 }

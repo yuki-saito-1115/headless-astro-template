@@ -12,15 +12,15 @@
   "dependencies": {
     "@packages/content": "2026.11.0",
     "@packages/ui": "2026.11.0",
-    "astro": "^7.3.3"
+    "astro": "^7.4.5"
   },
   "devDependencies": {
     "@storybook-astro/framework": "^1.15.0",
-    "@storybook/addon-a11y": "^10.6.0",
-    "@storybook/addon-docs": "^10.6.0",
-    "@storybook/builder-vite": "^10.6.0",
-    "@tailwindcss/vite": "^4.3.3",
-    "storybook": "^10.6.0",
+    "@storybook/addon-a11y": "^10.6.5",
+    "@storybook/addon-docs": "^10.6.5",
+    "@storybook/builder-vite": "^10.6.5",
+    "@tailwindcss/vite": "^4.3.4",
+    "storybook": "^10.6.5",
     "typescript": "^5.9.3",
     "vite": "^8.3.1"
   }
