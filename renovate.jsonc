@@ -3,7 +3,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
 
   // ベースとして利用する設定プリセット
-  "extends": [ 
+  "extends": [
     // 標準の推奨設定。更新一覧のDashboardや関連パッケージのグループ化を有効にする
     "config:recommended",
     // メジャー更新はDashboardで承認してから更新PRを作成する
@@ -14,6 +14,129 @@
   "baseBranchPatterns": ["develop"],
   // 同時に開く通常の更新PRを最大3件に制限する
   "prConcurrentLimit": 3,
-  // 自動マージせず、手動で確認してマージする
-  "automerge": false
+  // 原則は手動マージ。パッチ更新だけ下のルールで自動マージを有効にする
+  "automerge": false,
+  // パッチ更新とマイナー更新を別々のPRにする
+  "separateMinorPatch": true,
+  // PRを作成し、チェック成功後にマージする
+  "automergeType": "pr",
+  // GitHubの自動マージ予約ではなく、Renovateがチェック結果を確認してマージする
+  "platformAutomerge": false,
+  // チェックが存在しない場合や失敗している場合は自動マージしない
+  "ignoreTests": false,
+  // 更新内容に応じた個別ルール
+  "packageRules": [
+    {
+      // パッチ更新だけを対象にする
+      "matchUpdateTypes": ["patch"],
+      // CIのチェックに成功したパッチ更新を自動マージする
+      "automerge": true,
+      // 推奨プリセットのグループを解除し、下のルールでパッチ専用のグループを指定する
+      "groupName": null,
+      // 推奨プリセットのブランチ名も引き継がない
+      "groupSlug": null
+    },
+    {
+      // 全workspaceのnpmパッケージを対象にする
+      "matchManagers": ["npm"],
+      // パッチ更新をまとめる。マイナー・メジャー更新は含めない
+      "matchUpdateTypes": ["patch"],
+      // パッケージごとのPR・CI実行を減らす
+      "groupName": "npm dependencies (patch)",
+      // グループのブランチ名
+      "groupSlug": "npm-patch"
+    },
+    {
+      // GitHub Actionsはnpmパッケージとは別のPRにする
+      "matchManagers": ["github-actions"],
+      // Actionsのパッチ更新をまとめる
+      "matchUpdateTypes": ["patch"],
+      // このグループも上のパッチ用ルールにより自動マージする
+      "groupName": "GitHub Actions (patch)",
+      // npmのグループと異なるブランチ名
+      "groupSlug": "github-actions-patch"
+    },
+    {
+      // サイト本体・プレビュー・ドキュメントで使うAstro関連
+      "matchManagers": ["npm"],
+      // Astro本体と公式integrations・チェックツールをまとめる
+      "matchPackageNames": ["astro", "@astrojs/**"],
+      // マイナー更新だけをまとめ、手動マージする
+      "matchUpdateTypes": ["minor"],
+      // Astro関連のマイナー更新PR
+      "groupName": "Astro (minor)",
+      // パッチ・メジャー用グループと異なるブランチ名
+      "groupSlug": "astro-minor"
+    },
+    {
+      // コンポーネントカタログの関連パッケージ
+      "matchManagers": ["npm"],
+      // Storybook・Astro連携・このプロジェクトで直接利用するViteをまとめる
+      "matchPackageNames": ["storybook", "@storybook/**", "@storybook-astro/**", "vite"],
+      // マイナー更新だけをまとめ、手動マージする
+      "matchUpdateTypes": ["minor"],
+      // Storybook関連のマイナー更新PR
+      "groupName": "Storybook and Vite (minor)",
+      // グループのブランチ名
+      "groupSlug": "storybook-vite-minor"
+    },
+    {
+      // CSSとデザイントークンの生成に使うパッケージ
+      "matchManagers": ["npm"],
+      // TailwindとテーマCSSを生成するStyle Dictionaryをまとめる
+      "matchPackageNames": ["tailwindcss", "@tailwindcss/**", "style-dictionary"],
+      // マイナー更新だけをまとめ、手動マージする
+      "matchUpdateTypes": ["minor"],
+      // CSS関連のマイナー更新PR
+      "groupName": "Tailwind and design tokens (minor)",
+      // グループのブランチ名
+      "groupSlug": "tailwind-design-tokens-minor"
+    },
+    {
+      // コード品質のチェックに使うパッケージ
+      "matchManagers": ["npm"],
+      // フォーマッター・マークアップ検証・コミット時の検証をまとめる
+      "matchPackageNames": ["@biomejs/biome", "markuplint", "@markuplint/**", "lint-staged"],
+      // マイナー更新だけをまとめ、手動マージする
+      "matchUpdateTypes": ["minor"],
+      // コード品質ツールのマイナー更新PR
+      "groupName": "Code quality tools (minor)",
+      // グループのブランチ名
+      "groupSlug": "code-quality-minor"
+    },
+    {
+      // CMSとの連携とAPI仕様・型の生成に使うパッケージ
+      "matchManagers": ["npm"],
+      // microCMS SDKとOpenAPI生成に使うツールをまとめる
+      "matchPackageNames": ["microcms-js-sdk", "openapi-typescript", "js-yaml"],
+      // マイナー更新だけをまとめ、手動マージする
+      "matchUpdateTypes": ["minor"],
+      // CMS・OpenAPI関連のマイナー更新PR
+      "groupName": "CMS and OpenAPI (minor)",
+      // グループのブランチ名
+      "groupSlug": "cms-openapi-minor"
+    },
+    {
+      // ローカル開発・型チェック・npmスクリプト実行の補助ツール
+      "matchManagers": ["npm"],
+      // 各workspaceで共通して使う開発ツールをまとめる
+      "matchPackageNames": ["typescript", "chokidar-cli", "npm-run-all2"],
+      // マイナー更新だけをまとめ、手動マージする
+      "matchUpdateTypes": ["minor"],
+      // 開発ツールのマイナー更新PR
+      "groupName": "Development tools (minor)",
+      // グループのブランチ名
+      "groupSlug": "development-tools-minor"
+    },
+    {
+      // GitHub Actionsのマイナー更新もnpmとは別のPRにする
+      "matchManagers": ["github-actions"],
+      // パッチ更新と混ぜず、手動マージする
+      "matchUpdateTypes": ["minor"],
+      // Actionsのマイナー更新をまとめる
+      "groupName": "GitHub Actions (minor)",
+      // パッチ用グループと異なるブランチ名
+      "groupSlug": "github-actions-minor"
+    }
+  ]
 }
