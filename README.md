@@ -90,5 +90,22 @@ storiesファイルはコンポーネントと同じディレクトリで管理�
 
 ## プレコミットフックによるチェック
 
+`npm run check` はデザイントークン・Astroの型情報を生成してから、全workspaceを検証する。\
+差分に影響するworkspaceだけを検証したい場合は、比較元・比較先を指定する。
+
+```sh
+# 全workspaceを検証
+npm run check
+
+# developとHEADの差分に影響するworkspaceを検証（コミット済みの変更が対象）
+npm run check -- --base develop --head HEAD
+
+# 検証せず、対象workspaceだけを表示
+npm run check -- --base develop --head HEAD --plan
+```
+
+PRのCIも同じコマンドを使い、比較元・比較先にコミットSHAを指定する。\
+共有パッケージの変更はその利用先も検証し、依存関係・共通設定の変更は全workspaceを検証する。
+
 従来は手動実行のみを想定していたが、プレコミットフックでのチェックを実装した。\
 併せて、Astroファイルのチェックにも対応している [markuplint](https://markuplint.dev/ja/) を導入した。

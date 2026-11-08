@@ -31,9 +31,10 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          node --test scripts/ci-check.test.js
+          node --test scripts/check-workspaces.test.js
           git fetch --no-tags --depth=1 origin "$BASE_SHA" "$HEAD_SHA"
-          node scripts/ci-check.js plan "$BASE_SHA" "$HEAD_SHA"
+          # 依存取得前に対象だけを判定し、不要なnpm ciを省く。
+          node scripts/check-workspaces.js --base "$BASE_SHA" --head "$HEAD_SHA" --plan
 
       - name: 🧱 mise のセットアップ（Node.js・npm）
         if: steps.scope.outputs.needed == 'true'
@@ -57,12 +58,9 @@ jobs:
         if: steps.scope.outputs.needed == 'true'
         run: npm ci --prefer-offline --no-audit --no-fund
 
-      - name: 🎨 デザイントークンの生成
-        if: steps.scope.outputs.needed == 'true'
-        run: npm run build:design-token
-
-      - name: ✅ 影響するworkspaceの型生成・チェック
+      - name: ✅ 影響するworkspaceのチェック
         if: steps.scope.outputs.needed == 'true'
         env:
-          CI_CHECK_WORKSPACES: ${{ steps.scope.outputs.workspaces }}
-        run: node scripts/ci-check.js run
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: npm run check -- --base "$BASE_SHA" --head "$HEAD_SHA"

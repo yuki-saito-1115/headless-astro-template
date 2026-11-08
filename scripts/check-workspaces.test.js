@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { selectWorkspaces } from './ci-check.js';
+import { parseOptions, selectWorkspaces } from './check-workspaces.js';
 
 const all = [
   'site',
@@ -124,4 +124,73 @@ test('共通設定・未知のパス・新しいworkspaceは全チェックに�
 
 test('差分がない場合は型チェックを省く', () => {
   assert.deepEqual(selectWorkspaces([]), []);
+});
+
+test('引数なしでは差分の指定をせず、全チェックを実行する', () => {
+  assert.deepEqual(parseOptions([]), {});
+});
+
+test('ローカルのブランチ名とCIのSHAを同じ引数で指定できる', () => {
+  assert.deepEqual(
+    parseOptions([
+      '--base',
+      'develop',
+      '--head',
+      'HEAD',
+      '--plan',
+    ]),
+    {
+      base: 'develop',
+      head: 'HEAD',
+      plan: true,
+    },
+  );
+  const sha = 'a'.repeat(40);
+  assert.deepEqual(
+    parseOptions([
+      '--base',
+      sha,
+      '--head',
+      sha,
+    ]),
+    {
+      base: sha,
+      head: sha,
+    },
+  );
+});
+
+test('引数の誤りで意図せず検証を省略しない', () => {
+  assert.throws(
+    () =>
+      parseOptions([
+        '--base',
+        'develop',
+      ]),
+    /両方指定/,
+  );
+  assert.throws(
+    () =>
+      parseOptions([
+        '--head',
+        'HEAD',
+      ]),
+    /両方指定/,
+  );
+  assert.throws(
+    () =>
+      parseOptions([
+        '--base',
+        '--head',
+        'HEAD',
+      ]),
+    /コミットまたはブランチ/,
+  );
+  assert.throws(
+    () =>
+      parseOptions([
+        '--unknown',
+      ]),
+    /未対応/,
+  );
 });

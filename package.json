@@ -15,7 +15,7 @@
     "build:preview": "npm run build --workspace @headless-astro-template/preview",
     "build:site": "npm run build --workspace @headless-astro-template/site",
     "build:storybook": "npm run build --workspace @headless-astro-template/storybook",
-    "check": "run-p -l -c check:site check:preview check:storybook check:docs check:content check:ui",
+    "check": "node scripts/check-workspaces.js",
     "check:content": "npm run check --workspace @packages/content",
     "check:docs": "npm run check --workspace @headless-astro-template/docs",
     "check:preview": "npm run check --workspace @headless-astro-template/preview",
