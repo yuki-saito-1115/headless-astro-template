@@ -108,7 +108,7 @@
     "editor.formatOnSave": true
   },
 
-  // Astroは公式拡張機能で整形し、保存時の自動修正を個別に指定する
+  // AstroはBiomeで整形し、保存時の自動修正を個別に指定する
   "[astro]": {
     // Astroを明示的に保存したときに実行する自動修正を指定する
     "editor.codeActionsOnSave": {
@@ -129,30 +129,10 @@
       // Astro公式拡張機能のTypeScript機能でimportを整理する
       "source.organizeImports.ts": "explicit"
     },
-    // AstroのフォーマッターにAstro公式拡張機能を使用する
-    "editor.defaultFormatter": "astro-build.astro-vscode",
+    // AstroのフォーマッターにBiomeを使用する
+    "editor.defaultFormatter": "biomejs.biome",
     // Astroを保存したときに整形する
-    "editor.formatOnSave": true,
-    // Astroの保存時整形でもアロー関数の引数を括弧で囲む
-    "prettier.arrowParens": "always",
-    // AstroのHTML要素・コンポーネントの複数行の開始タグの閉じ括弧は独立した行に置く
-    "prettier.bracketSameLine": false,
-    // Astro内のJS・TSの波括弧の内側にスペースを入れる
-    "prettier.bracketSpacing": true,
-    // Astro内のJSXの属性値はダブルクォートにする
-    "prettier.jsxSingleQuote": false,
-    // Astroの保存時整形もBiomeと同じ100文字を目安に折り返す
-    "prettier.printWidth": 100,
-    // Astro内のJS・TSのキー名は必要な場合だけ引用符を付ける
-    "prettier.quoteProps": "as-needed",
-    // Astroの保存時整形でもJS・TSの文末にセミコロンを付ける
-    "prettier.semi": true,
-    // AstroのHTML要素・コンポーネントの複数属性を1行ずつ記述する
-    "prettier.singleAttributePerLine": true,
-    // Astro内のJS・TS・CSSの文字列はシングルクォートにする
-    "prettier.singleQuote": true,
-    // Astroの保存時整形でも複数行の末尾にカンマを付ける
-    "prettier.trailingComma": "all"
+    "editor.formatOnSave": true
   },
   // JSXの保存時整形設定（自動修正は共通の保存時設定を使用する）
   "[javascriptreact]": {
