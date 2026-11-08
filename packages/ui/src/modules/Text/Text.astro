@@ -23,6 +23,7 @@ if (!Astro.slots.has('default')) {
   ]}
   {...attrs}
 >
+  {/* @slot このslotの直下では、クラス名無しの `p` 要素の使用のみを許容します。 */}
   <slot />
 </div>
 

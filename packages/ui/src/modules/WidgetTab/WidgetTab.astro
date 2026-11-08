@@ -67,6 +67,7 @@ for (const data of datas) {
         role="tabpanel"
         tabindex="0"
       >
+        {/* @slot このslotの中では、あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
         <slot name={data.slot} />
       </div>
     ))}

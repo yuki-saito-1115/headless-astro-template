@@ -36,12 +36,12 @@ if (!Astro.slots.has('content') || !Astro.slots.has('media')) {
     ]}
   >
     <div class="LayoutMedia__segment">
-      {/* @slot あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
+      {/* @slot このslotの直下では、あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
       <slot name="content" />
     </div>
 
     <div class="LayoutMedia__segment">
-      {/* @slot Mediaコンポーネントの使用のみを許容します。 */}
+      {/* @slot このslotの中では、[Media](/?path=/docs/components-media-media--docs) コンポーネントの使用のみを許容します。 */}
       <slot name="media" />
     </div>
   </div>

@@ -53,6 +53,7 @@ if (!Astro.slots.has('default')) {
         class="WidgetDialog__body"
         tabindex="0"
       >
+        {/* @slot このslotの中では、あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
         <slot />
       </div>
       <!-- biome-ignore-end lint/a11y/noNoninteractiveTabindex: キーボード操作用のスクロール領域ここまで -->

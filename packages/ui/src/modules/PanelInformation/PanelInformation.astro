@@ -20,6 +20,7 @@ const attrs: Record<string, unknown> = {
     ]}
     {...attrs}
   >
+    {/* @slot このslotの直下では、`div.PanelInformation__segment` の使用のみを許容します。 */}
     <slot />
   </div>
 )}

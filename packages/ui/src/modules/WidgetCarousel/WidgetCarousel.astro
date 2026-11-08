@@ -39,6 +39,7 @@ if (!Astro.slots.has('default')) {
   {...attrs}
 >
   <div class="WidgetCarousel__track">
+    {/* @slot このslotの直下では、`.WidgetCarousel__slide` クラスを付与したコンポーネントまたはHTML要素の使用のみを許容します。 */}
     <slot />
   </div>
 

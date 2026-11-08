@@ -72,7 +72,7 @@ const WrapElement = link ? 'a' : 'span';
           'Card__media',
         ]}
       >
-        {/* @slot Mediaコンポーネントの使用のみを許容します。 */}
+        {/* @slot このslotの中では、[Media](/?path=/docs/components-media-media--docs) コンポーネントの使用のみを許容します。 */}
         <slot name="media" />
       </div>
     )}
@@ -92,7 +92,7 @@ const WrapElement = link ? 'a' : 'span';
         'Card__content',
       ]}
     >
-      {/* @slot あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
+      {/* @slot このslotの中では、あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
       <slot name="content" />
     </div>
 

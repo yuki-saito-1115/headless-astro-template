@@ -47,6 +47,7 @@ if (!Astro.slots.has('default')) {
 >
   <div class="WidgetShowMore__content">
     <div class="WidgetShowMore__inner">
+      {/* @slot このslotの中では、あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
       <slot />
     </div>
   </div>
