@@ -87,14 +87,14 @@ if (Element === 'details' && !title) {
 
 <style>
   .Box {
-    --local-foreground: var(--user-color-foreground-dark);
     --local-background: var(--color-gray-100);
+    --local-foreground: var(--user-color-foreground-dark);
     --local-outline: transparent;
     --local-padding-x: calc(var(--user-spacing) * 4);
     --local-padding-y: calc(var(--user-spacing) * 6);
+
     padding-top: var(--local-padding-y);
     padding-bottom: var(--local-padding-y);
-
     background-color: var(--local-background);
     border: 1px solid var(--local-outline);
 
@@ -121,8 +121,8 @@ if (Element === 'details' && !title) {
     }
 
     &:where(.theme-alert) {
-      --local-foreground: var(--user-color-danger-dark);
       --local-background: var(--user-color-background-light);
+      --local-foreground: var(--user-color-danger-dark);
       --local-outline: var(--user-color-danger-dark);
 
       > :where(.Box__head) {
