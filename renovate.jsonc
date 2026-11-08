@@ -1,0 +1,19 @@
+{
+  // エディタの入力補完・設定の検証に使うスキーマ
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
+  // ベースとして利用する設定プリセット
+  "extends": [ 
+    // 標準の推奨設定。更新一覧のDashboardや関連パッケージのグループ化を有効にする
+    "config:recommended",
+    // メジャー更新はDashboardで承認してから更新PRを作成する
+    ":approveMajorUpdates"
+  ],
+
+  // 更新PRの送り先をdevelopブランチにする
+  "baseBranchPatterns": ["develop"],
+  // 同時に開く通常の更新PRを最大3件に制限する
+  "prConcurrentLimit": 3,
+  // 自動マージせず、手動で確認してマージする
+  "automerge": false
+}
