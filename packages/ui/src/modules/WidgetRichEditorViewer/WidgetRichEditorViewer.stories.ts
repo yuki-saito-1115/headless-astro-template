@@ -116,7 +116,7 @@ export const Default: Story = {
 
 <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe src="https://www.youtube.com/embed/B6_iQvaIjXw?si=qySgrpaeN8jW2Uts" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen="" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe></div>
 
-<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 75%;"><iframe src="https://www.google.com/maps/embed/v1/view?key=AIzaSyC5AabUmFCrVTvkne8HfUV-Qotqx6-MC3E&amp;center=38.2553991,140.888458&amp;zoom=15" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen=""></iframe></div>
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 75%;"><iframe src="https://www.google.com/maps?q=38.2553991,140.888458&amp;z=15&amp;output=embed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen=""></iframe></div>
 `,
   },
 };
