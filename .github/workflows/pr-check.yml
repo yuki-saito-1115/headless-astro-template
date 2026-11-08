@@ -22,23 +22,47 @@ jobs:
       - name: 📥 ソースコードのチェックアウト
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
-          lfs: true
+          # 型チェックではメディアの実体を使わないので、LFSのダウンロードを省く。
           persist-credentials: false
 
+      - name: 🔎 変更の影響範囲を確認
+        id: scope
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          node --test scripts/ci-check.test.js
+          git fetch --no-tags --depth=1 origin "$BASE_SHA" "$HEAD_SHA"
+          node scripts/ci-check.js plan "$BASE_SHA" "$HEAD_SHA"
+
       - name: 🧱 mise のセットアップ（Node.js・npm）
+        if: steps.scope.outputs.needed == 'true'
         uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
 
+      - name: 📍 npmキャッシュの保存先を取得
+        if: steps.scope.outputs.needed == 'true'
+        id: npm-cache
+        run: echo "path=$(npm config get cache)" >> "$GITHUB_OUTPUT"
+
+      - name: ♻️ npmのダウンロードキャッシュ
+        if: steps.scope.outputs.needed == 'true'
+        uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5.1.0
+        with:
+          path: ${{ steps.npm-cache.outputs.path }}/_cacache
+          key: npm-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('mise.toml') }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('mise.toml') }}-
+
       - name: 📦 依存パッケージのインストール
-        run: npm ci
+        if: steps.scope.outputs.needed == 'true'
+        run: npm ci --prefer-offline --no-audit --no-fund
 
       - name: 🎨 デザイントークンの生成
+        if: steps.scope.outputs.needed == 'true'
         run: npm run build:design-token
 
-      - name: 🔄 Astroの型情報の生成
-        run: |
-          npm exec --workspace @headless-astro-template/site -- astro sync
-          npm exec --workspace @headless-astro-template/preview -- astro sync
-          npm exec --workspace @headless-astro-template/docs -- astro sync
-
-      - name: ✅ 全workspaceのチェック
-        run: npm run check
+      - name: ✅ 影響するworkspaceの型生成・チェック
+        if: steps.scope.outputs.needed == 'true'
+        env:
+          CI_CHECK_WORKSPACES: ${{ steps.scope.outputs.workspaces }}
+        run: node scripts/ci-check.js run
