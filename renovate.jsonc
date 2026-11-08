@@ -24,6 +24,10 @@
   "platformAutomerge": false,
   // チェックが存在しない場合や失敗している場合は自動マージしない
   "ignoreTests": false,
+  // 脆弱性修正として作成するPRに、目印のsecurityラベルを付ける
+  "vulnerabilityAlerts": {
+    "labels": ["security"]
+  },
   // 更新内容に応じた個別ルール
   "packageRules": [
     {
