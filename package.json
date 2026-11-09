@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build:design-token && npm run build:openapi && run-p -l -c build:site build:preview build:storybook build:docs",
+    "build": "run-s -l -c build:design-token && run-s -l -c build:openapi && run-p -l -c build:site build:preview build:storybook build:docs",
     "build:design-token": "style-dictionary build --config design-token/config.js",
     "build:docs": "npm run build --workspace @headless-astro-template/docs",
     "build:openapi": "node scripts/build-openapi.js",
@@ -32,7 +32,7 @@
     "dev:site": "npm run dev --workspace @headless-astro-template/site",
     "dev:storybook": "npm run dev --workspace @headless-astro-template/storybook",
     "format": "npx biome check --write",
-    "setup": "run-s -l setup:*",
+    "setup": "run-s -l -c setup:*",
     "setup:env": "node scripts/setup-env.js",
     "setup:hooks": "git config core.hooksPath .hooks",
     "setup:lfs": "git lfs install --local",
