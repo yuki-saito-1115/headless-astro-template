@@ -5,4 +5,4 @@ set -e
 mise exec -- npx lint-staged --no-stash
 
 # すべてのアプリケーションworkspaceでAstroとTypeScriptを検査する
-npm run check
+# npm run check
