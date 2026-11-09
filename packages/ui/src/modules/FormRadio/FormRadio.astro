@@ -19,16 +19,7 @@ export interface Props extends HTMLAttributes<'input'> {
   title?: string;
 }
 
-const {
-  id,
-  checked = false,
-  disabled = false,
-  title,
-  reversed = false,
-  state,
-  class: className,
-  ...rest
-} = Astro.props;
+const { id, checked = false, disabled = false, title, reversed = false, state, class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = {
   ...rest,
 };
@@ -44,10 +35,10 @@ const attrs: Record<string, unknown> = {
   ]}
 >
   <input
-    checked={checked}
-    disabled={disabled}
     id={id}
     type="radio"
+    checked={checked}
+    disabled={disabled}
     class:list={[
       'FormRadio__item',
     ]}

@@ -22,15 +22,7 @@ const siteUrl = 'https://playground.demo.mitsue.com';
 const currentUrl = new URL(Astro.url);
 
 // ページコンポーネントから受け取ったデータを展開する
-const {
-  breadcrumb = [],
-  lang = 'ja',
-  title,
-  description,
-  ogType = 'website',
-  ogLocale = 'ja_JP',
-  ogImage = `${siteUrl}/ogp.webp`,
-}: Props = Astro.props as Props;
+const { breadcrumb = [], lang = 'ja', title, description, ogType = 'website', ogLocale = 'ja_JP', ogImage = `${siteUrl}/ogp.webp` }: Props = Astro.props as Props;
 
 // ページデータをもとにページタイトルを生成する
 const pageTitle = title ? `${title} | ${siteName}` : siteName;
@@ -56,62 +48,26 @@ const jsonLdText = jsonLd && JSON.stringify(jsonLd).replace(/</g, '\\u003c');
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <meta
-      content="width=device-width, initial-scale=1"
-      name="viewport"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>{pageTitle}</title>
 
-    <meta
-      content={siteName}
-      property="og:site_name"
-    />
-    <meta
-      content={ogType}
-      property="og:type"
-    />
-    <meta
-      content={pageTitle}
-      property="og:title"
-    />
-    <meta
-      content={description}
-      property="og:description"
-    />
-    <meta
-      content={`${siteUrl}${currentUrl.pathname}`}
-      property="og:url"
-    />
-    <meta
-      content={ogLocale}
-      property="og:locale"
-    />
-    <meta
-      content={ogImage}
-      property="og:image"
-    />
-    <meta
-      content={description}
-      name="description"
-    />
-    <meta
-      content="telephone=no"
-      name="format-detection"
-    />
-    <meta
-      content="summary"
-      name="twitter:card"
-    />
-    <meta
-      content={ogImage}
-      name="twitter:image"
-    />
+    <meta content={siteName} property="og:site_name" />
+    <meta content={ogType} property="og:type" />
+    <meta content={pageTitle} property="og:title" />
+    <meta content={description} property="og:description" />
+    <meta content={`${siteUrl}${currentUrl.pathname}`} property="og:url" />
+    <meta content={ogLocale} property="og:locale" />
+    <meta content={ogImage} property="og:image" />
+    <meta name="description" content={description} />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content={ogImage} />
 
     {jsonLdText && (
       <script
-        set:html={jsonLdText}
         type="application/ld+json"
+        set:html={jsonLdText}
       ></script>
     )}
   </head>

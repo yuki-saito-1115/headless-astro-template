@@ -47,21 +47,15 @@ const pageProps: PagePropType = {
 
 <PageLayout {...pageProps}>
   <MainVisual
+    title="〇〇〇〇を使いこなすためのポイント説明会"
     badge={{
       title: '受付中',
     }}
     taglineTop="2020年8月31日（木）"
-    title="〇〇〇〇を使いこなすためのポイント説明会"
   >
     <picture slot="media">
-      <source
-        media="(width >= 768px)"
-        srcset="/templates/events/images/detail-mainVisual_pc.webp"
-      />
-      <img
-        alt=""
-        src="/templates/events/images/detail-mainVisual_sp.webp"
-      />
+      <source srcset="/templates/events/images/detail-mainVisual_pc.webp" media="(width >= 768px)" />
+      <img src="/templates/events/images/detail-mainVisual_sp.webp" alt="" />
     </picture>
   </MainVisual>
 
@@ -72,19 +66,8 @@ const pageProps: PagePropType = {
       <Media>
         <figure>
           <picture>
-            <source
-              height="500"
-              media="(min-width: 768px)"
-              srcset="/templates/events/images/detail-image_pc.webp"
-              type="image/webp"
-              width="1000"
-            />
-            <img
-              alt=""
-              height="200"
-              src="/templates/events/images/detail-image_sp.webp"
-              width="327"
-            />
+            <source type="image/webp" srcset="/templates/events/images/detail-image_pc.webp" media="(min-width: 768px)" width="1000" height="500" />
+            <img src="/templates/events/images/detail-image_sp.webp" width="327" height="200" alt="" />
           </picture>
         </figure>
       </Media>
@@ -95,10 +78,7 @@ const pageProps: PagePropType = {
         </p>
       </Text>
 
-      <Table
-        class="mt-8 md:mt-10"
-        directSp="column"
-      >
+      <Table class="mt-8 md:mt-10" directSp="column">
         <table>
           <tbody>
             <tr>
@@ -123,13 +103,7 @@ const pageProps: PagePropType = {
                 <ListDescription>
                   <dl>
                     <dt>株式会社〇〇〇〇〇</dt>
-                    <dd>
-                      〒000-0000 東京都〇〇区〇〇〇〇0-0-0 〇〇ビル 5階（<a
-                        href="DUMMY_LINK"
-                        target="_blank"
-                        >Google map</a
-                      >）
-                    </dd>
+                    <dd>〒000-0000 東京都〇〇区〇〇〇〇0-0-0 〇〇ビル 5階（<a href="DUMMY_LINK" target="_blank">Google map</a>）</dd>
                   </dl>
                 </ListDescription>
               </td>
@@ -139,12 +113,7 @@ const pageProps: PagePropType = {
       </Table>
 
       <div class="mt-8 text-center md:mt-10">
-        <Button
-          as="a"
-          href="DUMMY_LINK"
-          theme="emphasis"
-          title="お申込み"
-        />
+        <Button href="DUMMY_LINK" title="お申込み" as="a" theme="emphasis" />
       </div>
 
       <HeadingLevel2 class="mt-8 md:mt-10">
@@ -154,12 +123,8 @@ const pageProps: PagePropType = {
       <List class="mt-8 md:mt-10">
         <ul>
           <li>〇〇〇〇の課題があり、困っている</li>
-          <li>
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-          </li>
-          <li>
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-          </li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
         </ul>
       </List>
 
@@ -176,12 +141,8 @@ const pageProps: PagePropType = {
       <List class="mt-8 md:mt-10">
         <ul>
           <li>〇〇〇〇を担当する〇〇〇〇担当者</li>
-          <li>
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-          </li>
-          <li>
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-          </li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
         </ul>
       </List>
 
@@ -189,17 +150,11 @@ const pageProps: PagePropType = {
         <h2>講師</h2>
       </HeadingLevel2>
 
-      <LayoutMedia
-        class="mt-8 md:mt-10"
-        directPc="row-reverse"
-        directSp="column-reverse"
-      >
+      <LayoutMedia class="mt-8 md:mt-10" directPc="row-reverse" directSp="column-reverse">
         <div slot="content">
           <Text>
             <div>代表取締役 <b>〇〇〇〇</b></div>
-            <p>
-              説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
+            <p>説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
           </Text>
 
           <LinkList
@@ -222,20 +177,8 @@ const pageProps: PagePropType = {
         <Media slot="media">
           <figure>
             <picture>
-              <source
-                height="500"
-                media="(min-width: 768px)"
-                srcset="/templates/events/images/detail-image-2_pc.webp"
-                type="image/webp"
-                width="336"
-              />
-              <img
-                alt=""
-                height="200"
-                loading="lazy"
-                src="/templates/events/images/detail-image-2_sp.webp"
-                width="327"
-              />
+              <source type="image/webp" srcset="/templates/events/images/detail-image-2_pc.webp" media="(min-width: 768px)" width="336" height="500" />
+              <img src="/templates/events/images/detail-image-2_sp.webp" width="327" height="200" alt="" loading="lazy" />
             </picture>
           </figure>
         </Media>
@@ -245,10 +188,7 @@ const pageProps: PagePropType = {
         <h3>略歴</h3>
       </HeadingLevel3>
 
-      <ListDescription
-        class="mt-8 md:mt-10"
-        directPc="row"
-      >
+      <ListDescription class="mt-8 md:mt-10" directPc="row">
         <dl>
           <dt>〇〇〇〇年〇月</dt>
           <dd>株式会社〇〇〇〇入社</dd>
@@ -263,10 +203,7 @@ const pageProps: PagePropType = {
         <h3>登壇歴</h3>
       </HeadingLevel3>
 
-      <ListDescription
-        class="mt-8 md:mt-10"
-        directPc="row"
-      >
+      <ListDescription class="mt-8 md:mt-10" directPc="row">
         <dl>
           <dt>〇〇〇〇年〇月</dt>
           <dd>〇〇〇〇を使いこなすためのポイント説明会</dd>
@@ -284,12 +221,8 @@ const pageProps: PagePropType = {
       <List class="mt-8 md:mt-10">
         <ul>
           <li>〇〇〇〇の〇〇〇〇が語る、〇〇〇〇の可能性</li>
-          <li>
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-          </li>
-          <li>
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-          </li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
+          <li>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</li>
         </ul>
       </List>
 
@@ -297,10 +230,7 @@ const pageProps: PagePropType = {
         <h2>プログラム</h2>
       </HeadingLevel2>
 
-      <Table
-        class="mt-8 md:mt-10"
-        directSp="column"
-      >
+      <Table class="mt-8 md:mt-10" directSp="column">
         <table>
           <tbody>
             <tr>
@@ -338,9 +268,7 @@ const pageProps: PagePropType = {
             </tr>
             <tr>
               <th>15:30-16:00</th>
-              <td>
-                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              </td>
+              <td>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</td>
             </tr>
           </tbody>
         </table>
@@ -353,19 +281,12 @@ const pageProps: PagePropType = {
       <MediaEmbed class="mt-8 md:mt-10">
         <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
           <iframe
-            allow="
-              accelerometer *;
-              clipboard-write *;
-              encrypted-media *;
-              gyroscope *;
-              picture-in-picture *;
-              web-share *;
-            "
+            src="https://www.youtube.com/embed/B6_iQvaIjXw?si=qySgrpaeN8jW2Uts"
+            title="関連資料の動画"
+            style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;"
+            allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *"
             allowfullscreen=""
             referrerpolicy="strict-origin"
-            src="https://www.youtube.com/embed/B6_iQvaIjXw?si=qySgrpaeN8jW2Uts"
-            style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;"
-            title="関連資料の動画"
           ></iframe>
         </div>
       </MediaEmbed>
@@ -376,71 +297,39 @@ const pageProps: PagePropType = {
 
       <MediaEmbed class="mt-8 md:mt-10">
         <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 75%;">
-          <iframe
-            allowfullscreen=""
-            src="https://www.google.com/maps?q=38.2553991,140.888458&amp;z=15&amp;output=embed"
-            style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;"
-            title="会場周辺の地図"
-          ></iframe>
+          <iframe src="https://www.google.com/maps?q=38.2553991,140.888458&amp;z=15&amp;output=embed" title="会場周辺の地図" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen=""></iframe>
         </div>
       </MediaEmbed>
 
       <ListDescription class="mt-8 md:mt-10">
         <dl>
           <dt>株式会社〇〇〇〇〇</dt>
-          <dd>
-            〒000-0000 東京都〇〇区〇〇〇〇0-0-0 〇〇ビル 5階（<a
-              href="DUMMY_LINK"
-              target="_blank"
-              >Google map</a
-            >）
-          </dd>
+          <dd>〒000-0000 東京都〇〇区〇〇〇〇0-0-0 〇〇ビル 5階（<a href="DUMMY_LINK" target="_blank">Google map</a>）</dd>
         </dl>
       </ListDescription>
 
       <div class="mt-8 text-center md:mt-10">
-        <Button
-          as="a"
-          href="DUMMY_LINK"
-          theme="emphasis"
-          title="お申込み"
-        />
+        <Button href="DUMMY_LINK" title="お申込み" as="a" theme="emphasis" />
       </div>
 
       <HeadingLevel2 class="mt-8 md:mt-10">
         <h2>関連セミナー</h2>
       </HeadingLevel2>
 
-      <LayoutColumn
-        class="mt-8 md:mt-10"
-        columnPc="3"
-        columnSp="1"
-      >
+      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
         <div class="LayoutColumn__segment">
           <Card
+            title="〇〇〇〇を120%使いこなすためのポイント説明会"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="〇〇〇〇を120%使いこなすためのポイント説明会"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/detail-image-3_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/detail-image-3_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/detail-image-3_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-3_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -458,29 +347,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/detail-image-4_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/detail-image-4_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/detail-image-4_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-4_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -498,29 +375,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/detail-image-5_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/detail-image-5_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/detail-image-5_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-5_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -541,37 +406,21 @@ const pageProps: PagePropType = {
         <h2>関連記事</h2>
       </HeadingLevel2>
 
-      <LayoutColumn
-        class="mt-8 md:mt-10"
-        columnPc="3"
-        columnSp="1"
-      >
+      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
         <div class="LayoutColumn__segment">
           <Card
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
             date="YYYY年M月D日（月）"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="タイトルテキストテキストテキストテキストテキストテキスト"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/detail-image-6_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/detail-image-6_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/detail-image-6_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-6_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -584,30 +433,18 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
             date="YYYY年M月D日（月）"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="タイトルテキストテキストテキストテキストテキストテキスト"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/detail-image-7_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/detail-image-7_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/detail-image-7_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-7_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -620,30 +457,18 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="タイトルテキストテキストテキストテキストテキストテキスト"
             date="YYYY年M月D日（月）"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="タイトルテキストテキストテキストテキストテキストテキスト"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/detail-image-8_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/detail-image-8_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/detail-image-8_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/detail-image-8_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>

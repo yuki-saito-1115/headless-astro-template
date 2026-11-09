@@ -41,17 +41,14 @@ for (const data of datas) {
   {...attrs}
 >
   <div class="WidgetTab__control">
-    <div
-      class="WidgetTab__list"
-      role="tablist"
-    >
+    <div class="WidgetTab__list" role="tablist">
       {datas.map((data, index) => (
         <a
+          id={`${id}-tab-${index}`}
+          href={`#${id}-${data.slot}`}
+          role="tab"
           aria-controls={`${id}-${data.slot}`}
           aria-selected={index === 0 ? 'true' : 'false'}
-          href={`#${id}-${data.slot}`}
-          id={`${id}-tab-${index}`}
-          role="tab"
         >
           {data.title}
         </a>
@@ -62,9 +59,9 @@ for (const data of datas) {
   <div class="WidgetTab__container">
     {datas.map((data, index) => (
       <div
-        aria-labelledby={`${id}-tab-${index}`}
         id={`${id}-${data.slot}`}
         role="tabpanel"
+        aria-labelledby={`${id}-tab-${index}`}
         tabindex="0"
       >
         {/* @slot このslotの中では、あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
@@ -189,10 +186,7 @@ for (const data of datas) {
       const setInitialPanel = () => {
         const hash = window.location.hash.slice(1);
         const target = document.getElementById(hash);
-        const hashIndex = Array.from(contents).findIndex(
-          (content, index) =>
-            content.id === hash || links[index].id === hash || content.contains(target),
-        );
+        const hashIndex = Array.from(contents).findIndex((content, index) => content.id === hash || links[index].id === hash || content.contains(target));
 
         if (hashIndex >= 0) {
           recentNumber = hashIndex;

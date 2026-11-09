@@ -5,10 +5,7 @@ import type { Polymorphic } from 'astro/types';
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  * - このコンポーネントは原則として単品での利用を想定していません。`BadgeList` コンポーネントを使用してください。
  */
-export type Props<Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button'> = Tag extends
-  | 'span'
-  | 'a'
-  | 'button'
+export type Props<Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button'> = Tag extends 'span' | 'a' | 'button'
   ? Polymorphic<{
       as: Tag;
     }> & {
@@ -25,15 +22,7 @@ export type Props<Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button'>
     }
   : never;
 
-const {
-  as: Element = 'span',
-  title,
-  outline = false,
-  shape = undefined,
-  theme = undefined,
-  class: className,
-  ...rest
-} = Astro.props;
+const { as: Element = 'span', title, outline = false, shape = undefined, theme = undefined, class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = {
   ...rest,
 };

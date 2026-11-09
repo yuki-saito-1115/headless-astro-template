@@ -35,10 +35,7 @@ if (!Astro.slots.has('default')) {
 
     :where(.BoxConnect__segment + .BoxConnect__segment) {
       position: relative;
-      margin-top: calc(
-        var(--local-arrow-height) +
-        (var(--local-gutter) * 2)
-      ); /* アローの高さと上下余白 */
+      margin-top: calc(var(--local-arrow-height) + (var(--local-gutter) * 2)); /* アローの高さと上下余白 */
 
       /* arrow */
       &::before {

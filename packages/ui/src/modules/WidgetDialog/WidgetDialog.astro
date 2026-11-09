@@ -37,11 +37,7 @@ if (!Astro.slots.has('default')) {
   <div class="WidgetDialog__outer">
     <div class="WidgetDialog__inner">
       <header class="WidgetDialog__head">
-        <button
-          command="close"
-          commandfor={id}
-          type="button"
-        >
+        <button type="button" command="close" commandfor={id}>
           {closeLabel}
         </button>
 
@@ -49,10 +45,7 @@ if (!Astro.slots.has('default')) {
       </header>
 
       <!-- biome-ignore-start lint/a11y/noNoninteractiveTabindex: スクロール領域をキーボードで操作可能にする -->
-      <div
-        class="WidgetDialog__body"
-        tabindex="0"
-      >
+      <div class="WidgetDialog__body" tabindex="0">
         {/* @slot このslotの中では、あらゆるコンポーネント・HTML要素・テキストノードの使用を許容します。 */}
         <slot />
       </div>
@@ -60,6 +53,7 @@ if (!Astro.slots.has('default')) {
 
       <footer class="WidgetDialog__foot">
         <Button
+          title={closeLabel}
           as="button"
           command="close"
           commandfor={id}
@@ -67,7 +61,6 @@ if (!Astro.slots.has('default')) {
             name: 'xmark',
           }}
           theme="text"
-          title={closeLabel}
         />
       </footer>
     </div>
@@ -95,12 +88,7 @@ if (!Astro.slots.has('default')) {
       align-items: center;
       justify-content: center;
       height: calc(100% + 1px);
-      padding: clamp(
-        calc(var(--user-spacing) * 6),
-        -13.611rem +
-        31.48vw,
-        calc(var(--user-spacing) * 40)
-      );
+      padding: clamp(calc(var(--user-spacing) * 6), -13.611rem + 31.48vw, calc(var(--user-spacing) * 40));
     }
 
     .WidgetDialog__inner {
@@ -114,49 +102,16 @@ if (!Astro.slots.has('default')) {
 
     .WidgetDialog__head {
       position: relative;
-      padding: clamp(
-          calc(var(--user-spacing) * 6),
-          0.611rem +
-          1.85vw,
-          calc(var(--user-spacing) * 8)
-        )
-        clamp(calc(var(--user-spacing) * 6), -2.944rem + 9.26vw, calc(var(--user-spacing) * 16));
+      padding: clamp(calc(var(--user-spacing) * 6), 0.611rem + 1.85vw, calc(var(--user-spacing) * 8)) clamp(calc(var(--user-spacing) * 6), -2.944rem + 9.26vw, calc(var(--user-spacing) * 16));
 
       :where(button) {
         position: absolute;
-        top: clamp(
-          calc(var(--user-spacing) * 2),
-          -0.389rem +
-          1.85vw,
-          calc(var(--user-spacing) * 4)
-        );
-        right: clamp(
-          calc(var(--user-spacing) * 2),
-          -0.389rem +
-          1.85vw,
-          calc(var(--user-spacing) * 4)
-        );
+        top: clamp(calc(var(--user-spacing) * 2), -0.389rem + 1.85vw, calc(var(--user-spacing) * 4));
+        right: clamp(calc(var(--user-spacing) * 2), -0.389rem + 1.85vw, calc(var(--user-spacing) * 4));
         display: block;
-        width: clamp(
-          calc(var(--user-spacing) * 8),
-          1.111rem +
-          1.85vw,
-          calc(var(--user-spacing) * 10)
-        );
-        height: clamp(
-          calc(var(--user-spacing) * 8),
-          1.111rem +
-          1.85vw,
-          calc(var(--user-spacing) * 10)
-        );
-        padding: clamp(
-            calc(var(--user-spacing) * 8),
-            1.111rem +
-            1.85vw,
-            calc(var(--user-spacing) * 10)
-          )
-          0 0
-          clamp(calc(var(--user-spacing) * 8), 1.111rem + 1.85vw, calc(var(--user-spacing) * 10));
+        width: clamp(calc(var(--user-spacing) * 8), 1.111rem + 1.85vw, calc(var(--user-spacing) * 10));
+        height: clamp(calc(var(--user-spacing) * 8), 1.111rem + 1.85vw, calc(var(--user-spacing) * 10));
+        padding: clamp(calc(var(--user-spacing) * 8), 1.111rem + 1.85vw, calc(var(--user-spacing) * 10)) 0 0 clamp(calc(var(--user-spacing) * 8), 1.111rem + 1.85vw, calc(var(--user-spacing) * 10));
         overflow: hidden;
         background-color: transparent;
         border: 0;
@@ -185,21 +140,14 @@ if (!Astro.slots.has('default')) {
     }
 
     .WidgetDialog__body {
-      margin: 0
-        clamp(calc(var(--user-spacing) * 6), -2.944rem + 9.26vw, calc(var(--user-spacing) * 16));
+      margin: 0 clamp(calc(var(--user-spacing) * 6), -2.944rem + 9.26vw, calc(var(--user-spacing) * 16));
       overflow: auto;
     }
 
     .WidgetDialog__foot {
       display: flex;
       justify-content: center;
-      padding: clamp(
-          calc(var(--user-spacing) * 10),
-          0.722rem +
-          3.7vw,
-          calc(var(--user-spacing) * 14)
-        )
-        clamp(calc(var(--user-spacing) * 6), -2.944rem + 9.26vw, calc(var(--user-spacing) * 16));
+      padding: clamp(calc(var(--user-spacing) * 10), 0.722rem + 3.7vw, calc(var(--user-spacing) * 14)) clamp(calc(var(--user-spacing) * 6), -2.944rem + 9.26vw, calc(var(--user-spacing) * 16));
     }
   }
 

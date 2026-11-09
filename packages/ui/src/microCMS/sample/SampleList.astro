@@ -28,11 +28,7 @@ const classList = [
     <ul>
       {samples.map((sample) => (
         <li>
-          <a
-            href={`/sample/${sample.id ?? ''}${draftKey && sample.id === contentId ? `?draftKey=${encodeURIComponent(draftKey)}` : ''}`}
-          >
-            {sample.title ?? ''}
-          </a>
+          <a href={`/sample/${sample.id ?? ''}${draftKey && sample.id === contentId ? `?draftKey=${encodeURIComponent(draftKey)}` : ''}`}>{sample.title ?? ''}</a>
         </li>
       ))}
     </ul>

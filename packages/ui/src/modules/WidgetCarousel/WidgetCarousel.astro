@@ -18,12 +18,8 @@ const attrs: Record<string, unknown> = {
   ...rest,
 };
 const hasAutoplay = Boolean(options.autoplay);
-const hasNavigation =
-  options.navigation !== false &&
-  (typeof options.navigation !== 'object' || options.navigation.enabled !== false);
-const hasPagination =
-  options.pagination !== false &&
-  (typeof options.pagination !== 'object' || options.pagination.enabled !== false);
+const hasNavigation = options.navigation !== false && (typeof options.navigation !== 'object' || options.navigation.enabled !== false);
+const hasPagination = options.pagination !== false && (typeof options.pagination !== 'object' || options.pagination.enabled !== false);
 
 if (!Astro.slots.has('default')) {
   throw new Error('WidgetCarousel: slotの中身が空です。');
@@ -43,10 +39,7 @@ if (!Astro.slots.has('default')) {
     <slot />
   </div>
 
-  <div
-    class="WidgetCarousel__control"
-    hidden
-  >
+  <div class="WidgetCarousel__control" hidden>
     {hasAutoplay && (
       <button
         class="WidgetCarousel__toggle"
@@ -267,11 +260,7 @@ if (!Astro.slots.has('default')) {
   }
 </style>
 
-<script
-  data-widget-carousel-swiper
-  src={swiperBundleUrl}
-  is:inline
-></script>
+<script src={swiperBundleUrl} data-widget-carousel-swiper is:inline></script>
 
 <script is:inline>
   (() => {
@@ -429,10 +418,8 @@ if (!Astro.slots.has('default')) {
       return;
     }
 
-    document
-      .querySelector('script[data-widget-carousel-swiper]')
-      ?.addEventListener('load', initialize, {
-        once: true,
-      });
+    document.querySelector('script[data-widget-carousel-swiper]')?.addEventListener('load', initialize, {
+      once: true,
+    });
   })();
 </script>

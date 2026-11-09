@@ -31,19 +31,8 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="価格">
     <picture slot="media">
-      <source
-        height="500"
-        media="(min-width: 768px)"
-        srcset="/templates/price/images/detail-mainVisual_pc.webp"
-        type="image/webp"
-        width="1440"
-      />
-      <img
-        alt=""
-        height="130"
-        src="/templates/price/images/detail-mainVisual_sp.webp"
-        width="375"
-      />
+      <source type="image/webp" srcset="/templates/price/images/detail-mainVisual_pc.webp" media="(min-width: 768px)" width="1440" height="500" />
+      <img src="/templates/price/images/detail-mainVisual_sp.webp" width="375" height="130" alt="" />
     </picture>
   </MainVisual>
 

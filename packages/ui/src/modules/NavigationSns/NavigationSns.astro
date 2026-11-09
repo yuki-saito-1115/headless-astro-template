@@ -60,13 +60,13 @@ const entries = Object.entries(datas).filter(
         ]}
       >
         <a
+          rel="noopener"
+          href={href}
+          target="_blank"
           class:list={[
             'NavigationSns__link',
             `NavigationSns__link--${name}`,
           ]}
-          href={href}
-          rel="noopener"
-          target="_blank"
         >
           {labels[name]}
         </a>

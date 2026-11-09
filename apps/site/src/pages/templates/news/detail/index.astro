@@ -39,19 +39,8 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="「〇〇〇〇〇〇〇〇」を1月1日に発売">
     <picture slot="media">
-      <source
-        height="500"
-        media="(min-width: 768px)"
-        srcset="/templates/news/images/detail-mainVisual_pc.webp"
-        type="image/webp"
-        width="1440"
-      />
-      <img
-        alt=""
-        height="130"
-        src="/templates/news/images/detail-mainVisual_sp.webp"
-        width="375"
-      />
+      <source type="image/webp" srcset="/templates/news/images/detail-mainVisual_pc.webp" media="(min-width: 768px)" width="1440" height="500" />
+      <img src="/templates/news/images/detail-mainVisual_sp.webp" width="375" height="130" alt="" />
     </picture>
   </MainVisual>
 
@@ -85,19 +74,8 @@ const pageProps: PagePropType = {
       <Media class="mt-8 md:mt-10">
         <figure>
           <picture>
-            <source
-              height="500"
-              media="(min-width: 768px)"
-              srcset="/templates/news/images/detail-image_pc.webp"
-              type="image/webp"
-              width="1000"
-            />
-            <img
-              alt=""
-              height="200"
-              src="/templates/news/images/detail-image_sp.webp"
-              width="327"
-            />
+            <source type="image/webp" srcset="/templates/news/images/detail-image_pc.webp" media="(min-width: 768px)" width="1000" height="500" />
+            <img src="/templates/news/images/detail-image_sp.webp" width="327" height="200" alt="" />
           </picture>
         </figure>
       </Media>
@@ -112,25 +90,14 @@ const pageProps: PagePropType = {
             <p>○○○○○○○○担当</p>
           </Text>
 
-          <Button
-            as="a"
-            class="mt-4 md:mt-6"
-            href="DUMMY_LINK"
-            size="full"
-            theme="emphasis"
-            title="サービス紹介資料ダウンロード"
-          />
+          <Button class="mt-4 md:mt-6" href="DUMMY_LINK" title="サービス紹介資料ダウンロード" as="a" size="full" theme="emphasis" />
         </div>
       </PanelInformation>
     </Section>
 
     <Section>
       <div class="text-center">
-        <Button
-          as="a"
-          href="DUMMY_LINK"
-          title="ニュースリリース一覧に戻る"
-        />
+        <Button href="DUMMY_LINK" title="ニュースリリース一覧に戻る" as="a" />
       </div>
       <NavigationSns
         class="mt-8 md:mt-10"

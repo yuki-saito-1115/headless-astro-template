@@ -34,19 +34,8 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="お問い合わせ">
     <picture slot="media">
-      <source
-        height="500"
-        media="(min-width: 768px)"
-        srcset="/templates/inquiry/images/confirm-mainVisual_pc.webp"
-        type="image/webp"
-        width="1440"
-      />
-      <img
-        alt=""
-        height="130"
-        src="/templates/inquiry/images/confirm-mainVisual_sp.webp"
-        width="375"
-      />
+      <source type="image/webp" srcset="/templates/inquiry/images/confirm-mainVisual_pc.webp" media="(min-width: 768px)" width="1440" height="500" />
+      <img src="/templates/inquiry/images/confirm-mainVisual_sp.webp" width="375" height="130" alt="" />
     </picture>
   </MainVisual>
 
@@ -87,26 +76,13 @@ const pageProps: PagePropType = {
         <dd>新聞や雑誌、Webマガジンなどのメディア、検索エンジン</dd>
       </FormList>
 
-      <LayoutColumn
-        class="mt-8 justify-center md:mt-10"
-        columnPc="auto"
-        columnSp="1"
-      >
+      <LayoutColumn class="mt-8 justify-center md:mt-10" columnPc="auto" columnSp="1">
         <div class="LayoutColumn__segment">
-          <Button
-            as="button"
-            title="修正する"
-            type="button"
-          />
+          <Button type="button" title="修正する" as="button" />
         </div>
 
         <div class="LayoutColumn__segment">
-          <Button
-            as="button"
-            theme="conversion"
-            title="送信する"
-            type="submit"
-          />
+          <Button type="submit" title="送信する" as="button" theme="conversion" />
         </div>
       </LayoutColumn>
     </Section>

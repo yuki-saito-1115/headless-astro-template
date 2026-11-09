@@ -25,18 +25,7 @@ export type Props<Tag extends 'div' | 'li' = 'div' | 'li'> = Polymorphic<{
   link?: HTMLAttributes<'a'>;
 };
 
-const {
-  as: Element = 'div',
-  outline = false,
-  directSp = 'column',
-  directPc = 'column',
-  theme = undefined,
-  class: className,
-  title,
-  date,
-  link,
-  ...rest
-} = Astro.props;
+const { as: Element = 'div', outline = false, directSp = 'column', directPc = 'column', theme = undefined, class: className, title, date, link, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = {
   ...rest,
 };

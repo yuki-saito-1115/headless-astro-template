@@ -28,21 +28,11 @@ const classList = [
 
   <div class="mt-5 md:mt-10">{sample?.category}</div>
 
-  <div
-    class="mt-5 md:mt-10"
-    set:html={sample?.content}
-  />
+  <div class="mt-5 md:mt-10" set:html={sample?.content} />
 
   <div class="mt-5 md:mt-10">
-    <a
-      href={sample?.link}
-      target="_blank"
-      >詳細はこちら</a
-    >
+    <a href={sample?.link} target="_blank">詳細はこちら</a>
   </div>
 
-  <a
-    href={contentId && draftKey ? `/sample?contentId=${contentId}&draftKey=${draftKey}` : `/sample`}
-    >一覧に戻る</a
-  >
+  <a href={contentId && draftKey ? `/sample?contentId=${contentId}&draftKey=${draftKey}` : `/sample`}>一覧に戻る</a>
 </div>

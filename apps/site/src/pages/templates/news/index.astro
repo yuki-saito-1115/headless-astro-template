@@ -35,14 +35,8 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="ニュースリリース">
     <picture slot="media">
-      <source
-        media="(width >= 768px)"
-        srcset="/templates/news/images/index-mainVisual_pc.webp"
-      />
-      <img
-        alt=""
-        src="/templates/news/images/index-mainVisual_sp.webp"
-      />
+      <source srcset="/templates/news/images/index-mainVisual_pc.webp" media="(width >= 768px)" />
+      <img src="/templates/news/images/index-mainVisual_sp.webp" alt="" />
     </picture>
   </MainVisual>
 
@@ -52,8 +46,7 @@ const pageProps: PagePropType = {
     <Section>
       <Text>
         <p>
-          このページに掲載されている内容、サービス /
-          製品の価格、仕様、お問い合わせ先、その他の情報は、発表時点の情報です。その後予告なしに変更となる場合があります。また、このページにおける計画、目標などはさまざまなリスクおよび不確実な事実により、実際の結果が予測と異なる場合もあります。あらかじめご了承ください。（仮）
+          このページに掲載されている内容、サービス / 製品の価格、仕様、お問い合わせ先、その他の情報は、発表時点の情報です。その後予告なしに変更となる場合があります。また、このページにおける計画、目標などはさまざまなリスクおよび不確実な事実により、実際の結果が予測と異なる場合もあります。あらかじめご了承ください。（仮）
         </p>
       </Text>
 
@@ -116,6 +109,7 @@ const pageProps: PagePropType = {
 
       <WidgetTab
         class="mt-8 md:mt-10"
+        id="news-tabs"
         datas={[
           {
             slot: 'all',
@@ -130,7 +124,6 @@ const pageProps: PagePropType = {
             title: 'カテゴリ2',
           },
         ]}
-        id="news-tabs"
       >
         <ListNews
           datas={[
@@ -168,8 +161,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-4',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -178,8 +170,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-5',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -188,8 +179,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-6',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -198,8 +188,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-7',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -208,8 +197,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-8',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -218,8 +206,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-9',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -228,8 +215,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-10',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -238,8 +224,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-11',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -248,8 +233,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-12',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
           ]}
           slot="all"
@@ -282,8 +266,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-6',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -292,8 +275,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-8',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -302,8 +284,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-9',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -312,8 +293,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-11',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -322,8 +302,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-12',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
           ]}
           slot="category1"
@@ -347,8 +326,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-4',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -357,8 +335,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-5',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -367,8 +344,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-7',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
             {
               category: [
@@ -377,8 +353,7 @@ const pageProps: PagePropType = {
               date: '2022-12-10T00:00:00.000Z',
               id: 'news-10',
               link: 'DUMMY_LINK',
-              title:
-                'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
+              title: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
             },
           ]}
           slot="category2"

@@ -17,14 +17,7 @@ export interface Props extends HTMLAttributes<'div'> {
   threshold?: number;
 }
 
-const {
-  threshold = 50,
-  oneway = false,
-  showLabel = 'もっと見る',
-  hideLabel = '閉じる',
-  class: className,
-  ...rest
-} = Astro.props;
+const { threshold = 50, oneway = false, showLabel = 'もっと見る', hideLabel = '閉じる', class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = {
   ...rest,
 };
@@ -52,12 +45,7 @@ if (!Astro.slots.has('default')) {
     </div>
   </div>
 
-  <Button
-    as="button"
-    class="WidgetShowMore__button"
-    hidden
-    title={showLabel}
-  />
+  <Button class="WidgetShowMore__button" title={showLabel} as="button" hidden />
 </div>
 
 <style>
@@ -226,8 +214,7 @@ if (!Astro.slots.has('default')) {
             return;
           }
 
-          const offset =
-            event.target.getBoundingClientRect().top - inner.getBoundingClientRect().top;
+          const offset = event.target.getBoundingClientRect().top - inner.getBoundingClientRect().top;
 
           if (offset >= threshold) {
             showPanel();

@@ -48,14 +48,8 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="〇〇〇〇管理">
     <picture slot="media">
-      <source
-        media="(width >= 768px)"
-        srcset="/templates/function/images/detail-mainVisual_pc.webp"
-      />
-      <img
-        alt=""
-        src="/templates/function/images/detail-mainVisual_sp.webp"
-      />
+      <source srcset="/templates/function/images/detail-mainVisual_pc.webp" media="(width >= 768px)" />
+      <img src="/templates/function/images/detail-mainVisual_sp.webp" alt="" />
     </picture>
   </MainVisual>
 
@@ -73,10 +67,7 @@ const pageProps: PagePropType = {
         description="ページ内の内容を簡単に解説する短いコピーページ内の内容を簡単に解説。"
       />
 
-      <Box
-        class="mt-8 md:mt-10"
-        title="この機能で解決できること"
-      >
+      <Box class="mt-8 md:mt-10" title="この機能で解決できること">
         <NavigationInternal
           datas={[
             {
@@ -97,19 +88,12 @@ const pageProps: PagePropType = {
         />
       </Box>
 
-      <div
-        class="mt-8 md:mt-10"
-        id="function-1"
-      >
+      <div class="mt-8 md:mt-10" id="function-1">
         <HeadingLevel3>
           <h3>〇〇〇〇が〇〇〇〇になることで工程がシンプルになる</h3>
         </HeadingLevel3>
 
-        <LayoutMedia
-          class="mt-8 md:mt-10"
-          directPc="row-reverse"
-          directSp="column-reverse"
-        >
+        <LayoutMedia class="mt-8 md:mt-10" directPc="row-reverse" directSp="column-reverse">
           <Text slot="content">
             <p>
               説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
@@ -119,39 +103,20 @@ const pageProps: PagePropType = {
           <Media slot="media">
             <figure>
               <picture>
-                <source
-                  height="200"
-                  media="(min-width: 768px)"
-                  srcset="/templates/function/images/detail-image_pc.webp"
-                  type="image/webp"
-                  width="336"
-                />
-                <img
-                  alt=""
-                  height="200"
-                  loading="lazy"
-                  src="/templates/function/images/detail-image_pc.webp"
-                  width="327"
-                />
+                <source type="image/webp" srcset="/templates/function/images/detail-image_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                <img src="/templates/function/images/detail-image_pc.webp" width="327" height="200" alt="" loading="lazy" />
               </picture>
             </figure>
           </Media>
         </LayoutMedia>
       </div>
 
-      <div
-        class="mt-8 md:mt-10"
-        id="function-2"
-      >
+      <div class="mt-8 md:mt-10" id="function-2">
         <HeadingLevel3>
           <h3>〇〇〇〇が〇〇〇〇だから作業時間が約半分になる</h3>
         </HeadingLevel3>
 
-        <LayoutMedia
-          class="mt-8 md:mt-10"
-          directPc="row"
-          directSp="column-reverse"
-        >
+        <LayoutMedia class="mt-8 md:mt-10" directPc="row" directSp="column-reverse">
           <Text slot="content">
             <p>
               説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
@@ -161,39 +126,20 @@ const pageProps: PagePropType = {
           <Media slot="media">
             <figure>
               <picture>
-                <source
-                  height="200"
-                  media="(min-width: 768px)"
-                  srcset="/templates/function/images/detail-image-2_pc.webp"
-                  type="image/webp"
-                  width="336"
-                />
-                <img
-                  alt=""
-                  height="200"
-                  loading="lazy"
-                  src="/templates/function/images/detail-image-2_pc.webp"
-                  width="327"
-                />
+                <source type="image/webp" srcset="/templates/function/images/detail-image-2_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                <img src="/templates/function/images/detail-image-2_pc.webp" width="327" height="200" alt="" loading="lazy" />
               </picture>
             </figure>
           </Media>
         </LayoutMedia>
       </div>
 
-      <div
-        class="mt-8 md:mt-10"
-        id="function-3"
-      >
+      <div class="mt-8 md:mt-10" id="function-3">
         <HeadingLevel3>
           <h3>〇〇〇〇が〇〇〇〇になるから〇〇〇〇なミスがなくなる</h3>
         </HeadingLevel3>
 
-        <LayoutMedia
-          class="mt-8 md:mt-10"
-          directPc="row-reverse"
-          directSp="column-reverse"
-        >
+        <LayoutMedia class="mt-8 md:mt-10" directPc="row-reverse" directSp="column-reverse">
           <Text slot="content">
             <p>
               説明テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
@@ -203,20 +149,8 @@ const pageProps: PagePropType = {
           <Media slot="media">
             <figure>
               <picture>
-                <source
-                  height="200"
-                  media="(min-width: 768px)"
-                  srcset="/templates/function/images/detail-image-3_pc.webp"
-                  type="image/webp"
-                  width="336"
-                />
-                <img
-                  alt=""
-                  height="200"
-                  loading="lazy"
-                  src="/templates/function/images/detail-image-3_pc.webp"
-                  width="327"
-                />
+                <source type="image/webp" srcset="/templates/function/images/detail-image-3_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                <img src="/templates/function/images/detail-image-3_pc.webp" width="327" height="200" alt="" loading="lazy" />
               </picture>
             </figure>
           </Media>
@@ -236,14 +170,7 @@ const pageProps: PagePropType = {
             <p>Webからお問い合わせの際は下記フォームからお問い合わせください。</p>
           </Text>
 
-          <Button
-            as="a"
-            class="mt-4 md:mt-6"
-            href="DUMMY_LINK"
-            size="full"
-            theme="conversion"
-            title="フォームから問い合わせる"
-          />
+          <Button class="mt-4 md:mt-6" href="DUMMY_LINK" title="フォームから問い合わせる" as="a" size="full" theme="conversion" />
         </div>
 
         <div class="PanelInformation__segment">
@@ -264,17 +191,8 @@ const pageProps: PagePropType = {
         </div>
 
         <div class="PanelInformation__segment">
-          <div class="PanelInformation__title">
-            製品紹介やお役立ち資料を無料でご活用いただけます
-          </div>
-          <Button
-            as="a"
-            class="mt-4 md:mt-6"
-            href="DUMMY_LINK"
-            size="full"
-            theme="emphasis"
-            title="サービス紹介資料ダウンロード"
-          />
+          <div class="PanelInformation__title">製品紹介やお役立ち資料を無料でご活用いただけます</div>
+          <Button class="mt-4 md:mt-6" href="DUMMY_LINK" title="サービス紹介資料ダウンロード" as="a" size="full" theme="emphasis" />
         </div>
       </PanelInformation>
     </Section>
@@ -284,36 +202,20 @@ const pageProps: PagePropType = {
         <h2>〇〇〇〇システム導入支援を活用した企業をご紹介します</h2>
       </HeadingLevel2>
 
-      <LayoutColumn
-        class="mt-8 md:mt-10"
-        columnPc="3"
-        columnSp="1"
-      >
+      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
         <div class="LayoutColumn__segment">
           <Card
+            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/function/images/detail-image-4_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/function/images/detail-image-4_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/function/images/detail-image-4_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/function/images/detail-image-4_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -322,11 +224,7 @@ const pageProps: PagePropType = {
                 <p>〇〇〇〇株式会社</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>業種</dt>
                   <dd>テキストテキスト</dd>
@@ -341,29 +239,17 @@ const pageProps: PagePropType = {
         </div>
         <div class="LayoutColumn__segment">
           <Card
+            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/function/images/detail-image-5_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/function/images/detail-image-5_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/function/images/detail-image-5_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/function/images/detail-image-5_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -372,11 +258,7 @@ const pageProps: PagePropType = {
                 <p>〇〇〇〇株式会社</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>業種</dt>
                   <dd>テキストテキスト</dd>
@@ -391,29 +273,17 @@ const pageProps: PagePropType = {
         </div>
         <div class="LayoutColumn__segment">
           <Card
+            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="テキストテキストテキストテキストテキストテキストテキストテキスト"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/function/images/detail-image-6_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/function/images/detail-image-6_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/function/images/detail-image-6_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/function/images/detail-image-6_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -422,11 +292,7 @@ const pageProps: PagePropType = {
                 <p>〇〇〇〇株式会社</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>業種</dt>
                   <dd>テキストテキスト</dd>
@@ -441,17 +307,9 @@ const pageProps: PagePropType = {
         </div>
       </LayoutColumn>
 
-      <LayoutColumn
-        class="mt-8 md:mt-10 md:justify-center"
-        columnPc="auto"
-        columnSp="1"
-      >
+      <LayoutColumn class="mt-8 md:mt-10 md:justify-center" columnPc="auto" columnSp="1">
         <div class="LayoutColumn__segment">
-          <Button
-            as="a"
-            href="DUMMY_LINK"
-            title="すべて見る"
-          />
+          <Button href="DUMMY_LINK" title="すべて見る" as="a" />
         </div>
       </LayoutColumn>
 
@@ -459,36 +317,20 @@ const pageProps: PagePropType = {
         <h2>〇〇〇〇システム導入支援を詳しく知るセミナー・イベントがあります</h2>
       </HeadingLevel2>
 
-      <LayoutColumn
-        class="mt-8 md:mt-10"
-        columnPc="3"
-        columnSp="1"
-      >
+      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
         <div class="LayoutColumn__segment">
           <Card
+            title="〇〇〇〇を120%使いこなすためのポイント説明会"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="〇〇〇〇を120%使いこなすためのポイント説明会"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/function/images/detail-image-7_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/function/images/detail-image-7_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/function/images/detail-image-7_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/function/images/detail-image-7_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -497,11 +339,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール</dd>
@@ -512,29 +350,17 @@ const pageProps: PagePropType = {
         </div>
         <div class="LayoutColumn__segment">
           <Card
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/function/images/detail-image-8_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/function/images/detail-image-8_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/function/images/detail-image-8_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/function/images/detail-image-8_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -543,11 +369,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>オンライン開催</dd>
@@ -558,29 +380,17 @@ const pageProps: PagePropType = {
         </div>
         <div class="LayoutColumn__segment">
           <Card
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/function/images/detail-image-9_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/function/images/detail-image-9_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/function/images/detail-image-9_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/function/images/detail-image-9_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -589,11 +399,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール&オンライン開催</dd>
@@ -604,17 +410,9 @@ const pageProps: PagePropType = {
         </div>
       </LayoutColumn>
 
-      <LayoutColumn
-        class="mt-8 md:mt-10 md:justify-center"
-        columnPc="auto"
-        columnSp="1"
-      >
+      <LayoutColumn class="mt-8 md:mt-10 md:justify-center" columnPc="auto" columnSp="1">
         <div class="LayoutColumn__segment">
-          <Button
-            as="a"
-            href="DUMMY_LINK"
-            title="すべて見る"
-          />
+          <Button href="DUMMY_LINK" title="すべて見る" as="a" />
         </div>
       </LayoutColumn>
 

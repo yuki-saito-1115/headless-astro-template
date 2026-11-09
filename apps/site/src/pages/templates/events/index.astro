@@ -37,14 +37,8 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="セミナー・イベント">
     <picture slot="media">
-      <source
-        media="(width >= 768px)"
-        srcset="/templates/events/images/index-mainVisual_pc.webp"
-      />
-      <img
-        alt=""
-        src="/templates/events/images/index-mainVisual_sp.webp"
-      />
+      <source srcset="/templates/events/images/index-mainVisual_pc.webp" media="(width >= 768px)" />
+      <img src="/templates/events/images/index-mainVisual_sp.webp" alt="" />
     </picture>
   </MainVisual>
 
@@ -53,10 +47,7 @@ const pageProps: PagePropType = {
   <Content>
     <Section>
       <Text>
-        <p>
-          ビジネスに関わる実務的なトピックや経営課題、業界動向に関わる最新テーマについて取り上げたさまざまなイベント
-          / セミナーを開催しています(仮）
-        </p>
+        <p>ビジネスに関わる実務的なトピックや経営課題、業界動向に関わる最新テーマについて取り上げたさまざまなイベント / セミナーを開催しています(仮）</p>
       </Text>
 
       <LinkList
@@ -69,36 +60,20 @@ const pageProps: PagePropType = {
         ]}
       />
 
-      <LayoutColumn
-        class="mt-8 md:mt-10"
-        columnPc="3"
-        columnSp="1"
-      >
+      <LayoutColumn class="mt-8 md:mt-10" columnPc="3" columnSp="1">
         <div class="LayoutColumn__segment">
           <Card
-            link={{
-              href: 'DUMMY_LINK',
-            }}
-            outline
             title="〇〇〇〇を120%使いこなすためのポイント説明会"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
+            outline
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -108,11 +83,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール</dd>
@@ -124,29 +95,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-2_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-2_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-2_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-2_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -156,11 +115,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>オンライン開催</dd>
@@ -172,29 +127,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-3_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-3_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-3_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-3_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -204,11 +147,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール</dd>
@@ -220,29 +159,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
-            link={{
-              href: 'DUMMY_LINK',
-            }}
-            outline
             title="〇〇〇〇を120%使いこなすためのポイント説明会"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
+            outline
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-4_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-4_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-4_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-4_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -252,11 +179,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>オンライン開催</dd>
@@ -268,29 +191,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-5_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-5_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-5_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-5_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -300,11 +211,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール</dd>
@@ -316,29 +223,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-6_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-6_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-6_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-6_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -348,11 +243,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>オンライン開催</dd>
@@ -364,29 +255,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
-            link={{
-              href: 'DUMMY_LINK',
-            }}
-            outline
             title="〇〇〇〇を120%使いこなすためのポイント説明会"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
+            outline
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-7_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-7_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-7_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-7_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -396,11 +275,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール</dd>
@@ -412,29 +287,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-8_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-8_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-8_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-8_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -444,11 +307,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>オンライン開催</dd>
@@ -460,29 +319,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-9_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-9_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-9_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-9_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -492,11 +339,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール&オンライン開催</dd>
@@ -508,29 +351,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-10_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-10_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-10_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-10_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -540,11 +371,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール</dd>
@@ -556,29 +383,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-11_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-11_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-11_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-11_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -588,11 +403,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>オンライン開催</dd>
@@ -604,29 +415,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-12_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-12_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-12_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-12_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -636,11 +435,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール&オンライン開催</dd>
@@ -652,29 +447,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-13_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-13_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-13_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-13_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -684,11 +467,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール</dd>
@@ -700,29 +479,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-14_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-14_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-14_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-14_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -732,11 +499,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>オンライン開催</dd>
@@ -748,29 +511,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-15_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-15_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-15_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-15_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -780,11 +531,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール&オンライン開催</dd>
@@ -796,29 +543,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
-            link={{
-              href: 'DUMMY_LINK',
-            }}
-            outline
             title="〇〇〇〇を120%使いこなすためのポイント説明会"
+            link={{
+              href: 'DUMMY_LINK',
+            }}
+            outline
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-16_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-16_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-16_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-16_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -828,11 +563,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール</dd>
@@ -844,29 +575,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="社内の無駄な作業が減り、〇〇において30%のコストカットに成功。"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-17_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-17_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-17_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-17_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -876,11 +595,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>オンライン開催</dd>
@@ -892,29 +607,17 @@ const pageProps: PagePropType = {
 
         <div class="LayoutColumn__segment">
           <Card
+            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
             link={{
               href: 'DUMMY_LINK',
             }}
             outline
-            title="リーズナブルで多機能、24時間対応のサポートデスクがあるのも安心です"
           >
             <Media slot="media">
               <figure>
                 <picture>
-                  <source
-                    height="200"
-                    media="(min-width: 768px)"
-                    srcset="/templates/events/images/index-image-18_pc.webp"
-                    type="image/webp"
-                    width="336"
-                  />
-                  <img
-                    alt=""
-                    height="200"
-                    loading="lazy"
-                    src="/templates/events/images/index-image-18_sp.webp"
-                    width="327"
-                  />
+                  <source type="image/webp" srcset="/templates/events/images/index-image-18_pc.webp" media="(min-width: 768px)" width="336" height="200" />
+                  <img src="/templates/events/images/index-image-18_sp.webp" width="327" height="200" alt="" loading="lazy" />
                 </picture>
               </figure>
             </Media>
@@ -924,11 +627,7 @@ const pageProps: PagePropType = {
                 <p>2020年8月31日（木）14:00-16:00</p>
               </Text>
 
-              <ListDescription
-                class="mt-4 md:mt-6"
-                directPc="row"
-                directSp="row"
-              >
+              <ListDescription class="mt-4 md:mt-6" directPc="row" directSp="row">
                 <dl>
                   <dt>場所</dt>
                   <dd>○○○○カンファレンスホール&オンライン開催</dd>

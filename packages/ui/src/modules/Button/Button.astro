@@ -7,10 +7,7 @@ import MediaIcon from '@packages/ui/modules/MediaIcon/MediaIcon.astro';
 /**
  * - __このコンポーネントはMarkdown実装やリッチエディタ上では利用できません。__
  */
-export type Props<Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button'> = Tag extends
-  | 'span'
-  | 'a'
-  | 'button'
+export type Props<Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button'> = Tag extends 'span' | 'a' | 'button'
   ? Polymorphic<{
       as: Tag;
     }> & {
@@ -29,16 +26,7 @@ export type Props<Tag extends 'span' | 'a' | 'button' = 'span' | 'a' | 'button'>
     }
   : never;
 
-const {
-  as: Element = 'span',
-  title,
-  iconAfter = undefined,
-  iconBefore = undefined,
-  theme = undefined,
-  size = undefined,
-  class: className,
-  ...rest
-} = Astro.props;
+const { as: Element = 'span', title, iconAfter = undefined, iconBefore = undefined, theme = undefined, size = undefined, class: className, ...rest } = Astro.props;
 const attrs: Record<string, unknown> = {
   ...rest,
 };

@@ -6,14 +6,8 @@ const { title, description } = Astro.props.frontmatter;
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      content="width=device-width"
-      name="viewport"
-    />
-    <meta
-      content={description}
-      name="description"
-    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
     <title>{title}</title>
   </head>
   <body>

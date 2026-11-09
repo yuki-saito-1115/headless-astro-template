@@ -28,8 +28,8 @@ const attrs: Record<string, unknown> = {
   ]}
 >
   <input
-    disabled={disabled}
     type="date"
+    disabled={disabled}
     class:list={[
       'FormCalendar__item',
     ]}
@@ -121,8 +121,7 @@ const attrs: Record<string, unknown> = {
     :where(.FormCalendar__item) {
       display: block;
       width: 100%;
-      padding: var(--local-padding) calc(var(--local-iconSize) + (var(--local-padding) * 2))
-        var(--local-padding) var(--local-padding);
+      padding: var(--local-padding) calc(var(--local-iconSize) + (var(--local-padding) * 2)) var(--local-padding) var(--local-padding);
       color: var(--local-foreground);
       appearance: none;
       outline: none;

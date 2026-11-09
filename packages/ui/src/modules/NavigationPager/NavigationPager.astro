@@ -47,11 +47,11 @@ const hasNextPage = current < total;
         ]}
       >
         <a
+          href={setHref(current - 1)}
           class:list={[
             'NavigationPager__link',
             'NavigationPager__link--previous',
           ]}
-          href={setHref(current - 1)}
         >
           前のページ
         </a>
@@ -75,10 +75,10 @@ const hasNextPage = current < total;
           </span>
         ) : (
           <a
+            href={setHref(page)}
             class:list={[
               'NavigationPager__link',
             ]}
-            href={setHref(page)}
           >
             {page}
           </a>
@@ -93,11 +93,11 @@ const hasNextPage = current < total;
         ]}
       >
         <a
+          href={setHref(current + 1)}
           class:list={[
             'NavigationPager__link',
             'NavigationPager__link--next',
           ]}
-          href={setHref(current + 1)}
         >
           次のページ
         </a>

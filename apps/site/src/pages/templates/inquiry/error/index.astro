@@ -43,19 +43,8 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="お問い合わせ">
     <picture slot="media">
-      <source
-        height="500"
-        media="(min-width: 768px)"
-        srcset="/templates/inquiry/images/error-mainVisual_pc.webp"
-        type="image/webp"
-        width="1440"
-      />
-      <img
-        alt=""
-        height="130"
-        src="/templates/inquiry/images/error-mainVisual_sp.webp"
-        width="375"
-      />
+      <source type="image/webp" srcset="/templates/inquiry/images/error-mainVisual_pc.webp" media="(min-width: 768px)" width="1440" height="500" />
+      <img src="/templates/inquiry/images/error-mainVisual_sp.webp" width="375" height="130" alt="" />
     </picture>
   </MainVisual>
 
@@ -65,16 +54,12 @@ const pageProps: PagePropType = {
     <Section>
       <Box theme="important">
         <Text>
-          <p>
-            未入力部分がありますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-          </p>
+          <p>未入力部分がありますテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
         </Text>
       </Box>
 
       <Text class="mt-8 md:mt-10">
-        <p>
-          ご相談・お問い合わせは下記フォームをご利用ください。当社では必要に応じて、電話、メール、対面、さまざまな形式でのお打ち合わせを承っています。お気軽にお問い合わせください。（仮）
-        </p>
+        <p>ご相談・お問い合わせは下記フォームをご利用ください。当社では必要に応じて、電話、メール、対面、さまざまな形式でのお打ち合わせを承っています。お気軽にお問い合わせください。（仮）</p>
       </Text>
 
       <Text class="mt-8 md:mt-10">
@@ -82,17 +67,11 @@ const pageProps: PagePropType = {
       </Text>
 
       <form class="mt-8 md:mt-10">
-        <FormList
-          directPc="row"
-          directSp="column"
-        >
+        <FormList directPc="row" directSp="column">
           <dt>
             <label for="error-message">
               お問い合わせ内容
-              <Badge
-                theme="warning"
-                title="必須"
-              />
+              <Badge title="必須" theme="warning" />
             </label>
           </dt>
           <dd>
@@ -104,23 +83,13 @@ const pageProps: PagePropType = {
               <p>1000文字まで入力可能</p>
             </Text>
 
-            <FormTextarea
-              class="mt-4"
-              id="error-message"
-              name="message"
-              placeholder="ご自由にご記入ください。"
-              size="full"
-              state="invalid"
-            />
+            <FormTextarea class="mt-4" id="error-message" name="message" placeholder="ご自由にご記入ください。" size="full" state="invalid" />
           </dd>
 
           <dt>
             <label for="error-company">
               会社名
-              <Badge
-                theme="warning"
-                title="必須"
-              />
+              <Badge title="必須" theme="warning" />
             </label>
           </dt>
           <dd>
@@ -128,23 +97,13 @@ const pageProps: PagePropType = {
               <p>[会社名]を入力してください。</p>
             </TextWarning>
 
-            <FormText
-              class="mt-4"
-              id="error-company"
-              name="company"
-              placeholder="例）株式会社ミツエーリンクス"
-              size="full"
-              state="invalid"
-            />
+            <FormText class="mt-4" id="error-company" name="company" placeholder="例）株式会社ミツエーリンクス" size="full" state="invalid" />
           </dd>
 
           <dt>
             <label for="error-name">
               お名前
-              <Badge
-                theme="warning"
-                title="必須"
-              />
+              <Badge title="必須" theme="warning" />
             </label>
           </dt>
           <dd>
@@ -152,23 +111,13 @@ const pageProps: PagePropType = {
               <p>[お名前]を入力してください。</p>
             </TextWarning>
 
-            <FormText
-              class="mt-4"
-              id="error-name"
-              name="name"
-              placeholder="例）山田太郎"
-              size="full"
-              state="invalid"
-            />
+            <FormText class="mt-4" id="error-name" name="name" placeholder="例）山田太郎" size="full" state="invalid" />
           </dd>
 
           <dt>
             <label for="error-name-kana">
               お名前（カタカナ）
-              <Badge
-                theme="warning"
-                title="必須"
-              />
+              <Badge title="必須" theme="warning" />
             </label>
           </dt>
           <dd>
@@ -176,23 +125,13 @@ const pageProps: PagePropType = {
               <p>[お名前（カタカナ）]を入力してください。</p>
             </TextWarning>
 
-            <FormText
-              class="mt-4"
-              id="error-name-kana"
-              name="name-kana"
-              placeholder="例）ヤマダタロウ"
-              size="full"
-              state="invalid"
-            />
+            <FormText class="mt-4" id="error-name-kana" name="name-kana" placeholder="例）ヤマダタロウ" size="full" state="invalid" />
           </dd>
 
           <dt>
             <label for="error-birth-year">
               生年月日
-              <Badge
-                theme="warning"
-                title="必須"
-              />
+              <Badge title="必須" theme="warning" />
             </label>
           </dt>
           <dd>
@@ -251,10 +190,7 @@ const pageProps: PagePropType = {
           <dt>
             <label for="error-email">
               メールアドレス
-              <Badge
-                theme="warning"
-                title="必須"
-              />
+              <Badge title="必須" theme="warning" />
             </label>
           </dt>
           <dd>
@@ -262,24 +198,13 @@ const pageProps: PagePropType = {
               <p>[メールアドレス]を入力してください。</p>
             </TextWarning>
 
-            <FormText
-              class="mt-4"
-              id="error-email"
-              name="email"
-              placeholder="例）info@mitsue.co.jp"
-              size="full"
-              state="invalid"
-              type="email"
-            />
+            <FormText class="mt-4" id="error-email" type="email" name="email" placeholder="例）info@mitsue.co.jp" size="full" state="invalid" />
           </dd>
 
           <dt>
             <label for="error-tel">
               電話番号
-              <Badge
-                theme="warning"
-                title="必須"
-              />
+              <Badge title="必須" theme="warning" />
             </label>
           </dt>
           <dd>
@@ -288,29 +213,16 @@ const pageProps: PagePropType = {
             </TextWarning>
 
             <Text class="mt-4">
-              <p>
-                メールアドレスの入力間違い、迷惑メール設定などにより、メールでのご連絡ができない場合がございますので、日中ご連絡が可能な電話番号をご記入ください。
-              </p>
+              <p>メールアドレスの入力間違い、迷惑メール設定などにより、メールでのご連絡ができない場合がございますので、日中ご連絡が可能な電話番号をご記入ください。</p>
             </Text>
 
-            <FormText
-              class="mt-4"
-              id="error-tel"
-              name="tel"
-              placeholder="例）0312345678"
-              size="full"
-              state="invalid"
-              type="tel"
-            />
+            <FormText class="mt-4" id="error-tel" type="tel" name="tel" placeholder="例）0312345678" size="full" state="invalid" />
           </dd>
 
           <dt>
             <label for="error-postal-code">
               郵便番号
-              <Badge
-                theme="warning"
-                title="必須"
-              />
+              <Badge title="必須" theme="warning" />
             </label>
           </dt>
           <dd>
@@ -320,18 +232,9 @@ const pageProps: PagePropType = {
 
             <FormComplex class="mt-4">
               <span class="FormComplex__segment">
-                <FormText
-                  id="error-postal-code"
-                  name="postal-code"
-                  state="invalid"
-                />
+                <FormText id="error-postal-code" name="postal-code" state="invalid" />
 
-                <Button
-                  as="button"
-                  theme="text"
-                  title="郵便番号から住所検索"
-                  type="button"
-                />
+                <Button type="button" title="郵便番号から住所検索" as="button" theme="text" />
               </span>
             </FormComplex>
           </dd>
@@ -339,10 +242,7 @@ const pageProps: PagePropType = {
           <dt>
             <label for="error-prefecture">
               都道府県
-              <Badge
-                theme="warning"
-                title="必須"
-              />
+              <Badge title="必須" theme="warning" />
             </label>
           </dt>
           <dd>
@@ -555,10 +455,7 @@ const pageProps: PagePropType = {
           <dt>
             <label for="error-city">
               市区町村
-              <Badge
-                theme="warning"
-                title="必須"
-              />
+              <Badge title="必須" theme="warning" />
             </label>
           </dt>
           <dd>
@@ -566,23 +463,13 @@ const pageProps: PagePropType = {
               <p>[都道府県]を入力してください。</p>
             </TextWarning>
 
-            <FormText
-              class="mt-4"
-              id="error-city"
-              name="city"
-              placeholder="ご記入ください"
-              size="full"
-              state="invalid"
-            />
+            <FormText class="mt-4" id="error-city" name="city" placeholder="ご記入ください" size="full" state="invalid" />
           </dd>
 
           <dt>
             <label for="error-address">
               番地・マンション名など
-              <Badge
-                theme="warning"
-                title="必須"
-              />
+              <Badge title="必須" theme="warning" />
             </label>
           </dt>
           <dd>
@@ -590,14 +477,7 @@ const pageProps: PagePropType = {
               <p>[番地・マンション名など]を入力してください。</p>
             </TextWarning>
 
-            <FormText
-              class="mt-4"
-              id="error-address"
-              name="address"
-              placeholder="ご記入ください"
-              size="full"
-              state="invalid"
-            />
+            <FormText class="mt-4" id="error-address" name="address" placeholder="ご記入ください" size="full" state="invalid" />
           </dd>
 
           <dt>当社を何で知りましたか?</dt>
@@ -645,18 +525,9 @@ const pageProps: PagePropType = {
           </p>
         </Text>
 
-        <LayoutColumn
-          class="mt-8 justify-center md:mt-10"
-          columnPc="auto"
-          columnSp="1"
-        >
+        <LayoutColumn class="mt-8 justify-center md:mt-10" columnPc="auto" columnSp="1">
           <div class="LayoutColumn__segment">
-            <Button
-              as="button"
-              theme="conversion"
-              title="同意して確認画面へ"
-              type="submit"
-            />
+            <Button type="submit" title="同意して確認画面へ" as="button" theme="conversion" />
           </div>
         </LayoutColumn>
       </form>

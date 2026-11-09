@@ -30,14 +30,8 @@ const pageProps: PagePropType = {
 <PageLayout {...pageProps}>
   <MainVisual title="テンプレート一覧">
     <picture slot="media">
-      <source
-        media="(width >= 768px)"
-        srcset="/templates/images/index-mainVisual_pc.webp"
-      />
-      <img
-        alt=""
-        src="/templates/images/index-mainVisual_sp.webp"
-      />
+      <source srcset="/templates/images/index-mainVisual_pc.webp" media="(width >= 768px)" />
+      <img src="/templates/images/index-mainVisual_sp.webp" alt="" />
     </picture>
   </MainVisual>
 
@@ -50,10 +44,7 @@ const pageProps: PagePropType = {
       </HeadingLevel2>
 
       <Box class="mt-8 md:mt-10">
-        <LayoutColumn
-          columnPc="3"
-          columnSp="1"
-        >
+        <LayoutColumn columnPc="3" columnSp="1">
           <div class="LayoutColumn__segment">
             <HeadingLevel3>
               <h3>メインビジュアル</h3>
