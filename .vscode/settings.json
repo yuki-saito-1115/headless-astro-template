@@ -114,8 +114,6 @@
     "editor.codeActionsOnSave": {
       // Astroの保存時にはBiomeによるクラスの重複除去を実行しない
       "source.biome.noDuplicateClasses": "never",
-      // Astroの保存時にはBiomeによる属性の並べ替えを実行しない
-      "source.biome.useSortedAttributes": "never",
       // Astroの保存時にはBiomeによるinterfaceメンバーの並べ替えを実行しない
       "source.biome.useSortedInterfaceMembers": "never",
       // Astroの保存時にはBiomeによるJSONキーの並べ替えを実行しない

@@ -68,12 +68,12 @@
   },
 
   "formatter": {
-    // HTML・Astro・JSX・TSX・Vueの属性が複数ある場合は、属性を1行ずつ記述する
+    // Astro・JSX・TSX・Vueの属性が複数ある場合は、属性を1行ずつ記述する
     "attributePosition": "multiline",
     // HTML・Astro・JSX・TSX・Vueの複数行の開始タグの閉じ括弧は独立した行に置く
     "bracketSameLine": false,
     "enabled": true,
-    // 1行の長さは100文字を目安に折り返す
+    // HTML以外は1行の長さを100文字を目安に折り返す
     "lineWidth": 100,
     // インデント・改行コードなどは.editorconfigに従う
     "useEditorconfig": true
@@ -84,6 +84,10 @@
     "experimentalFullSupportEnabled": true,
     "formatter": {
       "enabled": true,
+      // HTMLの属性は1行に収まる場合はまとめる
+      "attributePosition": "auto",
+      // Biomeが許容する最大幅。HTMLは100文字では折り返さない
+      "lineWidth": 320,
       // HTML・Astro・Vueのscript・style内を1段インデントする
       "indentScriptAndStyle": true,
       // HTML・Astro・Vueのimg・input・brなどの空要素を/>で閉じる
@@ -217,6 +221,75 @@
   },
 
   "overrides": [
+    {
+      "includes": ["**/*.html", "**/*.astro"],
+      "assist": {
+        "actions": {
+          "source": {
+            "useSortedAttributes": {
+              "level": "on",
+              "options": {
+                "sortFirst": [
+                  "class",
+                  "id",
+                  "type",
+                  "name",
+                  "for",
+                  "charset",
+                  "content",
+                  "property",
+                  "src",
+                  "srcset",
+                  "media",
+                  "label",
+                  "value",
+                  "placeholder",
+                  "checked",
+                  "disabled",
+                  "scope",
+                  "datetime",
+                  "rel",
+                  "href",
+                  "hreflang",
+                  "target",
+                  "download",
+                  "width",
+                  "height",
+                  "alt",
+                  "loading",
+                  "fetchpriority",
+                  "role",
+                  "title",
+                  "aria-controls",
+                  "aria-current",
+                  "aria-hidden",
+                  "aria-invalid",
+                  "aria-label",
+                  "aria-labelledby",
+                  "aria-selected",
+                  "style"
+                ],
+                "sortOrder": "natural"
+              }
+            }
+          }
+        }
+      },
+      "linter": {
+        "rules": {
+          "a11y": {
+            // タブパネルとダイアログのスクロール領域はキーボード操作のためフォーカス可能にする
+            "noNoninteractiveTabindex": "off",
+            // 部品カタログ・ページテンプレートのダミーリンクを許可する
+            "useValidAnchor": "off",
+            // Linkはリンク部品の正式名称として目次に表示する
+            "noAmbiguousAnchorText": "off",
+            // Liquidで生成するlang属性はソースの段階では判定できない
+            "useValidLang": "off"
+          }
+        }
+      }
+    },
     {
       "includes": [
         "**/*.json",
