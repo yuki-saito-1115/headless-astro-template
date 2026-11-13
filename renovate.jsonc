@@ -14,6 +14,8 @@
   "baseBranchPatterns": ["develop"],
   // 同時に開く通常の更新PRを最大3件に制限する
   "prConcurrentLimit": 3,
+  // 公開直後に取り下げ・改ざんされる版を避けるため、リリースから3日経った版だけを更新対象にする
+  "minimumReleaseAge": "3 days",
   // 原則は手動マージ。パッチ更新だけ下のルールで自動マージを有効にする
   "automerge": false,
   // パッチ更新とマイナー更新を別々のPRにする
