@@ -24,7 +24,7 @@
     "@astrojs/check": "^0.9.12",
     "@tailwindcss/vite": "^4.3.4",
     "npm-run-all2": "^9.0.4",
-    "typescript": "^5.9.3",
+    "typescript": "^7.0.0",
     "wrangler": "^4.157.0"
   }
 }
