@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@storybook-astro/renderer": "^1.15.0",
-    "typescript": "^5.9.3"
+    "typescript": "^7.0.0"
   },
   "exports": {
     "./build/*": "./src/scripts/build/*.ts",
